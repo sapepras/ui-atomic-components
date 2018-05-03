@@ -1,24 +1,23 @@
 {
   "name": "fusion-components",
   "version": "1.0.0",
-  "description": "A repository of the common atomic components used across the academy sites",
+  "description":
+    "A repository of the common atomic components used across the academy sites",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc mocha --reporter spec test-setup.js \"components/**/tests/*.test.js\" ",
-    "build": "npm run build:clean && webpack --mode=production webpack.config.js",
+    "test":
+      "cross-env NODE_ENV=test nyc mocha --reporter spec test-setup.js \"components/**/tests/*.test.js\" ",
+    "build":
+      "npm run build:clean && webpack --mode=production webpack.config.js",
     "build:clean": "rimraf ./dist",
     "lint": "npm run lint:js",
     "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern docs",
     "lint:js": "npm run lint:eslint -- . ",
-    "build:dev": "npm run build:clean  && webpack --mode=development webpack.config.js"
+    "start": "npx styleguidist server",
+    "build:dev":
+      "npm run build:clean  && webpack --mode=development webpack.config.js"
   },
-  "keywords": [
-    "atomic",
-    "design",
-    "atoms",
-    "components",
-    "fusion"
-  ],
+  "keywords": ["atomic", "design", "atoms", "components", "fusion"],
   "author": "SapientRazorfish",
   "license": "MIT",
   "dependencies": {
