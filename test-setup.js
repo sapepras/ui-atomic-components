@@ -3,7 +3,7 @@
  * 1. requires babel-polyfill to transpile our test case written in ES6
  * 2. Exposes DOM variables to the node environment , so that the devs can write unit tests on DOM using Enzyme.mount/shallow
  * 3. Copies window object's properties into Node's global object.
- **/
+ * */
 
 require("babel-register")();
 const chai = require("chai");
