@@ -1,0 +1,27 @@
+.common {
+  color: #585858;
+  line-height: 2;
+  border-bottom: 1px solid #585858;
+  padding: 0.1rem;
+  text-decoration: none;
+}
+
+.common:hover {
+  color: #0055a6;
+  border-bottom-color: #0055a6;
+}
+
+.disabled {
+  composes: common;
+  color: #cccccc;
+  border-bottom-color: #ccc;
+}
+
+.icontext {
+  composes: common;
+}
+
+.icontext::after {
+  content: ">";
+  padding-left: 2px;
+}
