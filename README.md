@@ -1,6 +1,24 @@
-<img width="100%" alt="atomic design" src="https://user-images.githubusercontent.com/4838076/33235048-d083dca6-d217-11e7-9aea-9a5ef5ae6fe7.png">
+# Fusion Components
 
-# Atomic Design
+#### How to use
+
+Install the fusion components via `npm install fusion-components` (TBD)
+
+Use it as `import {yourComponent} from fusion-components`
+
+#### Developement
+
+* clone the repository at (https://bitbucket.org/academysports/ui-atomic-components/)
+* Write your component logic inside components folder
+* `npm start` starts a component explorer based on style-guidist which can be used for local developement and reference
+
+#### Features
+
+Uses `prettier` and `eslint` for linting .
+Uses `emotionJS` for styling
+Uses mocha,chai,enzyme,sinon + JSDOM for unit testing.
+
+#### What is Atomic Design?
 
 Atomic design is methodology for creating design systems. There are five distinct levels in atomic design:
 
@@ -46,6 +64,12 @@ _That is about it here,. now go out there and build something :)_
 
 ###### Notes
 
-* Futher Reading L Atomic Design by Brad Frost : http://atomicdesign.bradfrost.com/table-of-contents/
+* Futher Reading Atomic Design by Brad Frost : http://atomicdesign.bradfrost.com/table-of-contents/
 
 * All of our atoms will be moved to npm `org` repository of Academy `npm`
+
+* Guidelines for component developement - WIP
+
+* semver - TBD
+
+* host site created by style-guidist - TBD
