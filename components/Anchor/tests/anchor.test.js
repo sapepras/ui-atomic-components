@@ -21,9 +21,7 @@ describe("Anchor", () => {
   describe("the rendered a tag", () => {
     describe("when disable prop is set to true", () => {
       beforeEach(() => {
-        props = {
-          disabled: true
-        };
+        props = { disabled: true };
       });
 
       it("displays the disabled button to be of grey color", () => {
