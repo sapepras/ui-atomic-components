@@ -82,9 +82,17 @@ const StyledButton = styled("button")`
 `;
 
 const Button = props => {
-  const { type, onClick, disabled } = props;
+  const {
+    type, onClick, disabled, auid
+  } = props;
   return (
-    <StyledButton type={type} disabled={disabled} onClick={onClick} {...props}>
+    <StyledButton
+      data-auid={`btn${auid}`}
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      {...props}
+    >
       {props.children}
     </StyledButton>
   );
@@ -101,6 +109,8 @@ Button.propTypes = {
   btntype: PropTypes.oneOf(["primary", "secondary"]),
   /** Gets called when the user clicks on the button */
   onClick: PropTypes.func,
+  /** Automated Test Id */
+  auid: PropTypes.string.isRequired,
   /** Button label */
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
 };

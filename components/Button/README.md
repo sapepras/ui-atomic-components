@@ -1,5 +1,7 @@
 #### Button example:
 
+Primary Button:
+
 ```js
 <Button>Primary</Button>
 ```

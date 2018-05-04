@@ -6,7 +6,8 @@ const path = require("path");
 
 const baseConfig = () => ({
   entry: {
-    Button: "./components/Button"
+    Button: "./components/Button",
+    Anchor: "./components/Anchor"
   },
   output: {
     // Compile into js/build.js
@@ -96,7 +97,9 @@ const baseConfig = () => ({
       }
     ]
   },
-  performance: { hints: false }
+  performance: {
+    hints: false
+  }
 });
 
 module.exports = baseConfig;
