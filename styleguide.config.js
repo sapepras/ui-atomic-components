@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("./webpack.base.config");
 
 module.exports = {
   sections: [
@@ -9,6 +10,7 @@ module.exports = {
   ],
   ignore: ["**/tests/**"],
   defaultExample: true,
+  webpackConfig: webpack,
   showCode: true,
   editorConfig: {
     lineNumbers: false
