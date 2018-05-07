@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import ##_COMP_NAME_## from "../index";
 
 describe("/##_COMP_NAME_##/", () => {
-  let props = {};
+  const props = {};
   let MountedBtn;
 
   const ShallowBtn = () => {

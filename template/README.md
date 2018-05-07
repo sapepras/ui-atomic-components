@@ -1,5 +1,5 @@
-#### ##_COMP_NAME_## example:
-
-**_WIP_**
+#### ##_COMP_NAME_## Component:(**_WIP_**)
 
 ###### Notes
+
+###### Todo

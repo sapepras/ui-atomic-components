@@ -4,6 +4,8 @@
 
 Install the fusion components via `npm install fusion-components` (TBD)
 
+For now use `npm link` in your local repo which will export the repo as a npm moudle to your local npm module folder.
+
 Use it as `import {yourComponent} from fusion-components`
 
 #### Developement
@@ -11,6 +13,7 @@ Use it as `import {yourComponent} from fusion-components`
 * clone the repository at (https://bitbucket.org/academysports/ui-atomic-components/)
 * Write your component logic inside components folder
 * `npm start` starts a component explorer based on style-guidist which can be used for local developement and reference
+* `npm run generate` provides a handy generator, so that you dont have to copy paste stuff :)
 
 #### Features
 
