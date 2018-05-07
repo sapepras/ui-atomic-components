@@ -1,29 +1,26 @@
 {
   "name": "fusion-components",
   "version": "1.0.0",
-  "description": "A repository of the common atomic components used across the academy sites",
+  "description":
+    "A repository of the common atomic components used across the academy sites",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc mocha --reporter spec test-setup.js \"components/**/tests/*.test.js\" ",
-    "build": "npm run build:clean && webpack --mode=production webpack.config.js",
+    "test":
+      "cross-env NODE_ENV=test nyc mocha --reporter spec test-setup.js \"components/**/tests/*.test.js\" ",
+    "build":
+      "npm run build:clean && webpack --mode=production webpack.config.js",
     "build:clean": "rimraf ./dist",
     "build:test": "webpack --mode=production --config webpack.dist.config.js",
     "lint": "npm run lint:js",
-    "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern docs",
+    "lint:eslint": "eslint",
     "lint:js": "npm run lint:eslint -- . ",
     "start": "npx styleguidist server",
-    "build:dev": "npm run build:clean  && webpack --mode=development webpack.config.js"
+    "generate": "plop",
+    "build:dev":
+      "npm run build:clean  && webpack --mode=development webpack.config.js"
   },
-  "pre-commit": [
-    "lint"
-  ],
-  "keywords": [
-    "atomic",
-    "design",
-    "atoms",
-    "components",
-    "fusion"
-  ],
+  "pre-commit": ["lint"],
+  "keywords": ["atomic", "design", "atoms", "components", "fusion"],
   "author": "SapientRazorfish",
   "license": "MIT",
   "dependencies": {
@@ -59,6 +56,7 @@
     "json-loader": "^0.5.7",
     "mocha": "^5.1.1",
     "nyc": "^11.7.1",
+    "plop": "^2.0.0",
     "postcss": "^6.0.22",
     "postcss-loader": "^2.1.4",
     "postcss-modules-scope": "^1.1.0",
