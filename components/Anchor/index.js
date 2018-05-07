@@ -3,15 +3,24 @@ import PropTypes from "prop-types";
 import style from "./anchor.css";
 
 const Anchor = props => {
-  const { ariarole, href, disabled } = props;
-  let cname = style.common;
-  if (disabled) {
-    cname = style.disabled;
+  const {
+ ariarole, href, auid, atype, disabled
+} = props;
+  let cname = style.inlineAnchor;
+  if (atype === "inline") {
+    cname = style.inlineAnchor;
   } else {
-    cname = style.common;
+    cname = style.iconText;
   }
+
   return (
-    <a className={cname} role={ariarole} href={href}>
+    <a
+      data-auid={auid}
+      className={cname}
+      disabled={disabled}
+      role={ariarole}
+      href={href}
+    >
       {props.children}
     </a>
   );
@@ -23,12 +32,15 @@ Anchor.propTypes = {
   /** aria role  */
   ariarole: PropTypes.oneOf(["link", "button"]),
   children: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  auid: PropTypes.string.isRequired,
+  atype: PropTypes.oneOf(["inline", "icontext"])
 };
 
 Anchor.defaultProps = {
   ariarole: "link",
-  disabled: false
+  disabled: false,
+  atype: "inline"
 };
 
 export default Anchor;

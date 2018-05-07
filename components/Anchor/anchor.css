@@ -11,17 +11,16 @@
   border-bottom-color: #0055a6;
 }
 
-.disabled {
-  composes: common;
-  color: #cccccc;
-  border-bottom-color: #ccc;
-}
-
-.icontext {
+.inlineAnchor {
   composes: common;
 }
 
-.icontext::after {
+.iconText {
+  composes: common;
+  border-bottom: none;
+}
+
+.iconText::after {
   content: ">";
   padding-left: 2px;
 }

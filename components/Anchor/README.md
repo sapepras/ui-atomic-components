@@ -14,6 +14,14 @@ Disabled Link:
 </Anchor>
 ```
 
+Icon Text Link:
+
+```jsx
+<Anchor atype="icontext" href="https://www.academy.com">
+  Academy
+</Anchor>
+```
+
 ###### Notes
 
 * `<Link>` from `react-router` to be used for client side routing
