@@ -3,7 +3,7 @@ import { expect } from "chai";
 import { mount } from "enzyme";
 import input from "../index";
 
-describe("/input/", () => {
+describe("Input", () => {
   const props = {};
   let MountedBtn;
 
@@ -14,7 +14,7 @@ describe("/input/", () => {
     return MountedBtn;
   };
 
-  it("always renders a input", () => {
+  it("always renders a input field", () => {
     expect(ShallowBtn().find("input")).to.have.length(1);
   });
 });

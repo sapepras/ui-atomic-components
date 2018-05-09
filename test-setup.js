@@ -6,6 +6,7 @@
  * */
 
 require("babel-register")();
+require("ignore-styles");
 const chai = require("chai");
 const sinonChai = require("sinon-chai");
 
