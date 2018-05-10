@@ -38,7 +38,7 @@ Card.propTypes = {
   title: PropTypes.string,
   heading: PropTypes.string,
   description: PropTypes.string,
-  rating: PropTypes.oneOf(PropTypes.number, PropTypes.string),
+  rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   price: PropTypes.string
 };
 
