@@ -68,7 +68,7 @@ Rating.defaultProps = {
 
 Rating.propTypes = {
   /** Number of star rating from 1 to 5 */
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOf(PropTypes.number, PropTypes.string).isRequired,
   /** Click handler - returns index of star clicked */
   onClick: PropTypes.func,
   /** Main Star Color */

@@ -11,15 +11,49 @@ Notes: Only the product attribute is working, more to attributes to come. You ca
 
 ```jsx
 {
-  window.prodObj = {
-    title: "this is coming from a var!!!",
+  window.someProd = {
+    name: "Shoes",
+    id: "10001",
+    parentCategoryId: "10001",
     shortDescription: "this is a short description",
-    rating: 4,
-    price: 34.999,
-    imageUrl:
-      "https://www.screenaustralia.gov.au/sacms/media/samedialibrary/screenguide/titles/tid33797-mountain/tid33797-web/tid33797-mountain-001-hero.jpg"
+    longDescription:
+      "this is a long description this is a long description this is a long description this is a long description this is a long description ",
+    sellable: "true",
+    manufacturer: "Nike",
+    productVariant: "Regular",
+    productSpecification: "TEST PRODUCT SPEC",
+    promotionalMessage: "Free shipping product",
+    metaKeywords: "TEST,TEST1",
+    metaDescription: "Meta desription",
+    title: "Shoes",
+    defaultSku: "SKU001",
+    isSingleSkuProduct: "false",
+    itemId: "partNumber",
+    seoName: "seo-name",
+    imageURL:
+      "https://www.screenaustralia.gov.au/sacms/media/samedialibrary/screenguide/titles/tid33797-mountain/tid33797-web/tid33797-mountain-001-hero.jpg",
+    imageAltDescription: "TEST ALT IMAGE",
+    storeId: "10051",
+    priceRange: "$5 to $10",
+    priceAdFeature: "Clearance",
+    skus: [
+      {
+        sku: "sku1001",
+        itemId: "ItemId",
+        priceAdFeature: "clearance",
+        listPrice: "100.00",
+        salePrice: "120.00",
+        image_URL: "10001",
+        attributes: [
+          {
+            key: "color",
+            value: "RED"
+          }
+        ]
+      }
+    ]
   };
 }
 
-<ProductCard product={prodObj} />;
+<ProductCard product={window.someProd} rating={4} price={"39.99"} />;
 ```

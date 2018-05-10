@@ -2,8 +2,8 @@ import { css } from "emotion";
 import PropTypes from "prop-types";
 import React from "react";
 
-import Panel from "./Panel";
-import Rating from "./Rating";
+import Panel from "../Panel";
+import Rating from "../Rating";
 
 const cardStyles = css`
   text-align: center;
@@ -38,8 +38,8 @@ Card.propTypes = {
   title: PropTypes.string,
   heading: PropTypes.string,
   description: PropTypes.string,
-  rating: PropTypes.number,
-  price: PropTypes.number
+  rating: PropTypes.oneOf(PropTypes.number, PropTypes.string),
+  price: PropTypes.string
 };
 
 export default Card;
