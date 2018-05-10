@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("./webpack.base.config");
 
 module.exports = {
+  require: [path.join(__dirname, "./styles/normalize.css")],
   sections: [
     {
       name: "Atomic Components",
