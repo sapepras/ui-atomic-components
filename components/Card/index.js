@@ -6,18 +6,55 @@ import Panel from "../Panel";
 import Rating from "../Rating";
 
 const cardStyles = css`
-  text-align: center;
-  flex: 1;
+  text-align: left;
   background: #fff;
-  padding: 1rem;
   margin: auto;
-  width: 250px;
-  height: 350px;
+  font-family: Helvetica, sans-serif;
+  color: #33333;
 `;
 
 const imageStyle = css`
-  max-width: 250px;
-  max-height: 200px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+`;
+
+const contentStyle = css`
+  padding: 4vw;
+`;
+
+const textStyle = css`
+  font-size: 2vw;
+  @media (max-width: 768px) {
+    font-size: 3vw;
+  }
+  @media (min-width: 1025px) {
+    font-size: 1.5vw;
+  }
+`;
+
+const titleStyle = css`
+  ${textStyle};
+  color: #7f7f7f;
+  text-transform: uppercase;
+  margin-bottom: 0.7em;
+`;
+
+const priceStyle = css`
+  font-weight: bold;
+  font-size: 3vw;
+  @media (max-width: 768px) {
+    font-size: 4vw;
+  }
+  @media (min-width: 1025px) {
+    font-size: 2vw;
+  }
+`;
+
+const dividerStyle = css`
+  width: 100%;
+  border-bottom: 1px solid rgb(225, 225, 225);
+  margin: 2vw 0vw;
 `;
 
 const Card = props => {
@@ -25,10 +62,18 @@ const Card = props => {
   return (
     <Panel className={cardStyles}>
       {!!image && <img src={image} alt={heading} className={imageStyle} />}
-      <h2>{title}</h2>
-      <p>{description}</p>
-      {!!rating && <Rating value={rating} />}
-      <p>{price}</p>
+      <div className={contentStyle}>
+        <div className={titleStyle}>{title}</div>
+        <div className={textStyle}>{description}</div>
+
+        {!!rating && (
+          <p>
+            <Rating value={rating} />
+          </p>
+        )}
+        <div className={dividerStyle} />
+        <div className={priceStyle}>{price}</div>
+      </div>
     </Panel>
   );
 };

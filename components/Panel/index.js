@@ -10,11 +10,12 @@ const Panel = ({ className, children }) => (
 );
 
 const styledPanel = styled(Panel)`
-  border: thin solid #aaa;
   margin: 10px;
-  background: #${props => props.theme.panelBackground};
-  box-shadow: ${props => props.theme.panelShadow};
-  padding: ${props => props.theme.panelPadding};
+  background: #fff;
+  text-align: left;
+  border-radius: 6px;
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 `;
 
 Panel.propTypes = {
