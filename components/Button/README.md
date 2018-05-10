@@ -5,31 +5,37 @@
 Primary Button:
 
 ```js
-<Button>Primary</Button>
+<Button auid="button-1">Primary</Button>
 ```
 
 Disabled buton:
 
 ```jsx
-<Button disabled={true}>Disabled</Button>
+<Button auid="button-2" disabled={true}>
+  Disabled
+</Button>
 ```
 
 Button with onclick functionality
 
 ```jsx
-<Button onClick={() => console.log("hello world!!")}>Check Console</Button>
+<Button auid="button-3" onClick={() => console.log("hello world!!")}>
+  Check Console
+</Button>
 ```
 
 Secondary Button
 
 ```jsx
-<Button btntype="secondary">Secondary</Button>
+<Button auid="button-4" btntype="secondary">
+  Secondary
+</Button>
 ```
 
 Secondary Button - Disabled
 
 ```jsx
-<Button btntype="secondary" disabled={true}>
+<Button auid="button-5" btntype="secondary" disabled={true}>
   Secondary
 </Button>
 ```
