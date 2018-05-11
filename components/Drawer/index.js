@@ -59,9 +59,7 @@ class Drawer extends Component {
     return (
       <div className={DrawerWrapStyle}>
         <StyledDiv onClick={this.toggleDrawer}>{title}</StyledDiv>
-        {this.state.isOpen && (
-          <div className={DrawerContentStyle}>{this.props.children}</div>
-        )}
+        {this.state.isOpen && <div className={DrawerContentStyle}>{this.props.children}</div>}
       </div>
     );
   }

@@ -1,18 +1,6 @@
-/* //------- To Do ------------
-- change the star color to yellow
-- set a local state and clicking on a star updates the state and the star color.
-//---------------------------
- */
-
 import PropTypes from "prop-types";
 import React from "react";
 import { css } from "emotion";
-// import skeleton from './skeleton'
-// import './Rating.css';
-
-/**
- * Star rating Molecule with click-able buttons
- */
 
 const container = css`
   display: inline-block;
@@ -34,13 +22,13 @@ const stars = css`
   font-size: inherit;
 `;
 
-const Rating = props => {
+const Rating = (props = {}) => {
   let { value = 0, onClick, primaryStarColor, secondaryStarColor } = props; // eslint-disable-line
-  // const stars = Array.from({ length: 5 }, (a, b) => b);
   const rating = value / 5 * 100; // eslint-disable-line
 
-  const starStyle = { color: primaryStarColor, width: `${rating}%`, cursor: null };
-  const starBackgroundStyle = { color: `${secondaryStarColor}`, cursor: null };
+  const starWidth = `${rating}%`;
+  const starStyle = { color: primaryStarColor, width: starWidth, cursor: null };
+  const starBackgroundStyle = { color: secondaryStarColor, cursor: null };
 
   if (onClick) {
     starStyle.cursor = "pointer";
