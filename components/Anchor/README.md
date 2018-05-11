@@ -3,13 +3,15 @@
 Normal Link:
 
 ```js
-<Anchor href="http://www.google.com">Google</Anchor>
+<Anchor auid="anchor-1" href="http://www.google.com">
+  Google
+</Anchor>
 ```
 
 Disabled Link:
 
 ```jsx
-<Anchor disabled={true} href="http://www.yahoo.com">
+<Anchor auid="anchor-2" disabled={true} href="http://www.yahoo.com">
   Yahoo
 </Anchor>
 ```
@@ -17,7 +19,7 @@ Disabled Link:
 Icon Text Link:
 
 ```jsx
-<Anchor atype="icontext" href="https://www.academy.com">
+<Anchor auid="anchor-3" atype="icontext" href="https://www.academy.com">
   Academy
 </Anchor>
 ```

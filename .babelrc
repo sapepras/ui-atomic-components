@@ -1,4 +1,4 @@
 {
-  "plugins": ["emotion", "styled-components"],
+  "plugins": ["transform-object-rest-spread", "emotion", "styled-components"],
   "presets": ["env", "react"]
 }
