@@ -70,5 +70,7 @@ Notes: You can pass a product object via the product attribute and the card will
   };
 }
 
-<ProductCard product={window.someProd} rating={4} price={"39.99"} />;
+<div style={{}}>
+  <ProductCard product={window.someProd} rating={4} price={"39.99"} />
+</div>;
 ```
