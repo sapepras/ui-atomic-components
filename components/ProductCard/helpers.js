@@ -1,12 +1,16 @@
 import { getFirstDefined } from "../../util/component";
 
-export const getCardProps = (props = {}, product = {}) => ({
-  title: determineTitle(props, product),
-  description: determineDescription(props, product),
-  image: determineImage(props, product),
-  rating: props.rating,
-  price: determinePrice(props, product)
-});
+export const getCardProps = (product = {}, props = {}) => {
+  const mergedProps = {
+    title: determineTitle(props, product),
+    description: determineDescription(props, product),
+    image: determineImage(props, product),
+    rating: props.rating,
+    price: determinePrice(props, product)
+  };
+
+  return { ...props, ...mergedProps };
+};
 
 const determineImage = (props, product) => getFirstDefined([props.image, product.imageURL]);
 

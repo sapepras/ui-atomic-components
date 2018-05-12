@@ -7,7 +7,7 @@ class ProductCard extends Component {
   render() {
     const { product, ...remainingProps } = this.props; // eslint-disable-line
 
-    return <Card {...getCardProps(remainingProps, product)} />;
+    return <Card {...getCardProps(product, remainingProps)} />;
   }
 }
 

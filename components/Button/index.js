@@ -77,14 +77,11 @@ const secondaryBrnStyles = props => css`
 const StyledButton = styled("button")`
   ${commonBtnStyle};
   ${sizeStyles};
-  ${props =>
-    props.btntype === "secondary" ? secondaryBrnStyles : primaryBtnStyle};
+  ${props => (props.btntype === "secondary" ? secondaryBrnStyles : primaryBtnStyle)};
 `;
 
 const Button = props => {
-  const {
-    type, onClick, disabled, auid
-  } = props;
+  const { type, onClick, disabled, auid } = props; // eslint-disable-line
   return (
     <StyledButton
       data-auid={`btn${auid}`}

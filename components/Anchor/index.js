@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 import style from "./anchor.css";
 
 const Anchor = props => {
-  const {
- ariarole, href, auid, atype, disabled
-} = props;
+  const { ariarole, href, auid, atype, disabled } = props; // eslint-disable-line
   let cname = style.inlineAnchor;
   if (atype === "inline") {
     cname = style.inlineAnchor;
@@ -14,13 +12,7 @@ const Anchor = props => {
   }
 
   return (
-    <a
-      data-auid={auid}
-      className={cname}
-      disabled={disabled}
-      role={ariarole}
-      href={href}
-    >
+    <a data-auid={auid} className={cname} disabled={disabled} role={ariarole} href={href}>
       {props.children}
     </a>
   );
