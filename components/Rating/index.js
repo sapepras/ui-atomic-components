@@ -5,13 +5,7 @@ import { css } from "emotion";
 const container = css`
   display: inline-block;
   position: relative;
-  font-size: 1.75vw;
-  @media (max-width: 768px) {
-    font-size: 3vw;
-  }
-  @media (min-width: 1025px) {
-    font-size: 1.25vw;
-  }
+  font-size: 17px;
 `;
 
 const stars = css`
