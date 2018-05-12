@@ -1,10 +1,25 @@
-| attr            | type   | desc                                   |
-| --------------- | ------ | -------------------------------------- |
-| product         | object | product json object as returned by api |
-| ...More to come |        |                                        |
+| attr             | type         | desc                                                                            |
+| ---------------- | ------------ | ------------------------------------------------------------------------------- |
+| imageWide        | boolean      | stretches the image to take up maximum header room, no padding                  |
+| imageUrl         | string       | url pointing to image to be rendered in top of card                             |
+| title            | string       | title text of card                                                              |
+| header           | string       | alt text to be displayed on image hover                                         |
+| shortDescription | string       | text describing item                                                            |
+| longDescription  | string       | text describing item (is only used if shortDescription is null or empty string) |
+| rating           | number (0-5) | number of stars to show as colored for rating view                              |
+| price            | string       | price to be shown at bottom of card                                             |
+| product          | object       | product json object as returned by api - details in below table                 |
+
+| product properties       | type   | desc                                                                            |
+| ------------------------ | ------ | ------------------------------------------------------------------------------- |
+| product                  | object | product json object as returned by api                                          |
+| product.title            | string | title text of card                                                              |
+| product.imageUrl         | string | url pointing to image to be rendered in top of card                             |
+| product.shortDescription | string | text describing item                                                            |
+| product.longDescription  | string | text describing item (is only used if shortDescription is null or empty string) |
 
 <sub>
-Notes: Only the product attribute is working, more to attributes to come. You can pass a product object via the product attribute and the card will build itself. You can also pass overriding values via attributes
+Notes: You can pass a product object via the product attribute and the card will build itself. You can also pass overriding values via attributes
 </sub>
 
 <br><br><br>

@@ -109,11 +109,28 @@ export const card = css`
   /*border: 1px solid red;*/
 `;
 
-export const image = css`
+export const imageWide = css`
   display: block;
   max-width: 100%;
   height: auto;
   max-height: 100%;
+`;
+
+const imageWidth = "270px";
+const imageLR = "28px";
+const imageHeight = "220px;";
+const imageTB = "25px;";
+export const image = css`
+  ${imageWide};
+  width: ${imageWidth};
+  max-width: ${imageWidth};
+  margin-left: ${imageLR};
+  margin-right: ${imageLR};
+
+  height: ${imageHeight};
+  max-height: ${imageHeight};
+  margin-top: ${imageTB};
+  margin-bottom: ${imageTB};
 `;
 
 const paddingLR = "27px;";
