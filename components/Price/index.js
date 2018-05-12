@@ -5,8 +5,8 @@ import { css } from "emotion";
 const small = css`
   display: inline-block;
   vertical-align: top;
-  padding-top: 5px;
-  font-size: 25px;
+  padding-top: .2em;
+  font-size: .6em;
 `;
 
 class Price extends Component {

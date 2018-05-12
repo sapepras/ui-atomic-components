@@ -29,9 +29,7 @@ const Card = props => {
       <div className={css.footer}>
         <div className={css.contentPaddingLR}>
           <div className={css.divider} />
-          <div className={css.price}>
-            <Price price={price} />
-          </div>
+          <div className={css.price}>{!!price && <Price price={price} />}</div>
         </div>
       </div>
     </div>
