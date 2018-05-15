@@ -5,6 +5,7 @@ export const getCardProps = (product = {}, props = {}) => {
     title: determineTitle(props, product),
     description: determineDescription(props, product),
     image: determineImage(props, product),
+    imageAltText: determineImageAltText(props, product),
     rating: props.rating,
     price: determinePrice(props, product)
   };
@@ -14,10 +15,10 @@ export const getCardProps = (product = {}, props = {}) => {
 
 const determineImage = (props, product) => getFirstDefined([props.image, product.imageURL]);
 
-const determineTitle = (props, product) =>
-  getFirstDefined([props.title, product.title, product.name]);
+const determineTitle = (props, product) => getFirstDefined([props.title, product.manufacturer]);
 
-const determineDescription = (props, product) =>
-  getFirstDefined([props.description, product.shortDescription, product.longDescription]);
+const determineDescription = (props, product) => getFirstDefined([props.description, product.name]);
+const determineImageAltText = (props, product) =>
+  getFirstDefined([props.imageAltText, product.imageAltDescription]);
 
-const determinePrice = (props, product) => getFirstDefined([props.price, product.price]);
+const determinePrice = props => getFirstDefined([props.price]);

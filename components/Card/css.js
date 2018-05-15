@@ -8,6 +8,14 @@ export const bp = {
   xl: { min: "1200px", max: "" }
 };
 
+export const bpModifier = {
+  xs: 0.71,
+  sm: 0.71,
+  md: 0.71,
+  lg: 0.81,
+  xl: 1
+};
+
 const testZones = false;
 const bgcolor = {
   header: testZones ? "red" : "white",
@@ -16,6 +24,8 @@ const bgcolor = {
   footer: testZones ? "#999" : "white"
 };
 
+const containerHeight = "500px";
+const containerWidth = "330px";
 export const container = css`
   display: flex;
   flex-direction: column;
@@ -23,26 +33,28 @@ export const container = css`
   justify-content: space-between;
   align-content: stretch;
   align-items: flex-start;
+  /* border: 1px solid red; */
 
   height: 500px;
   width: 330px;
 
-  @media only screen and (max-width: ${bp.xs.max}) {
+  @media only screen and (max-width: ${bp.md.max}) {
+    height: calc(${containerHeight} * ${bpModifier.md});
+    width: calc(${containerWidth} * ${bpModifier.md});
   }
 
-  @media only screen and (min-width: ${bp.sm.min}) (max-width: ${bp.sm.max}) {
+  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
+    height: calc(${containerHeight} * ${bpModifier.lg});
+    width: calc(${containerWidth} * ${bpModifier.lg});
   }
 
-  @media only screen and (min-width: ${bp.md.min}) (max-width: ${bp.md.max}) {
-  }
-
-  @media only screen and (min-width: ${bp.lg.min}) (max-width: ${bp.lg.max}) {
-  }
-
-  @media only screen and (min-width: ${bp.xl.min}) (max-width: ${bp.xl.max}) {
+  @media only screen and (min-width: ${bp.xl.min}) {
+    height: ${containerHeight};
+    width: ${containerWidth};
   }
 `;
 
+const headerHeight = "270px";
 export const header = css`
   order: 0;
   flex: 0 0 auto;
@@ -50,19 +62,16 @@ export const header = css`
   background-color: ${bgcolor.header};
   height: 270px;
 
-  @media only screen and (max-width: ${bp.xs.max}) {
+  @media only screen and (max-width: ${bp.md.max}) {
+    height: calc(${headerHeight} * ${bpModifier.md});
   }
 
-  @media only screen and (min-width: ${bp.sm.min}) (max-width: ${bp.sm.max}) {
+  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
+    height: calc(${headerHeight} * ${bpModifier.lg});
   }
 
-  @media only screen and (min-width: ${bp.md.min}) (max-width: ${bp.md.max}) {
-  }
-
-  @media only screen and (min-width: ${bp.lg.min}) (max-width: ${bp.lg.max}) {
-  }
-
-  @media only screen and (min-width: ${bp.xl.min}) (max-width: ${bp.xl.max}) {
+  @media only screen and (min-width: ${bp.xl.min}) {
+    height: ${headerHeight};
   }
 `;
 
@@ -74,6 +83,7 @@ export const body = css`
   background-color: ${bgcolor.body};
 `;
 
+const footerHeight = "85px";
 export const footer = css`
   order: 0;
   flex: 0 0 auto;
@@ -81,19 +91,16 @@ export const footer = css`
   background-color: ${bgcolor.footer};
   height: 85px;
 
-  @media only screen and (max-width: ${bp.xs.max}) {
+  @media only screen and (max-width: ${bp.md.max}) {
+    height: calc(${footerHeight} * ${bpModifier.md});
   }
 
-  @media only screen and (min-width: ${bp.sm.min}) (max-width: ${bp.sm.max}) {
+  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
+    height: calc(${footerHeight} * ${bpModifier.lg});
   }
 
-  @media only screen and (min-width: ${bp.md.min}) (max-width: ${bp.md.max}) {
-  }
-
-  @media only screen and (min-width: ${bp.lg.min}) (max-width: ${bp.lg.max}) {
-  }
-
-  @media only screen and (min-width: ${bp.xl.min}) (max-width: ${bp.xl.max}) {
+  @media only screen and (min-width: ${bp.xl.min}) {
+    height: ${footerHeight};
   }
 `;
 
@@ -106,7 +113,6 @@ export const card = css`
   overflow: hidden;
   font-family: Helvetica, sans-serif;
   color: #33333;
-  /*border: 1px solid red;*/
 `;
 
 export const imageWide = css`
@@ -116,10 +122,10 @@ export const imageWide = css`
   max-height: 100%;
 `;
 
-const imageWidth = "270px";
-const imageLR = "28px";
-const imageHeight = "220px;";
-const imageTB = "25px;";
+let imageWidth = "270px";
+let imageLR = "28px";
+let imageHeight = "270px";
+let imageTB = "0px";
 export const image = css`
   ${imageWide};
   width: ${imageWidth};
@@ -131,17 +137,107 @@ export const image = css`
   max-height: ${imageHeight};
   margin-top: ${imageTB};
   margin-bottom: ${imageTB};
+
+  @media only screen and (max-width: ${bp.md.max}) {
+    width: calc(${imageWidth} * ${bpModifier.md});
+    max-width: calc(${imageWidth} * ${bpModifier.md});
+    margin-left: calc(${imageLR} * ${bpModifier.md});
+    margin-right: calc(${imageLR} * ${bpModifier.md});
+
+    height: calc(${imageHeight} * ${bpModifier.md});
+    max-height: calc(${imageHeight} * ${bpModifier.md});
+    margin-top: calc(${imageTB} * ${bpModifier.md});
+    margin-bottom: calc(${imageTB} * ${bpModifier.md});
+  }
+
+  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
+    width: calc(${imageWidth} * ${bpModifier.lg});
+    max-width: calc(${imageWidth} * ${bpModifier.lg});
+    margin-left: calc(${imageLR} * ${bpModifier.lg});
+    margin-right: calc(${imageLR} * ${bpModifier.lg});
+
+    height: calc(${imageHeight} * ${bpModifier.lg});
+    max-height: calc(${imageHeight} * ${bpModifier.lg});
+    margin-top: calc(${imageTB} * ${bpModifier.lg});
+    margin-bottom: calc(${imageTB} * ${bpModifier.lg});
+  }
+
+  @media only screen and (min-width: ${bp.xl.min}) {
+    width: ${imageWidth};
+    max-width: ${imageWidth};
+    margin-left: ${imageLR};
+    margin-right: ${imageLR};
+
+    height: ${imageHeight};
+    max-height: ${imageHeight};
+    margin-top: ${imageTB};
+    margin-bottom: ${imageTB};
+  }
 `;
 
-const paddingLR = "27px;";
+imageWidth = "190px";
+imageLR = "73px";
+imageHeight = "190px";
+imageTB = "42px";
+export const imageSmall = css`
+  ${imageWide};
+  width: ${imageWidth};
+  max-width: ${imageWidth};
+  margin-left: ${imageLR};
+  margin-right: ${imageLR};
+
+  height: ${imageHeight};
+  max-height: ${imageHeight};
+  margin-top: ${imageTB};
+  margin-bottom: ${imageTB};
+
+  @media only screen and (max-width: ${bp.md.max}) {
+    width: calc(${imageWidth} * ${bpModifier.md});
+    max-width: calc(${imageWidth} * ${bpModifier.md});
+    margin-left: calc(${imageLR} * ${bpModifier.md});
+    margin-right: calc(${imageLR} * ${bpModifier.md});
+
+    height: calc(${imageHeight} * ${bpModifier.md});
+    max-height: calc(${imageHeight} * ${bpModifier.md});
+    margin-top: calc(${imageTB} * ${bpModifier.md});
+    margin-bottom: calc(${imageTB} * ${bpModifier.md});
+  }
+
+  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
+    width: calc(${imageWidth} * ${bpModifier.lg});
+    max-width: calc(${imageWidth} * ${bpModifier.lg});
+    margin-left: calc(${imageLR} * ${bpModifier.lg});
+    margin-right: calc(${imageLR} * ${bpModifier.lg});
+
+    height: calc(${imageHeight} * ${bpModifier.lg});
+    max-height: calc(${imageHeight} * ${bpModifier.lg});
+    margin-top: calc(${imageTB} * ${bpModifier.lg});
+    margin-bottom: calc(${imageTB} * ${bpModifier.lg});
+  }
+
+  @media only screen and (min-width: ${bp.xl.min}) {
+    width: ${imageWidth};
+    max-width: ${imageWidth};
+    margin-left: ${imageLR};
+    margin-right: ${imageLR};
+
+    height: ${imageHeight};
+    max-height: ${imageHeight};
+    margin-top: ${imageTB};
+    margin-bottom: ${imageTB};
+  }
+`;
+
+const paddingLR = "27px";
 export const contentPaddingLR = css`
-  padding-left: 27px;
-  padding-right: 27px;
+  padding-left: ${paddingLR};
+  padding-right: ${paddingLR};
 `;
 
+const paddingT = "25px";
 export const content = css`
   ${contentPaddingLR};
-  padding-top: 25px;
+  padding-top: ${paddingT};
   padding-bottom: 5px;
   height: 100%;
   background-color: ${bgcolor.content};
@@ -150,6 +246,18 @@ export const content = css`
   bottom: 0;
   left: 0;
   right: 0;
+
+  @media only screen and (max-width: ${bp.md.max}) {
+    padding-top: calc(${paddingT} * ${bpModifier.md});
+  }
+
+  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
+    padding-top: calc(${paddingT} * ${bpModifier.lg});
+  }
+
+  @media only screen and (min-width: ${bp.xl.min}) {
+    padding-top: ${paddingT};
+  }
 `;
 
 export const contentFooter = css`
@@ -158,8 +266,21 @@ export const contentFooter = css`
   bottom: 5px;
 `;
 
+const textFontSize = "16px";
 export const text = css`
-  font-size: 16px;
+  font-size: ${textFontSize};
+
+  @media only screen and (max-width: ${bp.md.max}) {
+    font-size: calc(${textFontSize} * ${bpModifier.lg});
+  }
+
+  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
+    font-size: ${textFontSize};
+  }
+
+  @media only screen and (min-width: ${bp.xl.min}) {
+    font-size: ${textFontSize};
+  }
 `;
 
 export const title = css`
@@ -169,9 +290,22 @@ export const title = css`
   margin-bottom: 6px;
 `;
 
+const priceFontSize = "42px";
 export const price = css`
   font-weight: bold;
-  font-size: 42px;
+  font-size: ${priceFontSize};
+
+  @media only screen and (max-width: ${bp.md.max}) {
+    font-size: calc(${priceFontSize} * ${bpModifier.lg});
+  }
+
+  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
+    font-size: ${priceFontSize};
+  }
+
+  @media only screen and (min-width: ${bp.xl.min}) {
+    font-size: ${priceFontSize};
+  }
 `;
 
 export const divider = css`

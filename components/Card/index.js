@@ -6,18 +6,32 @@ import Rating from "../Rating";
 import Price from "../Price";
 
 class Card extends Component {
-  renderImageClassName(imageWide) {
-    return imageWide ? css.imageWide : css.image;
+  renderImageClassName(imageWide, imageSmall) {
+    return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;
   }
   render() {
-    // document.getElementsByClassName("rsg--sidebar-4")[0].style.cssText = "display: none! important";
-    // document.getElementsByClassName("rsg--hasSidebar-2")[0].style.cssText = "padding-left: 0";
-    const { image, imageWide = false, title, heading, description, rating, price } = this.props; // eslint-disable-line object-curly-newline
+    // document.getElementsByClassName("rsg--content-3")[0].style.cssText = "width: 100vw; margin:0; padding:0;";
+    // document.getElementsByClassName("rsg--root-38")[0].style.cssText = "width: 100vw";
+    // document.getElementsByClassName("rsg--preview-39")[0].style.cssText = "width: 100vw";
+    const {
+      title,
+      description,
+      image,
+      imageWide = false,
+      imageSmall = false,
+      imageAltText,
+      rating,
+      price
+    } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div className={css.card}>
         <div className={css.header}>
           {!!image && (
-            <img src={image} alt={heading} className={this.renderImageClassName(imageWide)} />
+            <img
+              src={image}
+              alt={imageAltText}
+              className={this.renderImageClassName(imageWide, imageSmall)}
+            />
           )}
         </div>
         <div className={css.body}> {/* eslint-disable-line react/jsx-indent */}
@@ -43,13 +57,14 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-  image: PropTypes.string,
   title: PropTypes.string,
-  heading: PropTypes.string,
   description: PropTypes.string,
+  image: PropTypes.string,
+  imageAltText: PropTypes.string,
+  imageWide: PropTypes.bool,
+  imageSmall: PropTypes.bool,
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  price: PropTypes.string,
-  imageWide: PropTypes.bool
+  price: PropTypes.string
 };
 
 export default Card;
