@@ -8,6 +8,7 @@
 | imageSmall   | boolean      | adds extra padding around the image                             |
 | rating       | number (0-5) | number of stars to show as colored for rating view              |
 | price        | string       | price to be shown at bottom of card                             |
+| badge        | string       | Exact implementation being determined                             |
 | product      | object       | product json object as returned by api - details in below table |
 
 <hr/>
