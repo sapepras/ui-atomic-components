@@ -1,6 +1,6 @@
 {
   "name": "fusion-components",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A repository of the common atomic components used across the academy sites",
   "main": "index.js",
   "scripts": {
