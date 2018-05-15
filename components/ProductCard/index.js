@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { getCardProps } from "./helpers";
+import { getCardProps } from "./lib/helpers";
 import Card from "../Card";
 
 class ProductCard extends Component {

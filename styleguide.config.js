@@ -9,7 +9,7 @@ module.exports = {
       components: "components/**/*.js"
     }
   ],
-  ignore: ["**/tests/**"],
+  ignore: ["**/tests/**", "**/components/**/lib/*.js"],
   defaultExample: true,
   webpackConfig: webpack,
   showCode: true,

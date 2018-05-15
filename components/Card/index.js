@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import * as css from "./css";
+import * as css from "./lib/css";
 
 import Rating from "../Rating";
 import Price from "../Price";
