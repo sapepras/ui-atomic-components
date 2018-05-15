@@ -10,8 +10,9 @@ class Card extends Component {
     return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;
   }
   render() {
-    // document.getElementsByClassName("rsg--sidebar-4")[0].style.cssText = "display: none! important";
-    // document.getElementsByClassName("rsg--hasSidebar-2")[0].style.cssText = "padding-left: 0";
+    // document.getElementsByClassName("rsg--content-3")[0].style.cssText = "width: 100vw; margin:0; padding:0;";
+    // document.getElementsByClassName("rsg--root-38")[0].style.cssText = "width: 100vw";
+    // document.getElementsByClassName("rsg--preview-39")[0].style.cssText = "width: 100vw";
     const {
       title,
       description,
@@ -33,10 +34,10 @@ class Card extends Component {
             />
           )}
         </div>
-        <div className={css.body}>{/* eslint-disable-line react/jsx-indent */}
+        <div className={css.body}> {/* eslint-disable-line react/jsx-indent */}
           <div className={css.content}>
             <div className={css.title}>{title}</div>
-            <div className={css.description}>{description}</div> {/* eslint-disable-line react/jsx-indent */}
+            <div className={css.description}>{description}</div>{/* eslint-disable-line react/jsx-indent */}
             {!!rating && (
               <div className={css.contentFooter}>
                 <Rating value={rating} />
@@ -44,7 +45,7 @@ class Card extends Component {
             )}
           </div>
         </div>
-        <div className={css.footer}> {/* eslint-disable-line react/jsx-indent */}
+        <div className={css.footer}>{/* eslint-disable-line react/jsx-indent */}
           <div className={css.contentPaddingLR}>
             <div className={css.divider} />
             <div className={css.price}>{!!price && <Price price={price} />}</div>{/* eslint-disable-line react/jsx-indent */}

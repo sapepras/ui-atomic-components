@@ -72,7 +72,17 @@ Notes: You can pass a product object via the product attribute and the card will
   };
 }
 
-<div style={{}}>
-  <ProductCard product={window.someProd} rating={4} price={"39.99"} />
+<div style={{ display: "flex" }}>
+  <div style={{ flex: "1 1 auto" }}>
+    <ProductCard product={window.someProd} rating={4} price={"12.99"} />
+  </div>
+
+  <div style={{ flex: "1 1 auto" }}>
+    <ProductCard product={window.someProd} rating={4} price={"79.99"} />
+  </div>
+
+  <div style={{ flex: "1 1 auto" }}>
+    <ProductCard product={window.someProd} rating={4} price={"39.99"} />
+  </div>
 </div>;
 ```
