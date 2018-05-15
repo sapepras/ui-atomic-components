@@ -118,8 +118,8 @@ export const imageWide = css`
 
 let imageWidth = "270px";
 let imageLR = "28px";
-let imageHeight = "220px;";
-let imageTB = "25px;";
+let imageHeight = "270px;";
+let imageTB = "0px;";
 export const image = css`
   ${imageWide};
   width: ${imageWidth};
@@ -133,10 +133,10 @@ export const image = css`
   margin-bottom: ${imageTB};
 `;
 
-imageWidth = "236px";
-imageLR = "50px";
-imageHeight = "188px;";
-imageTB = "41px;";
+imageWidth = "190px";
+imageLR = "73px";
+imageHeight = "190px;";
+imageTB = "42px;";
 export const imageSmall = css`
   ${imageWide};
   width: ${imageWidth};
