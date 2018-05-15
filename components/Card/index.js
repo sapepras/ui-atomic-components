@@ -1,24 +1,10 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import styled from "react-emotion";
 import * as css from "./lib/css";
-import { getBadgeColorHex } from "./lib/badges";
 
+import Badge from "../Badge";
 import Rating from "../Rating";
 import Price from "../Price";
-
-const Badge = styled("div")`
-  position: absolute;
-  top: 0px;
-  left: 27px;
-  color: #fff;
-  background-color: ${({ text }) => getBadgeColorHex(text)};
-  /* background-color: #204ea0; */
-  font-size: 14px;
-  padding: 10px 15px;
-  font-family: Mallory-Black;
-  text-transform: uppercase;
-`;
 class Card extends Component {
   renderImageClassName(imageWide, imageSmall) {
     return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;

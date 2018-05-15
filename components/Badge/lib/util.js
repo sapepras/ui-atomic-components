@@ -16,8 +16,8 @@ export const getBadgeColor = badgeText => {
 
 export const getBadgeColorHex = badgeText => {
   const hex = {
-    red: "#ff0000",
-    blue: "#0000ff"
+    red: "#ee0000",
+    blue: "#005599"
   };
   return hex[getBadgeColor(badgeText)];
 };
