@@ -1,6 +1,7 @@
 | attr             | type         | desc                                                                            |
 | ---------------- | ------------ | ------------------------------------------------------------------------------- |
 | imageWide        | boolean      | stretches the image to take up maximum header room, no padding                  |
+| imageSmall       | boolean      | adds extra padding around the image                                             |
 | imageUrl         | string       | url pointing to image to be rendered in top of card                             |
 | title            | string       | title text of card                                                              |
 | header           | string       | alt text to be displayed on image hover                                         |

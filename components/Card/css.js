@@ -116,11 +116,28 @@ export const imageWide = css`
   max-height: 100%;
 `;
 
-const imageWidth = "270px";
-const imageLR = "28px";
-const imageHeight = "220px;";
-const imageTB = "25px;";
+let imageWidth = "270px";
+let imageLR = "28px";
+let imageHeight = "220px;";
+let imageTB = "25px;";
 export const image = css`
+  ${imageWide};
+  width: ${imageWidth};
+  max-width: ${imageWidth};
+  margin-left: ${imageLR};
+  margin-right: ${imageLR};
+
+  height: ${imageHeight};
+  max-height: ${imageHeight};
+  margin-top: ${imageTB};
+  margin-bottom: ${imageTB};
+`;
+
+imageWidth = "236px";
+imageLR = "50px";
+imageHeight = "188px;";
+imageTB = "41px;";
+export const imageSmall = css`
   ${imageWide};
   width: ${imageWidth};
   max-width: ${imageWidth};
