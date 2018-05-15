@@ -2,18 +2,28 @@
 
 #### How to use
 
-Install the fusion components via `npm install fusion-components` (TBD)
+* Make sure you are logged-in via `npm login` or have a `.npmrc` file with related permisssion to access our private repo with `@academysports` scope.
 
-For now use `npm link` in your local repo which will export the repo as a npm moudle to your local npm module folder.
-
-Use it as `import {yourComponent} from fusion-components`
+* Install the fusion components via `npm install @academy/fusion-components` .
 
 #### Developement
 
-* clone the repository at (https://bitbucket.org/academysports/ui-atomic-components/)
+* Clone the repository at (https://bitbucket.org/academysports/ui-atomic-components/)
+
 * Write your component logic inside components folder
+
 * `npm start` starts a component explorer based on style-guidist which can be used for local developement and reference
+
 * `npm run generate` provides a handy generator, so that you dont have to copy paste stuff :)
+
+* For local testing of atomic-components that are in progress do a `npm link` in the repo which will export the repo as a npm module to your local npm module folder. 
+
+* Go to your target repo and `npm link fusion-components` to enable a symlink between your consuming repo's node_modules and the atomic-component repository.
+
+* Once you have completed developement , pls make sure to export your component in the root `index.js` . Also add an addition in `webpack.dist.config.js`'s `entry` option to enable your component to be built.
+
+* After adding and commiting your components to your branch and raise a PR.
+
 
 #### Features
 
