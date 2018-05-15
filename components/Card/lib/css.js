@@ -27,6 +27,7 @@ const bgcolor = {
 const containerHeight = "500px";
 const containerWidth = "330px";
 export const container = css`
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -111,7 +112,7 @@ export const card = css`
   border-radius: 6px;
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  font-family: Helvetica, sans-serif;
+  font-family: Mallory-Black, Helvetica, sans-serif;
   color: #33333;
 `;
 

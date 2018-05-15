@@ -1,18 +1,32 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import styled from "react-emotion";
 import * as css from "./lib/css";
+import { getBadgeColorHex } from "./lib/badges";
 
 import Rating from "../Rating";
 import Price from "../Price";
 
+const Badge = styled("div")`
+  position: absolute;
+  top: 0px;
+  left: 27px;
+  color: #fff;
+  background-color: ${({ text }) => getBadgeColorHex(text)};
+  /* background-color: #204ea0; */
+  font-size: 14px;
+  padding: 10px 15px;
+  font-family: Mallory-Black;
+  text-transform: uppercase;
+`;
 class Card extends Component {
   renderImageClassName(imageWide, imageSmall) {
     return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;
   }
   render() {
-    // document.getElementsByClassName("rsg--content-3")[0].style.cssText = "width: 100vw; margin:0; padding:0;";
-    // document.getElementsByClassName("rsg--root-38")[0].style.cssText = "width: 100vw";
-    // document.getElementsByClassName("rsg--preview-39")[0].style.cssText = "width: 100vw";
+    // document.getElementsByClassName("rsg--content-3")[0].style.cssText = "width: 100vw; margin:0; padding:0; border: 0px; width: 100vw";
+    // document.getElementsByClassName("rsg--root-38")[0].style.cssText = "width: 100vw; border: 0px";
+    // document.getElementsByClassName("rsg--preview-39")[0].style.cssText = "width: 100vw; border: 0px; background-color: #efefef;";
     const {
       title,
       description,
@@ -21,11 +35,13 @@ class Card extends Component {
       imageSmall = false,
       imageAltText,
       rating,
-      price
+      price,
+      badge
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div className={css.card}>
-        <div className={css.header}>
+        {!!badge && <Badge text={badge}>{badge}</Badge>}
+        <div className={css.header}>{/* eslint-disable-line react/jsx-indent */}
           {!!image && (
             <img
               src={image}
@@ -64,7 +80,8 @@ Card.propTypes = {
   imageWide: PropTypes.bool,
   imageSmall: PropTypes.bool,
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  price: PropTypes.string
+  price: PropTypes.string,
+  badge: PropTypes.string
 };
 
 export default Card;

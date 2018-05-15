@@ -19,7 +19,8 @@ ProductCard.propTypes = {
     longDescription: PropTypes.string
   }),
   rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  price: PropTypes.string
+  price: PropTypes.string,
+  badge: PropTypes.string
 };
 
 export default ProductCard;
