@@ -49,13 +49,13 @@ const baseConfig = () => ({
         // for a list of loaders, see https://webpack.js.org/loaders/#styling
         test: /\.css$/,
         exclude: /node_modules/,
-        use: ["style-loader", "css-loader"]
+        use: ["style-loader", "css-loader?modules&importLoaders=1"]
       },
       {
         // Preprocess our own .scss files
         test: /\.scss/,
         exclude: /node_modules/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ["style-loader", "css-loader?modules&importLoaders=1", "sass-loader"]
       },
       {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
