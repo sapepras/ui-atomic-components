@@ -82,6 +82,15 @@ export const card = css`
   width: 375px;
 `;
 
+export const cardHideOnDesktop = css`
+  ${card};
+  display:none;
+
+  @media only screen and (max-width: 767px) {
+    display: flex;
+  }
+`;
+
 const imageWidth = "100px";
 const imageLR = "20px";
 const imageHeight = "100px";

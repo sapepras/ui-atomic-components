@@ -19,6 +19,7 @@
     imageSmall
     rating={4}
     price="79.99"
+    horizontalMobile
   />
 </div>
 ```

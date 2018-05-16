@@ -6,10 +6,13 @@ import Badge from "../Badge";
 import Rating from "../Rating";
 import Price from "../Price";
 class HorizontalCard extends Component {
+  renderCardClassName(hideOnDesktop) {
+    return (hideOnDesktop) ? css.cardHideOnDesktop : css.card;
+  }
   render() {
-    const { title, description, image, imageAltText, rating, price, badge, auid } = this.props; // eslint-disable-line object-curly-newline
+    const { title, description, image, imageAltText, rating, price, badge, auid, hideOnDesktop } = this.props; // eslint-disable-line object-curly-newline
     return (
-      <div className={css.card} auid={auid}>
+      <div className={this.renderCardClassName(hideOnDesktop)} auid={auid}>
         {!!badge && (
           <Badge small text={badge}>
             {badge}
@@ -52,7 +55,8 @@ HorizontalCard.propTypes = {
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   price: PropTypes.string,
   badge: PropTypes.string,
-  auid: PropTypes.string
+  auid: PropTypes.string,
+  hideOnDesktop: PropTypes.bool
 };
 
 export default HorizontalCard;

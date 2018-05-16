@@ -9,6 +9,9 @@ class VerticalCard extends Component {
   renderImageClassName(imageWide, imageSmall) {
     return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;
   }
+  renderCardClassName(desktopOnly) {
+    return (desktopOnly) ? css.cardDesktopOnly : css.card;
+  }
   render() {
     const {
       title,
@@ -20,10 +23,11 @@ class VerticalCard extends Component {
       rating,
       price,
       badge,
-      auid
+      auid,
+      desktopOnly
     } = this.props; // eslint-disable-line object-curly-newline
     return (
-      <div className={css.card} auid={auid}>
+      <div className={this.renderCardClassName(desktopOnly)} auid={auid}>
         {!!badge && <Badge text={badge}>{badge}</Badge>}
         <div className={css.header}>{/* eslint-disable-line react/jsx-indent */}
           {!!image && (
@@ -66,7 +70,8 @@ VerticalCard.propTypes = {
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   price: PropTypes.string,
   badge: PropTypes.string,
-  auid: PropTypes.string
+  auid: PropTypes.string,
+  desktopOnly: PropTypes.bool
 };
 
 export default VerticalCard;

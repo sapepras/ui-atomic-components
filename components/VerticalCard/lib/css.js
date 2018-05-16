@@ -3,10 +3,10 @@ import { bp, modifier } from "../../../util/style";
 
 const testZones = false;
 const bgcolor = {
-  header: testZones ? "red" : "white",
-  body: testZones ? "white" : "white",
-  content: testZones ? "green" : "white",
-  footer: testZones ? "#999" : "white"
+  header: testZones ? "red" : "transparent",
+  body: testZones ? "white" : "transparent",
+  content: testZones ? "green" : "transparent",
+  footer: testZones ? "#999" : "transparent"
 };
 
 const containerHeight = "500px";
@@ -99,6 +99,15 @@ export const card = css`
   overflow: hidden;
   font-family: Mallory-Black, Helvetica, sans-serif;
   color: #33333;
+`;
+
+export const cardDesktopOnly = css`
+  ${card};
+  display: none;
+  
+  @media only screen and (min-width: 768px) {
+    display: flex;
+  }
 `;
 
 export const imageWide = css`
