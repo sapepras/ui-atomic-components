@@ -49,8 +49,6 @@ Notes: You can pass a product object via the product attribute and the card will
     isSingleSkuProduct: "false",
     itemId: "partNumber",
     seoName: "seo-name",
-    imageURL:
-      "https://www.screenaustralia.gov.au/sacms/media/samedialibrary/screenguide/titles/tid33797-mountain/tid33797-web/tid33797-mountain-001-hero.jpg",
     imageAltDescription: "TEST ALT IMAGE",
     storeId: "10051",
     priceRange: "$5 to $10",
@@ -76,7 +74,14 @@ Notes: You can pass a product object via the product attribute and the card will
 
 <div style={{ display: "flex" }}>
   <div style={{ flex: "1 1 auto" }}>
-    <ProductCard badge="new" imageSmall product={window.someProd} rating={4} price={"12.99"} />
+    <ProductCard
+      badge="new"
+      horizontalMobile
+      imageSmall
+      product={window.someProd}
+      rating={4}
+      price={"12.99"}
+    />
   </div>
 
   <div style={{ flex: "1 1 auto" }}>

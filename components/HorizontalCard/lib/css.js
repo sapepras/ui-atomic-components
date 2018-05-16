@@ -84,7 +84,7 @@ export const card = css`
 
 export const cardHideOnDesktop = css`
   ${card};
-  display:none;
+  display: none;
 
   @media only screen and (max-width: 767px) {
     display: flex;
@@ -106,6 +106,12 @@ export const image = css`
   max-height: ${imageHeight};
   margin-top: ${imageTB};
   margin-bottom: ${imageTB};
+`;
+
+export const emptyImage = css`
+  ${image};
+  background-color: #7a7a7a;
+  display: inline-block;
 `;
 
 export const paddingLR = "20px";

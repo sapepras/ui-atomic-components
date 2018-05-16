@@ -10,7 +10,7 @@ class VerticalCard extends Component {
     return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;
   }
   renderCardClassName(desktopOnly) {
-    return (desktopOnly) ? css.cardDesktopOnly : css.card;
+    return desktopOnly ? css.cardDesktopOnly : css.card;
   }
   render() {
     const {
@@ -37,14 +37,15 @@ class VerticalCard extends Component {
               className={this.renderImageClassName(imageWide, imageSmall)}
             />
           )}
+          {!image && <div className={css.emptyImage} />}
         </div>
-        <div className={css.body}> {/* eslint-disable-line react/jsx-indent */}
+        <div className={css.body}>{/* eslint-disable-line react/jsx-indent */}
           <div className={css.content}>
             <div className={css.title}>{title}</div>
             <div className={css.description}>{description}</div>{/* eslint-disable-line react/jsx-indent */}
             {!!rating && (
               <div className={css.contentFooter}>
-                <Rating value={rating} />
+                <Rating value={null} />
               </div>
             )}
           </div>

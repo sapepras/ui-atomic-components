@@ -104,7 +104,7 @@ export const card = css`
 export const cardDesktopOnly = css`
   ${card};
   display: none;
-  
+
   @media only screen and (min-width: 768px) {
     display: flex;
   }
@@ -221,6 +221,12 @@ export const imageSmall = css`
     margin-top: ${imageTB};
     margin-bottom: ${imageTB};
   }
+`;
+
+export const emptyImage = css`
+  ${imageSmall};
+  background-color: #7a7a7a;
+  display: inline-block;
 `;
 
 const paddingLR = "27px";
