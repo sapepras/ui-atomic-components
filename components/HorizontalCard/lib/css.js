@@ -1,12 +1,12 @@
 import { css } from "emotion";
 
-const testZones = false;
-const bgcolor = {
-  header: testZones ? "red" : "white",
-  body: testZones ? "white" : "white",
-  content: testZones ? "green" : "white",
-  footer: testZones ? "#999" : "white"
-};
+// const testZones = false;
+// const bgcolor = {
+//   header: testZones ? "red" : "white",
+//   body: testZones ? "white" : "white",
+//   content: testZones ? "green" : "white",
+//   footer: testZones ? "#999" : "white"
+// };
 
 export const columnContainer = css`
   display: flex;
@@ -53,7 +53,7 @@ export const rowBody = css`
   order: 1;
   flex: 1 0 auto;
   align-self: auto;
-  padding-top:18px;
+  padding-top: 18px;
   padding-bottom: 5px;
   height: 65px;
 `;
@@ -69,7 +69,6 @@ export const rowFooterTwo = css`
   flex: 0 0 auto;
   align-self: auto;
 `;
-
 
 export const card = css`
   ${columnContainer};
@@ -123,12 +122,12 @@ export const description = css`
 `;
 
 export const rating = css`
-display: inline-block;
-position: relative;
-font-size: 11px;
-padding-left: 23px;
-letter-spacing: 3px;
-margin-bottom: 7px;
+  display: inline-block;
+  position: relative;
+  font-size: 11px;
+  padding-left: 23px;
+  letter-spacing: 3px;
+  margin-bottom: 7px;
 `;
 
 const priceFontSize = "28px";
