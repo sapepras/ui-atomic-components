@@ -81,6 +81,7 @@ Notes: You can pass a product object via the product attribute and the card will
       product={window.someProd}
       rating={4}
       price={"12.99"}
+      ctaLink="http://www.google.com"
     />
   </div>
 
