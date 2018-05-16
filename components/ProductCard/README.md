@@ -80,7 +80,7 @@ Notes: You can pass a product object via the product attribute and the card will
   </div>
 
   <div style={{ flex: "1 1 auto" }}>
-    <ProductCard badge="wut" imageSmall product={window.someProd} rating={4} price={"79.99"} />
+    <ProductCard badge="wut" imageSmall product={window.someProd} rating={4} price={"$$$79.99"} />
   </div>
 
   <div style={{ flex: "1 1 auto" }}>
