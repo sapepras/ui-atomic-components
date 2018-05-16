@@ -2,7 +2,7 @@ const defaultBadgeColor = "blue";
 
 const badgeInfo = {
   red: ["clearance", "hot deal", "price drop", /^\d{1,3}% off$/],
-  blue: ["new"]
+  blue: ["new", "ships to store", "customize"]
 };
 
 const matches = (strOrRE, strValToTest) => new RegExp(strOrRE, "i").test(strValToTest);
