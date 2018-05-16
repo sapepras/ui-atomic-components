@@ -15,7 +15,6 @@ export const columnContainer = css`
   justify-content: flex-start;
   align-content: stretch;
   align-items: stretch;
-  border: 1px solid red;
 `;
 
 export const leftColumn = css`
