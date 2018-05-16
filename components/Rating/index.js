@@ -53,8 +53,7 @@ const Rating = (props = {}) => {
 
 Rating.defaultProps = {
   primaryStarColor: "#f4ce42",
-  secondaryStarColor: "#6a6a6a",
-  onClick: () => {}
+  secondaryStarColor: "#6a6a6a"
 };
 
 Rating.propTypes = {
