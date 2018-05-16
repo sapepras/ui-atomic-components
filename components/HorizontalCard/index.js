@@ -7,9 +7,9 @@ import Rating from "../Rating";
 import Price from "../Price";
 class HorizontalCard extends Component {
   render() {
-    const { title, description, image, imageAltText, rating, price, badge } = this.props; // eslint-disable-line object-curly-newline
+    const { title, description, image, imageAltText, rating, price, badge, auid } = this.props; // eslint-disable-line object-curly-newline
     return (
-      <div className={css.card}>
+      <div className={css.card} auid={auid}>
         {!!badge && (
           <Badge small text={badge}>
             {badge}
@@ -51,7 +51,8 @@ HorizontalCard.propTypes = {
   imageAltText: PropTypes.string,
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   price: PropTypes.string,
-  badge: PropTypes.string
+  badge: PropTypes.string,
+  auid: PropTypes.string
 };
 
 export default HorizontalCard;

@@ -19,10 +19,11 @@ class VerticalCard extends Component {
       imageAltText,
       rating,
       price,
-      badge
+      badge,
+      auid
     } = this.props; // eslint-disable-line object-curly-newline
     return (
-      <div className={css.card}>
+      <div className={css.card} auid={auid}>
         {!!badge && <Badge text={badge}>{badge}</Badge>}
         <div className={css.header}>{/* eslint-disable-line react/jsx-indent */}
           {!!image && (
@@ -64,7 +65,8 @@ VerticalCard.propTypes = {
   imageSmall: PropTypes.bool,
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   price: PropTypes.string,
-  badge: PropTypes.string
+  badge: PropTypes.string,
+  auid: PropTypes.string
 };
 
 export default VerticalCard;
