@@ -8,6 +8,7 @@
 | imageSmall   | boolean      | adds extra padding around the image                             |
 | rating       | number (0-5) | number of stars to show as colored for rating view              |
 | price        | string       | price to be shown at bottom of card                             |
+| badge        | string       | Exact implementation being determined                           |
 | product      | object       | product json object as returned by api - details in below table |
 
 <hr/>
@@ -29,7 +30,8 @@ Notes: You can pass a product object via the product attribute and the card will
 ```jsx
 {
   window.someProd = {
-    name: "Shoes",
+    name:
+      "this is a long description this is a long description this is a long description this is a long description this is a long description",
     id: "10001",
     parentCategoryId: "10001",
     shortDescription: "this is a short description",
@@ -74,15 +76,15 @@ Notes: You can pass a product object via the product attribute and the card will
 
 <div style={{ display: "flex" }}>
   <div style={{ flex: "1 1 auto" }}>
-    <ProductCard imageSmall product={window.someProd} rating={4} price={"12.99"} />
+    <ProductCard badge="new" imageSmall product={window.someProd} rating={4} price={"12.99"} />
   </div>
 
   <div style={{ flex: "1 1 auto" }}>
-    <ProductCard imageSmall product={window.someProd} rating={4} price={"79.99"} />
+    <ProductCard badge="wut" imageSmall product={window.someProd} rating={4} price={"79.99"} />
   </div>
 
   <div style={{ flex: "1 1 auto" }}>
-    <ProductCard imageSmall product={window.someProd} rating={4} price={"39.99"} />
+    <ProductCard badge="33% off" imageSmall product={window.someProd} rating={4} price={"39.99"} />
   </div>
 </div>;
 ```

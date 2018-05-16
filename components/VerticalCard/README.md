@@ -11,7 +11,7 @@
 
 ```jsx
 <div style={{}}>
-  <Card
+  <VerticalCard
     title="some card"
     description="this describes the item."
     image="https://www.screenaustralia.gov.au/sacms/media/samedialibrary/screenguide/titles/tid33797-mountain/tid33797-web/tid33797-mountain-001-hero.jpg"
@@ -19,7 +19,6 @@
     imageSmall
     rating={4}
     price="79.99"
-    horizontalMobile
   />
 </div>
 ```

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { getCardProps } from "./helpers";
+import { getCardProps } from "./lib/helpers";
 import Card from "../Card";
 
 class ProductCard extends Component {
@@ -19,7 +19,8 @@ ProductCard.propTypes = {
     longDescription: PropTypes.string
   }),
   rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  price: PropTypes.string
+  price: PropTypes.string,
+  badge: PropTypes.string
 };
 
 export default ProductCard;

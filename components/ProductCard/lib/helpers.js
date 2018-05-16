@@ -1,4 +1,4 @@
-import { getFirstDefined } from "../../util/component";
+import { getFirstDefined } from "../../../util/component";
 
 export const getCardProps = (product = {}, props = {}) => {
   const mergedProps = {
