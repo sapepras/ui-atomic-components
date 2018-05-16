@@ -30,7 +30,8 @@ Notes: You can pass a product object via the product attribute and the card will
 ```jsx
 {
   window.someProd = {
-    name: "Shoes",
+    name:
+      "this is a long description this is a long description this is a long description this is a long description this is a long description",
     id: "10001",
     parentCategoryId: "10001",
     shortDescription: "this is a short description",
