@@ -5,7 +5,7 @@ import { css } from "emotion";
 const container = css`
   display: inline-block;
   position: relative;
-  font-size: 17px;
+  font-size: 1em;
 `;
 
 const stars = css`

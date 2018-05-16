@@ -6,16 +6,11 @@ import Badge from "../Badge";
 import Rating from "../Rating";
 import Price from "../Price";
 class HorizontalCard extends Component {
-  renderImageClassName(imageWide, imageSmall) {
-    return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;
-  }
   render() {
     const {
       title,
       description,
       image,
-      imageWide = false,
-      imageSmall = false,
       imageAltText,
       rating,
       price,
@@ -23,31 +18,38 @@ class HorizontalCard extends Component {
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div className={css.card}>
-        {!!badge && <Badge text={badge}>{badge}</Badge>}
-        <div className={css.header}>{/* eslint-disable-line react/jsx-indent */}
+        {!!badge && <Badge small text={badge}>{badge}</Badge>}
+        <div className={css.leftColumn}>
           {!!image && (
             <img
               src={image}
               alt={imageAltText}
-              className={this.renderImageClassName(imageWide, imageSmall)}
+              className={css.image}
             />
           )}
         </div>
-        <div className={css.body}> {/* eslint-disable-line react/jsx-indent */}
-          <div className={css.content}>
-            <div className={css.title}>{title}</div>
-            <div className={css.description}>{description}</div>{/* eslint-disable-line react/jsx-indent */}
-            {!!rating && (
-              <div className={css.contentFooter}>
-                <Rating value={rating} />
-              </div>
-            )}
+        <div className={css.rightColumn}>
+          <div className={css.rowHeader}></div>
+          <div className={css.rowBody}>
+            <div className={css.contentPaddingLR}>
+              <div className={css.title}>{title}</div>
+              <div className={css.description}>{description}</div>{/* eslint-disable-line react/jsx-indent */}
+            </div>
           </div>
-        </div>
-        <div className={css.footer}>{/* eslint-disable-line react/jsx-indent */}
-          <div className={css.contentPaddingLR}>
-            <div className={css.divider} />
-            <div className={css.price}>{!!price && <Price price={price} />}</div>{/* eslint-disable-line react/jsx-indent */}
+          <div className={css.rowFooterOne}>
+            <div className={css.rating}>
+              {!!rating && (
+                  <Rating value={rating} />
+              )}
+            </div>
+            <div class={css.contentPaddingLR}>
+              <div className={css.divider} />
+            </div>
+          </div>
+          <div className={css.rowFooterTwo}>
+            <div className={css.contentPaddingLR}>
+              <div className={css.price}>{!!price && <Price price={price} />}</div>{/* eslint-disable-line react/jsx-indent */}
+            </div>
           </div>
         </div>
       </div>
@@ -60,8 +62,6 @@ HorizontalCard.propTypes = {
   description: PropTypes.string,
   image: PropTypes.string,
   imageAltText: PropTypes.string,
-  imageWide: PropTypes.bool,
-  imageSmall: PropTypes.bool,
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   price: PropTypes.string,
   badge: PropTypes.string
