@@ -34,7 +34,7 @@ class Card extends Component {
 Card.propTypes = {
   auid: PropTypes.string,
   horizontalMobile: PropTypes.bool,
-  ctaLink: PropTypes.func
+  ctaLink: PropTypes.string
 };
 
 export default Card;

@@ -9,6 +9,9 @@ const bgcolor = {
   footer: testZones ? "#999" : "transparent"
 };
 
+const paddingLR = "27px";
+
+
 const containerHeight = "500px";
 const containerWidth = "330px";
 export const container = css`
@@ -67,6 +70,13 @@ export const body = css`
   align-self: stretch;
   position: relative;
   background-color: ${bgcolor.body};
+`;
+
+const contentFooterHeight = "25px";
+export const contentFooter = css`
+  padding-left: ${paddingLR};
+  padding-right: ${paddingLR};
+  height: ${contentFooterHeight};
 `;
 
 const footerHeight = "85px";
@@ -229,7 +239,6 @@ export const emptyImage = css`
   display: inline-block;
 `;
 
-const paddingLR = "27px";
 export const contentPaddingLR = css`
   padding-left: ${paddingLR};
   padding-right: ${paddingLR};
@@ -259,12 +268,6 @@ export const content = css`
   @media only screen and (min-width: ${bp.xl.min}) {
     padding-top: ${paddingT};
   }
-`;
-
-export const contentFooter = css`
-  position: absolute;
-  left: ${paddingLR};
-  bottom: 5px;
 `;
 
 const textFontSize = "16px";
