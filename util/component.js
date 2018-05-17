@@ -22,7 +22,11 @@ export const getFirstDefined = (arrVals = [], opts = {}) => {
 };
 
 export const ellipsesText = (text, maxCount = 25, ellipses = "...") => {
-  if (!text || (text && text.trim().length <= maxCount)) {
+  if (!text) {
+    return text;
+  }
+
+  if (text && text.trim().length <= maxCount) {
     return text.trim();
   }
 
