@@ -33,3 +33,9 @@ export const ellipsesText = (text, maxCount = 25, ellipses = "...") => {
   const cleanMaxCount = Math.max(maxCount, 3);
   return `${text.trim().substr(0, cleanMaxCount - 3)}${ellipses}`;
 };
+
+export const onEnterFireOnClick = onClick => e => {
+  if (e.keyCode === 13) {
+    onClick();
+  }
+};
