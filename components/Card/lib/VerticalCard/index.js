@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import * as css from "./lib/css";
 
-import Badge from "../Badge";
-import Rating from "../Rating";
-import Price from "../Price";
+import Badge from "../../../Badge";
+import Rating from "../../../Rating";
+import Price from "../../../Price";
 class VerticalCard extends Component {
   renderImageClassName(imageWide, imageSmall) {
     return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;

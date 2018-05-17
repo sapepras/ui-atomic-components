@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import VerticalCard from "../VerticalCard";
-import HorizontalCard from "../HorizontalCard";
+import VerticalCard from "./lib/VerticalCard";
+import HorizontalCard from "./lib/HorizontalCard";
 
 class Card extends Component {
   onClickGoTo(url) {
