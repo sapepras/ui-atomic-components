@@ -10,14 +10,6 @@ class Card extends Component {
     };
   }
 
-  onEnterFireOnClick(onClick) {
-    return e => {
-      if (e.keyCode === 13) {
-        onClick();
-      }
-    };
-  }
-
   render() {
     const { auid, horizontalMobile, ctaLink, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
     let clickAttributes = {};
