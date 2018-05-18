@@ -1,5 +1,4 @@
 import { css } from "emotion";
-import { bp, modifier } from "../../../../../util/style";
 
 /**
  * Goal responsive cards that can whose starting size can be easily modified for various layouts
@@ -49,23 +48,8 @@ export const container = css`
   align-items: flex-start;
   /* border: 1px solid red; */
 
-  height: 500px;
-  width: 330px;
-
-  @media only screen and (max-width: ${bp.md.max}) {
-    height: calc(${containerHeight} * ${modifier.bp.md});
-    width: calc(${containerWidth} * ${modifier.bp.md});
-  }
-
-  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
-    height: calc(${containerHeight} * ${modifier.bp.lg});
-    width: calc(${containerWidth} * ${modifier.bp.lg});
-  }
-
-  @media only screen and (min-width: ${bp.xl.min}) {
-    height: ${containerHeight};
-    width: ${containerWidth};
-  }
+  height: ${containerHeight};
+  width: ${containerWidth};
 `;
 
 export const header = css`
@@ -73,19 +57,7 @@ export const header = css`
   flex: 0 0 auto;
   align-self: stretch;
   background-color: ${bgcolor.header};
-  height: 270px;
-
-  @media only screen and (max-width: ${bp.md.max}) {
-    height: calc(${headerHeight} * ${modifier.bp.md});
-  }
-
-  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
-    height: calc(${headerHeight} * ${modifier.bp.lg});
-  }
-
-  @media only screen and (min-width: ${bp.xl.min}) {
-    height: ${headerHeight};
-  }
+  height: ${headerHeight};
 `;
 
 export const body = css`
@@ -97,6 +69,7 @@ export const body = css`
 `;
 
 export const contentFooter = css`
+  ${text};
   padding-left: ${paddingLR};
   padding-right: ${paddingLR};
   height: ${contentFooterHeight};
@@ -109,18 +82,6 @@ export const footer = css`
   align-self: stretch;
   background-color: ${bgcolor.footer};
   height: 85px;
-
-  @media only screen and (max-width: ${bp.md.max}) {
-    height: calc(${footerHeight} * ${modifier.bp.md});
-  }
-
-  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
-    height: calc(${footerHeight} * ${modifier.bp.lg});
-  }
-
-  @media only screen and (min-width: ${bp.xl.min}) {
-    height: ${footerHeight};
-  }
 `;
 
 export const card = css`
@@ -161,42 +122,6 @@ export const image = css`
   max-height: ${imageHeight};
   margin-top: ${imageTB};
   margin-bottom: ${imageTB};
-
-  @media only screen and (max-width: ${bp.md.max}) {
-    width: calc(${imageWidth} * ${modifier.bp.md});
-    max-width: calc(${imageWidth} * ${modifier.bp.md});
-    margin-left: calc(${imageLR} * ${modifier.bp.md});
-    margin-right: calc(${imageLR} * ${modifier.bp.md});
-
-    height: calc(${imageHeight} * ${modifier.bp.md});
-    max-height: calc(${imageHeight} * ${modifier.bp.md});
-    margin-top: calc(${imageTB} * ${modifier.bp.md});
-    margin-bottom: calc(${imageTB} * ${modifier.bp.md});
-  }
-
-  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
-    width: calc(${imageWidth} * ${modifier.bp.lg});
-    max-width: calc(${imageWidth} * ${modifier.bp.lg});
-    margin-left: calc(${imageLR} * ${modifier.bp.lg});
-    margin-right: calc(${imageLR} * ${modifier.bp.lg});
-
-    height: calc(${imageHeight} * ${modifier.bp.lg});
-    max-height: calc(${imageHeight} * ${modifier.bp.lg});
-    margin-top: calc(${imageTB} * ${modifier.bp.lg});
-    margin-bottom: calc(${imageTB} * ${modifier.bp.lg});
-  }
-
-  @media only screen and (min-width: ${bp.xl.min}) {
-    width: ${imageWidth};
-    max-width: ${imageWidth};
-    margin-left: ${imageLR};
-    margin-right: ${imageLR};
-
-    height: ${imageHeight};
-    max-height: ${imageHeight};
-    margin-top: ${imageTB};
-    margin-bottom: ${imageTB};
-  }
 `;
 
 export const imageSmall = css`
@@ -208,44 +133,8 @@ export const imageSmall = css`
 
   height: ${smallImageHeight};
   max-height: ${smallImageHeight};
-  margin-top: ${imageTB};
-  margin-bottom: ${imageTB};
-
-  @media only screen and (max-width: ${bp.md.max}) {
-    width: calc(${smallImageWidth} * ${modifier.bp.md});
-    max-width: calc(${smallImageWidth} * ${modifier.bp.md});
-    margin-left: calc(${smallImageLR} * ${modifier.bp.md});
-    margin-right: calc(${smallImageLR} * ${modifier.bp.md});
-
-    height: calc(${smallImageHeight} * ${modifier.bp.md});
-    max-height: calc(${smallImageHeight} * ${modifier.bp.md});
-    margin-top: calc(${smallImageTB} * ${modifier.bp.md});
-    margin-bottom: calc(${smallImageTB} * ${modifier.bp.md});
-  }
-
-  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
-    width: calc(${smallImageWidth} * ${modifier.bp.lg});
-    max-width: calc(${smallImageWidth} * ${modifier.bp.lg});
-    margin-left: calc(${smallImageLR} * ${modifier.bp.lg});
-    margin-right: calc(${smallImageLR} * ${modifier.bp.lg});
-
-    height: calc(${smallImageHeight} * ${modifier.bp.lg});
-    max-height: calc(${smallImageHeight} * ${modifier.bp.lg});
-    margin-top: calc(${smallImageTB} * ${modifier.bp.lg});
-    margin-bottom: calc(${smallImageTB} * ${modifier.bp.lg});
-  }
-
-  @media only screen and (min-width: ${bp.xl.min}) {
-    width: ${smallImageWidth};
-    max-width: ${smallImageWidth};
-    margin-left: ${smallImageLR};
-    margin-right: ${smallImageLR};
-
-    height: ${smallImageHeight};
-    max-height: ${smallImageHeight};
-    margin-top: ${smallImageTB};
-    margin-bottom: ${smallImageTB};
-  }
+  margin-top: ${smallImageTB};
+  margin-bottom: ${smallImageTB};
 `;
 
 export const emptyImage = css`
@@ -270,34 +159,15 @@ export const content = css`
   bottom: 0;
   left: 0;
   right: 0;
-
-  @media only screen and (max-width: ${bp.md.max}) {
-    padding-top: calc(${paddingT} * ${modifier.bp.md});
-  }
-
-  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
-    padding-top: calc(${paddingT} * ${modifier.bp.lg});
-  }
-
-  @media only screen and (min-width: ${bp.xl.min}) {
-    padding-top: ${paddingT};
-  }
 `;
 
 export const text = css`
   font-size: ${textFontSize};
+}
+`;
 
-  @media only screen and (max-width: ${bp.md.max}) {
-    font-size: calc(${textFontSize} * ${modifier.bp.lg});
-  }
-
-  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
-    font-size: ${textFontSize};
-  }
-
-  @media only screen and (min-width: ${bp.xl.min}) {
-    font-size: ${textFontSize};
-  }
+export const description = css`
+  font-size: ${textFontSize};
 `;
 
 export const title = css`
@@ -310,18 +180,6 @@ export const title = css`
 export const price = css`
   font-weight: bold;
   font-size: ${priceFontSize};
-
-  @media only screen and (max-width: ${bp.md.max}) {
-    font-size: calc(${priceFontSize} * ${modifier.bp.lg});
-  }
-
-  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
-    font-size: ${priceFontSize};
-  }
-
-  @media only screen and (min-width: ${bp.xl.min}) {
-    font-size: ${priceFontSize};
-  }
 `;
 
 export const divider = css`
