@@ -21,6 +21,7 @@ const containerHeight = "50em";
 const containerWidth = "330px";
 const headerHeight = "270px";
 const contentFooterHeight = "25px";
+const footerHeight = "85px";
 const paddingLR = "27px";
 
 const imageWidth = "270px";
@@ -75,13 +76,12 @@ export const contentFooter = css`
   height: ${contentFooterHeight};
 `;
 
-const footerHeight = "85px";
 export const footer = css`
   order: 0;
   flex: 0 0 auto;
   align-self: stretch;
   background-color: ${bgcolor.footer};
-  height: 85px;
+  height: ${footerHeight};
 `;
 
 export const card = css`
