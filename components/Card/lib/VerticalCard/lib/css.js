@@ -1,5 +1,5 @@
 import { css } from "emotion";
-import { bp, modifier } from "../../../util/style";
+import { bp, modifier } from "../../../../../util/style";
 
 const testZones = false;
 const bgcolor = {
@@ -8,6 +8,9 @@ const bgcolor = {
   content: testZones ? "green" : "transparent",
   footer: testZones ? "#999" : "transparent"
 };
+
+const paddingLR = "27px";
+
 
 const containerHeight = "500px";
 const containerWidth = "330px";
@@ -69,6 +72,13 @@ export const body = css`
   background-color: ${bgcolor.body};
 `;
 
+const contentFooterHeight = "25px";
+export const contentFooter = css`
+  padding-left: ${paddingLR};
+  padding-right: ${paddingLR};
+  height: ${contentFooterHeight};
+`;
+
 const footerHeight = "85px";
 export const footer = css`
   order: 0;
@@ -104,7 +114,7 @@ export const card = css`
 export const cardDesktopOnly = css`
   ${card};
   display: none;
-  
+
   @media only screen and (min-width: 768px) {
     display: flex;
   }
@@ -223,7 +233,12 @@ export const imageSmall = css`
   }
 `;
 
-const paddingLR = "27px";
+export const emptyImage = css`
+  ${imageSmall};
+  background-color: #7a7a7a;
+  display: inline-block;
+`;
+
 export const contentPaddingLR = css`
   padding-left: ${paddingLR};
   padding-right: ${paddingLR};
@@ -253,12 +268,6 @@ export const content = css`
   @media only screen and (min-width: ${bp.xl.min}) {
     padding-top: ${paddingT};
   }
-`;
-
-export const contentFooter = css`
-  position: absolute;
-  left: ${paddingLR};
-  bottom: 5px;
 `;
 
 const textFontSize = "16px";

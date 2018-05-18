@@ -1,16 +1,17 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import * as css from "./lib/css";
+import { productDetailPropTypes } from "../../../PriceDetails/lib/PropTypes";
 
-import Badge from "../Badge";
-import Rating from "../Rating";
-import Price from "../Price";
+import Badge from "../../../Badge";
+import Rating from "../../../Rating";
+import PriceDetails from "../../../PriceDetails";
 class VerticalCard extends Component {
   renderImageClassName(imageWide, imageSmall) {
     return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;
   }
   renderCardClassName(desktopOnly) {
-    return (desktopOnly) ? css.cardDesktopOnly : css.card;
+    return desktopOnly ? css.cardDesktopOnly : css.card;
   }
   render() {
     const {
@@ -21,7 +22,7 @@ class VerticalCard extends Component {
       imageSmall = false,
       imageAltText,
       rating,
-      price,
+      priceObject,
       badge,
       auid,
       desktopOnly
@@ -37,22 +38,21 @@ class VerticalCard extends Component {
               className={this.renderImageClassName(imageWide, imageSmall)}
             />
           )}
+          {!image && <div className={css.emptyImage} />}
         </div>
-        <div className={css.body}> {/* eslint-disable-line react/jsx-indent */}
+        <div className={css.body}>{/* eslint-disable-line react/jsx-indent */}
           <div className={css.content}>
             <div className={css.title}>{title}</div>
             <div className={css.description}>{description}</div>{/* eslint-disable-line react/jsx-indent */}
-            {!!rating && (
-              <div className={css.contentFooter}>
-                <Rating value={rating} />
-              </div>
-            )}
           </div>
+        </div>
+        <div className={css.contentFooter}>{/* eslint-disable-line react/jsx-indent */}
+          {!!rating && <Rating value={rating} />}
         </div>
         <div className={css.footer}>{/* eslint-disable-line react/jsx-indent */}
           <div className={css.contentPaddingLR}>
             <div className={css.divider} />
-            <div className={css.price}>{!!price && <Price price={price} />}</div>{/* eslint-disable-line react/jsx-indent */}
+            <div className={css.price}>{!!priceObject && <PriceDetails {...priceObject} />}</div>{/* eslint-disable-line react/jsx-indent */}
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@ VerticalCard.propTypes = {
   imageWide: PropTypes.bool,
   imageSmall: PropTypes.bool,
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  price: PropTypes.string,
+  priceObject: PropTypes.shape(productDetailPropTypes),
   badge: PropTypes.string,
   auid: PropTypes.string,
   desktopOnly: PropTypes.bool

@@ -1,13 +1,13 @@
-import { getFirstDefined } from "../../../util/component";
+import { getFirstDefined, ellipsesText } from "../../../util/component";
 
 export const getCardProps = (product = {}, props = {}) => {
   const mergedProps = {
-    title: determineTitle(props, product),
-    description: determineDescription(props, product),
+    title: ellipsesText(determineTitle(props, product), 25),
+    description: ellipsesText(determineDescription(props, product), 100),
     image: determineImage(props, product),
     imageAltText: determineImageAltText(props, product),
     rating: props.rating,
-    price: determinePrice(props, product)
+    priceObject: determinePrice(props, product)
   };
 
   return { ...props, ...mergedProps };
@@ -21,4 +21,9 @@ const determineDescription = (props, product) => getFirstDefined([props.descript
 const determineImageAltText = (props, product) =>
   getFirstDefined([props.imageAltText, product.imageAltDescription]);
 
-const determinePrice = props => getFirstDefined([props.price]);
+const determinePrice = (props, product = {}) => {
+  // ignoring props for now
+  const { adBug: arrAdBug = [], defaultSkuPrice } = product;
+  const adBug = arrAdBug.length > 0 ? arrAdBug[0] : null;
+  return { adBug, ...defaultSkuPrice };
+};

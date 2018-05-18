@@ -5,19 +5,24 @@ import { css } from "emotion";
 const small = css`
   display: inline-block;
   vertical-align: top;
-  padding-top: .2em;
-  font-size: .6em;
+  padding-top: 0.2em;
+  font-size: 0.6em;
 `;
 
 class Price extends Component {
   render() {
     const { price } = this.props;
-    const [num, dec] = price.split(".");
+    const [num, dec] = price.replace(/\$/g, "").split(".");
+
+    if (!num || num.trim().length === 0) {
+      return null;
+    }
+
     return (
       <span>
         <small className={small}>$</small>
         <span>{num}</span>{/* eslint-disable-line react/jsx-indent */}
-        <small className={small}>{dec}</small> {/* eslint-disable-line react/jsx-indent */}
+        <small className={small}>{dec}</small>{/* eslint-disable-line react/jsx-indent */}
       </span>
     );
   }

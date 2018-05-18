@@ -1,21 +1,40 @@
 import PropTypes from "prop-types";
-import React from "react";
-import VerticalCard from "../VerticalCard";
-import HorizontalCard from "../HorizontalCard";
+import React, { Component } from "react";
+import VerticalCard from "./lib/VerticalCard";
+import HorizontalCard from "./lib/HorizontalCard";
 
-const Card = props => {
-  const { auid, horizontalMobile, ...remainingProps } = props;
-  return (
-    <div auid={auid}>
-      <VerticalCard {...remainingProps} desktopOnly={horizontalMobile} />
-      {!!horizontalMobile && <HorizontalCard {...remainingProps} hideOnDesktop={horizontalMobile} />}
-    </div>
-  );
-};
+class Card extends Component {
+  onClickGoTo(url) {
+    return () => {
+      window.location = url;
+    };
+  }
+
+  render() {
+    const { auid, horizontalMobile, ctaLink, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
+    let clickAttributes = {};
+    if (ctaLink) {
+      clickAttributes = {
+        onClick: this.onClickGoTo(ctaLink),
+        onKeyPress: this.onClickGoTo(ctaLink),
+        style: { cursor: "pointer" }
+      };
+    }
+    return (
+      <div auid={auid} {...clickAttributes}>
+        <VerticalCard {...remainingProps} desktopOnly={horizontalMobile} />
+        {!!horizontalMobile && (
+          <HorizontalCard {...remainingProps} hideOnDesktop={horizontalMobile} />
+        )}
+      </div>
+    );
+  }
+}
 
 Card.propTypes = {
   auid: PropTypes.string,
-  horizontalMobile: PropTypes.bool
+  horizontalMobile: PropTypes.bool,
+  ctaLink: PropTypes.string
 };
 
 export default Card;
