@@ -18,23 +18,23 @@ const bgcolor = {
 };
 
 const containerHeight = "50em";
-const containerWidth = "330px";
-const headerHeight = "270px";
-const contentFooterHeight = "25px";
-const footerHeight = "85px";
-const paddingLR = "27px";
+const containerWidth = "33em";
+const headerHeight = "27em";
+const contentFooterHeight = "2.5em";
+const footerHeight = "8.5em";
+const paddingLR = "2.7em";
 
-const imageWidth = "270px";
-const imageLR = "28px";
-const imageHeight = "270px";
-const imageTB = "0px";
+const imageWidth = "27em";
+const imageLR = "2.8em";
+const imageHeight = "27em";
+const imageTB = "0";
 
-const smallImageWidth = "190px";
-const smallImageLR = "73px";
-const smallImageHeight = "190px";
-const smallImageTB = "42px";
+const smallImageWidth = "19em";
+const smallImageLR = "7.3em";
+const smallImageHeight = "19em";
+const smallImageTB = "4.2em";
 
-const paddingT = "25px";
+const paddingT = "2.5em";
 
 const textFontSize = "16px";
 const priceFontSize = "42px";
