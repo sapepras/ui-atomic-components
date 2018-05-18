@@ -1,4 +1,4 @@
 export const getPriceAttrsFromProduct = product => {
-  const { adBug, defaultSkuPrice } = product;
-  return { adBug, ...defaultSkuPrice };
+  const { adbug, defaultSkuPrice } = product;
+  return { adbug, ...defaultSkuPrice };
 };

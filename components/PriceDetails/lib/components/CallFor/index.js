@@ -1,12 +1,14 @@
 import React from "react";
-import { productDetailChildPropTypes } from "../../PropTypes";
-import Price from "../Price";
+// import { productDetailChildPropTypes } from "../../PropTypes";
+import * as css from "../../css";
 
-const XXXX = props => {
-  const { listPrice: value, ...remainingProps } = props;
-  return <Price price={value} {...remainingProps} />;
-};
+const XXXX = () => (
+  <div>
+    <div className={css.titleText}>For special pricing call</div>
+    <div className={css.contentText}>(888) 888-8888</div>
+  </div>
+);
 
-XXXX.propTypes = productDetailChildPropTypes;
+XXXX.propTypes = null; // productDetailChildPropTypes;
 
 export default XXXX;

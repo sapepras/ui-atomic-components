@@ -6,6 +6,13 @@ import HorizontalCard from "./lib/HorizontalCard";
 class Card extends Component {
   onClickGoTo(url) {
     return () => {
+      // if (dataLayer) {
+      //   dataLayer.push({
+      //   event:'productCardClicks',
+      //   eventCategory:'Product Card Clicks',
+      //   eventAction: ctaLinkName,
+      //   'eventLabel’:'<Product Name >’});
+      // }
       window.location = url;
     };
   }

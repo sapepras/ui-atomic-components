@@ -23,7 +23,7 @@ const determineImageAltText = (props, product) =>
 
 const determinePrice = (props, product = {}) => {
   // ignoring props for now
-  const { adBug: arrAdBug = [], defaultSkuPrice } = product;
-  const adBug = arrAdBug.length > 0 ? arrAdBug[0] : null;
-  return { adBug, ...defaultSkuPrice };
+  const { adbug: arrAdbug = [], defaultSkuPrice } = product;
+  const adbug = arrAdbug.length > 0 ? arrAdbug[0] : null;
+  return { adbug, ...defaultSkuPrice };
 };

@@ -15,10 +15,10 @@ import {
 
 class PriceDetails extends Component {
   render() {
-    const { adBug = PriceTypes.standard, ...remainingProps } = this.props;
+    const { adbug = PriceTypes.standard, ...remainingProps } = this.props;
 
-    switch (adBug) {
-      case PriceTypes.Standard:
+    switch (adbug) {
+      case PriceTypes.standard:
         return <Standard {...remainingProps} />;
 
       case PriceTypes.callFor:
