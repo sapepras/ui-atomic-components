@@ -28,7 +28,7 @@ class Card extends Component {
       };
     }
     return (
-      <div auid={auid} {...clickAttributes}>
+      <div auid={auid} {...clickAttributes} style={{ fontSize: "0.8333vw" }}>
         <VerticalCard {...remainingProps} desktopOnly={horizontalMobile} />
         {!!horizontalMobile && (
           <HorizontalCard {...remainingProps} hideOnDesktop={horizontalMobile} />
