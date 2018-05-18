@@ -34,48 +34,73 @@ Notes: You can pass a product object via the product attribute and the card will
       "this is a long description this is a long description this is a long description this is a long description this is a long description",
     id: "10001",
     parentCategoryId: "10001",
-    shortDescription: "this is a short description",
-    longDescription:
-      "this is a long description this is a long description this is a long description this is a long description this is a long description ",
-    sellable: "true",
     manufacturer: "Nike",
-    productVariant: "Regular",
-    productSpecification: "TEST PRODUCT SPEC",
-    promotionalMessage: "Free shipping product",
-    metaKeywords: "TEST,TEST1",
-    metaDescription: "Meta desription",
     title: "Shoes",
-    defaultSku: "SKU001",
-    isSingleSkuProduct: "false",
     itemId: "partNumber",
-    seoName: "seo-name",
     imageAltDescription: "TEST ALT IMAGE",
-    storeId: "10051",
-    priceRange: "$5 to $10",
-    priceAdFeature: "Clearance",
-    skus: [
-      {
-        sku: "sku1001",
-        itemId: "ItemId",
-        priceAdFeature: "clearance",
-        listPrice: "100.00",
-        salePrice: "120.00",
-        image_URL: "10001",
-        attributes: [
-          {
-            key: "color",
-            value: "RED"
-          }
-        ]
-      }
-    ]
+    adbug: ["Standard"],
+    defaultSkuPrice: {
+      minPriceRange: "$ 14.98",
+      maxPriceRange: "$ 22.5",
+      priceMessage: "$14.98-$22.5",
+      salePrice: "$ 22.5",
+      listPrice: "$ 23",
+      priceRange: "$ 14.98-$ 22.5"
+    },
   };
+
+  window.callFor = {
+    ...window.someProd,
+    manufacturer: "CallFor",
+    adbug: ["CallFor"],
+  }
+
+  window.clearance = {
+    ...window.someProd,
+    manufacturer: "Clearance",
+    adbug: ["Clearance"],
+  }
+
+  window.clearanceRange = {
+    ...window.someProd,
+    manufacturer: "ClearanceRange",
+    adbug: ["ClearanceRange"],
+  }
+
+  window.priceDrop = {
+    ...window.someProd,
+    manufacturer: "PriceDrop",
+    adbug: ["PriceDrop"],
+  }
+
+  window.hotDeal = {
+    ...window.someProd,
+    manufacturer: "HotDeal",
+    adbug: ["HotDeal"],
+  }
+
+  window.isInCartPlusCompare = {
+    ...window.someProd,
+    manufacturer: "IsInCartPlusCompare",
+    adbug: ["IsInCartPlusCompare"],
+  }
+
+  window.range = {
+    ...window.someProd,
+    manufacturer: "Range",
+    adbug: ["Range"],
+  }
+
+  window.wasNow = {
+    ...window.someProd,
+    manufacturer: "WasNow",
+    adbug: ["WasNow"],
+  }
 }
 
-<div style={{ display: "flex" }}>
-  <div style={{ flex: "1 1 auto" }}>
+<div style={{ display: "flex" , flexWrap: "wrap"}}>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
     <ProductCard
-      badge="new"
       horizontalMobile
       imageSmall
       product={window.someProd}
@@ -84,13 +109,85 @@ Notes: You can pass a product object via the product attribute and the card will
       ctaLink="http://www.google.com"
     />
   </div>
-
-  <div style={{ flex: "1 1 auto" }}>
-    <ProductCard badge="wut" imageSmall product={window.someProd} rating={4} price={"$$$79.99"} />
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.callFor}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
   </div>
-
-  <div style={{ flex: "1 1 auto" }}>
-    <ProductCard badge="33% off" imageSmall product={window.someProd} rating={4} price={"39.99"} />
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.clearance}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.clearanceRange}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.priceDrop}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.hotDeal}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.isInCartPlusCompare}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.range}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.wasNow}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
   </div>
 </div>;
 ```

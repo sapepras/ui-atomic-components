@@ -13,6 +13,11 @@ class Price extends Component {
   render() {
     const { price } = this.props;
     const [num, dec] = price.replace(/\$/g, "").split(".");
+
+    if (!num || num.trim().length === 0) {
+      return null;
+    }
+
     return (
       <span>
         <small className={small}>$</small>

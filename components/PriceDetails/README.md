@@ -1,3 +1,10 @@
 ```jsx
-<PriceDetails price={"19.99"} />
+<PriceDetails
+  minPriceRange="19.99"
+  maxPriceRange="19.99"
+  priceMessage="19.99"
+  salePrice="19.99"
+  listPrice="19.99"
+  priceRange="19.99"
+/>
 ```

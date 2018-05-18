@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import * as css from "./lib/css";
+import { productDetailPropTypes } from "../../../PriceDetails/lib/PropTypes";
 
 import Badge from "../../../Badge";
 import Rating from "../../../Rating";
-import Price from "../../../Price";
+import PriceDetails from "../../../PriceDetails";
 class VerticalCard extends Component {
   renderImageClassName(imageWide, imageSmall) {
     return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;
@@ -21,7 +22,7 @@ class VerticalCard extends Component {
       imageSmall = false,
       imageAltText,
       rating,
-      price,
+      priceObject,
       badge,
       auid,
       desktopOnly
@@ -51,7 +52,7 @@ class VerticalCard extends Component {
         <div className={css.footer}>{/* eslint-disable-line react/jsx-indent */}
           <div className={css.contentPaddingLR}>
             <div className={css.divider} />
-            <div className={css.price}>{!!price && <Price price={price} />}</div>{/* eslint-disable-line react/jsx-indent */}
+            <div className={css.price}>{!!priceObject && <PriceDetails {...priceObject} />}</div>{/* eslint-disable-line react/jsx-indent */}
           </div>
         </div>
       </div>
@@ -67,7 +68,7 @@ VerticalCard.propTypes = {
   imageWide: PropTypes.bool,
   imageSmall: PropTypes.bool,
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  price: PropTypes.string,
+  priceObject: PropTypes.shape(productDetailPropTypes),
   badge: PropTypes.string,
   auid: PropTypes.string,
   desktopOnly: PropTypes.bool
