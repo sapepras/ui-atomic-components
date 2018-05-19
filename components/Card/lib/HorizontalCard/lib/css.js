@@ -8,6 +8,12 @@ import { css } from "emotion";
 //   footer: testZones ? "#999" : "white"
 // };
 
+export const paddingLR = "20px";
+export const contentPaddingLR = css`
+  padding-left: ${paddingLR};
+  padding-right: ${paddingLR};
+`;
+
 export const columnContainer = css`
   display: flex;
   flex-direction: row;
@@ -24,21 +30,21 @@ export const leftColumn = css`
   width: 125px;
 `;
 
+export const rowContainer = css`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: flex-start;
+`;
+
 export const rightColumn = css`
   order: 0;
   flex: 0 0 auto;
   align-self: auto;
   ${rowContainer};
   width: 250px;
-`;
-
-export const rowContainer = css`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: stretch;
-  align-items: stretch;
 `;
 
 export const rowHeader = css`
@@ -54,19 +60,22 @@ export const rowBody = css`
   align-self: auto;
   padding-top: 18px;
   padding-bottom: 5px;
-  height: 65px;
 `;
 
 export const rowFooterOne = css`
   order: 2;
   flex: 0 0 auto;
   align-self: auto;
+  ${contentPaddingLR};
+  width: 100%;
+  height: 25px;
 `;
 
 export const rowFooterTwo = css`
   order: 3;
   flex: 0 0 auto;
   align-self: auto;
+  height: 65px;
 `;
 
 export const card = css`
@@ -114,12 +123,6 @@ export const emptyImage = css`
   display: inline-block;
 `;
 
-export const paddingLR = "20px";
-export const contentPaddingLR = css`
-  padding-left: ${paddingLR};
-  padding-right: ${paddingLR};
-`;
-
 export const text = css`
   font-size: 11px;
 `;
@@ -136,12 +139,7 @@ export const description = css`
 `;
 
 export const rating = css`
-  display: inline-block;
-  position: relative;
-  font-size: 11px;
-  padding-left: 23px;
-  letter-spacing: 3px;
-  margin-bottom: 7px;
+  ${text};
 `;
 
 const priceFontSize = "28px";
