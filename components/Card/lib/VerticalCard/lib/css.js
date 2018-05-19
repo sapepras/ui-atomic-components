@@ -4,9 +4,8 @@ import { css } from "emotion";
  * Goal responsive cards that can whose starting size can be easily modified for various layouts
  * Starting assumptions
  * Pixel perfect for a window width of 1200px;
- * Starting width 328px;
+ * Starting width 330px;
  * Starting height 500px;
- * 1200px / 10 = 120 == 16px;
  */
 
 const testZones = false;
@@ -17,27 +16,37 @@ const bgcolor = {
   footer: testZones ? "#999" : "transparent"
 };
 
-const containerHeight = "50em";
-const containerWidth = "33em";
-const headerHeight = "27em";
-const contentFooterHeight = "2.5em";
-const footerHeight = "8.5em";
-const paddingLR = "2.7em";
+// container starting dimensions
+const containerHeight = "50em"; // 500px @1200px vw
+const containerWidth = "33em"; // 330px @1200px vw
 
-const imageWidth = "27em";
-const imageLR = "2.8em";
-const imageHeight = "27em";
-const imageTB = "0";
+// container-row starting dimensions
+const headerHeight = "27em"; // 270px @1200px vw
+const contentFooterHeight = "2.5em"; // 25px @1200px vw
+const footerHeight = "8.5em"; // 85px @1200px vw
 
-const smallImageWidth = "19em";
-const smallImageLR = "7.3em";
-const smallImageHeight = "19em";
-const smallImageTB = "4.2em";
+// image starting values
+const imageWidth = "27em"; // 270px @1200px vw
+const imageLR = "2.8em"; // 28px @1200px vw
+const imageHeight = "27em"; // 270px @1200px vw
+const imageTB = "0"; // 0px @1200px vw
 
-const paddingT = "2.5em";
+const smallImageWidth = "19em"; // 190px @1200px vw
+const smallImageLR = "7.3em"; // 73px @1200px vw
+const smallImageHeight = "19em"; // 190px @1200px vw
+const smallImageTB = "4.2em"; // 42px @1200px vw
 
-const textFontSize = "16px";
-const priceFontSize = "42px";
+// padding defaults
+const paddingLR = "2.7em"; // 27px @1200px vw
+const paddingT = "2.5em"; // 25px @1200px vw
+
+// default font sizes
+const textFontSize = "16px"; // px @any vw
+const priceFontSize = "42px"; // px @any vw
+
+/**
+ * Outer Most Container
+ */
 
 export const container = css`
   position: relative;
@@ -52,6 +61,21 @@ export const container = css`
   height: ${containerHeight};
   width: ${containerWidth};
 `;
+
+export const card = css`
+  ${container};
+  background: #fff;
+  text-align: left;
+  border-radius: 6px;
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  font-family: Mallory-Black, Helvetica, sans-serif;
+  color: #33333;
+`;
+
+/**
+ * Card Rows
+ */
 
 export const header = css`
   order: 0;
@@ -84,16 +108,9 @@ export const footer = css`
   height: ${footerHeight};
 `;
 
-export const card = css`
-  ${container};
-  background: #fff;
-  text-align: left;
-  border-radius: 6px;
-  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  font-family: Mallory-Black, Helvetica, sans-serif;
-  color: #33333;
-`;
+/**
+ * Show/Hide vertical on mobile.
+ */
 
 export const cardDesktopOnly = css`
   ${card};
@@ -103,6 +120,10 @@ export const cardDesktopOnly = css`
     display: flex;
   }
 `;
+
+/**
+ * Image Styles
+ */
 
 export const imageWide = css`
   display: block;
@@ -143,6 +164,10 @@ export const emptyImage = css`
   display: inline-block;
 `;
 
+/**
+ * Body Content
+ */
+
 export const contentPaddingLR = css`
   padding-left: ${paddingLR};
   padding-right: ${paddingLR};
@@ -167,7 +192,7 @@ export const text = css`
 `;
 
 export const description = css`
-  font-size: ${textFontSize};
+  ${text};
 `;
 
 export const title = css`
@@ -176,6 +201,14 @@ export const title = css`
   text-transform: uppercase;
   margin-bottom: 6px;
 `;
+
+export const rating = css`
+  ${text};
+`;
+
+/**
+ * Footer Content
+ */
 
 export const price = css`
   font-weight: bold;

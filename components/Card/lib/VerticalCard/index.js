@@ -47,7 +47,7 @@ class VerticalCard extends Component {
           </div>
         </div>
         <div className={css.contentFooter}>{/* eslint-disable-line react/jsx-indent */}
-          {!!rating && <Rating value={rating} />}
+          {!!rating && <span className={css.rating}><Rating value={rating} /></span>}
         </div>
         <div className={css.footer}>{/* eslint-disable-line react/jsx-indent */}
           <div className={css.contentPaddingLR}>
