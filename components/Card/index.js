@@ -1,7 +1,37 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import { css } from "emotion";
 import VerticalCard from "./lib/VerticalCard";
 import HorizontalCard from "./lib/HorizontalCard";
+import { bp } from "../../util/style";
+
+const rootVw = {
+  xs: "7px", // vw
+  sm: "7px", // vw
+  md: "0.908173562vw", // md: "1.009081736vw", // vw
+  lg: "0.834028357vw", // px
+  xl: "10px" // px
+};
+
+export const vwMultiplier = css`
+  font-size: ${rootVw.xs};
+
+  @media only screen and (min-width: ${bp.sm.min}) and (max-width: ${bp.sm.max}) {
+    font-size: ${rootVw.sm};
+  }
+
+  @media only screen and (min-width: ${bp.md.min}) and (max-width: ${bp.md.max}) {
+    font-size: ${rootVw.md};
+  }
+
+  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
+    font-size: ${rootVw.lg};
+  }
+
+  @media only screen and (min-width: ${bp.xl.min}) {
+    font-size: ${rootVw.xl};
+  }
+`;
 
 class Card extends Component {
   onClickGoTo(url) {
@@ -28,7 +58,7 @@ class Card extends Component {
       };
     }
     return (
-      <div auid={auid} {...clickAttributes} style={{ fontSize: "0.8333vw" }}>
+      <div auid={auid} {...clickAttributes} className={vwMultiplier}>
         <VerticalCard {...remainingProps} desktopOnly={horizontalMobile} />
         {!!horizontalMobile && (
           <HorizontalCard {...remainingProps} hideOnDesktop={horizontalMobile} />
