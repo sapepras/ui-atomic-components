@@ -44,9 +44,7 @@ class HorizontalCard extends Component {
           </div>
           <div className={css.rowFooterOne}>{/* eslint-disable-line react/jsx-indent */}
             <div className={css.rating}>{!!rating && <Rating value={rating} />}</div>
-            <div className={css.contentPaddingLR}>{/* eslint-disable-line react/jsx-indent */}
-              <div className={css.divider} />
-            </div>
+            <div className={css.divider} />{/* eslint-disable-line react/jsx-indent */}
           </div>
           <div className={css.rowFooterTwo}>{/* eslint-disable-line react/jsx-indent */}
             <div className={css.contentPaddingLR}>
