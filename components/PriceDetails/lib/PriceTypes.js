@@ -3,7 +3,7 @@ const PriceTypes = {
   clearanceRange: "ClearanceRange",
   inCartPlusCompare: "InCartPlusCompare",
   wasNow: "WasNow",
-  drop: "Drop",
+  drop: "PriceDrop",
   hotDeal: "HotDeal",
   range: "Range",
   standard: "Standard",
