@@ -54,12 +54,11 @@ class Drawer extends Component {
     });
   }
   render() {
-    const { title } = this.props;
-
+    const { title, children, titleClass } = this.props;
     return (
       <div className={DrawerWrapStyle}>
-        <StyledDiv onClick={this.toggleDrawer}>{title}</StyledDiv>
-        {this.state.isOpen && <div className={DrawerContentStyle}>{this.props.children}</div>}
+        <StyledDiv className={titleClass} onClick={this.toggleDrawer}>{title}</StyledDiv>
+        {this.state.isOpen && <div className={DrawerContentStyle}>{children}</div>}
       </div>
     );
   }
@@ -71,7 +70,8 @@ Drawer.defaultProps = {
 
 Drawer.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.element
+  children: PropTypes.element,
+  titleClass: PropTypes.string
 };
 
 export default Drawer;
