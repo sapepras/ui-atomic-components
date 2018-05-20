@@ -1,29 +1,61 @@
-| attr         | type         | desc                                                            |
-| ------------ | ------------ | --------------------------------------------------------------- |
-| title        | string       | title text of card                                              |
-| description  | string       | text describing item                                            |
-| imageURL     | string       | url pointing to image to be rendered in top of card             |
-| imageAltText | string       | Specifies an alternate text for the image.                      |
-| imageWide    | boolean      | stretches the image to take up maximum header room, no padding  |
-| imageSmall   | boolean      | adds extra padding around the image                             |
-| rating       | number (0-5) | number of stars to show as colored for rating view              |
-| price        | string       | price to be shown at bottom of card                             |
-| badge        | string       | Exact implementation being determined                           |
-| product      | object       | product json object as returned by api - details in below table |
+### Attributes
 
-<hr/>
+|     | attr                 | type    | default | desc                                                                                                           |
+| --- | -------------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| [x] | title                | string  |         | title text of card                                                                                             |
+| [x] | titleMaxCC           | integer | 25      | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
+| [x] | description          | string  |         | text describing item                                                                                           |
+| [x] | descriptionMaxCC     | integer | 40      | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
+| [x] | image                | string  |         | url pointing to image to be rendered in top of card                                                            |
+| [x] | imageAltText         | string  |         | Specifies an alternate text for the image.                                                                     |
+| [x] | imageWide            | boolean | false   | stretches the image to take up maximum header room, no padding                                                 |
+| [x] | imageSmall           | boolean | false   | adds extra padding around the image                                                                            |
+| [x] | rating               | float   |         | number of stars to show as colored for rating view                                                             |
+| [ ] | badge                | string  |         | Exact implementation being determined                                                                          |
+| [x] | overrideCardHeightPx | float   |         | Expected value in pixels. When screen is 1200px card height will be overrideCardHeightPx and scale accordingly |
+| [x] | priceObject          | object  |         | Exact implementation being determined                                                                          |
+| [x] | product              | object  |         | product json object as returned by api - details in below table                                                |
 
-| product properties          | Maps to attr | type   | desc                                                |
-| --------------------------- | ------------ | ------ | --------------------------------------------------- |
-| product                     |              | object | product json object as returned by api              |
-| product.manufacturer        | title        | string | text describing item                                |
-| product.name                | description  | string | text describing item                                |
-| product.imageURL            | imageURL     | string | url pointing to image to be rendered in top of card |
-| product.imageAltDescription | imageAltText | string | Specifies an alternate text for the image.          |
+<br/>
+
+### product schema
+
+|     | product properties          | Maps to attr | type   | desc                                                |
+| --- | --------------------------- | ------------ | ------ | --------------------------------------------------- |
+| [x] | product                     |              | object | product json object as returned by api              |
+| [x] | product.manufacturer        | title        | string | text describing item                                |
+| [x] | product.name                | description  | string | text describing item                                |
+| [x] | product.imageURL            | image        | string | url pointing to image to be rendered in top of card |
+| [x] | product.imageAltDescription | imageAltText | string | Specifies an alternate text for the image.          |
+
+<br/>
+
+### priceObject schema
+
+|     | priceObject properties    | type   | default val | desc | price variations used in |
+| --- | ------------------------- | ------ | ----------- | ---- | ------------------------ |
+| [x] | priceObject               | object |             |      |                          |
+| [x] | priceObject.minPriceRange | string |             |      |                          |
+| [x] | priceObject.maxPriceRange | string |             |      |                          |
+| [x] | priceObject.priceMessage  | string |             |      |                          |
+| [x] | priceObject.salePrice     | string |             |      |                          |
+| [x] | priceObject.listPrice     | string |             |      |                          |
+| [x] | priceObject.priceRange    | string |             |      |                          |
 
 <sub>
 Notes: You can pass a product object via the product attribute and the card will build itself. You can also pass overriding values via attributes
 </sub>
+
+Vertical Card Props
+priceObject,
+badge,
+auid,
+
+Horizontal Card Props
+priceObject,
+badge,
+auid,
+hideOnDesktop
 
 <br><br><br>
 

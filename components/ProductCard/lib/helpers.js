@@ -13,7 +13,8 @@ export const getCardProps = (product = {}, props = {}) => {
   return { ...props, ...mergedProps };
 };
 
-const determineImage = (props, product) => getFirstDefined([props.image, product.imageURL]);
+const determineImage = (props, product) =>
+  getFirstDefined([props.image, props.imageURL, product.imageURL]);
 
 const determineTitle = (props, product) => getFirstDefined([props.title, product.manufacturer]);
 
