@@ -8,6 +8,10 @@ import { css } from "emotion";
  * Starting height 500px;
  */
 
+export const appendProperties = (cssClass, properties) => css`
+  ${cssClass} ${properties};
+`;
+
 const testZones = false;
 const bgcolor = {
   header: testZones ? "red" : "transparent",

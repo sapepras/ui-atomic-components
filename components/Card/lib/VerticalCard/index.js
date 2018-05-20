@@ -10,9 +10,18 @@ class VerticalCard extends Component {
   renderImageClassName(imageWide, imageSmall) {
     return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;
   }
-  renderCardClassName(desktopOnly) {
-    return desktopOnly ? css.cardDesktopOnly : css.card;
+
+  renderCardClassName(desktopOnly, overrideCardHeightPx = false) {
+    const result = desktopOnly ? css.cardDesktopOnly : css.card;
+    if (overrideCardHeightPx) {
+      const overrideCardHeightStyle = ` height: ${(
+        parseFloat(overrideCardHeightPx) / 10
+      ).toString()}em`;
+      return css.appendProperties(result, overrideCardHeightStyle);
+    }
+    return result;
   }
+
   render() {
     const {
       title,
@@ -25,12 +34,14 @@ class VerticalCard extends Component {
       priceObject,
       badge,
       auid,
-      desktopOnly
+      desktopOnly,
+      overrideCardHeightPx
     } = this.props; // eslint-disable-line object-curly-newline
     return (
-      <div className={this.renderCardClassName(desktopOnly)} auid={auid}>
+      <div className={this.renderCardClassName(desktopOnly, overrideCardHeightPx)} auid={auid}>
         {!!badge && <Badge text={badge}>{badge}</Badge>}
-        <div className={css.header}>{/* eslint-disable-line react/jsx-indent */}
+        {/* eslint-disable-next-line react/jsx-indent */}
+        <div className={css.header}>
           {!!image && (
             <img
               src={image}
@@ -40,19 +51,28 @@ class VerticalCard extends Component {
           )}
           {!image && <div className={css.emptyImage} />}
         </div>
-        <div className={css.body}>{/* eslint-disable-line react/jsx-indent */}
+        {/* eslint-disable-next-line react/jsx-indent */}
+        <div className={css.body}>
           <div className={css.content}>
             <div className={css.title}>{title}</div>
-            <div className={css.description}>{description}</div>{/* eslint-disable-line react/jsx-indent */}
+            {/* eslint-disable-next-line react/jsx-indent */}
+            <div className={css.description}>{description}</div>
           </div>
         </div>
-        <div className={css.contentFooter}>{/* eslint-disable-line react/jsx-indent */}
-          {!!rating && <span className={css.rating}><Rating value={rating} /></span>}
+        {/* eslint-disable-next-line react/jsx-indent */}
+        <div className={css.contentFooter}>
+          {!!rating && (
+            <span className={css.rating}>
+              <Rating value={rating} />
+            </span>
+          )}
         </div>
-        <div className={css.footer}>{/* eslint-disable-line react/jsx-indent */}
+        {/* eslint-disable-next-line react/jsx-indent */}
+        <div className={css.footer}>
           <div className={css.contentPaddingLR}>
             <div className={css.divider} />
-            <div className={css.price}>{!!priceObject && <PriceDetails {...priceObject} />}</div>{/* eslint-disable-line react/jsx-indent */}
+            {/* eslint-disable-next-line react/jsx-indent */}
+            <div className={css.price}>{!!priceObject && <PriceDetails {...priceObject} />}</div>
           </div>
         </div>
       </div>
@@ -71,7 +91,8 @@ VerticalCard.propTypes = {
   priceObject: PropTypes.shape(productDetailPropTypes),
   badge: PropTypes.string,
   auid: PropTypes.string,
-  desktopOnly: PropTypes.bool
+  desktopOnly: PropTypes.bool,
+  overrideCardHeightPx: PropTypes.number
 };
 
 export default VerticalCard;
