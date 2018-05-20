@@ -2,8 +2,8 @@ import { getFirstDefined, ellipsesText } from "../../../util/component";
 
 export const getCardProps = (product = {}, props = {}) => {
   const mergedProps = {
-    title: ellipsesText(determineTitle(props, product), 25),
-    description: ellipsesText(determineDescription(props, product), 40),
+    title: ellipsesText(determineTitle(props, product), props.titleMaxCC || 25),
+    description: ellipsesText(determineDescription(props, product), props.descriptionMaxCC || 40),
     image: determineImage(props, product),
     imageAltText: determineImageAltText(props, product),
     rating: props.rating,
