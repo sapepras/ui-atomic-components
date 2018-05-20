@@ -34,31 +34,28 @@ export const vwMultiplier = css`
 `;
 
 class Card extends Component {
-  onClickGoTo(url) {
+  onClickGoTo(url, onClickLogGA) {
     return () => {
-      // if (dataLayer) {
-      //   dataLayer.push({
-      //   event:'productCardClicks',
-      //   eventCategory:'Product Card Clicks',
-      //   eventAction: ctaLinkName,
-      //   'eventLabel’:'<Product Name >’});
-      // }
+      if (onClickLogGA) {
+        onClickLogGA();
+      }
       window.location = url;
     };
   }
 
   render() {
-    const { auid, horizontalMobile, ctaLink, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
+    const { auid, horizontalMobile, ctaLink, onClickLogGA, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
+    const thisOnClickGoTo = this.onClickGoTo(ctaLink, onClickLogGA);
     let clickAttributes = {};
     if (ctaLink) {
       clickAttributes = {
-        onClick: this.onClickGoTo(ctaLink),
-        onKeyPress: this.onClickGoTo(ctaLink),
+        onClick: thisOnClickGoTo,
+        onKeyPress: thisOnClickGoTo,
         style: { cursor: "pointer" }
       };
     }
     return (
-      <div auid={auid} {...clickAttributes} className={vwMultiplier}>
+      <div data-auid={auid} {...clickAttributes} className={vwMultiplier}>
         <VerticalCard {...remainingProps} desktopOnly={horizontalMobile} />
         {!!horizontalMobile && (
           <HorizontalCard {...remainingProps} hideOnDesktop={horizontalMobile} />
@@ -71,7 +68,8 @@ class Card extends Component {
 Card.propTypes = {
   auid: PropTypes.string,
   horizontalMobile: PropTypes.bool,
-  ctaLink: PropTypes.string
+  ctaLink: PropTypes.string,
+  onClickLogGA: PropTypes.func
 };
 
 export default Card;
