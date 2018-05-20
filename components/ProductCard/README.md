@@ -34,71 +34,105 @@ Notes: You can pass a product object via the product attribute and the card will
       "this is a long description this is a long description this is a long description this is a long description this is a long description",
     id: "10001",
     parentCategoryId: "10001",
-    manufacturer: "Nike",
+    manufacturer: "Under Armour",
     title: "Shoes",
     itemId: "partNumber",
     imageAltDescription: "TEST ALT IMAGE",
     adbug: ["Standard"],
     defaultSkuPrice: {
-      minPriceRange: "$ 14.98",
-      maxPriceRange: "$ 22.5",
-      priceMessage: "$14.98-$22.5",
-      salePrice: "$ 22.5",
-      listPrice: "$ 23",
-      priceRange: "$ 14.98-$ 22.5"
-    },
+      priceMessage: "standard messaging",
+      listPrice: "$ 23"
+    }
   };
 
   window.callFor = {
     ...window.someProd,
     manufacturer: "CallFor",
     adbug: ["CallFor"],
-  }
+    defaultSkuPrice: {
+      priceMessage: "(800)876-1492"
+    }
+  };
 
   window.clearance = {
     ...window.someProd,
     manufacturer: "Clearance",
     adbug: ["Clearance"],
-  }
+    defaultSkuPrice: {
+      salePrice: "$ 10",
+      listPrice: "$ 23",
+      priceMessage: "some clearance messaging"
+    }
+  };
 
   window.clearanceRange = {
     ...window.someProd,
     manufacturer: "ClearanceRange",
     adbug: ["ClearanceRange"],
-  }
+    defaultSkuPrice: {
+      minPriceRange: "$ 14.98",
+      maxPriceRange: "$ 22.5",
+      priceMessage: "some clearance range messaging",
+      priceRange: "$ 14.98-$ 22.5"
+    }
+  };
 
   window.priceDrop = {
     ...window.someProd,
     manufacturer: "PriceDrop",
     adbug: ["PriceDrop"],
-  }
+    defaultSkuPrice: {
+      priceMessage: "pdrop msg",
+      salePrice: "$ 22.5",
+      listPrice: "$ 23"
+    }
+  };
 
   window.hotDeal = {
     ...window.someProd,
     manufacturer: "HotDeal",
     adbug: ["HotDeal"],
-  }
+    defaultSkuPrice: {
+      priceMessage: "hdeal msg",
+      salePrice: "$ 22.5",
+      listPrice: "$ 23"
+    }
+  };
 
-  window.isInCartPlusCompare = {
+  window.inCartPlusCompare = {
     ...window.someProd,
-    manufacturer: "IsInCartPlusCompare",
-    adbug: ["IsInCartPlusCompare"],
-  }
+    manufacturer: "InCartPlusCompare",
+    adbug: ["InCartPlusCompare"],
+    defaultSkuPrice: {
+      priceMessage: "compare at $xx.xx"
+    }
+  };
 
   window.range = {
     ...window.someProd,
     manufacturer: "Range",
     adbug: ["Range"],
-  }
+    defaultSkuPrice: {
+      minPriceRange: "$ 14.98",
+      maxPriceRange: "$ 22.5",
+      priceMessage: "some range messaging",
+      priceRange: "$ 14.98-$ 22.5"
+    }
+  };
 
   window.wasNow = {
     ...window.someProd,
     manufacturer: "WasNow",
     adbug: ["WasNow"],
-  }
+    defaultSkuPrice: {
+      priceMessage: "wnow msg",
+      salePrice: "$ 22.5",
+      listPrice: "$ 23"
+    }
+  };
 }
 
-<div style={{ display: "flex" , flexWrap: "wrap"}}>
+<div style={{ display: "flex", flexWrap: "wrap" }}>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
     <ProductCard
       horizontalMobile
@@ -107,6 +141,9 @@ Notes: You can pass a product object via the product attribute and the card will
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
+      overrideCardHeightPx={750}
+      titleMaxCC={7}
+      descriptionMaxCC={7}
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -163,7 +200,7 @@ Notes: You can pass a product object via the product attribute and the card will
     <ProductCard
       horizontalMobile
       imageSmall
-      product={window.isInCartPlusCompare}
+      product={window.inCartPlusCompare}
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"

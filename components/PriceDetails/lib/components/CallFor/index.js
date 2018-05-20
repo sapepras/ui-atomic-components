@@ -2,10 +2,10 @@ import React from "react";
 // import { productDetailChildPropTypes } from "../../PropTypes";
 import * as css from "../../css";
 
-const XXXX = () => (
+const XXXX = ({ priceMessage }) => (
   <div>
     <div className={css.titleText}>For special pricing call</div>
-    <div className={css.contentText}>(888) 888-8888</div>
+    <div className={css.contentText}>{priceMessage}</div>
   </div>
 );
 

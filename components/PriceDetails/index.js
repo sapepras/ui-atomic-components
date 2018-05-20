@@ -7,7 +7,7 @@ import {
   ClearanceRange,
   Drop,
   HotDeal,
-  IsInCartPlusCompare,
+  InCartPlusCompare,
   Range,
   Standard,
   WasNow
@@ -16,7 +16,6 @@ import {
 class PriceDetails extends Component {
   render() {
     const { adbug = PriceTypes.standard, ...remainingProps } = this.props;
-
     switch (adbug) {
       case PriceTypes.standard:
         return <Standard {...remainingProps} />;
@@ -36,10 +35,10 @@ class PriceDetails extends Component {
       case PriceTypes.hotDeal:
         return <HotDeal {...remainingProps} />;
 
-      case PriceTypes.IsInCartPlusCompare:
-        return <IsInCartPlusCompare {...remainingProps} />;
+      case PriceTypes.inCartPlusCompare:
+        return <InCartPlusCompare {...remainingProps} />;
 
-      case PriceTypes.Range:
+      case PriceTypes.range:
         return <Range {...remainingProps} />;
 
       case PriceTypes.wasNow:
