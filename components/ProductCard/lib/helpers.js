@@ -19,6 +19,7 @@ const determineImage = (props, product) =>
 const determineTitle = (props, product) => getFirstDefined([props.title, product.manufacturer]);
 
 const determineDescription = (props, product) => getFirstDefined([props.description, product.name]);
+
 const determineImageAltText = (props, product) =>
   getFirstDefined([props.imageAltText, product.imageAltDescription]);
 

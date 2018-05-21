@@ -1,3 +1,9 @@
+### Note
+
+You can pass a product object via the product attribute and the card will build itself. You can also pass overriding values via attributes
+
+<br/>
+
 ### Attributes
 
 |     | attr                 | type    | default | desc                                                                                                           |
@@ -20,42 +26,68 @@
 
 ### product schema
 
-|     | product properties          | Maps to attr | type   | desc                                                |
-| --- | --------------------------- | ------------ | ------ | --------------------------------------------------- |
-| [x] | product                     |              | object | product json object as returned by api              |
-| [x] | product.manufacturer        | title        | string | text describing item                                |
-| [x] | product.name                | description  | string | text describing item                                |
-| [x] | product.imageURL            | image        | string | url pointing to image to be rendered in top of card |
-| [x] | product.imageAltDescription | imageAltText | string | Specifies an alternate text for the image.          |
+|     | product properties                    | Maps to attr              | type            | desc                                                              |
+| --- | ------------------------------------- | ------------------------- | --------------- | ----------------------------------------------------------------- |
+|     | product                               |                           | object          | product json object as returned by api                            |
+| [x] | product.manufacturer                  | title                     | string          | text describing item                                              |
+| [x] | product.name                          | description               | string          | text describing item                                              |
+| [x] | product.imageURL                      | image                     | string          | url pointing to image to be rendered in top of card               |
+| [x] | product.imageAltDescription           | imageAltText              | string          | Specifies an alternate text for the image.                        |
+| [ ] | product.adbug                         | priceObject.adbug         | array of string | Partially implemented.                                            |
+|     | product.defaultSkuPrice               |                           | object          |                                                                   |
+| [x] | product.defaultSkuPrice.minPriceRange | priceObject.minPriceRange | string          |                                                                   |
+| [x] | product.defaultSkuPrice.maxPriceRange | priceObject.maxPriceRange | string          |                                                                   |
+| [x] | product.defaultSkuPrice.priceMessage  | priceObject.priceMessage  | string          | contains misclaneious text data for a variety of price variations |
+| [x] | product.defaultSkuPrice.salePrice     | priceObject.salePrice     | string          |                                                                   |
+| [x] | product.defaultSkuPrice.listPrice     | priceObject.listPrice     | string          |                                                                   |
+| [x] | product.defaultSkuPrice.priceRange    | priceObject.priceRange    | string          |                                                                   |
 
 <br/>
 
 ### priceObject schema
 
-|     | priceObject properties    | type   | default val | desc | price variations used in |
-| --- | ------------------------- | ------ | ----------- | ---- | ------------------------ |
-| [x] | priceObject               | object |             |      |                          |
-| [x] | priceObject.minPriceRange | string |             |      |                          |
-| [x] | priceObject.maxPriceRange | string |             |      |                          |
-| [x] | priceObject.priceMessage  | string |             |      |                          |
-| [x] | priceObject.salePrice     | string |             |      |                          |
-| [x] | priceObject.listPrice     | string |             |      |                          |
-| [x] | priceObject.priceRange    | string |             |      |                          |
+|     | priceObject properties    | type   | default val | desc | price variations used in                                           |
+| --- | ------------------------- | ------ | ----------- | ---- | ------------------------------------------------------------------ |
+| [x] | priceObject               | object |             |      |                                                                    |
+| [x] | priceObject.adbug         | string |             |      | Partially implemented. Determines which price variation to display |
+| [x] | priceObject.minPriceRange | string |             |      |                                                                    |
+| [x] | priceObject.maxPriceRange | string |             |      |                                                                    |
+| [x] | priceObject.priceMessage  | string |             |      |                                                                    |
+| [x] | priceObject.salePrice     | string |             |      |                                                                    |
+| [x] | priceObject.listPrice     | string |             |      |                                                                    |
+| [x] | priceObject.priceRange    | string |             |      |                                                                    |
 
-<sub>
-Notes: You can pass a product object via the product attribute and the card will build itself. You can also pass overriding values via attributes
-</sub>
+<br/>
 
-Vertical Card Props
-priceObject,
-badge,
-auid,
+### adbug values
 
-Horizontal Card Props
-priceObject,
-badge,
-auid,
-hideOnDesktop
+|     | potential string values | desc                    |
+| --- | ----------------------- | ----------------------- |
+| [x] | Standard                | default price variation |
+| [x] | Clearance               |                         |
+| [x] | ClearanceRange          |                         |
+| [x] | InCartPlusCompare       |                         |
+| [x] | WasNow                  |                         |
+| [x] | PriceDrop               |                         |
+| [x] | HotDeal                 |                         |
+| [x] | Range                   |                         |
+| [x] | CallFor                 |                         |
+
+<br><br><br>
+
+##### Todo
+
+* Modify Responsive Behavior for 3 different view types: ShopCollection, ProductGrid, ProductCarousel
+* colorCount - needs initial implementation and review
+
+##### Needs to be reviewed, documented, or modified
+
+* auid
+* adbug
+* badge
+* price variations
+* proptypes
+* unit testing
 
 <br><br><br>
 

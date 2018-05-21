@@ -119,7 +119,7 @@ export const image = css`
 
 export const emptyImage = css`
   ${image};
-  background-color: #7a7a7a;
+  background-color: #d8d8d8;
   display: inline-block;
 `;
 

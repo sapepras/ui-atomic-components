@@ -164,7 +164,7 @@ export const imageSmall = css`
 
 export const emptyImage = css`
   ${imageSmall};
-  background-color: #7a7a7a;
+  background-color: #d8d8d8;
   display: inline-block;
 `;
 
