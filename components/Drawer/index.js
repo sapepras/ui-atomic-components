@@ -6,19 +6,17 @@ const StyledDiv = styled("div")`
   background-color: #ffffff;
   min-height: 62px;
   font-size: 16px;
-  font-family: Roboto, Helvetica, Verdanam, sans-serif;
   letter-spacing: 0.5;
   font-color: #585858;
   line-color: #e6e6e6;
   cursor: pointer;
-  box-shadow: 0 1px 1px 0 #00000019;
   display: flex;
   align-items: center;
-  border: 1px solid #e6e6e6;
-  border-left: 0;
-  border-right: 0;
+  border:0px;
+  background-color:#fff;
+  border-top:1px solid rgb(230, 230, 230);
   padding: 0.8rem;
-  justify-content: flex-start;
+  justify-content: space-between;
 
   & > p {
     margin: 0px;
@@ -42,7 +40,7 @@ class Drawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: this.props.isOpen
     };
 
     this.toggleDrawer = this.toggleDrawer.bind(this);
@@ -53,25 +51,38 @@ class Drawer extends Component {
       isOpen: !this.state.isOpen
     });
   }
+
   render() {
-    const { title, children, titleClass } = this.props;
+    const { title, auid } = this.props;
+    let classlist = "";
+    if (this.state.isOpen) {
+      classlist = `${this.props.openIcon}`;
+    } else {
+      classlist = `${this.props.closeIcon}`;
+    }
+
     return (
-      <div className={DrawerWrapStyle}>
-        <StyledDiv className={titleClass} onClick={this.toggleDrawer}>{title}</StyledDiv>
-        {this.state.isOpen && <div className={DrawerContentStyle}>{children}</div>}
+      <div className={DrawerWrapStyle} data-auid={`facetdrawer${auid}`}>
+        <StyledDiv onClick={this.toggleDrawer}><span>{title}</span><i className={classlist} />
+        </StyledDiv>
+        {this.state.isOpen && <div className={DrawerContentStyle}>{this.props.children}</div>}
       </div>
     );
   }
 }
 
 Drawer.defaultProps = {
-  children: null
+  children: null,
+  isOpen: false
 };
 
 Drawer.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.element,
-  titleClass: PropTypes.string
+  isOpen: PropTypes.bool,
+  openIcon: PropTypes.string,
+  closeIcon: PropTypes.string,
+  auid: PropTypes.string
 };
 
 export default Drawer;

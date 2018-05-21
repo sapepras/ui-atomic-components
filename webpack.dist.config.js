@@ -9,7 +9,8 @@ const baseConfig = () => ({
     Button: "./components/Button",
     Anchor: "./components/Anchor",
     ProductCard: "./components/ProductCard",
-    Drawer: "./components/Drawer"
+    Drawer: "./components/Drawer",
+    Rating: "./components/Rating"
   },
   output: {
     // Compile into js/build.js
