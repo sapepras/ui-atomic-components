@@ -10,7 +10,6 @@ const StyledDiv = styled("div")`
   font-color: #585858;
   line-color: #e6e6e6;
   cursor: pointer;
-  box-shadow: 0 1px 1px 0 #00000019;
   display: flex;
   align-items: center;
   border:0px;
@@ -54,16 +53,16 @@ class Drawer extends Component {
   }
 
   render() {
-    const { title } = this.props;
+    const { title, auid } = this.props;
     let classlist = "";
     if (this.state.isOpen) {
-      classlist = `${this.props.openIcon}`; // eslint-ignore-line
+      classlist = `${this.props.openIcon}`;
     } else {
-      classlist = `${this.props.closeIcon}`;// eslint-ignore-line
+      classlist = `${this.props.closeIcon}`;
     }
 
     return (
-      <div className={DrawerWrapStyle}>
+      <div className={DrawerWrapStyle} data-auid={`facetdrawer${auid}`}>
         <StyledDiv onClick={this.toggleDrawer}><span>{title}</span><i className={classlist} />
         </StyledDiv>
         {this.state.isOpen && <div className={DrawerContentStyle}>{this.props.children}</div>}
@@ -82,7 +81,8 @@ Drawer.propTypes = {
   children: PropTypes.element,
   isOpen: PropTypes.bool,
   openIcon: PropTypes.string,
-  closeIcon: PropTypes.string
+  closeIcon: PropTypes.string,
+  auid: PropTypes.string
 };
 
 export default Drawer;
