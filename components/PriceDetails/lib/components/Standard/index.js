@@ -4,7 +4,7 @@ import Price from "../Price";
 
 const XXXX = props => {
   const { listPrice, ...remainingProps } = props;
-  return <Price price={listPrice} {...remainingProps} />;
+  return (listPrice) ? <Price price={listPrice} {...remainingProps} /> : null;
 };
 
 XXXX.propTypes = productDetailChildPropTypes;

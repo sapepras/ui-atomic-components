@@ -13,14 +13,24 @@ class ProductCard extends Component {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
-    title: PropTypes.string,
-    imageUrl: PropTypes.string,
-    shortDescription: PropTypes.string,
-    longDescription: PropTypes.string
+    manufacturer: PropTypes.string,
+    name: PropTypes.string,
+    imageURL: PropTypes.string,
+    imageAltDescription: PropTypes.string,
+    defaultSkuPrice: PropTypes.shape({
+      minPriceRange: PropTypes.string,
+      maxPriceRange: PropTypes.string,
+      priceMessage: PropTypes.string,
+      salePrice: PropTypes.string,
+      listPrice: PropTypes.string,
+      priceRange: PropTypes.string
+    })
   }),
   rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   price: PropTypes.string,
-  badge: PropTypes.string
+  badge: PropTypes.string,
+  titleMaxCC: PropTypes.number,
+  descriptionMaxCC: PropTypes.number
 };
 
 export default ProductCard;

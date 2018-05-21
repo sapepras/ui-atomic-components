@@ -1,13 +1,13 @@
 const PriceTypes = {
-  clearance: "CLEARANCE",
-  clearanceRange: "CLEARANCE_RANGE",
-  inCartPlusCompare: "IN_CART_PLUS_COMPARE",
-  wasNow: "WAS_NOW",
-  drop: "DROP",
-  hotDeal: "HOT_DEAL",
-  range: "RANGE",
-  standard: "STANDARD",
-  callFor: "CALL_FOR"
+  clearance: "Clearance",
+  clearanceRange: "ClearanceRange",
+  inCartPlusCompare: "InCartPlusCompare",
+  wasNow: "WasNow",
+  drop: "PriceDrop",
+  hotDeal: "HotDeal",
+  range: "Range",
+  standard: "Standard",
+  callFor: "CallFor"
 };
 
 export default PriceTypes;
