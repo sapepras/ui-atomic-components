@@ -1,29 +1,93 @@
-| attr         | type         | desc                                                            |
-| ------------ | ------------ | --------------------------------------------------------------- |
-| title        | string       | title text of card                                              |
-| description  | string       | text describing item                                            |
-| imageURL     | string       | url pointing to image to be rendered in top of card             |
-| imageAltText | string       | Specifies an alternate text for the image.                      |
-| imageWide    | boolean      | stretches the image to take up maximum header room, no padding  |
-| imageSmall   | boolean      | adds extra padding around the image                             |
-| rating       | number (0-5) | number of stars to show as colored for rating view              |
-| price        | string       | price to be shown at bottom of card                             |
-| badge        | string       | Exact implementation being determined                           |
-| product      | object       | product json object as returned by api - details in below table |
+### Note
 
-<hr/>
+You can pass a product object via the product attribute and the card will build itself. You can also pass overriding values via attributes
 
-| product properties          | Maps to attr | type   | desc                                                |
-| --------------------------- | ------------ | ------ | --------------------------------------------------- |
-| product                     |              | object | product json object as returned by api              |
-| product.manufacturer        | title        | string | text describing item                                |
-| product.name                | description  | string | text describing item                                |
-| product.imageURL            | imageURL     | string | url pointing to image to be rendered in top of card |
-| product.imageAltDescription | imageAltText | string | Specifies an alternate text for the image.          |
+<br/>
 
-<sub>
-Notes: You can pass a product object via the product attribute and the card will build itself. You can also pass overriding values via attributes
-</sub>
+### Attributes
+
+|     | attr                 | type    | default | desc                                                                                                           |
+| --- | -------------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| [x] | title                | string  |         | title text of card                                                                                             |
+| [x] | titleMaxCC           | integer | 25      | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
+| [x] | description          | string  |         | text describing item                                                                                           |
+| [x] | descriptionMaxCC     | integer | 40      | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
+| [x] | image                | string  |         | url pointing to image to be rendered in top of card                                                            |
+| [x] | imageAltText         | string  |         | Specifies an alternate text for the image.                                                                     |
+| [x] | imageWide            | boolean | false   | stretches the image to take up maximum header room, no padding                                                 |
+| [x] | imageSmall           | boolean | false   | adds extra padding around the image                                                                            |
+| [x] | rating               | float   |         | number of stars to show as colored for rating view                                                             |
+| [ ] | badge                | string  |         | Exact implementation being determined                                                                          |
+| [x] | overrideCardHeightPx | float   |         | Expected value in pixels. When screen is 1200px card height will be overrideCardHeightPx and scale accordingly |
+| [x] | priceObject          | object  |         | Exact implementation being determined                                                                          |
+| [x] | product              | object  |         | product json object as returned by api - details in below table                                                |
+
+<br/>
+
+### product schema
+
+|     | product properties                    | Maps to attr              | type            | desc                                                              |
+| --- | ------------------------------------- | ------------------------- | --------------- | ----------------------------------------------------------------- |
+|     | product                               |                           | object          | product json object as returned by api                            |
+| [x] | product.manufacturer                  | title                     | string          | text describing item                                              |
+| [x] | product.name                          | description               | string          | text describing item                                              |
+| [x] | product.imageURL                      | image                     | string          | url pointing to image to be rendered in top of card               |
+| [x] | product.imageAltDescription           | imageAltText              | string          | Specifies an alternate text for the image.                        |
+| [ ] | product.adbug                         | priceObject.adbug         | array of string | Partially implemented.                                            |
+|     | product.defaultSkuPrice               |                           | object          |                                                                   |
+| [x] | product.defaultSkuPrice.minPriceRange | priceObject.minPriceRange | string          |                                                                   |
+| [x] | product.defaultSkuPrice.maxPriceRange | priceObject.maxPriceRange | string          |                                                                   |
+| [x] | product.defaultSkuPrice.priceMessage  | priceObject.priceMessage  | string          | contains misclaneious text data for a variety of price variations |
+| [x] | product.defaultSkuPrice.salePrice     | priceObject.salePrice     | string          |                                                                   |
+| [x] | product.defaultSkuPrice.listPrice     | priceObject.listPrice     | string          |                                                                   |
+| [x] | product.defaultSkuPrice.priceRange    | priceObject.priceRange    | string          |                                                                   |
+
+<br/>
+
+### priceObject schema
+
+|     | priceObject properties    | type   | default val | desc | price variations used in                                           |
+| --- | ------------------------- | ------ | ----------- | ---- | ------------------------------------------------------------------ |
+| [x] | priceObject               | object |             |      |                                                                    |
+| [x] | priceObject.adbug         | string |             |      | Partially implemented. Determines which price variation to display |
+| [x] | priceObject.minPriceRange | string |             |      |                                                                    |
+| [x] | priceObject.maxPriceRange | string |             |      |                                                                    |
+| [x] | priceObject.priceMessage  | string |             |      |                                                                    |
+| [x] | priceObject.salePrice     | string |             |      |                                                                    |
+| [x] | priceObject.listPrice     | string |             |      |                                                                    |
+| [x] | priceObject.priceRange    | string |             |      |                                                                    |
+
+<br/>
+
+### adbug values
+
+|     | potential string values | desc                    |
+| --- | ----------------------- | ----------------------- |
+| [x] | Standard                | default price variation |
+| [x] | Clearance               |                         |
+| [x] | ClearanceRange          |                         |
+| [x] | InCartPlusCompare       |                         |
+| [x] | WasNow                  |                         |
+| [x] | PriceDrop               |                         |
+| [x] | HotDeal                 |                         |
+| [x] | Range                   |                         |
+| [x] | CallFor                 |                         |
+
+<br><br><br>
+
+##### Todo
+
+* Modify Responsive Behavior for 3 different view types: ShopCollection, ProductGrid, ProductCarousel
+* colorCount - needs initial implementation and review
+
+##### Needs to be reviewed, documented, or modified
+
+* auid
+* adbug
+* badge
+* price variations
+* proptypes
+* unit testing
 
 <br><br><br>
 
@@ -34,57 +98,197 @@ Notes: You can pass a product object via the product attribute and the card will
       "this is a long description this is a long description this is a long description this is a long description this is a long description",
     id: "10001",
     parentCategoryId: "10001",
-    shortDescription: "this is a short description",
-    longDescription:
-      "this is a long description this is a long description this is a long description this is a long description this is a long description ",
-    sellable: "true",
-    manufacturer: "Nike",
-    productVariant: "Regular",
-    productSpecification: "TEST PRODUCT SPEC",
-    promotionalMessage: "Free shipping product",
-    metaKeywords: "TEST,TEST1",
-    metaDescription: "Meta desription",
+    manufacturer: "Under Armour",
     title: "Shoes",
-    defaultSku: "SKU001",
-    isSingleSkuProduct: "false",
     itemId: "partNumber",
-    seoName: "seo-name",
-    imageURL:
-      "https://www.screenaustralia.gov.au/sacms/media/samedialibrary/screenguide/titles/tid33797-mountain/tid33797-web/tid33797-mountain-001-hero.jpg",
     imageAltDescription: "TEST ALT IMAGE",
-    storeId: "10051",
-    priceRange: "$5 to $10",
-    priceAdFeature: "Clearance",
-    skus: [
-      {
-        sku: "sku1001",
-        itemId: "ItemId",
-        priceAdFeature: "clearance",
-        listPrice: "100.00",
-        salePrice: "120.00",
-        image_URL: "10001",
-        attributes: [
-          {
-            key: "color",
-            value: "RED"
-          }
-        ]
-      }
-    ]
+    adbug: ["Standard"],
+    defaultSkuPrice: {
+      priceMessage: "standard messaging",
+      listPrice: "$ 23"
+    }
+  };
+
+  window.callFor = {
+    ...window.someProd,
+    manufacturer: "CallFor",
+    adbug: ["CallFor"],
+    defaultSkuPrice: {
+      priceMessage: "(800)876-1492"
+    }
+  };
+
+  window.clearance = {
+    ...window.someProd,
+    manufacturer: "Clearance",
+    adbug: ["Clearance"],
+    defaultSkuPrice: {
+      salePrice: "$ 10",
+      listPrice: "$ 23",
+      priceMessage: "some clearance messaging"
+    }
+  };
+
+  window.clearanceRange = {
+    ...window.someProd,
+    manufacturer: "ClearanceRange",
+    adbug: ["ClearanceRange"],
+    defaultSkuPrice: {
+      minPriceRange: "$ 14.98",
+      maxPriceRange: "$ 22.5",
+      priceMessage: "some clearance range messaging",
+      priceRange: "$ 14.98-$ 22.5"
+    }
+  };
+
+  window.priceDrop = {
+    ...window.someProd,
+    manufacturer: "PriceDrop",
+    adbug: ["PriceDrop"],
+    defaultSkuPrice: {
+      priceMessage: "pdrop msg",
+      salePrice: "$ 22.5",
+      listPrice: "$ 23"
+    }
+  };
+
+  window.hotDeal = {
+    ...window.someProd,
+    manufacturer: "HotDeal",
+    adbug: ["HotDeal"],
+    defaultSkuPrice: {
+      priceMessage: "hdeal msg",
+      salePrice: "$ 22.5",
+      listPrice: "$ 23"
+    }
+  };
+
+  window.inCartPlusCompare = {
+    ...window.someProd,
+    manufacturer: "InCartPlusCompare",
+    adbug: ["InCartPlusCompare"],
+    defaultSkuPrice: {
+      priceMessage: "compare at $xx.xx"
+    }
+  };
+
+  window.range = {
+    ...window.someProd,
+    manufacturer: "Range",
+    adbug: ["Range"],
+    defaultSkuPrice: {
+      minPriceRange: "$ 14.98",
+      maxPriceRange: "$ 22.5",
+      priceMessage: "some range messaging",
+      priceRange: "$ 14.98-$ 22.5"
+    }
+  };
+
+  window.wasNow = {
+    ...window.someProd,
+    manufacturer: "WasNow",
+    adbug: ["WasNow"],
+    defaultSkuPrice: {
+      priceMessage: "wnow msg",
+      salePrice: "$ 22.5",
+      listPrice: "$ 23"
+    }
   };
 }
 
-<div style={{ display: "flex" }}>
-  <div style={{ flex: "1 1 auto" }}>
-    <ProductCard badge="new" imageSmall product={window.someProd} rating={4} price={"12.99"} />
+<div style={{ display: "flex", flexWrap: "wrap" }}>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.someProd}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+      overrideCardHeightPx={750}
+      titleMaxCC={7}
+      descriptionMaxCC={7}
+    />
   </div>
-
-  <div style={{ flex: "1 1 auto" }}>
-    <ProductCard badge="wut" imageSmall product={window.someProd} rating={4} price={"79.99"} />
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.callFor}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
   </div>
-
-  <div style={{ flex: "1 1 auto" }}>
-    <ProductCard badge="33% off" imageSmall product={window.someProd} rating={4} price={"39.99"} />
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.clearance}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.clearanceRange}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.priceDrop}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.hotDeal}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.inCartPlusCompare}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.range}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.wasNow}
+      rating={4}
+      price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
   </div>
 </div>;
 ```

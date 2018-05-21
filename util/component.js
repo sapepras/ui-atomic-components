@@ -20,3 +20,22 @@ export const getFirstDefined = (arrVals = [], opts = {}) => {
 
   return defaultValue;
 };
+
+export const ellipsesText = (text, maxCount = 25, ellipses = "...") => {
+  if (!text) {
+    return text;
+  }
+
+  if (text && text.trim().length <= maxCount) {
+    return text.trim();
+  }
+
+  const cleanMaxCount = Math.max(maxCount, 3);
+  return `${text.trim().substr(0, cleanMaxCount - 3)}${ellipses}`;
+};
+
+export const onEnterFireOnClick = onClick => e => {
+  if (e.keyCode === 13) {
+    onClick();
+  }
+};

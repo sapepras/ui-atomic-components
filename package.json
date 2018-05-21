@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.3",
+    "babel-eslint": "8.2.1",
     "babel-loader": "^7.1.4",
     "babel-plugin-emotion": "^9.1.2",
     "babel-plugin-styled-components": "^1.5.1",
