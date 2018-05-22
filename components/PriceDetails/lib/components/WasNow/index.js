@@ -21,9 +21,7 @@ const XXXX = props => {
       {!!savings && (
         <span>
           &nbsp;&nbsp;&nbsp;
-          <span className={style.contentText} style={{ color: "#585858" }}>
-            Save {savings}
-          </span>
+          <span className={style.contentText}>Save {savings}</span>
         </span>
       )}
       <div />

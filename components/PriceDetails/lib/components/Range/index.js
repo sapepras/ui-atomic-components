@@ -1,10 +1,9 @@
 import React from "react";
 import { productDetailChildPropTypes } from "../../PropTypes";
 import Price from "../Price";
-import * as css from "../../css";
 
 const XXXX = props => {
-  const { minPriceRange = "", maxPriceRange = "", priceRange = "", priceMessage = "" } = props; // eslint-disable-line object-curly-newline
+  const { minPriceRange = "", maxPriceRange = "", priceRange = "" } = props; // eslint-disable-line object-curly-newline
   let minPrice = null;
   let maxPrice = null;
   if (minPriceRange.trim().length > 0 && maxPriceRange.trim().length > 0) {
@@ -23,7 +22,6 @@ const XXXX = props => {
       <Price price={minPrice} />
       &nbsp;<span>-</span>&nbsp;
       <Price price={maxPrice} />
-      <div className={css.contentText}>{priceMessage}</div>
     </div>
   );
 };
