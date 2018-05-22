@@ -1,5 +1,5 @@
 import PriceTypes from "./PriceTypes";
-import AdBugTypes from "./AdBBugTypes";
+import AdBugTypes from "./AdBugTypes";
 // import MessageTypes from "./MessageTypes";
 
 const priceTypePriorities = [

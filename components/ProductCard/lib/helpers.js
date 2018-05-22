@@ -5,7 +5,7 @@ import {
   getPriceTypeKeyByValue
 } from "../../PriceDetails/lib/PriceTypes";
 import MessageTypes from "../../PriceDetails/lib/MessageTypes";
-import AdBugTypes from "../../PriceDetails/lib/AdBBugTypes";
+import AdBugTypes from "../../PriceDetails/lib/AdBugTypes";
 
 const MapPriceTypeToBadge = {
   clearance: "Clearance",
