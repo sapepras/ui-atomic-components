@@ -161,11 +161,9 @@ You can pass a product object via the product attribute and the card will build 
     manufacturer: "ClearanceRange",
     adbug: ["clearance"],
     defaultSkuPrice: {
-      minPriceRange: "$ 14.98",
-      maxPriceRange: "$ 22.5",
-      priceMessage: "some clearance range messaging",
-      priceRange: "$ 14.98-$ 22.5"
-    }
+      priceMessage: "some clearance range messaging"
+    },
+    priceRange: "$ 14.98-$ 88.5"
   };
 
   window.priceDrop = {
@@ -205,11 +203,9 @@ You can pass a product object via the product attribute and the card will build 
     manufacturer: "Range",
     adbug: [],
     defaultSkuPrice: {
-      minPriceRange: "$ 14.98",
-      maxPriceRange: "$ 22.5",
-      priceMessage: "some range messaging",
-      priceRange: "$ 14.98-$ 22.5"
-    }
+      priceMessage: "some range messaging"
+    },
+    priceRange: "$ 14.98-$ 99.5"
   };
 
   window.wasNow = {

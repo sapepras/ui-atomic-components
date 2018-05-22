@@ -72,6 +72,12 @@ const determinePriceObject = (props = {}, product = {}) => {
     ...defaultSkuPrice,
     priceObject
   }; // eslint-disable-line object-curly-newline
+  if (product.priceRange) {
+    newPriceObject.priceRange = product.priceRange;
+  }
+  if (props.priceObject && props.priceObject.priceRange) {
+    newPriceObject.priceRange = props.priceObject.priceRange;
+  }
   const priceType = determinePriceType(newPriceObject);
   return { priceType, ...newPriceObject };
 };
