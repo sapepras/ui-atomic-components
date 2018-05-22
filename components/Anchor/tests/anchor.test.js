@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import Anchor from "../index";
 
 describe("Anchor", () => {
-  let props = {};
+  const props = {};
   let MountedAnchor;
 
   const ShallowBtn = () => {
@@ -16,18 +16,5 @@ describe("Anchor", () => {
 
   it("always renders an a tag", () => {
     expect(ShallowBtn().find("a")).to.have.length(1);
-  });
-
-  describe("the rendered a tag", () => {
-    describe("when disable prop is set to true", () => {
-      beforeEach(() => {
-        props = { disabled: true };
-      });
-
-      it("displays the disabled button to be of grey color", () => {
-        const btn = ShallowBtn().getDOMNode();
-        expect(btn.css("color")).to.be("grey");
-      });
-    });
   });
 });
