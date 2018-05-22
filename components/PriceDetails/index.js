@@ -5,8 +5,6 @@ import {
   CallFor,
   Clearance,
   ClearanceRange,
-  Drop,
-  HotDeal,
   InCartPlusCompare,
   Range,
   Standard,
@@ -16,15 +14,11 @@ import {
 class PriceDetails extends Component {
   render() {
     const { priceType = "" } = this.props;
-    console.log("RENDER");
-    console.log(priceType);
     switch (priceType) {
       case PriceTypes.standard:
         return <Standard {...this.props} />;
 
       case PriceTypes.callFor:
-        console.log("CALLFOR");
-        console.log(priceType);
         return <CallFor {...this.props} />;
 
       case PriceTypes.clearance:
@@ -34,10 +28,10 @@ class PriceDetails extends Component {
         return <ClearanceRange {...this.props} />;
 
       case PriceTypes.drop:
-        return <Drop {...this.props} />;
+        return <WasNow {...this.props} />;
 
       case PriceTypes.hotDeal:
-        return <HotDeal {...this.props} />;
+        return <WasNow {...this.props} />;
 
       case PriceTypes.inCartPlusCompare:
         return <InCartPlusCompare {...this.props} />;

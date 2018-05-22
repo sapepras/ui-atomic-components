@@ -1,5 +1,6 @@
 import React from "react";
 import { css } from "emotion";
+import * as style from "../../css";
 import { productDetailChildPropTypes } from "../../PropTypes";
 import Price from "../Price";
 
@@ -9,7 +10,7 @@ const droppedPrice = css`
 `;
 
 const XXXX = props => {
-  const { salePrice, listPrice } = props;
+  const { salePrice, listPrice, savings } = props;
   return (
     <div>
       <Price price={salePrice} color="red" />
@@ -17,6 +18,14 @@ const XXXX = props => {
       <span className={droppedPrice}>
         <Price price={listPrice} color="gray" strikethrough />
       </span>
+      {!!savings && (
+        <span>
+          &nbsp;&nbsp;&nbsp;
+          <span className={style.contentText} style={{ color: "#585858" }}>
+            Save {savings}
+          </span>
+        </span>
+      )}
       <div />
     </div>
   );

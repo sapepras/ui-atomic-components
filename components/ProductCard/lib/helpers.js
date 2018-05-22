@@ -1,21 +1,30 @@
 import { getFirstDefined, ellipsesText } from "../../../util/component";
 import { determinePriceType } from "../../PriceDetails/lib/PredictivePriceTypes";
-import { DuplicatePriceTypeMapToPriceType, getPriceTypeKeyByValue } from "../../PriceDetails/lib/PriceTypes";
+import {
+  DuplicatePriceTypeMapToPriceType,
+  getPriceTypeKeyByValue
+} from "../../PriceDetails/lib/PriceTypes";
 import MessageTypes from "../../PriceDetails/lib/MessageTypes";
 import AdbugTypes from "../../PriceDetails/lib/AdbugTypes";
 
+const MapPriceTypeToBadge = {
+  clearance: "Clearance",
+  clearanceRange: "Clearance",
+  drop: "Price Drop",
+  hotDeal: "Hot Deal"
+};
+
 export const getCardProps = (product = {}, props = {}) => {
+  const priceObject = determinePriceObject(props, product);
   const mergedProps = {
     title: ellipsesText(determineTitle(props, product), props.titleMaxCC || 25),
     description: ellipsesText(determineDescription(props, product), props.descriptionMaxCC || 40),
     image: determineImage(props, product),
     imageAltText: determineImageAltText(props, product),
-    rating: props.rating,
-    priceObject: determinePriceObject(props, product)
+    rating: determineRating(props, product),
+    badge: determineBadge(props, product, priceObject.priceType),
+    priceObject
   };
-
-  console.log("MERGED PROPS");
-  console.log(mergedProps);
 
   return { ...props, ...mergedProps };
 };
@@ -30,6 +39,24 @@ const determineDescription = (props, product) => getFirstDefined([props.descript
 const determineImageAltText = (props, product) =>
   getFirstDefined([props.imageAltText, product.imageAltDescription]);
 
+const determineRating = (props, product) => getFirstDefined([props.rating, product.bvRating]);
+
+const determineBadge = (props, product, priceType) => {
+  if (props.badge) {
+    return props.badge;
+  }
+
+  if (MapPriceTypeToBadge[priceType]) {
+    return MapPriceTypeToBadge[priceType];
+  }
+
+  if (product && product.adbug && product.adbug.length > 0) {
+    return product.adbug[0];
+  }
+
+  return null;
+};
+
 const determinePriceObject = (props = {}, product = {}) => {
   const { priceObject = {} } = props;
   const { adbug: arrAdbug = [], defaultSkuPrice = {} } = product;
@@ -37,7 +64,14 @@ const determinePriceObject = (props = {}, product = {}) => {
   const adbugKeys = getAdbugKeys(arrAdbug);
   const messageKeys = getMessageTypeKeys(defaultSkuPrice.priceMessage);
   const priceTypeKeys = getPriceTypeKeys(defaultSkuPrice.priceMessage);
-  const newPriceObject = { adbug, adbugKeys, messageKeys, priceTypeKeys, ...defaultSkuPrice, priceObject }; // eslint-disable-line object-curly-newline
+  const newPriceObject = {
+    adbug,
+    adbugKeys,
+    messageKeys,
+    priceTypeKeys,
+    ...defaultSkuPrice,
+    priceObject
+  }; // eslint-disable-line object-curly-newline
   const priceType = determinePriceType(newPriceObject);
   return { priceType, ...newPriceObject };
 };
@@ -51,18 +85,19 @@ const getMessageTypeKeys = (priceMessages = "") => {
   priceMessages
     .split(",")
     .map(priceMessage => priceMessage.trim().toLowerCase())
-    .filter(priceMessageLCase => MessageTypes[priceMessageLCase] && true).join(",");
+    .filter(priceMessageLCase => MessageTypes[priceMessageLCase] && true)
+    .join(",");
 };
 
 const getPriceTypeKeys = (priceMessages = "") => {
   const result = priceMessages
     .split(",")
     .map(priceMessage => priceMessage.replace(/\s/g, "").toLowerCase())
-    .map(priceMessageLCase => (
-      getPriceTypeKeyByValue(DuplicatePriceTypeMapToPriceType[priceMessageLCase])
-        ? DuplicatePriceTypeMapToPriceType[priceMessageLCase]
-        : priceMessageLCase
-    ))
-    .filter(priceMessageLCase => getPriceTypeKeyByValue(priceMessageLCase) && true).join(",");
-    return result;
+    .map(priceMessageLCase =>
+        getPriceTypeKeyByValue(DuplicatePriceTypeMapToPriceType[priceMessageLCase])
+          ? DuplicatePriceTypeMapToPriceType[priceMessageLCase]
+          : priceMessageLCase)
+    .filter(priceMessageLCase => getPriceTypeKeyByValue(priceMessageLCase) && true)
+    .join(",");
+  return result;
 };
