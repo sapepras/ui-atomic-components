@@ -1,38 +1,117 @@
-/**
- * Currently experimental.  May come back to predictive price types, abandoning for now.
- */
-
 import PriceTypes from "./PriceTypes";
+import AdbugTypes from "./AdbugTypes";
+// import MessageTypes from "./MessageTypes";
 
 const priceTypePriorities = [
+  PriceTypes.inCartPlusCompare,
+  PriceTypes.callFor,
   PriceTypes.clearance,
   PriceTypes.clearanceRange,
-  PriceTypes.inCartPlusCompare,
-  PriceTypes.wasNow,
   PriceTypes.drop,
   PriceTypes.hotDeal,
-  PriceTypes.standard,
+  PriceTypes.wasNow,
   PriceTypes.range,
-  PriceTypes.callFor
+  PriceTypes.standard
 ];
 
-const isClearance = () => null; //* "CLEARANCE" */
+const isNotDefined = val => val === null || val === undefined;
 
-const isClearanceRange = () => null; //* "CLEARANCE_RANGE" */
+const isEmpty = val => isNotDefined(val) || (typeof val === "string" && val.trim() === "");
 
-const isInCartPlusCompare = () => null; /* "IN_CART_PLUS_COMPARE" */
+const isEmptyPrice = val => isNotDefined(val) || (typeof val === "string" && val.replace(/[^\d\.]/g, "") === ""); // eslint-disable-line no-useless-escape
 
-const isWasNow = () => null; /* "WAS_NOW" */
+const priceToFloat = price => (isEmptyPrice(price) ? null : parseFloat(price.replace(/[^\d\.]/g, ""))); // eslint-disable-line no-useless-escape
 
-const isDrop = () => null; /* "DROP" */
+const messageContains = (message = "", value = "") =>
+  message
+    .toLowerCase()
+    .split(",")
+    .indexOf(value.toLowerCase()) >= 0;
 
-const isHotDeal = () => null; /* "HOT_DEAL" */
+//* "CLEARANCE" */
+const isClearance = priceObject => {
+  const { adbugKeys = [] } = priceObject;
+  if (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.clearance) && isStandard(priceObject)) {
+    return PriceTypes.clearance;
+  }
+  return null;
+};
 
-const isRange = () => null; /* "RANGE" */
+//* "CLEARANCE_RANGE" */
+const isClearanceRange = priceObject => {
+  const { adbugKeys = [] } = priceObject;
+  if (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.clearance) && isRange(priceObject)) {
+    return PriceTypes.clearanceRange;
+  }
+  return null;
+};
 
-const isStandard = () => null; /* "STANDARD" */
+/* "IN_CART_PLUS_COMPARE" */
+// If (priceMessage  != null && priceMessage contains “Our Price in Cart” ) à show Our price in cart and also Show Compare at “{listPrice}” à Note : “Our price in cart” and “Compare at” Message in go hand in hand.
+const isInCartPlusCompare = priceObject => {
+  const { priceTypeKeys } = priceObject;
+  if (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.inCartPlusCompare)) {
+    return PriceTypes.inCartPlusCompare;
+  }
+  return null;
+};
 
-const isCallFor = () => null; //* "CALL_FOR" */
+/* "CALL_FOR" */
+const isCallFor = priceObject => {
+  const { priceTypeKeys } = priceObject;
+  if (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.callFor)) {
+    return PriceTypes.callFor;
+  }
+  return null;
+};
+
+/* "DROP" */
+const isDrop = priceObject => {
+  const { adbugKeys = [] } = priceObject;
+  if (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.pricedrop) && isWasNow(priceObject)) {
+    return PriceTypes.drop;
+  }
+  return null;
+};
+
+/* "HOT_DEAL" */
+const isHotDeal = priceObject => {
+  const { adbugKeys = [] } = priceObject;
+  if (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.hotDeal) && isWasNow(priceObject)) {
+    return PriceTypes.hotDeal;
+  }
+  return null;
+};
+
+// If ( priceMessage IS EMPTY &&  (listPrice != null && salePrice< listPrice ) )--- >Show Was now pricing
+const isWasNow = priceObject => {
+  const { priceMessage, listPrice, salePrice } = priceObject;
+  if (isEmpty(priceMessage) &&
+    !isEmpty(listPrice) &&
+    !isEmpty(salePrice) &&
+    priceToFloat(salePrice) < priceToFloat(listPrice)) {
+    return PriceTypes.wasNow;
+  }
+  return null;
+};
+
+/* "RANGE" */
+// If " priceRange" is NOT EMPTY -- > Price range
+const isRange = priceObject => {
+  const { priceRange } = priceObject;
+  if (!isEmpty(priceRange)) {
+    return PriceTypes.range;
+  }
+  return null;
+};
+
+/* "STANDARD" */
+const isStandard = ({ listPrice, salePrice }) => {
+  if (!isEmpty(salePrice) || !isEmpty(listPrice)) {
+    return PriceTypes.standard;
+  }
+  return null;
+};
 
 const priceTypeCheckMap = {};
 priceTypeCheckMap[PriceTypes.clearance] = isClearance;
@@ -45,17 +124,127 @@ priceTypeCheckMap[PriceTypes.range] = isRange;
 priceTypeCheckMap[PriceTypes.standard] = isStandard;
 priceTypeCheckMap[PriceTypes.callFor] = isCallFor;
 
-export const determinPriceType = (product = {}) => {
-  let found = false;
-
+export const determinePriceType = (priceObject = {}) => {
   const priceTypeChecks = priceTypePriorities.map(code => priceTypeCheckMap[code]);
-
-  const validValues = priceTypeChecks.filter(isType => isType(product));
-  found = validValues.length > 0;
-
-  if (found) {
-    return validValues[0];
-  }
-
-  return null;
+  priceTypeChecks.find(isType => isType(priceObject));
 };
+
+// PRICE RANGE EXAMPLE
+// "defaultSkuPrice" : {
+//   "salePrice" : "14.98",
+//   "priceMessage" : "clearanceStylesAvailable",
+//   "savings" : "",
+//   "listPrice" : ""
+// },
+// "priceRange" : "14.98-27.99",
+// "promoMessage" : "Buy One Get One 50% Off",
+// "adBug" : [ "C", "" ]
+
+// Array(4)
+// 0
+// :
+// "priceInCart"
+// 1
+// :
+// "clearanceStylesAvailable,priceInCart"
+// 2
+// :
+// ""
+// 3
+// :
+// "clearanceStylesAvailable"
+
+// ["", "priceInCart", "clearanceStylesAvailable"]
+// ["priceInCart", "clearanceStylesAvailable,priceInCart", "", "clearanceStylesAvailable"]
+// ["", "clearanceStylesAvailable", "priceInCart"]
+
+// * * * *
+// * * * *
+// * * * *
+// Our Price in Cart
+// "productPrice": {
+//   "salePrice": "50.99",
+//   "listPrice": "99.99",
+//   "priceMessage": “Our Price in Cart”,
+//    "savings": “”,
+// }
+// “promoMessage”:”20 % Off”  ,
+// “adBug”:””,
+// “shippingMessage”:” Free return shipping”,
+// “priceRange”:””  ,
+
+// Logic – (XT side)
+// If (priceMessage  != null && priceMessage contains “Our Price in Cart” ) à show Our price in cart and also Show Compare at “{listPrice}” à Note : “Our price in cart” and “Compare at” Message in go hand in hand.
+// promoMessage = “20 % Off”
+// adBug = “”
+
+// * * * *
+// * * * *
+// * * * *
+// Was Now
+// "productPrice": {
+//   "salePrice": "25.99",
+//   "listPrice": "149.99",
+//   "priceMessage": “”,
+//  "savings": “10%”,
+// }
+// “promoMessage”:”” ,
+// “priceRange”:””  ,
+// “adBug”:”HOT DEAL”
+// “shippingMessage”:” shipping message e.g Free return shipping”
+
+// Logic – (XT side)
+
+// If ( priceMessage IS EMPTY &&  (listPrice != null && salePrice< listPrice ) )--- >Show Was now pricing
+// savings = save 10%
+// adBug = “HOT DEAL”
+
+// * * * *
+// * * * *
+// * * * *
+// Range
+// "productPrice": {
+//   "salePrice": "99.99",
+//   "listPrice": "",
+//   "priceMessage": “”,
+//    "savings": “”,
+// }
+// “promoMessage”:””  ,
+// “priceRange”:”50.99 – 99.99”  ,
+// “adBug”:””,
+// “shippingMessage”:””
+
+// Logic – (XT side)
+// If " priceRange" is NOT EMPTY -- > Price range
+// priceMessage = “”
+// adBug = “”
+
+// * * * *
+// * * * *
+// * * * *
+// Regular price
+// "productPrice": {
+//   "salePrice": "22.50",
+//   "listPrice": "22.50",
+//   "priceMessage": “”,
+//    "savings": “”,
+// }
+// “promoMessage”:””  ,
+// “priceRange”:””  ,
+// “adBug”:””,
+// “shippingMessage”:” Free return shipping”
+
+// Logic – (XT side)
+// If "priceMessage" is EMPTY AND ( ( listPrice == null && salePrice != null)   OR  (salePrice == null && listPrice != null)  OR  listPrice EQUALS salePrice))  -- > Regular price
+// priceMessage = “”
+// adBug = “”
+
+// * * * *
+// * * * *
+// * * * *
+// Call For
+
+// * * * *
+// * * * *
+// * * * *
+// clearance styles available

@@ -1,4 +1,8 @@
 import { getFirstDefined, ellipsesText } from "../../../util/component";
+import { determinePriceType } from "../../PriceDetails/lib/PredictivePriceTypes";
+import { DuplicatePriceTypeMapToPriceType } from "../../PriceDetails/lib/PriceTypes";
+import MessageTypes from "../../PriceDetails/lib/MessageTypes";
+import AdbugTypes from "../../PriceDetails/lib/AdbugTypes";
 
 export const getCardProps = (product = {}, props = {}) => {
   const mergedProps = {
@@ -7,7 +11,7 @@ export const getCardProps = (product = {}, props = {}) => {
     image: determineImage(props, product),
     imageAltText: determineImageAltText(props, product),
     rating: props.rating,
-    priceObject: determinePrice(props, product)
+    priceObject: determinePriceObject(props, product)
   };
 
   return { ...props, ...mergedProps };
@@ -23,9 +27,37 @@ const determineDescription = (props, product) => getFirstDefined([props.descript
 const determineImageAltText = (props, product) =>
   getFirstDefined([props.imageAltText, product.imageAltDescription]);
 
-const determinePrice = (props, product = {}) => {
-  // ignoring props for now
-  const { adbug: arrAdbug = [], defaultSkuPrice } = product;
+const determinePriceObject = (props = {}, product = {}) => {
+  const { priceObject = {} } = props;
+  const { adbug: arrAdbug = [], defaultSkuPrice = {} } = product;
   const adbug = arrAdbug.length > 0 ? arrAdbug[0] : null;
-  return { adbug, ...defaultSkuPrice };
+  const adbugKeys = getAdbugKeys(arrAdbug);
+  const messageKeys = getMessageTypeKeys(defaultSkuPrice.priceMessage);
+  const priceTypeKeys = getPriceTypeKeys(defaultSkuPrice.priceMessage);
+  const newPriceObject = { adbug, adbugKeys, messageKeys, priceTypeKeys, ...defaultSkuPrice, priceObject }; // eslint-disable-line object-curly-newline
+  const priceType = determinePriceType(newPriceObject);
+  return { priceType, ...newPriceObject };
+};
+
+const getAdbugKeys = (adbugs = []) =>
+  adbugs
+    .map(adbug => adbug.trim().toLowerCase())
+    .filter(adbugLCase => AdbugTypes[adbugLCase && true]);
+
+const getMessageTypeKeys = (priceMessages = "") => {
+  priceMessages
+    .split(",")
+    .map(priceMessage => priceMessage.trim().toLowerCase())
+    .filter(priceMessageLCase => MessageTypes[priceMessageLCase] && true).join(",");
+};
+
+const getPriceTypeKeys = (priceMessages = "") => {
+  priceMessages
+    .split(",")
+    .map(priceMessage => priceMessage.replace(/\s/g).toLowerCase())
+    .map(priceMessageLCase =>
+        DuplicatePriceTypeMapToPriceType[priceMessageLCase]
+          ? DuplicatePriceTypeMapToPriceType[priceMessageLCase]
+          : priceMessageLCase)
+    .filter(priceMessageLCase => MessageTypes[priceMessageLCase] && true).join(",");
 };

@@ -26,36 +26,34 @@ You can pass a product object via the product attribute and the card will build 
 
 ### product schema
 
-|     | product properties                    | Maps to attr              | type            | desc                                                              |
-| --- | ------------------------------------- | ------------------------- | --------------- | ----------------------------------------------------------------- |
-|     | product                               |                           | object          | product json object as returned by api                            |
-| [x] | product.manufacturer                  | title                     | string          | text describing item                                              |
-| [x] | product.name                          | description               | string          | text describing item                                              |
-| [x] | product.imageURL                      | image                     | string          | url pointing to image to be rendered in top of card               |
-| [x] | product.imageAltDescription           | imageAltText              | string          | Specifies an alternate text for the image.                        |
-| [ ] | product.adbug                         | priceObject.adbug         | array of string | Partially implemented.                                            |
-|     | product.defaultSkuPrice               |                           | object          |                                                                   |
-| [x] | product.defaultSkuPrice.minPriceRange | priceObject.minPriceRange | string          |                                                                   |
-| [x] | product.defaultSkuPrice.maxPriceRange | priceObject.maxPriceRange | string          |                                                                   |
-| [x] | product.defaultSkuPrice.priceMessage  | priceObject.priceMessage  | string          | contains misclaneious text data for a variety of price variations |
-| [x] | product.defaultSkuPrice.salePrice     | priceObject.salePrice     | string          |                                                                   |
-| [x] | product.defaultSkuPrice.listPrice     | priceObject.listPrice     | string          |                                                                   |
-| [x] | product.defaultSkuPrice.priceRange    | priceObject.priceRange    | string          |                                                                   |
+|     | product properties                   | Maps to attr             | type            | desc                                                              |
+| --- | ------------------------------------ | ------------------------ | --------------- | ----------------------------------------------------------------- |
+|     | product                              |                          | object          | product json object as returned by api                            |
+| [x] | product.manufacturer                 | title                    | string          | text describing item                                              |
+| [x] | product.name                         | description              | string          | text describing item                                              |
+| [x] | product.imageURL                     | image                    | string          | url pointing to image to be rendered in top of card               |
+| [x] | product.imageAltDescription          | imageAltText             | string          | Specifies an alternate text for the image.                        |
+| [ ] | product.bvRating                     | rating                   | string          | Partially implemented.                                            |
+| [ ] | product.adbug                        | badge                    | array of string | Partially implemented.                                            |
+| [x] | product.promoMessage                 | priceObject.promoMessage | string          |                                                                   |
+| [x] | product.priceRange                   | priceObject.priceRange   | string          |                                                                   |
+|     | product.defaultSkuPrice              |                          | object          |                                                                   |
+| [x] | product.defaultSkuPrice.priceMessage | priceObject.priceMessage | string          | contains misclaneious text data for a variety of price variations |
+| [x] | product.defaultSkuPrice.salePrice    | priceObject.salePrice    | string          |                                                                   |
+| [x] | product.defaultSkuPrice.listPrice    | priceObject.listPrice    | string          |                                                                   |
 
 <br/>
 
 ### priceObject schema
 
-|     | priceObject properties    | type   | default val | desc | price variations used in                                           |
-| --- | ------------------------- | ------ | ----------- | ---- | ------------------------------------------------------------------ |
-| [x] | priceObject               | object |             |      |                                                                    |
-| [x] | priceObject.adbug         | string |             |      | Partially implemented. Determines which price variation to display |
-| [x] | priceObject.minPriceRange | string |             |      |                                                                    |
-| [x] | priceObject.maxPriceRange | string |             |      |                                                                    |
-| [x] | priceObject.priceMessage  | string |             |      |                                                                    |
-| [x] | priceObject.salePrice     | string |             |      |                                                                    |
-| [x] | priceObject.listPrice     | string |             |      |                                                                    |
-| [x] | priceObject.priceRange    | string |             |      |                                                                    |
+|     | priceObject properties   | type   | default val | desc | price variations used in |
+| --- | ------------------------ | ------ | ----------- | ---- | ------------------------ |
+| [x] | priceObject              | object |             |      |                          |
+| [x] | priceObject.promoMessage | string |             |      |                          |
+| [x] | priceObject.priceRange   | string |             |      |                          |
+| [x] | priceObject.priceMessage | string |             |      |                          |
+| [x] | priceObject.salePrice    | string |             |      |                          |
+| [x] | priceObject.listPrice    | string |             |      |                          |
 
 <br/>
 
@@ -73,6 +71,36 @@ You can pass a product object via the product attribute and the card will build 
 | [x] | Range                   |                         |
 | [x] | CallFor                 |                         |
 
+### priceMessage keys
+
+|     | potential string values  | Variation               | Message                   |
+| --- | ------------------------ | ----------------------- | ------------------------- |
+| [x] | Regular                  | default price variation |                           |
+| [ ] | Clearance                |                         |                           |
+| [ ] | ClearanceRange           |                         |                           |
+| [x] | priceInCart              | InCartPlusCompare       |                           |
+| [ ] | wasNowPrice              | WasNow                  |                           |
+| [ ] | PriceDrop                |                         |                           |
+| [ ] | HotDeal                  |                         |                           |
+| [ ] | Range                    |                         |                           |
+| [x] | specialPrice             | CallFr                  |                           |
+| [x] | clearanceStylesAvailable |                         | Clearnce Styles Available |
+
+### price variation logic
+
+|     | PriceType         | priceMessage key | conditional rquirements                                                                        |
+| --- | ----------------- | ---------------- | ---------------------------------------------------------------------------------------------- |
+| [ ] | clearance         |                  | !isEmpty(priceObject.priceMessage) && messageContains(priceMessage, "clearance") && !isEmpty() |
+| [ ] | clearanceRange    |                  |                                                                                                |
+| [ ] | inCartPlusCompare | priceInCart      |                                                                                                |
+| [ ] | wasNow            | wasNowPrice      |                                                                                                |
+| [ ] | drop              |                  |                                                                                                |
+| [ ] | hotDeal           |                  |                                                                                                |
+| [ ] | range             |                  |                                                                                                |
+| [ ] | Range             |                  |                                                                                                |
+| [ ] | standard          |                  |                                                                                                |
+| [ ] | callFor           | specialPrice     |                                                                                                |
+
 <br><br><br>
 
 ##### Todo
@@ -82,10 +110,11 @@ You can pass a product object via the product attribute and the card will build 
 
 ##### Needs to be reviewed, documented, or modified
 
+* price variations
+* badge
+
 * auid
 * adbug
-* badge
-* price variations
 * proptypes
 * unit testing
 
