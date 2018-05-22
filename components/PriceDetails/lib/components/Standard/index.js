@@ -3,8 +3,9 @@ import { productDetailChildPropTypes } from "../../PropTypes";
 import Price from "../Price";
 
 const XXXX = props => {
-  const { listPrice, ...remainingProps } = props;
-  return (listPrice) ? <Price price={listPrice} {...remainingProps} /> : null;
+  const { salePrice, listPrice, ...remainingProps } = props;
+  const price = salePrice || listPrice;
+  return price ? <Price price={price} {...remainingProps} /> : null;
 };
 
 XXXX.propTypes = productDetailChildPropTypes;
