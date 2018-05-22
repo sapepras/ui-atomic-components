@@ -15,37 +15,41 @@ import {
 
 class PriceDetails extends Component {
   render() {
-    const { adbug = PriceTypes.standard, ...remainingProps } = this.props;
-    switch (adbug) {
+    const { priceType = "" } = this.props;
+    console.log("RENDER");
+    console.log(priceType);
+    switch (priceType) {
       case PriceTypes.standard:
-        return <Standard {...remainingProps} />;
+        return <Standard {...this.props} />;
 
       case PriceTypes.callFor:
-        return <CallFor {...remainingProps} />;
+        console.log("CALLFOR");
+        console.log(priceType);
+        return <CallFor {...this.props} />;
 
       case PriceTypes.clearance:
-        return <Clearance {...remainingProps} />;
+        return <Clearance {...this.props} />;
 
       case PriceTypes.clearanceRange:
-        return <ClearanceRange {...remainingProps} />;
+        return <ClearanceRange {...this.props} />;
 
       case PriceTypes.drop:
-        return <Drop {...remainingProps} />;
+        return <Drop {...this.props} />;
 
       case PriceTypes.hotDeal:
-        return <HotDeal {...remainingProps} />;
+        return <HotDeal {...this.props} />;
 
       case PriceTypes.inCartPlusCompare:
-        return <InCartPlusCompare {...remainingProps} />;
+        return <InCartPlusCompare {...this.props} />;
 
       case PriceTypes.range:
-        return <Range {...remainingProps} />;
+        return <Range {...this.props} />;
 
       case PriceTypes.wasNow:
-        return <WasNow {...remainingProps} />;
+        return <WasNow {...this.props} />;
 
       default:
-        return <Standard {...remainingProps} />;
+        return <Standard {...this.props} />;
     }
   }
 }

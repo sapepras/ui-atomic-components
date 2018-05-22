@@ -1,6 +1,6 @@
 import { getFirstDefined, ellipsesText } from "../../../util/component";
 import { determinePriceType } from "../../PriceDetails/lib/PredictivePriceTypes";
-import { DuplicatePriceTypeMapToPriceType } from "../../PriceDetails/lib/PriceTypes";
+import { DuplicatePriceTypeMapToPriceType, getPriceTypeKeyByValue } from "../../PriceDetails/lib/PriceTypes";
 import MessageTypes from "../../PriceDetails/lib/MessageTypes";
 import AdbugTypes from "../../PriceDetails/lib/AdbugTypes";
 
@@ -13,6 +13,9 @@ export const getCardProps = (product = {}, props = {}) => {
     rating: props.rating,
     priceObject: determinePriceObject(props, product)
   };
+
+  console.log("MERGED PROPS");
+  console.log(mergedProps);
 
   return { ...props, ...mergedProps };
 };
@@ -42,7 +45,7 @@ const determinePriceObject = (props = {}, product = {}) => {
 const getAdbugKeys = (adbugs = []) =>
   adbugs
     .map(adbug => adbug.trim().toLowerCase())
-    .filter(adbugLCase => AdbugTypes[adbugLCase && true]);
+    .filter(adbugLCase => AdbugTypes[adbugLCase] && true);
 
 const getMessageTypeKeys = (priceMessages = "") => {
   priceMessages
@@ -52,12 +55,14 @@ const getMessageTypeKeys = (priceMessages = "") => {
 };
 
 const getPriceTypeKeys = (priceMessages = "") => {
-  priceMessages
+  const result = priceMessages
     .split(",")
-    .map(priceMessage => priceMessage.replace(/\s/g).toLowerCase())
-    .map(priceMessageLCase =>
-        DuplicatePriceTypeMapToPriceType[priceMessageLCase]
-          ? DuplicatePriceTypeMapToPriceType[priceMessageLCase]
-          : priceMessageLCase)
-    .filter(priceMessageLCase => MessageTypes[priceMessageLCase] && true).join(",");
+    .map(priceMessage => priceMessage.replace(/\s/g, "").toLowerCase())
+    .map(priceMessageLCase => (
+      getPriceTypeKeyByValue(DuplicatePriceTypeMapToPriceType[priceMessageLCase])
+        ? DuplicatePriceTypeMapToPriceType[priceMessageLCase]
+        : priceMessageLCase
+    ))
+    .filter(priceMessageLCase => getPriceTypeKeyByValue(priceMessageLCase) && true).join(",");
+    return result;
 };

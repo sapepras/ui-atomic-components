@@ -18,9 +18,11 @@ const isNotDefined = val => val === null || val === undefined;
 
 const isEmpty = val => isNotDefined(val) || (typeof val === "string" && val.trim() === "");
 
-const isEmptyPrice = val => isNotDefined(val) || (typeof val === "string" && val.replace(/[^\d\.]/g, "") === ""); // eslint-disable-line no-useless-escape
+const isEmptyPrice = val =>
+  isNotDefined(val) || (typeof val === "string" && val.replace(/[^\d\.]/g, "") === ""); // eslint-disable-line no-useless-escape
 
-const priceToFloat = price => (isEmptyPrice(price) ? null : parseFloat(price.replace(/[^\d\.]/g, ""))); // eslint-disable-line no-useless-escape
+const priceToFloat = price =>
+  isEmptyPrice(price) ? null : parseFloat(price.replace(/[^\d\.]/g, "")); // eslint-disable-line no-useless-escape
 
 const messageContains = (message = "", value = "") =>
   message
@@ -31,7 +33,11 @@ const messageContains = (message = "", value = "") =>
 //* "CLEARANCE" */
 const isClearance = priceObject => {
   const { adbugKeys = [] } = priceObject;
-  if (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.clearance) && isStandard(priceObject)) {
+  if (
+    adbugKeys.length > 0 &&
+    messageContains(adbugKeys.join(","), AdbugTypes.clearance) &&
+    isStandard(priceObject)
+  ) {
     return PriceTypes.clearance;
   }
   return null;
@@ -40,7 +46,11 @@ const isClearance = priceObject => {
 //* "CLEARANCE_RANGE" */
 const isClearanceRange = priceObject => {
   const { adbugKeys = [] } = priceObject;
-  if (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.clearance) && isRange(priceObject)) {
+  if (
+    adbugKeys.length > 0 &&
+    messageContains(adbugKeys.join(","), AdbugTypes.clearance) &&
+    isRange(priceObject)
+  ) {
     return PriceTypes.clearanceRange;
   }
   return null;
@@ -49,8 +59,12 @@ const isClearanceRange = priceObject => {
 /* "IN_CART_PLUS_COMPARE" */
 // If (priceMessage  != null && priceMessage contains “Our Price in Cart” ) à show Our price in cart and also Show Compare at “{listPrice}” à Note : “Our price in cart” and “Compare at” Message in go hand in hand.
 const isInCartPlusCompare = priceObject => {
-  const { priceTypeKeys } = priceObject;
-  if (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.inCartPlusCompare)) {
+  const { priceTypeKeys, listPrice } = priceObject;
+  if (
+    !isEmpty(priceTypeKeys) &&
+    messageContains(priceTypeKeys, PriceTypes.inCartPlusCompare) &&
+    !isEmptyPrice(listPrice)
+  ) {
     return PriceTypes.inCartPlusCompare;
   }
   return null;
@@ -68,7 +82,11 @@ const isCallFor = priceObject => {
 /* "DROP" */
 const isDrop = priceObject => {
   const { adbugKeys = [] } = priceObject;
-  if (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.pricedrop) && isWasNow(priceObject)) {
+  if (
+    adbugKeys.length > 0 &&
+    messageContains(adbugKeys.join(","), AdbugTypes.pricedrop) &&
+    isWasNow(priceObject)
+  ) {
     return PriceTypes.drop;
   }
   return null;
@@ -77,7 +95,11 @@ const isDrop = priceObject => {
 /* "HOT_DEAL" */
 const isHotDeal = priceObject => {
   const { adbugKeys = [] } = priceObject;
-  if (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.hotDeal) && isWasNow(priceObject)) {
+  if (
+    adbugKeys.length > 0 &&
+    messageContains(adbugKeys.join(","), AdbugTypes.hotDeal) &&
+    isWasNow(priceObject)
+  ) {
     return PriceTypes.hotDeal;
   }
   return null;
@@ -86,10 +108,12 @@ const isHotDeal = priceObject => {
 // If ( priceMessage IS EMPTY &&  (listPrice != null && salePrice< listPrice ) )--- >Show Was now pricing
 const isWasNow = priceObject => {
   const { priceMessage, listPrice, salePrice } = priceObject;
-  if (isEmpty(priceMessage) &&
-    !isEmpty(listPrice) &&
-    !isEmpty(salePrice) &&
-    priceToFloat(salePrice) < priceToFloat(listPrice)) {
+  if (
+    isEmpty(priceMessage) &&
+    !isEmptyPrice(listPrice) &&
+    !isEmptyPrice(salePrice) &&
+    priceToFloat(salePrice) < priceToFloat(listPrice)
+  ) {
     return PriceTypes.wasNow;
   }
   return null;
@@ -99,7 +123,7 @@ const isWasNow = priceObject => {
 // If " priceRange" is NOT EMPTY -- > Price range
 const isRange = priceObject => {
   const { priceRange } = priceObject;
-  if (!isEmpty(priceRange)) {
+  if (!isEmptyPrice(priceRange)) {
     return PriceTypes.range;
   }
   return null;
@@ -107,7 +131,7 @@ const isRange = priceObject => {
 
 /* "STANDARD" */
 const isStandard = ({ listPrice, salePrice }) => {
-  if (!isEmpty(salePrice) || !isEmpty(listPrice)) {
+  if (!isEmptyPrice(salePrice) || !isEmptyPrice(listPrice)) {
     return PriceTypes.standard;
   }
   return null;
@@ -126,7 +150,8 @@ priceTypeCheckMap[PriceTypes.callFor] = isCallFor;
 
 export const determinePriceType = (priceObject = {}) => {
   const priceTypeChecks = priceTypePriorities.map(code => priceTypeCheckMap[code]);
-  priceTypeChecks.find(isType => isType(priceObject));
+  const foundIsType = priceTypeChecks.find(isType => isType(priceObject));
+  return foundIsType ? foundIsType(priceObject) : null;
 };
 
 // PRICE RANGE EXAMPLE

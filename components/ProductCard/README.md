@@ -88,18 +88,17 @@ You can pass a product object via the product attribute and the card will build 
 
 ### price variation logic
 
-|     | PriceType         | priceMessage key | conditional rquirements                                                                        |
-| --- | ----------------- | ---------------- | ---------------------------------------------------------------------------------------------- |
-| [ ] | clearance         |                  | !isEmpty(priceObject.priceMessage) && messageContains(priceMessage, "clearance") && !isEmpty() |
-| [ ] | clearanceRange    |                  |                                                                                                |
-| [ ] | inCartPlusCompare | priceInCart      |                                                                                                |
-| [ ] | wasNow            | wasNowPrice      |                                                                                                |
-| [ ] | drop              |                  |                                                                                                |
-| [ ] | hotDeal           |                  |                                                                                                |
-| [ ] | range             |                  |                                                                                                |
-| [ ] | Range             |                  |                                                                                                |
-| [ ] | standard          |                  |                                                                                                |
-| [ ] | callFor           | specialPrice     |                                                                                                |
+|     | PriceType         | priceMessage key | conditional rquirements                                                                                                              |
+| --- | ----------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| [ ] | clearance         |                  | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.clearance) && isStandard(priceObject))                      |
+| [ ] | clearanceRange    |                  | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.clearance) && isRange(priceObject))                         |
+| [ ] | inCartPlusCompare | priceInCart      | (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.inCartPlusCompare) && !isEmptyPrice(listPrice))                |
+| [ ] | callFor           | specialPrice     | (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.callFor))                                                      |
+| [ ] | drop              |                  | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.pricedrop) && isWasNow(priceObject))                        |
+| [ ] | hotDeal           |                  | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.hotDeal) && isWasNow(priceObject))                          |
+| [ ] | wasNow            | wasNowPrice      | (isEmpty(priceMessage) && !isEmptyPrice(listPrice) && !isEmptyPrice(salePrice) && priceToFloat(salePrice) < priceToFloat(listPrice)) |
+| [ ] | range             |                  | !isEmptyPrice(priceRange)                                                                                                            |
+| [ ] | standard          |                  | (!isEmptyPrice(salePrice) OR !isEmptyPrice(listPrice))                                                                               |
 
 <br><br><br>
 
@@ -141,9 +140,9 @@ You can pass a product object via the product attribute and the card will build 
   window.callFor = {
     ...window.someProd,
     manufacturer: "CallFor",
-    adbug: ["CallFor"],
+    adbug: [],
     defaultSkuPrice: {
-      priceMessage: "(800)876-1492"
+      priceMessage: "Call for Pricing"
     }
   };
 
@@ -153,15 +152,14 @@ You can pass a product object via the product attribute and the card will build 
     adbug: ["Clearance"],
     defaultSkuPrice: {
       salePrice: "$ 10",
-      listPrice: "$ 23",
-      priceMessage: "some clearance messaging"
+      listPrice: "$ 23"
     }
   };
 
   window.clearanceRange = {
     ...window.someProd,
     manufacturer: "ClearanceRange",
-    adbug: ["ClearanceRange"],
+    adbug: ["clearance"],
     defaultSkuPrice: {
       minPriceRange: "$ 14.98",
       maxPriceRange: "$ 22.5",
@@ -175,7 +173,6 @@ You can pass a product object via the product attribute and the card will build 
     manufacturer: "PriceDrop",
     adbug: ["PriceDrop"],
     defaultSkuPrice: {
-      priceMessage: "pdrop msg",
       salePrice: "$ 22.5",
       listPrice: "$ 23"
     }
@@ -186,7 +183,6 @@ You can pass a product object via the product attribute and the card will build 
     manufacturer: "HotDeal",
     adbug: ["HotDeal"],
     defaultSkuPrice: {
-      priceMessage: "hdeal msg",
       salePrice: "$ 22.5",
       listPrice: "$ 23"
     }
@@ -195,9 +191,10 @@ You can pass a product object via the product attribute and the card will build 
   window.inCartPlusCompare = {
     ...window.someProd,
     manufacturer: "InCartPlusCompare",
-    adbug: ["InCartPlusCompare"],
+    adbug: [],
     defaultSkuPrice: {
-      priceMessage: "compare at $xx.xx"
+      priceMessage: "Our Price in cart",
+      listPrice: "40"
     }
   };
 
@@ -218,7 +215,6 @@ You can pass a product object via the product attribute and the card will build 
     manufacturer: "WasNow",
     adbug: ["WasNow"],
     defaultSkuPrice: {
-      priceMessage: "wnow msg",
       salePrice: "$ 22.5",
       listPrice: "$ 23"
     }
