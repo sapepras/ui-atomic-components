@@ -21,14 +21,17 @@ const stars = css`
 `;
 
 const Rating = (props = {}) => {
-  let { value = 0, starColor, emptyStarColor } = props; // eslint-disable-line
-  const rating = value / 5 * 100; // eslint-disable-line
+  let { value = 0, starColor, emptyStarColor, hideEmptyStars } = props; // eslint-disable-line
+  if (typeof value === "string" && value.trim().length === 0) {
+    value = 0;
+  }
+  const rating = parseFloat(value) / 5 * 100; // eslint-disable-line
 
   const starWidth = `${rating}%`;
   const starStyle = { color: starColor, width: starWidth, cursor: null };
   const starBackgroundStyle = { color: emptyStarColor, cursor: null };
 
-  return (
+  return hideEmptyStars && rating <= 0 ? null : (
     <div role="link" tabIndex="0" className={container}>
       <div className={relative}>
         <div className={stars} style={starStyle}>
@@ -42,7 +45,8 @@ const Rating = (props = {}) => {
 
 Rating.defaultProps = {
   starColor: "#f4ce42",
-  emptyStarColor: "#6a6a6a"
+  emptyStarColor: "#6a6a6a",
+  hideEmptyStars: true
 };
 
 Rating.propTypes = {
@@ -51,7 +55,8 @@ Rating.propTypes = {
   /** Main Star Color */
   starColor: PropTypes.string,
   /** Secondary Star Color */
-  emptyStarColor: PropTypes.string
+  emptyStarColor: PropTypes.string,
+  hideEmptyStars: PropTypes.bool
 };
 
 export default Rating;
