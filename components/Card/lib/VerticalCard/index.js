@@ -35,7 +35,8 @@ class VerticalCard extends Component {
       badge,
       auid,
       desktopOnly,
-      overrideCardHeightPx
+      overrideCardHeightPx,
+      colorCount
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div className={this.renderCardClassName(desktopOnly, overrideCardHeightPx)} auid={auid}>
@@ -66,6 +67,15 @@ class VerticalCard extends Component {
               <Rating value={rating} />
             </span>
           )}
+          {!!rating &&
+            !!colorCount &&
+            !Number.isNaN(parseInt(colorCount, 10)) &&
+            parseInt(colorCount, 10) > 1 && <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>}
+          {!!colorCount &&
+            !Number.isNaN(parseInt(colorCount, 10)) &&
+            parseInt(colorCount, 10) > 1 && (
+              <span className={css.messageText}>{colorCount} colors available</span>
+            )}
         </div>
         {/* eslint-disable-next-line react/jsx-indent */}
         <div className={css.footer}>
@@ -92,7 +102,8 @@ VerticalCard.propTypes = {
   badge: PropTypes.string,
   auid: PropTypes.string,
   desktopOnly: PropTypes.bool,
-  overrideCardHeightPx: PropTypes.number
+  overrideCardHeightPx: PropTypes.number,
+  colorCount: PropTypes.string
 };
 
 export default VerticalCard;

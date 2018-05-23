@@ -224,3 +224,9 @@ export const divider = css`
   border-bottom: 1px solid rgb(225, 225, 225);
   margin: 2px 0 7px;
 `;
+
+export const messageText = css`
+  font-family: Mallory;
+  font-size: 12px;
+  color: #585858;
+`;

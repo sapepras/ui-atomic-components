@@ -141,6 +141,7 @@ You can pass a product object via the product attribute and the card will build 
     ...window.someProd,
     manufacturer: "CallFor",
     adBug: [],
+    colorCount: "3",
     defaultSkuPrice: {
       priceMessage: "Call for Pricing"
     }
@@ -150,6 +151,7 @@ You can pass a product object via the product attribute and the card will build 
     ...window.someProd,
     manufacturer: "Clearance",
     adBug: ["Clearance"],
+    colorCount: "2",
     defaultSkuPrice: {
       salePrice: "$ 10",
       listPrice: "$ 23"
@@ -160,6 +162,7 @@ You can pass a product object via the product attribute and the card will build 
     ...window.someProd,
     manufacturer: "ClearanceRange",
     adBug: ["clearance"],
+    colorCount: "4",
     defaultSkuPrice: {
       priceMessage: "some clearance range messaging"
     },
@@ -170,6 +173,7 @@ You can pass a product object via the product attribute and the card will build 
     ...window.someProd,
     manufacturer: "PriceDrop",
     adBug: ["Price Drop"],
+    colorCount: "1",
     defaultSkuPrice: {
       salePrice: "$ 22.5",
       listPrice: "$ 23",

@@ -23,6 +23,7 @@ export const getCardProps = (product = {}, props = {}) => {
     imageAltText: determineImageAltText(props, product),
     rating: determineRating(props, product),
     badge: determineBadge(props, product, priceObject.priceType),
+    colorCount: determineColorCount(props, product),
     priceObject
   };
 
@@ -56,6 +57,9 @@ const determineBadge = (props, product, priceType) => {
 
   return null;
 };
+
+const determineColorCount = (props, product) =>
+  getFirstDefined([props.colorCount, product.colorCount]);
 
 const determinePriceObject = (props = {}, product = {}) => {
   const { priceObject = {} } = props;
