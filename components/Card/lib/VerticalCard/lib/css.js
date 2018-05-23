@@ -1,4 +1,5 @@
 import { css } from "emotion";
+import { bp } from "../../../../../util/style";
 
 /**
  * Goal responsive cards that can whose starting size can be easily modified for various layouts
@@ -45,8 +46,11 @@ const paddingLR = "2.7em"; // 27px @1200px vw
 const paddingT = "2.5em"; // 25px @1200px vw
 
 // default font sizes
-const textFontSize = "16px"; // px @any vw
-const priceFontSize = "42px"; // px @any vw
+const mobileTextFontsize = "14px";
+const desktopTextFontSize = "16px"; // px @any vw
+const mobilePriceFontSize = "28px";
+const desktopSmallPriceFontSize = "36px";
+const desktopPriceFontSize = "42px"; // px @any vw
 
 /**
  * Outer Most Container
@@ -191,7 +195,11 @@ export const content = css`
 `;
 
 export const text = css`
-  font-size: ${textFontSize};
+  font-size: ${mobileTextFontsize};
+
+  @media only screen and (min-width: ${bp.md.min}) {
+    font-size: ${desktopTextFontSize};
+  }
 }
 `;
 
@@ -216,7 +224,15 @@ export const rating = css`
 
 export const price = css`
   font-weight: bold;
-  font-size: ${priceFontSize};
+  font-size: ${mobilePriceFontSize};
+
+  @media only screen and (min-width: ${bp.md.min}) and (max-width: ${bp.md.max}) {
+    font-size: ${desktopSmallPriceFontSize};
+  }
+
+  @media only screen and (min-width: ${bp.lg.min}) {
+    font-size: ${desktopPriceFontSize};
+  }
 `;
 
 export const divider = css`

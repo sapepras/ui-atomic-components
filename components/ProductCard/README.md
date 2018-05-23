@@ -8,6 +8,7 @@ You can pass a product object via the product attribute and the card will build 
 
 |     | attr                 | type    | default | desc                                                                                                           |
 | --- | -------------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| [x] | cardType             | string  | default | Determines multiplier for responsive design: default, carousel, collection, grid, gridNarrow                   |
 | [x] | title                | string  |         | title text of card                                                                                             |
 | [x] | titleMaxCC           | integer | 25      | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
 | [x] | description          | string  |         | text describing item                                                                                           |
@@ -19,7 +20,7 @@ You can pass a product object via the product attribute and the card will build 
 | [x] | rating               | float   |         | number of stars to show as colored for rating view                                                             |
 | [ ] | badge                | string  |         | Exact implementation being determined                                                                          |
 | [x] | overrideCardHeightPx | float   |         | Expected value in pixels. When screen is 1200px card height will be overrideCardHeightPx and scale accordingly |
-| [x] | overrideCardWidthPx | float   |         | Expected value in pixels. When screen is 1200px card width will be overrideCardWidthPx and scale accordingly |
+| [x] | overrideCardWidthPx  | float   |         | Expected value in pixels. When screen is 1200px card width will be overrideCardWidthPx and scale accordingly   |
 | [x] | priceObject          | object  |         | Exact implementation being determined                                                                          |
 | [x] | product              | object  |         | product json object as returned by api - details in below table                                                |
 
@@ -234,10 +235,9 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      overrideCardHeightPx={750}
-      overrideCardWidthPx={750}
       titleMaxCC={7}
       descriptionMaxCC={7}
+      cardType="default"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -248,6 +248,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
+      cardType="carousel"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -258,6 +259,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
+      cardType="collection"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -268,6 +270,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
+      cardType="grid"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -278,6 +281,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
+      cardType="gridnarrow"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
