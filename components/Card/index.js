@@ -16,15 +16,18 @@ const rootVw = {
 export const vwMultiplier = css`
   font-size: ${rootVw.xs};
 
-  @media only screen and (min-width: ${bp.sm.min}) and (max-width: ${bp.sm.max}) {
+  @media only screen and (min-width: ${bp.sm.min}) and (max-width: ${bp.sm
+      .max}) {
     font-size: ${rootVw.sm};
   }
 
-  @media only screen and (min-width: ${bp.md.min}) and (max-width: ${bp.md.max}) {
+  @media only screen and (min-width: ${bp.md.min}) and (max-width: ${bp.md
+      .max}) {
     font-size: ${rootVw.md};
   }
 
-  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
+  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg
+      .max}) {
     font-size: ${rootVw.lg};
   }
 
@@ -39,12 +42,20 @@ class Card extends Component {
       if (onClickLogGA) {
         onClickLogGA();
       }
-      window.location = url;
+      if (window) {
+        window.location = url;
+      }
     };
   }
 
   render() {
-    const { auid, horizontalMobile, ctaLink, onClickLogGA, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
+    const {
+      auid,
+      horizontalMobile,
+      ctaLink,
+      onClickLogGA,
+      ...remainingProps
+    } = this.props; // eslint-disable-line object-curly-newline
     const thisOnClickGoTo = this.onClickGoTo(ctaLink, onClickLogGA);
     let clickAttributes = {};
     if (ctaLink) {
@@ -58,7 +69,10 @@ class Card extends Component {
       <div data-auid={auid} {...clickAttributes} className={vwMultiplier}>
         <VerticalCard {...remainingProps} desktopOnly={horizontalMobile} />
         {!!horizontalMobile && (
-          <HorizontalCard {...remainingProps} hideOnDesktop={horizontalMobile} />
+          <HorizontalCard
+            {...remainingProps}
+            hideOnDesktop={horizontalMobile}
+          />
         )}
       </div>
     );
