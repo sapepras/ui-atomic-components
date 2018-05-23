@@ -32,9 +32,9 @@ const rootVws = {
   carousel: {
     xs: "7px", // vw
     sm: "7px", // vw
-    md: "0.908173562vw", // md: "1.009081736vw", // vw
-    lg: "0.834028357vw", // px
-    xl: "10px" // px
+    md: "0.75vw", // md: "1.009081736vw", // vw
+    lg: "0.75vw", // px
+    xl: "0.75vw" // px
   },
   collection: {
     xs: "7px", // vw

@@ -11,6 +11,10 @@ class VerticalCard extends Component {
     return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;
   }
 
+  renderAutoMargins(autoMargins) {
+    return autoMargins ? { marginLeft: "auto", marginRight: "auto" } : null;
+  }
+
   renderCardClassName(desktopOnly, overrideCardHeightPx = false, overrideCardWidthPx = false) {
     let result = desktopOnly ? css.cardDesktopOnly : css.card;
     if (overrideCardHeightPx) {
@@ -43,10 +47,15 @@ class VerticalCard extends Component {
       desktopOnly,
       overrideCardHeightPx,
       overrideCardWidthPx,
-      colorCount
+      colorCount,
+      autoMargins = false
     } = this.props; // eslint-disable-line object-curly-newline
     return (
-      <div className={this.renderCardClassName(desktopOnly, overrideCardHeightPx, overrideCardWidthPx)} auid={auid}>
+      <div
+        className={this.renderCardClassName(desktopOnly, overrideCardHeightPx, overrideCardWidthPx)}
+        style={this.renderAutoMargins(autoMargins)}
+        auid={auid}
+      >
         {!!badge && <Badge text={badge}>{badge}</Badge>}
         {/* eslint-disable-next-line react/jsx-indent */}
         <div className={css.header}>
@@ -111,7 +120,8 @@ VerticalCard.propTypes = {
   desktopOnly: PropTypes.bool,
   overrideCardHeightPx: PropTypes.number,
   overrideCardWidthPx: PropTypes.number,
-  colorCount: PropTypes.string
+  colorCount: PropTypes.string,
+  autoMargins: PropTypes.bool
 };
 
 export default VerticalCard;

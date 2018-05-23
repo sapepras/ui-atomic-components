@@ -15,8 +15,8 @@ class Card extends Component {
   }
 
   renderMultiplier(cardType) {
-    if (cardType && vwMultipliers[cardType.toLowerCase()]) {
-      return vwMultipliers[cardType.cardType.toLowerCase()];
+    if (cardType && typeof cardType === "string" && vwMultipliers[cardType.toLowerCase()]) {
+      return vwMultipliers[cardType.toLowerCase()];
     }
     return vwMultipliers.default;
   }
