@@ -1,5 +1,33 @@
+/**
+ * VERTICAL CARD
+ */
+
 import { css } from "emotion";
 import { bp } from "../../../../../util/style";
+
+const styles = {};
+
+export const appendProperties = (cssClass, properties) => css`
+  ${cssClass} ${properties};
+`;
+
+// export const cascade = (baseStyles, overridingStyle) => {
+//   let newStyles = { ...baseStyles };
+//   if (overridingStyle) {
+//     newStyles = Object.keys(overridingStyle).reduce(prop => {
+//       if (newStyles[prop]) {
+//         newStyles[prop] = css`
+//           ${newStyles[prop]} ${overridingStyle[prop]};
+//         `;
+//       } else {
+//         newStyles[prop] = css`
+//           ${overridingStyle[prop]};
+//         `;
+//       }
+//     }, newStyles);
+//   }
+//   return newStyles;
+// };
 
 /**
  * Goal responsive cards that can whose starting size can be easily modified for various layouts
@@ -8,18 +36,6 @@ import { bp } from "../../../../../util/style";
  * Starting width 330px;
  * Starting height 500px;
  */
-
-export const appendProperties = (cssClass, properties) => css`
-  ${cssClass} ${properties};
-`;
-
-const testZones = false;
-const bgcolor = {
-  header: testZones ? "red" : "transparent",
-  body: testZones ? "white" : "transparent",
-  content: testZones ? "green" : "transparent",
-  footer: testZones ? "#999" : "transparent"
-};
 
 // container starting dimensions
 const containerHeight = "50em"; // 500px @1200px vw
@@ -56,7 +72,8 @@ const desktopPriceFontSize = "42px"; // px @any vw
  * Outer Most Container
  */
 
-export const container = css`
+styles.container = css`
+  emo-ref: "container";
   position: relative;
   display: flex;
   flex-direction: column;
@@ -70,8 +87,9 @@ export const container = css`
   width: ${containerWidth};
 `;
 
-export const card = css`
-  ${container};
+styles.card = css`
+  ${styles.container};
+  emo-ref: "card";
   background: #fff;
   text-align: left;
   border-radius: 6px;
@@ -85,34 +103,35 @@ export const card = css`
  * Card Rows
  */
 
-export const header = css`
+styles.header = css`
+  emo-ref: "header";
   order: 0;
   flex: 0 0 auto;
   align-self: stretch;
-  background-color: ${bgcolor.header};
   height: ${headerHeight};
 `;
 
-export const body = css`
+styles.body = css`
+  emo-ref: "body";
   order: 0;
   flex: 1 0 auto;
   align-self: stretch;
   position: relative;
-  background-color: ${bgcolor.body};
 `;
 
-export const contentFooter = css`
-  ${text};
+styles.contentFooter = css`
+  ${styles.text};
+  emo-ref: "contentFooter";
   padding-left: ${paddingLR};
   padding-right: ${paddingLR};
   height: ${contentFooterHeight};
 `;
 
-export const footer = css`
+styles.footer = css`
+  emo-ref: "footer";
   order: 0;
   flex: 0 0 auto;
   align-self: stretch;
-  background-color: ${bgcolor.footer};
   height: ${footerHeight};
 `;
 
@@ -120,8 +139,9 @@ export const footer = css`
  * Show/Hide vertical on mobile.
  */
 
-export const cardDesktopOnly = css`
-  ${card};
+styles.cardDesktopOnly = css`
+  ${styles.card};
+  emo-ref: "cardDesktopOnly";
   display: none;
 
   @media only screen and (min-width: 768px) {
@@ -133,15 +153,17 @@ export const cardDesktopOnly = css`
  * Image Styles
  */
 
-export const imageWide = css`
+styles.imageWide = css`
+  emo-ref: "imageWide";
   display: block;
   max-width: 100%;
   height: auto;
   max-height: 100%;
 `;
 
-export const image = css`
-  ${imageWide};
+styles.image = css`
+  ${styles.imageWide};
+  emo-ref: "image";
   width: ${imageWidth};
   max-width: ${imageWidth};
   margin-left: ${imageLR};
@@ -153,8 +175,9 @@ export const image = css`
   margin-bottom: ${imageTB};
 `;
 
-export const imageSmall = css`
-  ${imageWide};
+styles.imageSmall = css`
+  ${styles.imageWide};
+  emo-ref: "imageSmall";
   width: ${smallImageWidth};
   max-width: ${smallImageWidth};
   margin-left: ${smallImageLR};
@@ -166,8 +189,9 @@ export const imageSmall = css`
   margin-bottom: ${smallImageTB};
 `;
 
-export const emptyImage = css`
-  ${imageSmall};
+styles.emptyImage = css`
+  ${styles.imageSmall};
+  emo-ref: "emptyImage";
   background-color: #d8d8d8;
   display: inline-block;
 `;
@@ -176,17 +200,18 @@ export const emptyImage = css`
  * Body Content
  */
 
-export const contentPaddingLR = css`
+styles.contentPaddingLR = css`
+  emo-ref: "contentPaddingLR";
   padding-left: ${paddingLR};
   padding-right: ${paddingLR};
 `;
 
-export const content = css`
-  ${contentPaddingLR};
+styles.content = css`
+  ${styles.contentPaddingLR};
+  emo-ref: "content";
   padding-top: ${paddingT};
   padding-bottom: 5px;
   height: 100%;
-  background-color: ${bgcolor.content};
   position: static;
   top: 0;
   bottom: 0;
@@ -194,7 +219,8 @@ export const content = css`
   right: 0;
 `;
 
-export const text = css`
+styles.text = css`
+  emo-ref: "text";
   font-size: ${mobileTextFontsize};
 
   @media only screen and (min-width: ${bp.md.min}) {
@@ -203,26 +229,30 @@ export const text = css`
 }
 `;
 
-export const description = css`
-  ${text};
+styles.description = css`
+  ${styles.text};
+  emo-ref: "description";
 `;
 
-export const title = css`
-  ${text};
+styles.title = css`
+  ${styles.text};
+  emo-ref: "title";
   color: #7f7f7f;
   text-transform: uppercase;
   margin-bottom: 6px;
 `;
 
-export const rating = css`
-  ${text};
+styles.rating = css`
+  ${styles.text};
+  emo-ref: "rating";
 `;
 
 /**
  * Footer Content
  */
 
-export const price = css`
+styles.price = css`
+  emo-ref: "price";
   font-weight: bold;
   font-size: ${mobilePriceFontSize};
 
@@ -235,14 +265,18 @@ export const price = css`
   }
 `;
 
-export const divider = css`
+styles.divider = css`
+  emo-ref: "divider";
   width: 100%;
   border-bottom: 1px solid rgb(225, 225, 225);
   margin: 2px 0 7px;
 `;
 
-export const messageText = css`
+styles.messageText = css`
+  emo-ref: "messageText";
   font-family: Mallory;
   font-size: 12px;
   color: #585858;
 `;
+
+export default styles;

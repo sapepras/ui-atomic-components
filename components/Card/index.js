@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import { cx } from "emotion";
 import VerticalCard from "./lib/VerticalCard";
 import HorizontalCard from "./lib/HorizontalCard";
 import vwMultipliers from "./lib/css";
+
+const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
 
 class Card extends Component {
   onClickGoTo(url, onClickLogGA) {
@@ -14,11 +17,11 @@ class Card extends Component {
     };
   }
 
-  renderMultiplier(cardType) {
+  renderMultiplier(cardType, styleOverride = {}) {
     if (cardType && typeof cardType === "string" && vwMultipliers[cardType.toLowerCase()]) {
-      return vwMultipliers[cardType.toLowerCase()];
+      return wcx(vwMultipliers[cardType.toLowerCase()], styleOverride.rootVws);
     }
-    return vwMultipliers.default;
+    return wcx(vwMultipliers.default, styleOverride.rootVws);
   }
 
   render() {
@@ -28,6 +31,7 @@ class Card extends Component {
       ctaLink,
       onClickLogGA,
       cardType,
+      styleOverride = {},
       ...remainingProps
     } = this.props; // eslint-disable-line object-curly-newline
     const thisOnClickGoTo = this.onClickGoTo(ctaLink, onClickLogGA);
@@ -40,10 +44,22 @@ class Card extends Component {
       };
     }
     return (
-      <div data-auid={auid} {...clickAttributes} className={this.renderMultiplier(cardType)}>
-        <VerticalCard {...remainingProps} desktopOnly={horizontalMobile} />
+      <div
+        data-auid={auid}
+        {...clickAttributes}
+        className={this.renderMultiplier(cardType, styleOverride.Card)}
+      >
+        <VerticalCard
+          {...remainingProps}
+          styleOverride={styleOverride.Certical}
+          desktopOnly={horizontalMobile}
+        />
         {!!horizontalMobile && (
-          <HorizontalCard {...remainingProps} hideOnDesktop={horizontalMobile} />
+          <HorizontalCard
+            {...remainingProps}
+            styleOverride={styleOverride.Horizontal}
+            hideOnDesktop={horizontalMobile}
+          />
         )}
       </div>
     );
@@ -55,7 +71,8 @@ Card.propTypes = {
   horizontalMobile: PropTypes.bool,
   ctaLink: PropTypes.string,
   onClickLogGA: PropTypes.func,
-  cardType: PropTypes.string
+  cardType: PropTypes.string,
+  styleOverride: PropTypes.object
 };
 
 export default Card;

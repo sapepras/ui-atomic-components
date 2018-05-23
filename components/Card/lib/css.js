@@ -1,7 +1,13 @@
+/**
+ * CARD
+ */
+
 import { css } from "emotion";
 import { bp } from "../../../util/style";
 
 const buildVwMultiplier = rootVw => css`
+  emo-ref: "rootVw";
+
   font-size: ${rootVw.xs};
 
   @media only screen and (min-width: ${bp.sm.min}) and (max-width: ${bp.sm.max}) {
