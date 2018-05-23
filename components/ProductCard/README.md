@@ -19,6 +19,7 @@ You can pass a product object via the product attribute and the card will build 
 | [x] | rating               | float   |         | number of stars to show as colored for rating view                                                             |
 | [ ] | badge                | string  |         | Exact implementation being determined                                                                          |
 | [x] | overrideCardHeightPx | float   |         | Expected value in pixels. When screen is 1200px card height will be overrideCardHeightPx and scale accordingly |
+| [x] | overrideCardWidthPx | float   |         | Expected value in pixels. When screen is 1200px card width will be overrideCardWidthPx and scale accordingly |
 | [x] | priceObject          | object  |         | Exact implementation being determined                                                                          |
 | [x] | product              | object  |         | product json object as returned by api - details in below table                                                |
 
@@ -234,6 +235,7 @@ You can pass a product object via the product attribute and the card will build 
       price={"12.99"}
       ctaLink="http://www.google.com"
       overrideCardHeightPx={750}
+      overrideCardWidthPx={750}
       titleMaxCC={7}
       descriptionMaxCC={7}
     />

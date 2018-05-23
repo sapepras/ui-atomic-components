@@ -11,13 +11,19 @@ class VerticalCard extends Component {
     return (imageWide && css.imageWide) || (imageSmall && css.imageSmall) || css.image;
   }
 
-  renderCardClassName(desktopOnly, overrideCardHeightPx = false) {
-    const result = desktopOnly ? css.cardDesktopOnly : css.card;
+  renderCardClassName(desktopOnly, overrideCardHeightPx = false, overrideCardWidthPx = false) {
+    let result = desktopOnly ? css.cardDesktopOnly : css.card;
     if (overrideCardHeightPx) {
       const overrideCardHeightStyle = ` height: ${(
         parseFloat(overrideCardHeightPx) / 10
       ).toString()}em`;
-      return css.appendProperties(result, overrideCardHeightStyle);
+      result = css.appendProperties(result, overrideCardHeightStyle);
+    }
+    if (overrideCardWidthPx) {
+      const overrideCardWidthStyle = ` width: ${(
+        parseFloat(overrideCardWidthPx) / 10
+      ).toString()}em`;
+      result = css.appendProperties(result, overrideCardWidthStyle);
     }
     return result;
   }
@@ -36,10 +42,11 @@ class VerticalCard extends Component {
       auid,
       desktopOnly,
       overrideCardHeightPx,
+      overrideCardWidthPx,
       colorCount
     } = this.props; // eslint-disable-line object-curly-newline
     return (
-      <div className={this.renderCardClassName(desktopOnly, overrideCardHeightPx)} auid={auid}>
+      <div className={this.renderCardClassName(desktopOnly, overrideCardHeightPx, overrideCardWidthPx)} auid={auid}>
         {!!badge && <Badge text={badge}>{badge}</Badge>}
         {/* eslint-disable-next-line react/jsx-indent */}
         <div className={css.header}>
@@ -103,6 +110,7 @@ VerticalCard.propTypes = {
   auid: PropTypes.string,
   desktopOnly: PropTypes.bool,
   overrideCardHeightPx: PropTypes.number,
+  overrideCardWidthPx: PropTypes.number,
   colorCount: PropTypes.string
 };
 
