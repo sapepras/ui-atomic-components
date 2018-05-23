@@ -16,18 +16,15 @@ const rootVw = {
 export const vwMultiplier = css`
   font-size: ${rootVw.xs};
 
-  @media only screen and (min-width: ${bp.sm.min}) and (max-width: ${bp.sm
-      .max}) {
+  @media only screen and (min-width: ${bp.sm.min}) and (max-width: ${bp.sm.max}) {
     font-size: ${rootVw.sm};
   }
 
-  @media only screen and (min-width: ${bp.md.min}) and (max-width: ${bp.md
-      .max}) {
+  @media only screen and (min-width: ${bp.md.min}) and (max-width: ${bp.md.max}) {
     font-size: ${rootVw.md};
   }
 
-  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg
-      .max}) {
+  @media only screen and (min-width: ${bp.lg.min}) and (max-width: ${bp.lg.max}) {
     font-size: ${rootVw.lg};
   }
 
