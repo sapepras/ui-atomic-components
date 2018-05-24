@@ -1,0 +1,19 @@
+{
+  "props": {
+    "product": {
+      "name":
+        "this is a long description this is a long description this is a long description this is a long description this is a long description",
+      "id": "10001",
+      "parentCategoryId": "10001",
+      "manufacturer": "Under Armour",
+      "title": "Shoes",
+      "itemId": "partNumber",
+      "imageAltDescription": "TEST ALT IMAGE",
+      "adBug": [],
+      "defaultSkuPrice": {
+        "priceMessage": "standard messaging",
+        "listPrice": "$ 23"
+      }
+    }
+  }
+}
