@@ -10,9 +10,37 @@ import Json6 from "./json/data6.json";
 import Json7 from "./json/data7.json";
 import Json8 from "./json/data8.json";
 import Json9 from "./json/data9.json";
+import Json21 from "./json2/data1.json";
+import Json22 from "./json2/data2.json";
+import Json23 from "./json2/data3.json";
+import Json24 from "./json2/data4.json";
+import Json25 from "./json2/data5.json";
+import Json26 from "./json2/data6.json";
+import Json27 from "./json2/data7.json";
+import Json28 from "./json2/data8.json";
+import Json29 from "./json2/data9.json";
 import ProductCard from "../index";
 
-const jsons = [Json1, Json2, Json3, Json4, Json5, Json6, Json7, Json8, Json9];
+const jsons = [
+  Json1,
+  Json2,
+  Json3,
+  Json4,
+  Json5,
+  Json6,
+  Json7,
+  Json8,
+  Json9,
+  Json21,
+  Json22,
+  Json23,
+  Json24,
+  Json25,
+  Json26,
+  Json27,
+  Json28,
+  Json29
+];
 
 const testBasics = (json, idx) => {
   describe(`ProductCard - Basic Test - ${idx}`, () => {
