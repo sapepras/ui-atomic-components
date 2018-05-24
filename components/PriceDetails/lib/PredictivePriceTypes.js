@@ -1,5 +1,5 @@
 import PriceTypes from "./PriceTypes";
-import AdbugTypes from "./AdbugTypes";
+import AdBugTypes from "./AdBugTypes";
 // import MessageTypes from "./MessageTypes";
 
 const priceTypePriorities = [
@@ -32,10 +32,10 @@ const messageContains = (message = "", value = "") =>
 
 //* "CLEARANCE" */
 const isClearance = priceObject => {
-  const { adbugKeys = [] } = priceObject;
+  const { adBugKeys = [] } = priceObject;
   if (
-    adbugKeys.length > 0 &&
-    messageContains(adbugKeys.join(","), AdbugTypes.clearance) &&
+    adBugKeys.length > 0 &&
+    messageContains(adBugKeys.join(","), AdBugTypes.clearance) &&
     isStandard(priceObject)
   ) {
     return PriceTypes.clearance;
@@ -45,10 +45,10 @@ const isClearance = priceObject => {
 
 //* "CLEARANCE_RANGE" */
 const isClearanceRange = priceObject => {
-  const { adbugKeys = [] } = priceObject;
+  const { adBugKeys = [] } = priceObject;
   if (
-    adbugKeys.length > 0 &&
-    messageContains(adbugKeys.join(","), AdbugTypes.clearance) &&
+    adBugKeys.length > 0 &&
+    messageContains(adBugKeys.join(","), AdBugTypes.clearance) &&
     isRange(priceObject)
   ) {
     return PriceTypes.clearanceRange;
@@ -81,10 +81,10 @@ const isCallFor = priceObject => {
 
 /* "DROP" */
 const isDrop = priceObject => {
-  const { adbugKeys = [] } = priceObject;
+  const { adBugKeys = [] } = priceObject;
   if (
-    adbugKeys.length > 0 &&
-    messageContains(adbugKeys.join(","), AdbugTypes.pricedrop) &&
+    adBugKeys.length > 0 &&
+    messageContains(adBugKeys.join(","), AdBugTypes.pricedrop) &&
     isWasNow(priceObject)
   ) {
     return PriceTypes.drop;
@@ -94,10 +94,10 @@ const isDrop = priceObject => {
 
 /* "HOT_DEAL" */
 const isHotDeal = priceObject => {
-  const { adbugKeys = [] } = priceObject;
+  const { adBugKeys = [] } = priceObject;
   if (
-    adbugKeys.length > 0 &&
-    messageContains(adbugKeys.join(","), AdbugTypes.hotDeal) &&
+    adBugKeys.length > 0 &&
+    messageContains(adBugKeys.join(","), AdBugTypes.hotDeal) &&
     isWasNow(priceObject)
   ) {
     return PriceTypes.hotDeal;
