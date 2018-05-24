@@ -1,4 +1,4 @@
-const AdbugTypes = {
+const AdBugTypes = {
   onlineOnly: "onlineonly",
   hotDeal: "hotdeal",
   clearance: "clearance",
@@ -7,4 +7,4 @@ const AdbugTypes = {
   customize: "customize"
 };
 
-export default AdbugTypes;
+export default AdBugTypes;

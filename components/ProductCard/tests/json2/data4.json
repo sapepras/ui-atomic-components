@@ -1,0 +1,24 @@
+{
+  "props": {
+    "product": {
+      "name":
+        "this is a long description this is a long description this is a long description this is a long description this is a long description",
+      "id": "10001",
+      "parentCategoryId": "10001",
+      "title": "Shoes",
+      "itemId": "partNumber",
+      "imageAltDescription": "TEST ALT IMAGE",
+      "manufacturer": "ClearanceRange",
+      "adBug": ["clearance"],
+      "colorCount": "4",
+      "defaultSkuPrice": {
+        "priceMessage": "some clearance range messaging"
+      },
+      "priceRange": "$ 14.98-$ 88.5"
+    },
+    "rating": 0,
+    "ctaLink": "http://www.google.com",
+    "cardType": "grid",
+    "imageWide": true
+  }
+}
