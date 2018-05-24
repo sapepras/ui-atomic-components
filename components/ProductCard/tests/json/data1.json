@@ -4,6 +4,7 @@
       "name":
         "this is a long description this is a long description this is a long description this is a long description this is a long description",
       "id": "10001",
+      "bvRating": 4,
       "parentCategoryId": "10001",
       "manufacturer": "Under Armour",
       "title": "Shoes",
