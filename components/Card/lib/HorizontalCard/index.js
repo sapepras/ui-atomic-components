@@ -1,14 +1,19 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import * as css from "./lib/css";
+import { cx } from "emotion";
+import css from "./lib/css";
 import { productDetailPropTypes } from "../../../PriceDetails/lib/PropTypes";
 
 import Badge from "../../../Badge";
 import Rating from "../../../Rating";
 import PriceDetails from "../../../PriceDetails";
+
+const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
+
 class HorizontalCard extends Component {
-  renderCardClassName(hideOnDesktop) {
-    return hideOnDesktop ? css.cardHideOnDesktop : css.card;
+  renderCardClassName(hideOnDesktop, styleOverride) {
+    const result = hideOnDesktop ? css.cardHideOnDesktop : css.card;
+    return wcx(result, styleOverride.card);
   }
   render() {
     const {
@@ -20,35 +25,66 @@ class HorizontalCard extends Component {
       priceObject,
       badge,
       auid,
-      hideOnDesktop
+      hideOnDesktop,
+      colorCount,
+      styleOverride = {}
     } = this.props; // eslint-disable-line object-curly-newline
     return (
-      <div className={this.renderCardClassName(hideOnDesktop)} auid={auid}>
+      <div className={this.renderCardClassName(hideOnDesktop, styleOverride)} data-auid={auid}>
         {!!badge && (
           <Badge small text={badge}>
             {badge}
           </Badge>
         )}
-        <div className={css.leftColumn}>{/* eslint-disable-line react/jsx-indent */}
-          {!!image && <img src={image} alt={imageAltText} className={css.image} />}
-          {!image && <div className={css.emptyImage} />}
+        <div className={wcx(css.leftColumn, styleOverride.leftColumn)}>
+          {/* eslint-disable-line react/jsx-indent */}
+          {!!image && (
+            <img src={image} alt={imageAltText} className={wcx(css.image, styleOverride.image)} />
+          )}
+          {!image && <div className={wcx(css.emptyImage, styleOverride.emptyImage)} />}
         </div>
 
-        <div className={css.rightColumn}>{/* eslint-disable-line react/jsx-indent */}
-          <div className={css.rowHeader} />{/* eslint-disable-line react/jsx-indent */}
-          <div className={css.rowBody}>{/* eslint-disable-line react/jsx-indent */}
-            <div className={css.contentPaddingLR}>
-              <div className={css.title}>{title}</div>
-              <div className={css.description}>{description}</div>{/* eslint-disable-line react/jsx-indent */}
+        <div className={wcx(css.rightColumn, styleOverride.rightColumn)}>
+          {/* eslint-disable-line react/jsx-indent */}
+          <div className={wcx(css.rowHeader, styleOverride.rowHeader)} />
+          {/* eslint-disable-line react/jsx-indent */}
+          <div className={wcx(css.rowBody, styleOverride.rowBody)}>
+            {/* eslint-disable-line react/jsx-indent */}
+            <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
+              <div className={wcx(css.title, styleOverride.title)}>{title}</div>
+              <div className={wcx(css.description, wcx.description)}>{description}</div>
+              {/* eslint-disable-line react/jsx-indent */}
             </div>
           </div>
-          <div className={css.rowFooterOne}>{/* eslint-disable-line react/jsx-indent */}
-            <div className={css.rating}>{!!rating && <Rating value={rating} />}</div>
-            <div className={css.divider} />{/* eslint-disable-line react/jsx-indent */}
+          <div className={wcx(css.rowFooterOne, styleOverride.rowFooterOne)}>
+            {/* eslint-disable-line react/jsx-indent */}
+            <div className={wcx(css.rating, styleOverride.rating)}>
+              {!!rating && <Rating value={rating} />}
+              {!!rating &&
+                !!colorCount &&
+                !Number.isNaN(parseInt(colorCount, 10)) &&
+                parseInt(colorCount, 10) > 1 && (
+                  <span className={wcx(css.messageText, styleOverride.messageText)}>
+                    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                  </span>
+                )}
+              {!!colorCount &&
+                !Number.isNaN(parseInt(colorCount, 10)) &&
+                parseInt(colorCount, 10) > 1 && (
+                  <span className={wcx(css.messageText, styleOverride.messageText)}>
+                    {colorCount} colors available
+                  </span>
+                )}
+            </div>
+            <div className={wcx(css.divider, styleOverride.divider)} />
+            {/* eslint-disable-line react/jsx-indent */}
           </div>
-          <div className={css.rowFooterTwo}>{/* eslint-disable-line react/jsx-indent */}
-            <div className={css.contentPaddingLR}>
-              <div className={css.price}>{!!priceObject && <PriceDetails {...priceObject} />}</div>
+          <div className={wcx(css.rowFooterTwo, styleOverride.rowFooterTwo)}>
+            {/* eslint-disable-line react/jsx-indent */}
+            <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
+              <div className={wcx(css.price, styleOverride.price)}>
+                {!!priceObject && <PriceDetails {...priceObject} />}
+              </div>
             </div>
           </div>
         </div>
@@ -66,7 +102,9 @@ HorizontalCard.propTypes = {
   priceObject: PropTypes.shape(productDetailPropTypes),
   badge: PropTypes.string,
   auid: PropTypes.string,
-  hideOnDesktop: PropTypes.bool
+  hideOnDesktop: PropTypes.bool,
+  colorCount: PropTypes.string,
+  styleOverride: PropTypes.object
 };
 
 export default HorizontalCard;

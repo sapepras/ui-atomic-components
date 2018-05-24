@@ -1,0 +1,19 @@
+{
+  "props": {
+    "product": {
+      "name":
+        "this is a long description this is a long description this is a long description this is a long description this is a long description",
+      "id": "10001",
+      "parentCategoryId": "10001",
+      "title": "Shoes",
+      "itemId": "partNumber",
+      "imageAltDescription": "TEST ALT IMAGE",
+      "manufacturer": "Range",
+      "adBug": [],
+      "defaultSkuPrice": {
+        "priceMessage": "some range messaging"
+      },
+      "priceRange": "$ 14.98-$ 99.5"
+    }
+  }
+}
