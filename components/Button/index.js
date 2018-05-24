@@ -37,7 +37,6 @@ const primaryBtnStyle = props => css`
     background-color: #0255cc;
     border: 2px solid #0255cc;
     border-style: dotted;
-    color: #fff;
   }
 
   &:focus {
