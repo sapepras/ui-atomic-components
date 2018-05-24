@@ -8,14 +8,6 @@ Normal Link:
 </Anchor>
 ```
 
-Disabled Link:
-
-```jsx
-<Anchor auid="anchor-2" disabled={true} href="http://www.yahoo.com">
-  Yahoo
-</Anchor>
-```
-
 Icon Text Link:
 
 ```jsx

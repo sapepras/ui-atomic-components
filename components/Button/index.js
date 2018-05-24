@@ -30,7 +30,6 @@ const sizeStyles = props => {
 
 const primaryBtnStyle = props => css`
   color: #fff;
-  color: #fff;
   border-color: ${props.disabled ? "transparent" : "#005599"};
   background-color: ${props.disabled ? "rgba(2, 85, 204, 0.1)" : "#005599"};
   padding: 1rem;
@@ -77,7 +76,8 @@ const secondaryBrnStyles = props => css`
 const StyledButton = styled("button")`
   ${commonBtnStyle};
   ${sizeStyles};
-  ${props => (props.btntype === "secondary" ? secondaryBrnStyles : primaryBtnStyle)};
+  ${props =>
+    props.btntype === "secondary" ? secondaryBrnStyles : primaryBtnStyle};
 `;
 
 const Button = props => {

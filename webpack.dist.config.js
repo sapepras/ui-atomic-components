@@ -17,7 +17,8 @@ const baseConfig = () => ({
     library: "Components",
     libraryTarget: "umd",
     path: path.join(__dirname, "dist"),
-    filename: "[name].js"
+    filename: "[name].js",
+    globalObject: "this"
   },
   externals: [
     {
@@ -56,7 +57,11 @@ const baseConfig = () => ({
         // Preprocess our own .scss files
         test: /\.scss/,
         exclude: /node_modules/,
-        use: ["style-loader", "css-loader?modules&importLoaders=1", "sass-loader"]
+        use: [
+          "style-loader",
+          "css-loader?modules&importLoaders=1",
+          "sass-loader"
+        ]
       },
       {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,

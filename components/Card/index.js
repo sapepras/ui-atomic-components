@@ -5,7 +5,8 @@ import VerticalCard from "./lib/VerticalCard";
 import HorizontalCard from "./lib/HorizontalCard";
 import vwMultipliers from "./lib/css";
 
-const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
+const wcx = (style, styleOverride) =>
+  styleOverride ? cx(style, styleOverride) : style;
 
 class Card extends Component {
   onClickGoTo(url, onClickLogGA) {
@@ -13,12 +14,18 @@ class Card extends Component {
       if (onClickLogGA) {
         onClickLogGA();
       }
-      window.location = url;
+      if (window) {
+        window.location = url;
+      }
     };
   }
 
   renderMultiplier(cardType, styleOverride = {}) {
-    if (cardType && typeof cardType === "string" && vwMultipliers[cardType.toLowerCase()]) {
+    if (
+      cardType &&
+      typeof cardType === "string" &&
+      vwMultipliers[cardType.toLowerCase()]
+    ) {
       return wcx(vwMultipliers[cardType.toLowerCase()], styleOverride.rootVws);
     }
     return wcx(vwMultipliers.default, styleOverride.rootVws);
