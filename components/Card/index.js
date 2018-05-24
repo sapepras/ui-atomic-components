@@ -51,7 +51,7 @@ class Card extends Component {
       >
         <VerticalCard
           {...remainingProps}
-          styleOverride={styleOverride.Certical}
+          styleOverride={styleOverride.Vertical}
           desktopOnly={horizontalMobile}
         />
         {!!horizontalMobile && (

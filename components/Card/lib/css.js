@@ -6,7 +6,7 @@ import { css } from "emotion";
 import { bp } from "../../../util/style";
 
 const buildVwMultiplier = rootVw => css`
-  emo-ref: "rootVw";
+  emo-ref: "rootVws";
 
   font-size: ${rootVw.xs};
 

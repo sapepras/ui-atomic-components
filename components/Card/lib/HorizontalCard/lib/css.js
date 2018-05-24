@@ -23,6 +23,7 @@ const priceFontSize = "28px";
  */
 
 styles.contentPaddingLR = css`
+  emo-ref: "contentPaddingLR";
   padding-left: ${paddingLR};
   padding-right: ${paddingLR};
 `;
@@ -32,6 +33,7 @@ styles.contentPaddingLR = css`
  */
 
 styles.columnContainer = css`
+  emo-ref: "columnContainer";
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -41,6 +43,7 @@ styles.columnContainer = css`
 `;
 
 styles.card = css`
+  emo-ref: "card";
   ${styles.columnContainer};
   position: relative;
   background: #fff;
@@ -54,6 +57,7 @@ styles.card = css`
 `;
 
 styles.cardHideOnDesktop = css`
+  emo-ref: "cardHideOnDesktop";
   ${styles.card};
   display: none;
 
@@ -67,6 +71,7 @@ styles.cardHideOnDesktop = css`
  */
 
 styles.leftColumn = css`
+  emo-ref: "leftColumn";
   order: 0;
   flex: 0 0 auto;
   align-self: auto;
@@ -78,6 +83,7 @@ styles.leftColumn = css`
  */
 
 styles.rowContainer = css`
+  emo-ref: "rowContainer";
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -87,6 +93,7 @@ styles.rowContainer = css`
 `;
 
 styles.rightColumn = css`
+  emo-ref: "rightColumn";
   order: 0;
   flex: 0 0 auto;
   align-self: auto;
@@ -99,6 +106,7 @@ styles.rightColumn = css`
  */
 
 styles.rowHeader = css`
+  emo-ref: "rowHeader";
   order: 0;
   flex: 0 0 auto;
   align-self: auto;
@@ -106,6 +114,7 @@ styles.rowHeader = css`
 `;
 
 styles.rowBody = css`
+  emo-ref: "rowBody";
   order: 1;
   flex: 1 0 auto;
   align-self: auto;
@@ -114,6 +123,7 @@ styles.rowBody = css`
 `;
 
 styles.rowFooterOne = css`
+  emo-ref: "rowFooterOne";
   order: 2;
   flex: 0 0 auto;
   align-self: auto;
@@ -123,6 +133,7 @@ styles.rowFooterOne = css`
 `;
 
 styles.rowFooterTwo = css`
+  emo-ref: "rowFooterTwo";
   order: 3;
   flex: 0 0 auto;
   align-self: auto;
@@ -134,6 +145,7 @@ styles.rowFooterTwo = css`
  */
 
 styles.image = css`
+  emo-ref: "image";
   display: block;
   width: ${imageWidth};
   max-width: ${imageWidth};
@@ -147,6 +159,7 @@ styles.image = css`
 `;
 
 styles.emptyImage = css`
+  emo-ref: "emptyImage";
   ${styles.image};
   background-color: #d8d8d8;
   display: inline-block;
@@ -157,10 +170,12 @@ styles.emptyImage = css`
  */
 
 styles.text = css`
+  emo-ref: "text";
   font-size: 11px;
 `;
 
 styles.title = css`
+  emo-ref: "title";
   ${styles.text};
   color: #7f7f7f;
   text-transform: uppercase;
@@ -168,25 +183,30 @@ styles.title = css`
 `;
 
 styles.description = css`
+  emo-ref: "description";
   ${styles.text};
 `;
 
 styles.rating = css`
+  emo-ref: "rating";
   ${styles.text};
 `;
 
 styles.price = css`
+  emo-ref: "price";
   font-weight: bold;
   font-size: ${priceFontSize};
 `;
 
 styles.divider = css`
+  emo-ref: "divider";
   width: 100%;
   border-bottom: 1px solid rgb(225, 225, 225);
   margin: 2px 0 7px;
 `;
 
 styles.messageText = css`
+  emo-ref: "messageText";
   font-family: Mallory;
   font-size: 12px;
   color: #585858;
