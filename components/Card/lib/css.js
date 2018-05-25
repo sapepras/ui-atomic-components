@@ -2,8 +2,8 @@
  * CARD
  */
 
-import { css } from "emotion";
-import { bp } from "../../../util/style";
+import { css } from 'emotion';
+import { bp } from '../../../util/style';
 
 const buildVwMultiplier = rootVw => css`
   emo-ref: "rootVws";
@@ -29,39 +29,39 @@ const buildVwMultiplier = rootVw => css`
 
 const rootVws = {
   default: {
-    xs: "7px", // vw
-    sm: "7px", // vw
-    md: "0.908173562vw", // md: "1.009081736vw", // vw
-    lg: "0.834028357vw", // px
-    xl: "10px" // px
+    xs: '7px', // vw
+    sm: '7px', // vw
+    md: '0.908173562vw', // md: "1.009081736vw", // vw
+    lg: '0.834028357vw', // px
+    xl: '10px' // px
   },
   carousel: {
-    xs: "7px", // vw
-    sm: "7px", // vw
-    md: "0.75vw", // md: "1.009081736vw", // vw
-    lg: "0.75vw", // px
-    xl: "0.75vw" // px
+    xs: '7px', // vw
+    sm: '7px', // vw
+    md: '0.75vw', // md: "1.009081736vw", // vw
+    lg: '0.75vw', // px
+    xl: '0.75vw' // px
   },
   collection: {
-    xs: "7px", // vw
-    sm: "7px", // vw
-    md: "0.908173562vw", // md: "1.009081736vw", // vw
-    lg: "0.834028357vw", // px
-    xl: "10px" // px
+    xs: '7px', // vw
+    sm: '7px', // vw
+    md: '0.908173562vw', // md: "1.009081736vw", // vw
+    lg: '0.834028357vw', // px
+    xl: '10px' // px
   },
   grid: {
-    xs: "7px", // vw
-    sm: "7px", // vw
-    md: "0.908173562vw", // md: "1.009081736vw", // vw
-    lg: "0.834028357vw", // px
-    xl: "10px" // px
+    xs: '7px', // vw
+    sm: '7px', // vw
+    md: '0.908173562vw', // md: "1.009081736vw", // vw
+    lg: '0.834028357vw', // px
+    xl: '10px' // px
   },
   gridnarrow: {
-    xs: "7px", // vw
-    sm: "7px", // vw
-    md: "0.908173562vw", // md: "1.009081736vw", // vw
-    lg: "0.834028357vw", // px
-    xl: "10px" // px
+    xs: '7px', // vw
+    sm: '7px', // vw
+    md: '0.908173562vw', // md: "1.009081736vw", // vw
+    lg: '0.834028357vw', // px
+    xl: '10px' // px
   }
 };
 

@@ -1,9 +1,9 @@
-import React from "react";
-import { expect } from "chai";
-import { mount } from "enzyme";
-import Drawer from "../index";
+import React from 'react';
+import { expect } from 'chai';
+import { mount } from 'enzyme';
+import Drawer from '../index';
 
-describe("Drawer", () => {
+describe('Drawer', () => {
   let props = {};
   let MountedDrawer;
 
@@ -14,18 +14,18 @@ describe("Drawer", () => {
     return MountedDrawer;
   };
 
-  it("always renders a div", () => {
-    expect(ShallowDrawer().find("div")).to.have.length.above(1);
+  it('always renders a div', () => {
+    expect(ShallowDrawer().find('div')).to.have.length.above(1);
   });
 
-  describe("when children are passed", () => {
+  describe('when children are passed', () => {
     beforeEach(() => {
       props = {
         children: <div>Some Children</div>
       };
     });
 
-    it("it renders the containing elements", () => {
+    it('it renders the containing elements', () => {
       expect(ShallowDrawer().children()).to.have.length(1);
     });
   });

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import styled, { css } from "react-emotion";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styled, { css } from 'react-emotion';
 
-const StyledDiv = styled("div")`
+const StyledDiv = styled('div')`
   background-color: #ffffff;
   min-height: 62px;
   font-size: 16px;
@@ -54,7 +54,7 @@ class Drawer extends Component {
 
   render() {
     const { title, auid } = this.props;
-    let classlist = "";
+    let classlist = '';
     if (this.state.isOpen) {
       classlist = `${this.props.openIcon}`;
     } else {

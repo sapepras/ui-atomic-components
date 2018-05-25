@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { productDetailPropTypes } from "./lib/PropTypes";
-import PriceTypes from "./lib/PriceTypes";
+import React, { Component } from 'react';
+import { productDetailPropTypes } from './lib/PropTypes';
+import PriceTypes from './lib/PriceTypes';
 import {
   CallFor,
   Clearance,
@@ -9,11 +9,11 @@ import {
   Range,
   Standard,
   WasNow
-} from "./lib/components";
+} from './lib/components';
 
 class PriceDetails extends Component {
   render() {
-    const { priceType = "" } = this.props;
+    const { priceType = '' } = this.props;
     switch (priceType) {
       case PriceTypes.standard:
         return <Standard {...this.props} />;

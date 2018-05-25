@@ -1,12 +1,12 @@
-import PropTypes from "prop-types";
-import React, { Component } from "react";
-import { cx } from "emotion";
-import css from "./lib/css";
-import { productDetailPropTypes } from "../../../PriceDetails/lib/PropTypes";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { cx } from 'emotion';
+import css from './lib/css';
+import { productDetailPropTypes } from '../../../PriceDetails/lib/PropTypes';
 
-import Badge from "../../../Badge";
-import Rating from "../../../Rating";
-import PriceDetails from "../../../PriceDetails";
+import Badge from '../../../Badge';
+import Rating from '../../../Rating';
+import PriceDetails from '../../../PriceDetails';
 
 const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
 
@@ -15,6 +15,7 @@ class HorizontalCard extends Component {
     const result = hideOnDesktop ? css.cardHideOnDesktop : css.card;
     return wcx(result, styleOverride.card);
   }
+
   render() {
     const {
       title,
@@ -61,20 +62,20 @@ class HorizontalCard extends Component {
             <div className={wcx(css.rating, styleOverride.rating)}>
               {!!rating && <Rating value={rating} />}
               {!!rating &&
-                !!colorCount &&
-                !Number.isNaN(parseInt(colorCount, 10)) &&
-                parseInt(colorCount, 10) > 1 && (
-                  <span className={wcx(css.messageText, styleOverride.messageText)}>
+              !!colorCount &&
+              !Number.isNaN(parseInt(colorCount, 10)) &&
+              parseInt(colorCount, 10) > 1 && (
+                <span className={wcx(css.messageText, styleOverride.messageText)}>
                     &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                  </span>
-                )}
+                </span>
+              )}
               {!!colorCount &&
-                !Number.isNaN(parseInt(colorCount, 10)) &&
-                parseInt(colorCount, 10) > 1 && (
-                  <span className={wcx(css.messageText, styleOverride.messageText)}>
+              !Number.isNaN(parseInt(colorCount, 10)) &&
+              parseInt(colorCount, 10) > 1 && (
+                <span className={wcx(css.messageText, styleOverride.messageText)}>
                     {colorCount} colors available
-                  </span>
-                )}
+                </span>
+              )}
             </div>
             <div className={wcx(css.divider, styleOverride.divider)} />
             {/* eslint-disable-line react/jsx-indent */}

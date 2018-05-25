@@ -1,13 +1,13 @@
 const PriceTypes = {
-  clearance: "clearance",
-  clearanceRange: "clearancerange",
-  inCartPlusCompare: "priceincart",
-  wasNow: "wasnowprice",
-  drop: "pricedrop",
-  hotDeal: "hotdeal",
-  range: "range",
-  standard: "standard",
-  callFor: "specialprice"
+  clearance: 'clearance',
+  clearanceRange: 'clearancerange',
+  inCartPlusCompare: 'priceincart',
+  wasNow: 'wasnowprice',
+  drop: 'pricedrop',
+  hotDeal: 'hotdeal',
+  range: 'range',
+  standard: 'standard',
+  callFor: 'specialprice'
 };
 
 const PriceTypeKeyByValue = Object.keys(PriceTypes).reduce((result = {}, key) => {
@@ -22,10 +22,10 @@ export const DuplicatePriceTypeMapToPriceType = {
 };
 
 const PriceTypesText = {};
-PriceTypesText[PriceTypes.inCartPlusCompare] = "Our Price in Cart";
-PriceTypesText[PriceTypes.callFor] = "Call for Pricing";
+PriceTypesText[PriceTypes.inCartPlusCompare] = 'Our Price in Cart';
+PriceTypesText[PriceTypes.callFor] = 'Call for Pricing';
 
-export const getPriceTypeKeyByValue = (val = "") => PriceTypeKeyByValue[val];
+export const getPriceTypeKeyByValue = (val = '') => PriceTypeKeyByValue[val];
 
 // export const getPriceTypeText = (key = "") => (PriceTypes[key]) ? PriceTypesText[PriceTypes[key]] : undefined;
 

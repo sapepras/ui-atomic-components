@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled, { css } from "react-emotion";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled, { css } from 'react-emotion';
 
 const commonBtnStyle = css`
   border-radius: 30px;
@@ -13,14 +13,14 @@ const commonBtnStyle = css`
 `;
 
 const sizeStyles = props => {
-  let minWidth = "180px";
+  let minWidth = '180px';
 
-  if (props.size === "S") {
-    minWidth = "120px";
-  } else if (props.size === "M") {
-    minWidth = "150px";
+  if (props.size === 'S') {
+    minWidth = '120px';
+  } else if (props.size === 'M') {
+    minWidth = '150px';
   } else {
-    minWidth = "180px";
+    minWidth = '180px';
   }
 
   return css`
@@ -30,8 +30,8 @@ const sizeStyles = props => {
 
 const primaryBtnStyle = props => css`
   color: #fff;
-  border-color: ${props.disabled ? "transparent" : "#005599"};
-  background-color: ${props.disabled ? "rgba(2, 85, 204, 0.1)" : "#005599"};
+  border-color: ${props.disabled ? 'transparent' : '#005599'};
+  background-color: ${props.disabled ? 'rgba(2, 85, 204, 0.1)' : '#005599'};
   padding: 1rem;
   &:hover {
     background-color: #0255cc;
@@ -51,8 +51,8 @@ const primaryBtnStyle = props => css`
 `;
 
 const secondaryBrnStyles = props => css`
-  color: ${props.disabled ? "rgba(2, 85, 204, 0.1)" : "#005599"};
-  border-color: ${props.disabled ? "rgba(2, 85, 204, 0.1)" : "#005599"};
+  color: ${props.disabled ? 'rgba(2, 85, 204, 0.1)' : '#005599'};
+  border-color: ${props.disabled ? 'rgba(2, 85, 204, 0.1)' : '#005599'};
   background-color: #fff;
   padding: 1rem;
   &:hover {
@@ -73,11 +73,11 @@ const secondaryBrnStyles = props => css`
   }
 `;
 
-const StyledButton = styled("button")`
+const StyledButton = styled('button')`
   ${commonBtnStyle};
   ${sizeStyles};
   ${props =>
-    props.btntype === "secondary" ? secondaryBrnStyles : primaryBtnStyle};
+    props.btntype === 'secondary' ? secondaryBrnStyles : primaryBtnStyle};
 `;
 
 const Button = props => {
@@ -101,9 +101,9 @@ Button.propTypes = {
   /** Button status */
   disabled: PropTypes.bool,
   /** Btn Size variant */
-  size: PropTypes.oneOf(["L", "M", "S"]),
+  size: PropTypes.oneOf(['L', 'M', 'S']),
   /** Button type variant */
-  btntype: PropTypes.oneOf(["primary", "secondary"]),
+  btntype: PropTypes.oneOf(['primary', 'secondary']),
   /** Gets called when the user clicks on the button */
   onClick: PropTypes.func,
   /** Automated Test Id */
@@ -113,9 +113,9 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  type: "button",
-  size: "L",
-  btntype: "primary",
+  type: 'button',
+  size: 'L',
+  btntype: 'primary',
   disabled: false
 };
 

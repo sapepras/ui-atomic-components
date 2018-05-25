@@ -5,27 +5,27 @@
  * 3. Copies window object's properties into Node's global object.
  * */
 
-require("babel-register")();
-require("ignore-styles");
-const chai = require("chai");
-const sinonChai = require("sinon-chai");
+require('babel-register')();
+require('ignore-styles');
+const chai = require('chai');
+const sinonChai = require('sinon-chai');
 
-const jsdom = require("jsdom");
+const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
-const Enzyme = require("enzyme");
-const Adapter = require("enzyme-adapter-react-16");
+const Enzyme = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
 
 chai.use(sinonChai);
 
-const dom = new JSDOM("<!DOCTYPE html><html><head></head><body></body></html>");
+const dom = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>');
 
 global.window = dom.window;
 global.document = dom.document;
-global.navigator = { userAgent: "node.js" };
+global.navigator = { userAgent: 'node.js' };
 
 const copyProperties = (src, target) => {
   const props = Object.getOwnPropertyNames(src)
-    .filter(p => typeof target[p] === "undefined")
+    .filter(p => typeof target[p] === 'undefined')
     .reduce(
       (result, prop) => ({
         ...result,
