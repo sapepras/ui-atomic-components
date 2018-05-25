@@ -1,5 +1,5 @@
-import PriceTypes from "./PriceTypes";
-import AdbugTypes from "./AdbugTypes";
+import PriceTypes from './PriceTypes';
+import AdBugTypes from './AdBugTypes';
 // import MessageTypes from "./MessageTypes";
 
 const priceTypePriorities = [
@@ -16,26 +16,26 @@ const priceTypePriorities = [
 
 const isNotDefined = val => val === null || val === undefined;
 
-const isEmpty = val => isNotDefined(val) || (typeof val === "string" && val.trim() === "");
+const isEmpty = val => isNotDefined(val) || (typeof val === 'string' && val.trim() === '');
 
 const isEmptyPrice = val =>
-  isNotDefined(val) || (typeof val === "string" && val.replace(/[^\d\.]/g, "") === ""); // eslint-disable-line no-useless-escape
+  isNotDefined(val) || (typeof val === 'string' && val.replace(/[^\d\.]/g, '') === ''); // eslint-disable-line no-useless-escape
 
 const priceToFloat = price =>
-  isEmptyPrice(price) ? null : parseFloat(price.replace(/[^\d\.]/g, "")); // eslint-disable-line no-useless-escape
+  isEmptyPrice(price) ? null : parseFloat(price.replace(/[^\d\.]/g, '')); // eslint-disable-line no-useless-escape
 
-const messageContains = (message = "", value = "") =>
+const messageContains = (message = '', value = '') =>
   message
     .toLowerCase()
-    .split(",")
+    .split(',')
     .indexOf(value.toLowerCase()) >= 0;
 
 //* "CLEARANCE" */
 const isClearance = priceObject => {
-  const { adbugKeys = [] } = priceObject;
+  const { adBugKeys = [] } = priceObject;
   if (
-    adbugKeys.length > 0 &&
-    messageContains(adbugKeys.join(","), AdbugTypes.clearance) &&
+    adBugKeys.length > 0 &&
+    messageContains(adBugKeys.join(','), AdBugTypes.clearance) &&
     isStandard(priceObject)
   ) {
     return PriceTypes.clearance;
@@ -45,10 +45,10 @@ const isClearance = priceObject => {
 
 //* "CLEARANCE_RANGE" */
 const isClearanceRange = priceObject => {
-  const { adbugKeys = [] } = priceObject;
+  const { adBugKeys = [] } = priceObject;
   if (
-    adbugKeys.length > 0 &&
-    messageContains(adbugKeys.join(","), AdbugTypes.clearance) &&
+    adBugKeys.length > 0 &&
+    messageContains(adBugKeys.join(','), AdBugTypes.clearance) &&
     isRange(priceObject)
   ) {
     return PriceTypes.clearanceRange;
@@ -81,10 +81,10 @@ const isCallFor = priceObject => {
 
 /* "DROP" */
 const isDrop = priceObject => {
-  const { adbugKeys = [] } = priceObject;
+  const { adBugKeys = [] } = priceObject;
   if (
-    adbugKeys.length > 0 &&
-    messageContains(adbugKeys.join(","), AdbugTypes.pricedrop) &&
+    adBugKeys.length > 0 &&
+    messageContains(adBugKeys.join(','), AdBugTypes.pricedrop) &&
     isWasNow(priceObject)
   ) {
     return PriceTypes.drop;
@@ -94,10 +94,10 @@ const isDrop = priceObject => {
 
 /* "HOT_DEAL" */
 const isHotDeal = priceObject => {
-  const { adbugKeys = [] } = priceObject;
+  const { adBugKeys = [] } = priceObject;
   if (
-    adbugKeys.length > 0 &&
-    messageContains(adbugKeys.join(","), AdbugTypes.hotDeal) &&
+    adBugKeys.length > 0 &&
+    messageContains(adBugKeys.join(','), AdBugTypes.hotDeal) &&
     isWasNow(priceObject)
   ) {
     return PriceTypes.hotDeal;

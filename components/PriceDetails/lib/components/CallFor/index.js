@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 // import { productDetailChildPropTypes } from "../../PropTypes";
-import * as css from "../../css";
+import * as css from '../../css';
 
 const XXXX = () => (
   <div>

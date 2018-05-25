@@ -1,17 +1,17 @@
-import { getFirstDefined, ellipsesText } from "../../../util/component";
-import { determinePriceType } from "../../PriceDetails/lib/PredictivePriceTypes";
+import { getFirstDefined, ellipsesText } from '../../../util/component';
+import { determinePriceType } from '../../PriceDetails/lib/PredictivePriceTypes';
 import {
   DuplicatePriceTypeMapToPriceType,
   getPriceTypeKeyByValue
-} from "../../PriceDetails/lib/PriceTypes";
-import MessageTypes from "../../PriceDetails/lib/MessageTypes";
-import AdbugTypes from "../../PriceDetails/lib/AdbugTypes";
+} from '../../PriceDetails/lib/PriceTypes';
+import MessageTypes from '../../PriceDetails/lib/MessageTypes';
+import AdBugTypes from '../../PriceDetails/lib/AdBugTypes';
 
 const MapPriceTypeToBadge = {
-  clearance: "Clearance",
-  clearanceRange: "Clearance",
-  drop: "Price Drop",
-  hotDeal: "Hot Deal"
+  clearance: 'Clearance',
+  clearanceRange: 'Clearance',
+  drop: 'Price Drop',
+  hotDeal: 'Hot Deal'
 };
 
 export const getCardProps = (product = {}, props = {}) => {
@@ -23,6 +23,7 @@ export const getCardProps = (product = {}, props = {}) => {
     imageAltText: determineImageAltText(props, product),
     rating: determineRating(props, product),
     badge: determineBadge(props, product, priceObject.priceType),
+    colorCount: determineColorCount(props, product),
     priceObject
   };
 
@@ -50,23 +51,26 @@ const determineBadge = (props, product, priceType) => {
     return MapPriceTypeToBadge[priceType];
   }
 
-  if (product && product.adbug && product.adbug.length > 0) {
-    return product.adbug[0];
+  if (product && product.adBug && product.adBug.length > 0) {
+    return product.adBug[0];
   }
 
   return null;
 };
 
+const determineColorCount = (props, product) =>
+  getFirstDefined([props.colorCount, product.colorCount]);
+
 const determinePriceObject = (props = {}, product = {}) => {
   const { priceObject = {} } = props;
-  const { adbug: arrAdbug = [], defaultSkuPrice = {} } = product;
-  const adbug = arrAdbug.length > 0 ? arrAdbug[0] : null;
-  const adbugKeys = getAdbugKeys(arrAdbug);
+  const { adBug: arrAdBug = [], defaultSkuPrice = {} } = product;
+  const adBug = arrAdBug.length > 0 ? arrAdBug[0] : null;
+  const adBugKeys = getAdBugKeys(arrAdBug);
   const messageKeys = getMessageTypeKeys(defaultSkuPrice.priceMessage);
   const priceTypeKeys = getPriceTypeKeys(defaultSkuPrice.priceMessage);
   const newPriceObject = {
-    adbug,
-    adbugKeys,
+    adBug,
+    adBugKeys,
     messageKeys,
     priceTypeKeys,
     ...defaultSkuPrice,
@@ -82,28 +86,28 @@ const determinePriceObject = (props = {}, product = {}) => {
   return { priceType, ...newPriceObject };
 };
 
-const getAdbugKeys = (adbugs = []) =>
-  adbugs
-    .map(adbug => adbug.trim().toLowerCase())
-    .filter(adbugLCase => AdbugTypes[adbugLCase] && true);
+const getAdBugKeys = (adBugs = []) =>
+  adBugs
+    .map(adBug => adBug.trim().toLowerCase())
+    .filter(adBugLCase => AdBugTypes[adBugLCase] && true);
 
-const getMessageTypeKeys = (priceMessages = "") => {
+const getMessageTypeKeys = (priceMessages = '') => {
   priceMessages
-    .split(",")
+    .split(',')
     .map(priceMessage => priceMessage.trim().toLowerCase())
     .filter(priceMessageLCase => MessageTypes[priceMessageLCase] && true)
-    .join(",");
+    .join(',');
 };
 
-const getPriceTypeKeys = (priceMessages = "") => {
+const getPriceTypeKeys = (priceMessages = '') => {
   const result = priceMessages
-    .split(",")
-    .map(priceMessage => priceMessage.replace(/\s/g, "").toLowerCase())
+    .split(',')
+    .map(priceMessage => priceMessage.replace(/\s/g, '').toLowerCase())
     .map(priceMessageLCase =>
         getPriceTypeKeyByValue(DuplicatePriceTypeMapToPriceType[priceMessageLCase])
           ? DuplicatePriceTypeMapToPriceType[priceMessageLCase]
           : priceMessageLCase)
     .filter(priceMessageLCase => getPriceTypeKeyByValue(priceMessageLCase) && true)
-    .join(",");
+    .join(',');
   return result;
 };

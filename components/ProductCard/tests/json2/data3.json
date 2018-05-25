@@ -1,0 +1,26 @@
+{
+  "props": {
+    "product": {
+      "name":
+        "this is a long description this is a long description this is a long description this is a long description this is a long description",
+      "id": "10001",
+      "parentCategoryId": "10001",
+      "bvRating": 10,
+      "title": "Shoes",
+      "itemId": "partNumber",
+      "imageAltDescription": "TEST ALT IMAGE",
+      "manufacturer": "Clearance",
+      "adBug": ["Clearance"],
+      "colorCount": "2",
+      "defaultSkuPrice": {
+        "salePrice": "$ 10",
+        "listPrice": "$ 23"
+      }
+    },
+    "rating": 2,
+    "horizontalMobile": true,
+    "imageSmall": true,
+    "ctaLink": "http://www.google.com",
+    "cardType": "collection"
+  }
+}

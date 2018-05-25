@@ -1,4 +1,4 @@
-import { css } from "react-emotion";
+import { css } from 'react-emotion';
 
 export const titleText = css`
   font-family: MalloryCond-Black;

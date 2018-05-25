@@ -1,36 +1,36 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import styled from "react-emotion";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'react-emotion';
 
-const Small = styled("small")`
+const Small = styled('small')`
   display: inline-block;
   vertical-align: top;
   padding-top: 0.2em;
   font-size: 0.6em;
-  text-decoration: ${({ strikethrough }) => (strikethrough ? "line-through" : "none")};
+  text-decoration: ${({ strikethrough }) => (strikethrough ? 'line-through' : 'none')};
 `;
 
 const colorMap = {
-  blue: "#005599",
-  gray: "#7f7f7f",
-  grey: "#7f7f7f",
-  black: "#333333",
-  red: "#ee0000"
+  blue: '#005599',
+  gray: '#7f7f7f',
+  grey: '#7f7f7f',
+  black: '#333333',
+  red: '#ee0000'
 };
 
-const Wrapper = styled("span")`
+const Wrapper = styled('span')`
   color: ${({ color }) =>
     colorMap[color.trim().toLowerCase()] ? colorMap[color.trim().toLowerCase()] : colorMap.black};
-  text-decoration: ${({ strikethrough }) => (strikethrough ? "line-through" : "none")};
+  text-decoration: ${({ strikethrough }) => (strikethrough ? 'line-through' : 'none')};
   ${({ strikethrough }) =>
-    strikethrough ? "font-weight: normal; font-family: MalloryCond-Medium;" : ""};
+    strikethrough ? 'font-weight: normal; font-family: MalloryCond-Medium;' : ''};
 `;
 
 class Price extends Component {
   render() {
-    const { price, color = "black", strikethrough = false } = this.props;
+    const { price, color = 'black', strikethrough = false } = this.props;
     // eslint-disable-next-line no-useless-escape
-    const [num, dec] = price.replace(/[^\.\d]/g, "").split(".");
+    const [num, dec] = price.replace(/[^\.\d]/g, '').split('.');
 
     if (!num || num.trim().length === 0) {
       return null;

@@ -1,0 +1,25 @@
+{
+  "props": {
+    "product": {
+      "name":
+        "this is a long description this is a long description this is a long description this is a long description this is a long description",
+      "id": "10001",
+      "bvRating": 0,
+      "parentCategoryId": "10001",
+      "title": "Shoes",
+      "itemId": "partNumber",
+      "imageAltDescription": "TEST ALT IMAGE",
+      "manufacturer": "CallFor",
+      "adBug": [],
+      "colorCount": "3",
+      "defaultSkuPrice": {
+        "priceMessage": "Call for Pricing"
+      }
+    },
+    "rating": "4",
+    "horizontalMobile": true,
+    "imageSmall": true,
+    "ctaLink": "http://www.google.com",
+    "cardType": "carousel"
+  }
+}
