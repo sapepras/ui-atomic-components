@@ -132,6 +132,7 @@ You can pass a product object via the product attribute and the card will build 
     title: "Shoes",
     itemId: "partNumber",
     imageAltDescription: "TEST ALT IMAGE",
+    seoURL: "http://www.google.com",
     adBug: [],
     defaultSkuPrice: {
       priceMessage: "standard messaging",

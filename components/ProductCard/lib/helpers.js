@@ -1,9 +1,6 @@
 import { getFirstDefined, ellipsesText } from '../../../util/component';
 import { determinePriceType } from '../../PriceDetails/lib/PredictivePriceTypes';
-import {
-  DuplicatePriceTypeMapToPriceType,
-  getPriceTypeKeyByValue
-} from '../../PriceDetails/lib/PriceTypes';
+import { DuplicatePriceTypeMapToPriceType, getPriceTypeKeyByValue } from '../../PriceDetails/lib/PriceTypes';
 import MessageTypes from '../../PriceDetails/lib/MessageTypes';
 import AdBugTypes from '../../PriceDetails/lib/AdBugTypes';
 
@@ -24,21 +21,20 @@ export const getCardProps = (product = {}, props = {}) => {
     rating: determineRating(props, product),
     badge: determineBadge(props, product, priceObject.priceType),
     colorCount: determineColorCount(props, product),
+    ctaLink: determineCtaLink(props, product),
     priceObject
   };
 
   return { ...props, ...mergedProps };
 };
 
-const determineImage = (props, product) =>
-  getFirstDefined([props.image, props.imageURL, product.imageURL]);
+const determineImage = (props, product) => getFirstDefined([props.image, props.imageURL, product.imageURL]);
 
 const determineTitle = (props, product) => getFirstDefined([props.title, product.manufacturer]);
 
 const determineDescription = (props, product) => getFirstDefined([props.description, product.name]);
 
-const determineImageAltText = (props, product) =>
-  getFirstDefined([props.imageAltText, product.imageAltDescription]);
+const determineImageAltText = (props, product) => getFirstDefined([props.imageAltText, product.imageAltDescription]);
 
 const determineRating = (props, product) => getFirstDefined([props.rating, product.bvRating]);
 
@@ -58,8 +54,7 @@ const determineBadge = (props, product, priceType) => {
   return null;
 };
 
-const determineColorCount = (props, product) =>
-  getFirstDefined([props.colorCount, product.colorCount]);
+const determineColorCount = (props, product) => getFirstDefined([props.colorCount, product.colorCount]);
 
 const determinePriceObject = (props = {}, product = {}) => {
   const { priceObject = {} } = props;
@@ -86,10 +81,9 @@ const determinePriceObject = (props = {}, product = {}) => {
   return { priceType, ...newPriceObject };
 };
 
-const getAdBugKeys = (adBugs = []) =>
-  adBugs
-    .map(adBug => adBug.trim().toLowerCase())
-    .filter(adBugLCase => AdBugTypes[adBugLCase] && true);
+const determineCtaLink = (props, product) => getFirstDefined([props.ctaLink, product.seoURL]);
+
+const getAdBugKeys = (adBugs = []) => adBugs.map(adBug => adBug.trim().toLowerCase()).filter(adBugLCase => AdBugTypes[adBugLCase] && true);
 
 const getMessageTypeKeys = (priceMessages = '') => {
   priceMessages
