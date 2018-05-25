@@ -1,7 +1,7 @@
-import React from "react";
-import { productDetailChildPropTypes } from "../../PropTypes";
-import Price from "../Price";
-import * as css from "../../css";
+import React from 'react';
+import { productDetailChildPropTypes } from '../../PropTypes';
+import Price from '../Price';
+import * as css from '../../css';
 
 const XXXX = props => {
   const { listPrice, salePrice, priceMessage } = props;

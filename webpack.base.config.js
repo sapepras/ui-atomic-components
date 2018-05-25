@@ -2,15 +2,15 @@
  * COMMON WEBPACK CONFIGURATION
  */
 
-const path = require("path");
+const path = require('path');
 
 const baseConfig = () => ({
-  entry: "index.js",
+  entry: 'index.js',
   output: {
     // Compile into js/build.js
-    path: path.resolve(process.cwd(), "dist"),
-    publicPath: "/",
-    filename: "bundle.js"
+    path: path.resolve(process.cwd(), 'dist'),
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -18,7 +18,7 @@ const baseConfig = () => ({
         test: /\.js$/, // Transform all .js files required somewhere with Babel
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         }
       },
       {
@@ -27,34 +27,34 @@ const baseConfig = () => ({
         // for a list of loaders, see https://webpack.js.org/loaders/#styling
         test: /\.css$/,
         exclude: /node_modules/,
-        use: ["style-loader", "css-loader?modules&importLoaders=1"]
+        use: ['style-loader', 'css-loader?modules&importLoaders=1']
       },
       {
         // Preprocess our own .scss files
         test: /\.scss/,
         exclude: /node_modules/,
         use: [
-          "style-loader",
-          "css-loader?modules&importLoaders=1",
-          "sass-loader"
+          'style-loader',
+          'css-loader?modules&importLoaders=1',
+          'sass-loader'
         ]
       },
       {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
-        use: "file-loader"
+        use: 'file-loader'
       },
       {
         test: /\.(jpg|png|gif)$/,
         use: [
-          "file-loader",
+          'file-loader',
           {
-            loader: "image-webpack-loader",
+            loader: 'image-webpack-loader',
             options: {
               progressive: true,
               optimizationLevel: 7,
               interlaced: false,
               pngquant: {
-                quality: "65-90",
+                quality: '65-90',
                 speed: 4
               }
             }
@@ -63,17 +63,17 @@ const baseConfig = () => ({
       },
       {
         test: /\.html$/,
-        use: "html-loader"
+        use: 'html-loader'
       },
       {
-        type: "javascript/auto",
+        type: 'javascript/auto',
         test: /\.json$/,
-        use: "json-loader"
+        use: 'json-loader'
       },
       {
         test: /\.(mp4|webm)$/,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 10000
           }

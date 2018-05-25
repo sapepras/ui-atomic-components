@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { getCardProps } from "./lib/helpers";
-import Card from "../Card";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { getCardProps } from './lib/helpers';
+import Card from '../Card';
 
 class ProductCard extends Component {
   render() {

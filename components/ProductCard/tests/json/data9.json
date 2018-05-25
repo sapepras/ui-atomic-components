@@ -1,0 +1,20 @@
+{
+  "props": {
+    "product": {
+      "name":
+        "this is a long description this is a long description this is a long description this is a long description this is a long description",
+      "id": "10001",
+      "parentCategoryId": "10001",
+      "title": "Shoes",
+      "itemId": "partNumber",
+      "imageAltDescription": "TEST ALT IMAGE",
+      "manufacturer": "WasNow",
+      "adBug": [],
+      "defaultSkuPrice": {
+        "salePrice": "$ 22.5",
+        "listPrice": "$ 23",
+        "savings": "30%"
+      }
+    }
+  }
+}
