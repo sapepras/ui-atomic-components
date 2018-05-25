@@ -48,45 +48,45 @@ You can pass a product object via the product attribute and the card will build 
 
 ### priceObject schema
 
-|     | priceObject properties   | type   | default val | desc | price variations used in |
-| --- | ------------------------ | ------ | ----------- | ---- | ------------------------ |
-| [x] | priceObject              | object |             |      |                          |
-| [x] | priceObject.promoMessage | string |             |      |                          |
-| [x] | priceObject.priceRange   | string |             |      |                          |
-| [x] | priceObject.priceMessage | string |             |      |                          |
-| [x] | priceObject.salePrice    | string |             |      |                          |
-| [x] | priceObject.listPrice    | string |             |      |                          |
+| priceObject properties | type                     | default val | desc | price variations used in |     |
+|------------------------|--------------------------|-------------|------|--------------------------|-----|
+| [x]                    | priceObject              | object      |      |                          |     |
+| [x]                    | priceObject.promoMessage | string      |      |                          |     |
+| [x]                    | priceObject.priceRange   | string      |      |                          |     |
+| [x]                    | priceObject.priceMessage | string      |      |                          |     |
+| [x]                    | priceObject.salePrice    | string      |      |                          |     |
+| [x]                    | priceObject.listPrice    | string      |      |                          |     |
 
 <br/>
 
 ### adBug values
 
-|     | potential string values | desc                    |
-| --- | ----------------------- | ----------------------- |
-| [x] | Standard                | default price variation |
-| [x] | Clearance               |                         |
-| [x] | ClearanceRange          |                         |
-| [x] | InCartPlusCompare       |                         |
-| [x] | WasNow                  |                         |
-| [x] | PriceDrop               |                         |
-| [x] | HotDeal                 |                         |
-| [x] | Range                   |                         |
-| [x] | CallFor                 |                         |
+| potential string values | desc              |                         |
+|-------------------------|-------------------|-------------------------|
+| [x]                     | Standard          | default price variation |
+| [x]                     | Clearance         |                         |
+| [x]                     | ClearanceRange    |                         |
+| [x]                     | InCartPlusCompare |                         |
+| [x]                     | WasNow            |                         |
+| [x]                     | PriceDrop         |                         |
+| [x]                     | HotDeal           |                         |
+| [x]                     | Range             |                         |
+| [x]                     | CallFor           |                         |
 
 ### priceMessage keys
 
-|     | potential string values  | Variation               | Message                   |
-| --- | ------------------------ | ----------------------- | ------------------------- |
-| [x] | Regular                  | default price variation |                           |
-| [ ] | Clearance                |                         |                           |
-| [ ] | ClearanceRange           |                         |                           |
-| [x] | priceInCart              | InCartPlusCompare       |                           |
-| [ ] | wasNowPrice              | WasNow                  |                           |
-| [ ] | PriceDrop                |                         |                           |
-| [ ] | HotDeal                  |                         |                           |
-| [ ] | Range                    |                         |                           |
-| [x] | specialPrice             | CallFr                  |                           |
-| [x] | clearanceStylesAvailable |                         | Clearnce Styles Available |
+| potential string values | Variation                | Message                 |                           |
+|-------------------------|--------------------------|-------------------------|---------------------------|
+| [x]                     | Regular                  | default price variation |                           |
+| [ ]                     | Clearance                |                         |                           |
+| [ ]                     | ClearanceRange           |                         |                           |
+| [x]                     | priceInCart              | InCartPlusCompare       |                           |
+| [ ]                     | wasNowPrice              | WasNow                  |                           |
+| [ ]                     | PriceDrop                |                         |                           |
+| [ ]                     | HotDeal                  |                         |                           |
+| [ ]                     | Range                    |                         |                           |
+| [x]                     | specialPrice             | CallFr                  |                           |
+| [x]                     | clearanceStylesAvailable |                         | Clearnce Styles Available |
 
 ### price variation logic
 
@@ -224,6 +224,33 @@ You can pass a product object via the product attribute and the card will build 
       savings: "30%"
     }
   };
+
+  window.soloSalePrice = {
+    ...window.someProd,
+    name: "ASICS® Women's Gel-Nimbus® 19 Running Shoes",
+    id: "3741079",
+    shortDescription:
+      "The ASICS® Women's Gel-Nimbus® 19 Running Shoes feature FluidFit® uppers and responsive FluidRide® midsoles.",
+    longDescription:
+      "Training for a race? Lace up the ASICS® Women's Gel-Nimbus® 19 Running Shoes and go the distance. As you put 1 foot in front of the other, jamming out to your favorite beats on your iPod®, your feet enjoy a responsive ride with a natural feel from the FluidRide® midsoles, and they stay cool and dry, thanks to the mesh FluidFit® uppers with ComforDry™ interior.",
+    sellable: "true",
+    colorCount: "3",
+    bvRating: "3",
+    manufacturer: "ASICS",
+    defaultSku: "3741321",
+    isSingleSkuProduct: false,
+    partNumber: "109470989",
+    seoURL: "/shop/pdp/asics®-womens-gel-nimbus®-19-running-shoes",
+    imageURL: "//assets.academy.com/mgen/17/10690517.jpg",
+    imageAltDescription: "ASICS® Women's Gel-Nimbus® 19 Running Shoes",
+    defaultSkuPrice: {
+      salePrice: "159.99",
+      priceMessage: "",
+      savings: "",
+      listPrice: ""
+    },
+    promoMessage: "Buy One Get One 50% Off - ONLINE ONLY"
+  };
 }
 
 <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -321,6 +348,15 @@ You can pass a product object via the product attribute and the card will build 
       product={window.wasNow}
       rating={4}
       price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.soloSalePrice}
+      rating={4}
       ctaLink="http://www.google.com"
     />
   </div>
