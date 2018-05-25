@@ -6,99 +6,99 @@ You can pass a product object via the product attribute and the card will build 
 
 ### Attributes
 
-|     | attr                 | type    | default | desc                                                                                                           |
-| --- | -------------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------- |
-| [x] | title                | string  |         | title text of card                                                                                             |
-| [x] | titleMaxCC           | integer | 25      | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
-| [x] | description          | string  |         | text describing item                                                                                           |
-| [x] | descriptionMaxCC     | integer | 40      | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
-| [x] | image                | string  |         | url pointing to image to be rendered in top of card                                                            |
-| [x] | imageAltText         | string  |         | Specifies an alternate text for the image.                                                                     |
-| [x] | imageWide            | boolean | false   | stretches the image to take up maximum header room, no padding                                                 |
-| [x] | imageSmall           | boolean | false   | adds extra padding around the image                                                                            |
-| [x] | rating               | float   |         | number of stars to show as colored for rating view                                                             |
-| [ ] | badge                | string  |         | Exact implementation being determined                                                                          |
-| [x] | overrideCardHeightPx | float   |         | Expected value in pixels. When screen is 1200px card height will be overrideCardHeightPx and scale accordingly |
-| [x] | priceObject          | object  |         | Exact implementation being determined                                                                          |
-| [x] | product              | object  |         | product json object as returned by api - details in below table                                                |
+| attr | type                 | default | desc  |                                                                                                                |
+|------|----------------------|---------|-------|----------------------------------------------------------------------------------------------------------------|
+| [x]  | title                | string  |       | title text of card                                                                                             |
+| [x]  | titleMaxCC           | integer | 25    | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
+| [x]  | description          | string  |       | text describing item                                                                                           |
+| [x]  | descriptionMaxCC     | integer | 40    | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
+| [x]  | image                | string  |       | url pointing to image to be rendered in top of card                                                            |
+| [x]  | imageAltText         | string  |       | Specifies an alternate text for the image.                                                                     |
+| [x]  | imageWide            | boolean | false | stretches the image to take up maximum header room, no padding                                                 |
+| [x]  | imageSmall           | boolean | false | adds extra padding around the image                                                                            |
+| [x]  | rating               | float   |       | number of stars to show as colored for rating view                                                             |
+| [ ]  | badge                | string  |       | Exact implementation being determined                                                                          |
+| [x]  | overrideCardHeightPx | float   |       | Expected value in pixels. When screen is 1200px card height will be overrideCardHeightPx and scale accordingly |
+| [x]  | priceObject          | object  |       | Exact implementation being determined                                                                          |
+| [x]  | product              | object  |       | product json object as returned by api - details in below table                                                |
 
 <br/>
 
 ### product schema
 
-|     | product properties                   | Maps to attr             | type            | desc                                                              |
-| --- | ------------------------------------ | ------------------------ | --------------- | ----------------------------------------------------------------- |
-|     | product                              |                          | object          | product json object as returned by api                            |
-| [x] | product.manufacturer                 | title                    | string          | text describing item                                              |
-| [x] | product.name                         | description              | string          | text describing item                                              |
-| [x] | product.imageURL                     | image                    | string          | url pointing to image to be rendered in top of card               |
-| [x] | product.imageAltDescription          | imageAltText             | string          | Specifies an alternate text for the image.                        |
-| [ ] | product.bvRating                     | rating                   | string          | Partially implemented.                                            |
-| [ ] | product.adbug                        | badge                    | array of string | Partially implemented.                                            |
-| [x] | product.promoMessage                 | priceObject.promoMessage | string          |                                                                   |
-| [x] | product.priceRange                   | priceObject.priceRange   | string          |                                                                   |
-|     | product.defaultSkuPrice              |                          | object          |                                                                   |
-| [x] | product.defaultSkuPrice.priceMessage | priceObject.priceMessage | string          | contains misclaneious text data for a variety of price variations |
-| [x] | product.defaultSkuPrice.salePrice    | priceObject.salePrice    | string          |                                                                   |
-| [x] | product.defaultSkuPrice.listPrice    | priceObject.listPrice    | string          |                                                                   |
+| product properties      | Maps to attr                         | type                     | desc                                   |                                                                   |
+|-------------------------|--------------------------------------|--------------------------|----------------------------------------|-------------------------------------------------------------------|
+| product                 |                                      | object                   | product json object as returned by api |                                                                   |
+| [x]                     | product.manufacturer                 | title                    | string                                 | text describing item                                              |
+| [x]                     | product.name                         | description              | string                                 | text describing item                                              |
+| [x]                     | product.imageURL                     | image                    | string                                 | url pointing to image to be rendered in top of card               |
+| [x]                     | product.imageAltDescription          | imageAltText             | string                                 | Specifies an alternate text for the image.                        |
+| [ ]                     | product.bvRating                     | rating                   | string                                 | Partially implemented.                                            |
+| [ ]                     | product.adbug                        | badge                    | array of string                        | Partially implemented.                                            |
+| [x]                     | product.promoMessage                 | priceObject.promoMessage | string                                 |                                                                   |
+| [x]                     | product.priceRange                   | priceObject.priceRange   | string                                 |                                                                   |
+| product.defaultSkuPrice |                                      | object                   |                                        |                                                                   |
+| [x]                     | product.defaultSkuPrice.priceMessage | priceObject.priceMessage | string                                 | contains misclaneious text data for a variety of price variations |
+| [x]                     | product.defaultSkuPrice.salePrice    | priceObject.salePrice    | string                                 |                                                                   |
+| [x]                     | product.defaultSkuPrice.listPrice    | priceObject.listPrice    | string                                 |                                                                   |
 
 <br/>
 
 ### priceObject schema
 
-|     | priceObject properties   | type   | default val | desc | price variations used in |
-| --- | ------------------------ | ------ | ----------- | ---- | ------------------------ |
-| [x] | priceObject              | object |             |      |                          |
-| [x] | priceObject.promoMessage | string |             |      |                          |
-| [x] | priceObject.priceRange   | string |             |      |                          |
-| [x] | priceObject.priceMessage | string |             |      |                          |
-| [x] | priceObject.salePrice    | string |             |      |                          |
-| [x] | priceObject.listPrice    | string |             |      |                          |
+| priceObject properties | type                     | default val | desc | price variations used in |     |
+|------------------------|--------------------------|-------------|------|--------------------------|-----|
+| [x]                    | priceObject              | object      |      |                          |     |
+| [x]                    | priceObject.promoMessage | string      |      |                          |     |
+| [x]                    | priceObject.priceRange   | string      |      |                          |     |
+| [x]                    | priceObject.priceMessage | string      |      |                          |     |
+| [x]                    | priceObject.salePrice    | string      |      |                          |     |
+| [x]                    | priceObject.listPrice    | string      |      |                          |     |
 
 <br/>
 
 ### adbug values
 
-|     | potential string values | desc                    |
-| --- | ----------------------- | ----------------------- |
-| [x] | Standard                | default price variation |
-| [x] | Clearance               |                         |
-| [x] | ClearanceRange          |                         |
-| [x] | InCartPlusCompare       |                         |
-| [x] | WasNow                  |                         |
-| [x] | PriceDrop               |                         |
-| [x] | HotDeal                 |                         |
-| [x] | Range                   |                         |
-| [x] | CallFor                 |                         |
+| potential string values | desc              |                         |
+|-------------------------|-------------------|-------------------------|
+| [x]                     | Standard          | default price variation |
+| [x]                     | Clearance         |                         |
+| [x]                     | ClearanceRange    |                         |
+| [x]                     | InCartPlusCompare |                         |
+| [x]                     | WasNow            |                         |
+| [x]                     | PriceDrop         |                         |
+| [x]                     | HotDeal           |                         |
+| [x]                     | Range             |                         |
+| [x]                     | CallFor           |                         |
 
 ### priceMessage keys
 
-|     | potential string values  | Variation               | Message                   |
-| --- | ------------------------ | ----------------------- | ------------------------- |
-| [x] | Regular                  | default price variation |                           |
-| [ ] | Clearance                |                         |                           |
-| [ ] | ClearanceRange           |                         |                           |
-| [x] | priceInCart              | InCartPlusCompare       |                           |
-| [ ] | wasNowPrice              | WasNow                  |                           |
-| [ ] | PriceDrop                |                         |                           |
-| [ ] | HotDeal                  |                         |                           |
-| [ ] | Range                    |                         |                           |
-| [x] | specialPrice             | CallFr                  |                           |
-| [x] | clearanceStylesAvailable |                         | Clearnce Styles Available |
+| potential string values | Variation                | Message                 |                           |
+|-------------------------|--------------------------|-------------------------|---------------------------|
+| [x]                     | Regular                  | default price variation |                           |
+| [ ]                     | Clearance                |                         |                           |
+| [ ]                     | ClearanceRange           |                         |                           |
+| [x]                     | priceInCart              | InCartPlusCompare       |                           |
+| [ ]                     | wasNowPrice              | WasNow                  |                           |
+| [ ]                     | PriceDrop                |                         |                           |
+| [ ]                     | HotDeal                  |                         |                           |
+| [ ]                     | Range                    |                         |                           |
+| [x]                     | specialPrice             | CallFr                  |                           |
+| [x]                     | clearanceStylesAvailable |                         | Clearnce Styles Available |
 
 ### price variation logic
 
-|     | PriceType         | priceMessage key | conditional rquirements                                                                                                              |
-| --- | ----------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| [ ] | clearance         |                  | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.clearance) && isStandard(priceObject))                      |
-| [ ] | clearanceRange    |                  | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.clearance) && isRange(priceObject))                         |
-| [ ] | inCartPlusCompare | priceInCart      | (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.inCartPlusCompare) && !isEmptyPrice(listPrice))                |
-| [ ] | callFor           | specialPrice     | (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.callFor))                                                      |
-| [ ] | drop              |                  | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.pricedrop) && isWasNow(priceObject))                        |
-| [ ] | hotDeal           |                  | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.hotDeal) && isWasNow(priceObject))                          |
-| [ ] | wasNow            | wasNowPrice      | (isEmpty(priceMessage) && !isEmptyPrice(listPrice) && !isEmptyPrice(salePrice) && priceToFloat(salePrice) < priceToFloat(listPrice)) |
-| [ ] | range             |                  | !isEmptyPrice(priceRange)                                                                                                            |
-| [ ] | standard          |                  | (!isEmptyPrice(salePrice) OR !isEmptyPrice(listPrice))                                                                               |
+| PriceType | priceMessage key  | conditional rquirements |                                                                                                                                      |
+|-----------|-------------------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| [ ]       | clearance         |                         | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.clearance) && isStandard(priceObject))                      |
+| [ ]       | clearanceRange    |                         | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.clearance) && isRange(priceObject))                         |
+| [ ]       | inCartPlusCompare | priceInCart             | (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.inCartPlusCompare) && !isEmptyPrice(listPrice))                |
+| [ ]       | callFor           | specialPrice            | (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.callFor))                                                      |
+| [ ]       | drop              |                         | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.pricedrop) && isWasNow(priceObject))                        |
+| [ ]       | hotDeal           |                         | (adbugKeys.length > 0 && messageContains(adbugKeys.join(","), AdbugTypes.hotDeal) && isWasNow(priceObject))                          |
+| [ ]       | wasNow            | wasNowPrice             | (isEmpty(priceMessage) && !isEmptyPrice(listPrice) && !isEmptyPrice(salePrice) && priceToFloat(salePrice) < priceToFloat(listPrice)) |
+| [ ]       | range             |                         | !isEmptyPrice(priceRange)                                                                                                            |
+| [ ]       | standard          |                         | (!isEmptyPrice(salePrice) OR !isEmptyPrice(listPrice))                                                                               |
 
 <br><br><br>
 
@@ -218,6 +218,33 @@ You can pass a product object via the product attribute and the card will build 
       savings: "30%"
     }
   };
+
+  window.soloSalePrice = {
+    ...window.someProd,
+    name: "ASICS® Women's Gel-Nimbus® 19 Running Shoes",
+    id: "3741079",
+    shortDescription:
+      "The ASICS® Women's Gel-Nimbus® 19 Running Shoes feature FluidFit® uppers and responsive FluidRide® midsoles.",
+    longDescription:
+      "Training for a race? Lace up the ASICS® Women's Gel-Nimbus® 19 Running Shoes and go the distance. As you put 1 foot in front of the other, jamming out to your favorite beats on your iPod®, your feet enjoy a responsive ride with a natural feel from the FluidRide® midsoles, and they stay cool and dry, thanks to the mesh FluidFit® uppers with ComforDry™ interior.",
+    sellable: "true",
+    colorCount: "3",
+    bvRating: "3",
+    manufacturer: "ASICS",
+    defaultSku: "3741321",
+    isSingleSkuProduct: false,
+    partNumber: "109470989",
+    seoURL: "/shop/pdp/asics®-womens-gel-nimbus®-19-running-shoes",
+    imageURL: "//assets.academy.com/mgen/17/10690517.jpg",
+    imageAltDescription: "ASICS® Women's Gel-Nimbus® 19 Running Shoes",
+    defaultSkuPrice: {
+      salePrice: "159.99",
+      priceMessage: "",
+      savings: "",
+      listPrice: ""
+    },
+    promoMessage: "Buy One Get One 50% Off - ONLINE ONLY"
+  };
 }
 
 <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -311,6 +338,15 @@ You can pass a product object via the product attribute and the card will build 
       product={window.wasNow}
       rating={4}
       price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.soloSalePrice}
+      rating={4}
       ctaLink="http://www.google.com"
     />
   </div>
