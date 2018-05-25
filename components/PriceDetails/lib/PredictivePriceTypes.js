@@ -5,8 +5,8 @@ import AdBugTypes from './AdBugTypes';
 const priceTypePriorities = [
   PriceTypes.inCartPlusCompare,
   PriceTypes.callFor,
-  PriceTypes.clearance,
   PriceTypes.clearanceRange,
+  PriceTypes.clearance,
   PriceTypes.drop,
   PriceTypes.hotDeal,
   PriceTypes.wasNow,

@@ -227,29 +227,12 @@ You can pass a product object via the product attribute and the card will build 
 
   window.soloSalePrice = {
     ...window.someProd,
-    name: "ASICS® Women's Gel-Nimbus® 19 Running Shoes",
-    id: "3741079",
-    shortDescription:
-      "The ASICS® Women's Gel-Nimbus® 19 Running Shoes feature FluidFit® uppers and responsive FluidRide® midsoles.",
-    longDescription:
-      "Training for a race? Lace up the ASICS® Women's Gel-Nimbus® 19 Running Shoes and go the distance. As you put 1 foot in front of the other, jamming out to your favorite beats on your iPod®, your feet enjoy a responsive ride with a natural feel from the FluidRide® midsoles, and they stay cool and dry, thanks to the mesh FluidFit® uppers with ComforDry™ interior.",
-    sellable: "true",
-    colorCount: "3",
-    bvRating: "3",
-    manufacturer: "ASICS",
-    defaultSku: "3741321",
-    isSingleSkuProduct: false,
-    partNumber: "109470989",
-    seoURL: "/shop/pdp/asics®-womens-gel-nimbus®-19-running-shoes",
-    imageURL: "//assets.academy.com/mgen/17/10690517.jpg",
-    imageAltDescription: "ASICS® Women's Gel-Nimbus® 19 Running Shoes",
-    defaultSkuPrice: {
-      salePrice: "159.99",
-      priceMessage: "",
-      savings: "",
-      listPrice: ""
-    },
-    promoMessage: "Buy One Get One 50% Off - ONLINE ONLY"
+    ...(ProductCard.failedOneJson || {})
+  };
+
+  window.failedClearance = {
+    ...window.someProd,
+    ...(ProductCard.failedTwoJson || {})
   };
 }
 
@@ -356,6 +339,15 @@ You can pass a product object via the product attribute and the card will build 
       horizontalMobile
       imageSmall
       product={window.soloSalePrice}
+      rating={4}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.failedClearance}
       rating={4}
       ctaLink="http://www.google.com"
     />
