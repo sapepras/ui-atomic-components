@@ -2,8 +2,8 @@
  * VERTICAL CARD
  */
 
-import { css } from "emotion";
-import { bp } from "../../../../../util/style";
+import { css } from 'emotion';
+import { bp } from '../../../../../util/style';
 
 const styles = {};
 
@@ -38,35 +38,35 @@ export const appendProperties = (cssClass, properties) => css`
  */
 
 // container starting dimensions
-const containerHeight = "50em"; // 500px @1200px vw
-const containerWidth = "33em"; // 330px @1200px vw
+const containerHeight = '50em'; // 500px @1200px vw
+const containerWidth = '33em'; // 330px @1200px vw
 
 // container-row starting dimensions
-const headerHeight = "27em"; // 270px @1200px vw
-const contentFooterHeight = "2.5em"; // 25px @1200px vw
-const footerHeight = "8.5em"; // 85px @1200px vw
+const headerHeight = '27em'; // 270px @1200px vw
+const contentFooterHeight = '2.5em'; // 25px @1200px vw
+const footerHeight = '8.5em'; // 85px @1200px vw
 
 // image starting values
-const imageWidth = "27em"; // 270px @1200px vw
-const imageLR = "2.8em"; // 28px @1200px vw
-const imageHeight = "27em"; // 270px @1200px vw
-const imageTB = "0"; // 0px @1200px vw
+const imageWidth = '27em'; // 270px @1200px vw
+const imageLR = '2.8em'; // 28px @1200px vw
+const imageHeight = '27em'; // 270px @1200px vw
+const imageTB = '0'; // 0px @1200px vw
 
-const smallImageWidth = "19em"; // 190px @1200px vw
-const smallImageLR = "7.3em"; // 73px @1200px vw
-const smallImageHeight = "19em"; // 190px @1200px vw
-const smallImageTB = "4.2em"; // 42px @1200px vw
+const smallImageWidth = '19em'; // 190px @1200px vw
+const smallImageLR = '7.3em'; // 73px @1200px vw
+const smallImageHeight = '19em'; // 190px @1200px vw
+const smallImageTB = '4.2em'; // 42px @1200px vw
 
 // padding defaults
-const paddingLR = "2.7em"; // 27px @1200px vw
-const paddingT = "2.5em"; // 25px @1200px vw
+const paddingLR = '2.7em'; // 27px @1200px vw
+const paddingT = '2.5em'; // 25px @1200px vw
 
 // default font sizes
-const mobileTextFontsize = "14px";
-const desktopTextFontSize = "16px"; // px @any vw
-const mobilePriceFontSize = "28px";
-const desktopSmallPriceFontSize = "36px";
-const desktopPriceFontSize = "42px"; // px @any vw
+const mobileTextFontsize = '14px';
+const desktopTextFontSize = '16px'; // px @any vw
+const mobilePriceFontSize = '28px';
+const desktopSmallPriceFontSize = '36px';
+const desktopPriceFontSize = '42px'; // px @any vw
 
 /**
  * Outer Most Container

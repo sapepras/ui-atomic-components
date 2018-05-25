@@ -1,12 +1,12 @@
-import PropTypes from "prop-types";
-import React, { Component } from "react";
-import { cx } from "emotion";
-import css, { appendProperties } from "./lib/css";
-import { productDetailPropTypes } from "../../../PriceDetails/lib/PropTypes";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { cx } from 'emotion';
+import css, { appendProperties } from './lib/css';
+import { productDetailPropTypes } from '../../../PriceDetails/lib/PropTypes';
 
-import Badge from "../../../Badge";
-import Rating from "../../../Rating";
-import PriceDetails from "../../../PriceDetails";
+import Badge from '../../../Badge';
+import Rating from '../../../Rating';
+import PriceDetails from '../../../PriceDetails';
 
 const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
 
@@ -21,7 +21,7 @@ class VerticalCard extends Component {
   }
 
   renderAutoMargins(autoMargins) {
-    return autoMargins ? { marginLeft: "auto", marginRight: "auto" } : null;
+    return autoMargins ? { marginLeft: 'auto', marginRight: 'auto' } : null;
   }
 
   renderCardClassName(desktopOnly, overrideCardHeightPx = false, overrideCardWidthPx = false) {

@@ -1,9 +1,9 @@
-import PropTypes from "prop-types";
-import React, { Component } from "react";
-import { cx } from "emotion";
-import VerticalCard from "./lib/VerticalCard";
-import HorizontalCard from "./lib/HorizontalCard";
-import vwMultipliers from "./lib/css";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { cx } from 'emotion';
+import VerticalCard from './lib/VerticalCard';
+import HorizontalCard from './lib/HorizontalCard';
+import vwMultipliers from './lib/css';
 
 const wcx = (style, styleOverride) =>
   styleOverride ? cx(style, styleOverride) : style;
@@ -23,7 +23,7 @@ class Card extends Component {
   renderMultiplier(cardType, styleOverride = {}) {
     if (
       cardType &&
-      typeof cardType === "string" &&
+      typeof cardType === 'string' &&
       vwMultipliers[cardType.toLowerCase()]
     ) {
       return wcx(vwMultipliers[cardType.toLowerCase()], styleOverride.rootVws);
@@ -47,7 +47,7 @@ class Card extends Component {
       clickAttributes = {
         onClick: thisOnClickGoTo,
         onKeyPress: thisOnClickGoTo,
-        style: { cursor: "pointer" }
+        style: { cursor: 'pointer' }
       };
     }
     return (

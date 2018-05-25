@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { css } from "react-emotion";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { css } from 'react-emotion';
 
 const inlineAnchorStyle = css`
    {
@@ -37,7 +37,7 @@ const iconTextAnchorStyle = css`
 const Anchor = props => {
   const { ariarole, href, auid, atype } = props; // eslint-disable-line
   let cname = inlineAnchorStyle;
-  if (atype === "inline") {
+  if (atype === 'inline') {
     cname = inlineAnchorStyle;
   } else {
     cname = iconTextAnchorStyle;
@@ -54,15 +54,15 @@ Anchor.propTypes = {
   /** link to external site */
   href: PropTypes.string,
   /** aria role  */
-  ariarole: PropTypes.oneOf(["link", "button"]),
+  ariarole: PropTypes.oneOf(['link', 'button']),
   children: PropTypes.string,
   auid: PropTypes.string.isRequired,
-  atype: PropTypes.oneOf(["inline", "icontext"])
+  atype: PropTypes.oneOf(['inline', 'icontext'])
 };
 
 Anchor.defaultProps = {
-  ariarole: "link",
-  atype: "inline"
+  ariarole: 'link',
+  atype: 'inline'
 };
 
 export default Anchor;

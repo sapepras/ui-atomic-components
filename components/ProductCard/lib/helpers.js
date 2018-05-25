@@ -1,17 +1,17 @@
-import { getFirstDefined, ellipsesText } from "../../../util/component";
-import { determinePriceType } from "../../PriceDetails/lib/PredictivePriceTypes";
+import { getFirstDefined, ellipsesText } from '../../../util/component';
+import { determinePriceType } from '../../PriceDetails/lib/PredictivePriceTypes';
 import {
   DuplicatePriceTypeMapToPriceType,
   getPriceTypeKeyByValue
-} from "../../PriceDetails/lib/PriceTypes";
-import MessageTypes from "../../PriceDetails/lib/MessageTypes";
-import AdBugTypes from "../../PriceDetails/lib/AdBugTypes";
+} from '../../PriceDetails/lib/PriceTypes';
+import MessageTypes from '../../PriceDetails/lib/MessageTypes';
+import AdBugTypes from '../../PriceDetails/lib/AdBugTypes';
 
 const MapPriceTypeToBadge = {
-  clearance: "Clearance",
-  clearanceRange: "Clearance",
-  drop: "Price Drop",
-  hotDeal: "Hot Deal"
+  clearance: 'Clearance',
+  clearanceRange: 'Clearance',
+  drop: 'Price Drop',
+  hotDeal: 'Hot Deal'
 };
 
 export const getCardProps = (product = {}, props = {}) => {
@@ -91,23 +91,23 @@ const getAdBugKeys = (adBugs = []) =>
     .map(adBug => adBug.trim().toLowerCase())
     .filter(adBugLCase => AdBugTypes[adBugLCase] && true);
 
-const getMessageTypeKeys = (priceMessages = "") => {
+const getMessageTypeKeys = (priceMessages = '') => {
   priceMessages
-    .split(",")
+    .split(',')
     .map(priceMessage => priceMessage.trim().toLowerCase())
     .filter(priceMessageLCase => MessageTypes[priceMessageLCase] && true)
-    .join(",");
+    .join(',');
 };
 
-const getPriceTypeKeys = (priceMessages = "") => {
+const getPriceTypeKeys = (priceMessages = '') => {
   const result = priceMessages
-    .split(",")
-    .map(priceMessage => priceMessage.replace(/\s/g, "").toLowerCase())
+    .split(',')
+    .map(priceMessage => priceMessage.replace(/\s/g, '').toLowerCase())
     .map(priceMessageLCase =>
         getPriceTypeKeyByValue(DuplicatePriceTypeMapToPriceType[priceMessageLCase])
           ? DuplicatePriceTypeMapToPriceType[priceMessageLCase]
           : priceMessageLCase)
     .filter(priceMessageLCase => getPriceTypeKeyByValue(priceMessageLCase) && true)
-    .join(",");
+    .join(',');
   return result;
 };

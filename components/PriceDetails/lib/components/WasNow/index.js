@@ -1,8 +1,8 @@
-import React from "react";
-import { css } from "emotion";
-import * as style from "../../css";
-import { productDetailChildPropTypes } from "../../PropTypes";
-import Price from "../Price";
+import React from 'react';
+import { css } from 'emotion';
+import * as style from '../../css';
+import { productDetailChildPropTypes } from '../../PropTypes';
+import Price from '../Price';
 
 const droppedPrice = css`
   font-size: 0.75em;

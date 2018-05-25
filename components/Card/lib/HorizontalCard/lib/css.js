@@ -2,21 +2,21 @@
  * HORIZONTAL CARD
  */
 
-import { css } from "emotion";
+import { css } from 'emotion';
 
 const styles = {};
 
 // padding defaults
-const paddingLR = "20px";
+const paddingLR = '20px';
 
 // image starting values
-const imageWidth = "100px";
-const imageLR = "20px";
-const imageHeight = "100px";
-const imageTB = "33px";
+const imageWidth = '100px';
+const imageLR = '20px';
+const imageHeight = '100px';
+const imageTB = '33px';
 
 // price
-const priceFontSize = "28px";
+const priceFontSize = '28px';
 
 /**
  * Base Syles

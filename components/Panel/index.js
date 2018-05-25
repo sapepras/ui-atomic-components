@@ -1,7 +1,7 @@
-import styled from "react-emotion";
-import React from "react";
-import PropTypes from "prop-types";
-import theme from "../../theme";
+import styled from 'react-emotion';
+import React from 'react';
+import PropTypes from 'prop-types';
+import theme from '../../theme';
 
 const Panel = ({ className, children }) => (
   <div theme={theme} className={className}>
@@ -24,6 +24,6 @@ Panel.propTypes = {
 };
 Panel.defaultProps = {
   children: null,
-  className: "default"
+  className: 'default'
 };
 export default styledPanel;

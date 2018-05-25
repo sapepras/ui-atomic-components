@@ -1,9 +1,9 @@
-import React from "react";
-import { expect } from "chai";
-import { mount } from "enzyme";
-import Anchor from "../index";
+import React from 'react';
+import { expect } from 'chai';
+import { mount } from 'enzyme';
+import Anchor from '../index';
 
-describe("Anchor", () => {
+describe('Anchor', () => {
   const props = {};
   let MountedAnchor;
 
@@ -14,8 +14,8 @@ describe("Anchor", () => {
     return MountedAnchor;
   };
 
-  it("always renders an a tag", () => {
-    expect(ShallowBtn().find("a")).to.have.length(1);
+  it('always renders an a tag', () => {
+    expect(ShallowBtn().find('a')).to.have.length(1);
   });
 
   // describe("the rendered a tag", () => {

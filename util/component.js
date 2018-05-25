@@ -1,6 +1,6 @@
 const isNull = val => val === null;
 const isUndefined = val => val === undefined;
-const isEmptyString = val => typeof val === "string" && val.trim() === "";
+const isEmptyString = val => typeof val === 'string' && val.trim() === '';
 
 export const getFirstDefined = (arrVals = [], opts = {}) => {
   let found = false;
@@ -21,7 +21,7 @@ export const getFirstDefined = (arrVals = [], opts = {}) => {
   return defaultValue;
 };
 
-export const ellipsesText = (text, maxCount = 25, ellipses = "...") => {
+export const ellipsesText = (text, maxCount = 25, ellipses = '...') => {
   if (!text) {
     return text;
   }

@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { css } from "emotion";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { css } from 'emotion';
 
 const container = css`
   position: static;
@@ -22,7 +22,7 @@ const stars = css`
 
 const Rating = (props = {}) => {
   let { value = 0, starColor, emptyStarColor, hideEmptyStars } = props; // eslint-disable-line
-  if (typeof value === "string" && value.trim().length === 0) {
+  if (typeof value === 'string' && value.trim().length === 0) {
     value = 0;
   }
   const rating = parseFloat(value) / 5 * 100; // eslint-disable-line
@@ -44,8 +44,8 @@ const Rating = (props = {}) => {
 };
 
 Rating.defaultProps = {
-  starColor: "#f4ce42",
-  emptyStarColor: "#6a6a6a",
+  starColor: '#f4ce42',
+  emptyStarColor: '#6a6a6a',
   hideEmptyStars: true
 };
 
