@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { productDetailPropTypes } from './lib/PropTypes';
 import PriceTypes from './lib/PriceTypes';
 import {
@@ -11,7 +11,7 @@ import {
   WasNow
 } from './lib/components';
 
-class PriceDetails extends Component {
+class PriceDetails extends PureComponent {
   render() {
     const { priceType = '' } = this.props;
     switch (priceType) {
