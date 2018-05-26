@@ -164,7 +164,7 @@ You can pass a product object via the product attribute and the card will build 
 
   window.clearanceRange = {
     ...window.someProd,
-    manufacturer: "ClearanceRange",
+    manufacturer: "New Balance",
     adBug: ["clearance"],
     colorCount: "4",
     defaultSkuPrice: {

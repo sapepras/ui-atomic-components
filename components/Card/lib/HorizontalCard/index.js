@@ -37,7 +37,6 @@ class HorizontalCard extends Component {
           </Badge>
         )}
         <div className={wcx(css.leftColumn, styleOverride.leftColumn)}>
-          {/* eslint-disable-line react/jsx-indent */}
           {!!image && (
             <img src={image} alt={imageAltText} className={wcx(css.image, styleOverride.image)} />
           )}
@@ -45,19 +44,14 @@ class HorizontalCard extends Component {
         </div>
 
         <div className={wcx(css.rightColumn, styleOverride.rightColumn)}>
-          {/* eslint-disable-line react/jsx-indent */}
           <div className={wcx(css.rowHeader, styleOverride.rowHeader)} />
-          {/* eslint-disable-line react/jsx-indent */}
           <div className={wcx(css.rowBody, styleOverride.rowBody)}>
-            {/* eslint-disable-line react/jsx-indent */}
             <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
               <div className={wcx(css.title, styleOverride.title)}>{title}</div>
               <div className={wcx(css.description, wcx.description)}>{description}</div>
-              {/* eslint-disable-line react/jsx-indent */}
             </div>
           </div>
           <div className={wcx(css.rowFooterOne, styleOverride.rowFooterOne)}>
-            {/* eslint-disable-line react/jsx-indent */}
             <div className={wcx(css.rating, styleOverride.rating)}>
               {!!rating && <Rating value={rating} />}
               {!!rating &&
@@ -76,12 +70,10 @@ class HorizontalCard extends Component {
                 </span>
               )}
             </div>
-            <div className={wcx(css.divider, styleOverride.divider)} />
-            {/* eslint-disable-line react/jsx-indent */}
           </div>
           <div className={wcx(css.rowFooterTwo, styleOverride.rowFooterTwo)}>
-            {/* eslint-disable-line react/jsx-indent */}
             <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
+              <div className={wcx(css.divider, styleOverride.divider)} />
               <div className={wcx(css.price, styleOverride.price)}>
                 {!!priceObject && <PriceDetails {...priceObject} />}
               </div>
