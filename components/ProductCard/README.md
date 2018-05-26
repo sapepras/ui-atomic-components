@@ -170,7 +170,7 @@ You can pass a product object via the product attribute and the card will build 
     defaultSkuPrice: {
       priceMessage: "some clearance range messaging"
     },
-    priceRange: "$ 14.98-$ 88.5"
+    priceRange: "$ 9.99 -$ 99.99"
   };
 
   window.priceDrop = {

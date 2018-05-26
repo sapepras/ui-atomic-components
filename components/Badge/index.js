@@ -10,9 +10,9 @@ const StyledDiv = styled('div')`
     disableAbsolutePositioning ? 'display: inline-block;' : ''} top: 0px;
   color: #fff;
   background-color: ${({ text }) => getBadgeColorHex(text)};
-  left: ${({ small }) => (small ? '20px' : '27px')};
+  left: ${({ small }) => (small ? '20px' : '2.2em')};
   font-size: ${({ small }) => (small ? '10px' : '14px')};
-  padding: ${({ small }) => (small ? '4px 7px;' : '7px 12px;')};
+  padding: ${({ small }) => (small ? '4px 7px;' : '6px 12px;')};
   font-family: Mallory-Black;
   text-transform: uppercase;
 `;
