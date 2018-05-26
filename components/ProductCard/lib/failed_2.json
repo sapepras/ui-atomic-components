@@ -1,0 +1,32 @@
+{
+    "name": "Nike Women's Flex Experience 6 Running Shoes",
+    "id": "3730159",
+    "shortDescription": "The Nike Women's Flex Experience 6 Running Shoes feature articulated rubber outsoles and regrind pods in portions of the outsoles.",
+    "sellable": "true",
+    "colorCount": "6",
+    "colorImages": [
+        "3730311#Pink#//assets.academy.com/mgen/43/10689743.jpg#N#48.74000#29.98000#59.99000",
+        "3730305#White#//assets.academy.com/mgen/47/10689747.jpg#N#48.74000#29.98000#59.99000",
+        "3730276#Black#//assets.academy.com/mgen/41/10689741.jpg#N#48.74000#59.99000#59.99000"
+    ],
+    "skuCount": "20",
+    "bvRating": "4",
+    "manufacturer": "Nike",
+    "defaultSku": "3730279",
+    "isSingleSkuProduct": false,
+    "partNumber": "109771335",
+    "seoURL": "/shop/pdp/nike-womens-flex-experience-6-running-shoes",
+    "imageURL": "//assets.academy.com/mgen/41/10689741.jpg",
+    "imageAltDescription": "Nike Women's Flex Experience 6 Running Shoes",
+    "defaultSkuPrice": {
+        "salePrice": "59.99",
+        "priceMessage": "clearanceStylesAvailable",
+        "savings": "",
+        "listPrice": ""
+    },
+    "priceRange": "29.98-59.99",
+    "promoMessage": "Buy One Get One 50% Off - ONLINE ONLY",
+    "adBug": [
+        "Clearance"
+    ]
+}

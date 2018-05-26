@@ -2,7 +2,7 @@ import React from 'react';
 import { productDetailChildPropTypes } from '../../PropTypes';
 import Price from '../Price';
 
-const XXXX = props => {
+const Range = props => {
   const { priceRange = '' } = props; // eslint-disable-line object-curly-newline
   const [minPrice, maxPrice] = priceRange.replace(/[^\d\.-]/g, '').split('-'); // eslint-disable-line no-useless-escape
 
@@ -19,6 +19,6 @@ const XXXX = props => {
   );
 };
 
-XXXX.propTypes = productDetailChildPropTypes;
+Range.propTypes = productDetailChildPropTypes;
 
-export default XXXX;
+export default Range;

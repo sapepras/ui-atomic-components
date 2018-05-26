@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { getCardProps } from './lib/helpers';
 import Card from '../Card';
 
-class ProductCard extends Component {
+// import failedOneJson from './lib/failed_1.json';
+// import failedTwoJson from './lib/failed_2.json';
+
+class ProductCard extends PureComponent {
   render() {
     const { product, ...remainingProps } = this.props; // eslint-disable-line
 
@@ -32,5 +35,8 @@ ProductCard.propTypes = {
   titleMaxCC: PropTypes.number,
   descriptionMaxCC: PropTypes.number
 };
+
+// ProductCard.failedOneJson = failedOneJson;
+// ProductCard.failedTwoJson = failedTwoJson;
 
 export default ProductCard;

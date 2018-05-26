@@ -2,12 +2,12 @@ import React from 'react';
 import { productDetailChildPropTypes } from '../../PropTypes';
 import Price from '../Price';
 
-const XXXX = props => {
+const Standard = props => {
   const { salePrice, listPrice, ...remainingProps } = props;
   const price = salePrice || listPrice;
   return price ? <Price price={price} {...remainingProps} /> : null;
 };
 
-XXXX.propTypes = productDetailChildPropTypes;
+Standard.propTypes = productDetailChildPropTypes;
 
-export default XXXX;
+export default Standard;

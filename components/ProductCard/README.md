@@ -48,45 +48,45 @@ You can pass a product object via the product attribute and the card will build 
 
 ### priceObject schema
 
-|     | priceObject properties   | type   | default val | desc | price variations used in |
-| --- | ------------------------ | ------ | ----------- | ---- | ------------------------ |
-| [x] | priceObject              | object |             |      |                          |
-| [x] | priceObject.promoMessage | string |             |      |                          |
-| [x] | priceObject.priceRange   | string |             |      |                          |
-| [x] | priceObject.priceMessage | string |             |      |                          |
-| [x] | priceObject.salePrice    | string |             |      |                          |
-| [x] | priceObject.listPrice    | string |             |      |                          |
+| priceObject properties | type                     | default val | desc | price variations used in |     |
+|------------------------|--------------------------|-------------|------|--------------------------|-----|
+| [x]                    | priceObject              | object      |      |                          |     |
+| [x]                    | priceObject.promoMessage | string      |      |                          |     |
+| [x]                    | priceObject.priceRange   | string      |      |                          |     |
+| [x]                    | priceObject.priceMessage | string      |      |                          |     |
+| [x]                    | priceObject.salePrice    | string      |      |                          |     |
+| [x]                    | priceObject.listPrice    | string      |      |                          |     |
 
 <br/>
 
 ### adBug values
 
-|     | potential string values | desc                    |
-| --- | ----------------------- | ----------------------- |
-| [x] | Standard                | default price variation |
-| [x] | Clearance               |                         |
-| [x] | ClearanceRange          |                         |
-| [x] | InCartPlusCompare       |                         |
-| [x] | WasNow                  |                         |
-| [x] | PriceDrop               |                         |
-| [x] | HotDeal                 |                         |
-| [x] | Range                   |                         |
-| [x] | CallFor                 |                         |
+| potential string values | desc              |                         |
+|-------------------------|-------------------|-------------------------|
+| [x]                     | Standard          | default price variation |
+| [x]                     | Clearance         |                         |
+| [x]                     | ClearanceRange    |                         |
+| [x]                     | InCartPlusCompare |                         |
+| [x]                     | WasNow            |                         |
+| [x]                     | PriceDrop         |                         |
+| [x]                     | HotDeal           |                         |
+| [x]                     | Range             |                         |
+| [x]                     | CallFor           |                         |
 
 ### priceMessage keys
 
-|     | potential string values  | Variation               | Message                   |
-| --- | ------------------------ | ----------------------- | ------------------------- |
-| [x] | Regular                  | default price variation |                           |
-| [ ] | Clearance                |                         |                           |
-| [ ] | ClearanceRange           |                         |                           |
-| [x] | priceInCart              | InCartPlusCompare       |                           |
-| [ ] | wasNowPrice              | WasNow                  |                           |
-| [ ] | PriceDrop                |                         |                           |
-| [ ] | HotDeal                  |                         |                           |
-| [ ] | Range                    |                         |                           |
-| [x] | specialPrice             | CallFr                  |                           |
-| [x] | clearanceStylesAvailable |                         | Clearnce Styles Available |
+| potential string values | Variation                | Message                 |                           |
+|-------------------------|--------------------------|-------------------------|---------------------------|
+| [x]                     | Regular                  | default price variation |                           |
+| [ ]                     | Clearance                |                         |                           |
+| [ ]                     | ClearanceRange           |                         |                           |
+| [x]                     | priceInCart              | InCartPlusCompare       |                           |
+| [ ]                     | wasNowPrice              | WasNow                  |                           |
+| [ ]                     | PriceDrop                |                         |                           |
+| [ ]                     | HotDeal                  |                         |                           |
+| [ ]                     | Range                    |                         |                           |
+| [x]                     | specialPrice             | CallFr                  |                           |
+| [x]                     | clearanceStylesAvailable |                         | Clearnce Styles Available |
 
 ### price variation logic
 
@@ -132,6 +132,7 @@ You can pass a product object via the product attribute and the card will build 
     title: "Shoes",
     itemId: "partNumber",
     imageAltDescription: "TEST ALT IMAGE",
+    seoURL: "http://www.google.com",
     adBug: [],
     defaultSkuPrice: {
       priceMessage: "standard messaging",
@@ -223,6 +224,16 @@ You can pass a product object via the product attribute and the card will build 
       listPrice: "$ 23",
       savings: "30%"
     }
+  };
+
+  window.soloSalePrice = {
+    ...window.someProd,
+    ...(ProductCard.failedOneJson || {})
+  };
+
+  window.failedClearance = {
+    ...window.someProd,
+    ...(ProductCard.failedTwoJson || {})
   };
 }
 
@@ -321,6 +332,24 @@ You can pass a product object via the product attribute and the card will build 
       product={window.wasNow}
       rating={4}
       price={"12.99"}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.soloSalePrice}
+      rating={4}
+      ctaLink="http://www.google.com"
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.failedClearance}
+      rating={4}
       ctaLink="http://www.google.com"
     />
   </div>
