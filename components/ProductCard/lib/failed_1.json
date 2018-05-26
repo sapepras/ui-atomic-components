@@ -1,0 +1,1104 @@
+{
+    "name": "Nike Women's Air Max Torch 4 Running Shoes",
+    "id": "1197059",
+    "shortDescription": "The Nike™ Women's Air Max Torch 4 Running Shoes feature Phylon midsoles with Air Max units for lightweight cushioning and mesh uppers for ventilation.",
+    "longDescription": "The Nike™ Women's Air Max Torch 4 Running Shoes provide support and cushioning while you run. These shoes are designed with Phylon midsoles with Max Air units in the heels for lightweight cushioning. Mesh uppers with synthetic overlays provide ventilation and support, while carbon rubber Waffle outsoles provide durability and traction. Molded EVA sock liners offer comfort and support underfoot. Reflective elements help ensure visibility in low light.",
+    "sellable": "true",
+    "colorCount": "4",
+    "bvRating": "4",
+    "manufacturer": "Nike",
+    "defaultSku": "4629796",
+    "isSingleSkuProduct": false,
+    "partNumber": "201766816",
+    "seoURL": "/shop/pdp/nike-womens-air-max-torch-4-running-shoes",
+    "imageURL": "//assets.academy.com/mgen/91/10829691.jpg",
+    "imageAltDescription": "Nike Women's Air Max Torch 4 Running Shoes",
+    "defaultSkuPrice": {
+        "salePrice": "79.99",
+        "priceMessage": "",
+        "savings": "",
+        "listPrice": ""
+    },
+    "priceRange": "69.99-79.99",
+    "promoMessage": "Buy One Get One 50% Off - ONLINE ONLY",
+    "sKUs": [
+        {
+            "skuId": "026896928",
+            "itemId": "1197065",
+            "imageURL": "//assets.academy.com/mgen/51/10353151.jpg",
+            "price": {
+                "salePrice": "",
+                "priceMessage": "priceInCart",
+                "savings": "",
+                "listPrice": "63.74"
+            },
+            "attributes": [
+                {
+                    "uniqueID": "35313",
+                    "name": "Tran_level",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "2"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35318",
+                    "name": "isSerialTrackedFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35319",
+                    "name": "labelPickFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "81813",
+                    "name": "vendorShipRestrictionFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35317",
+                    "name": "shipFromStoreFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "Y"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35818",
+                    "name": "WMSShipAloneFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35316",
+                    "name": "Diff3",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "WIDTHB"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35321",
+                    "name": "SafetyStockLevel",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35314",
+                    "name": "Diff1",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "TURQAQUA01"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35315",
+                    "name": "Diff2",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "FW6"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3707",
+                    "name": "Color",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "Hyper Jade/Black/Volt/Hyper Pink"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3716",
+                    "name": "Color",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3201",
+                    "name": "image_2",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/52/10353152.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3728",
+                    "name": "Shoe Size",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "6"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3724",
+                    "name": "image_3",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/53/10353153.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3725",
+                    "name": "image_4",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/54/10353154.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3729",
+                    "name": "Shoe Width",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "B"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3726",
+                    "name": "image_5",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/48/10353148.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3727",
+                    "name": "image_6",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/49/10353149.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3202",
+                    "name": "UPCcode",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0887232837198"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "skuId": "026896910",
+            "itemId": "1197072",
+            "imageURL": "//assets.academy.com/mgen/51/10353151.jpg",
+            "price": {
+                "salePrice": "",
+                "priceMessage": "priceInCart",
+                "savings": "",
+                "listPrice": "63.74"
+            },
+            "attributes": [
+                {
+                    "uniqueID": "35313",
+                    "name": "Tran_level",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "2"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35318",
+                    "name": "isSerialTrackedFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35319",
+                    "name": "labelPickFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "81813",
+                    "name": "vendorShipRestrictionFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35317",
+                    "name": "shipFromStoreFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "Y"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35818",
+                    "name": "WMSShipAloneFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35316",
+                    "name": "Diff3",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "WIDTHB"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35321",
+                    "name": "SafetyStockLevel",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35314",
+                    "name": "Diff1",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "TURQAQUA01"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35315",
+                    "name": "Diff2",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "FW5.5"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3707",
+                    "name": "Color",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "Hyper Jade/Black/Volt/Hyper Pink"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3716",
+                    "name": "Color",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3201",
+                    "name": "image_2",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/52/10353152.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3724",
+                    "name": "image_3",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/53/10353153.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3728",
+                    "name": "Shoe Size",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "5.5"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3725",
+                    "name": "image_4",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/54/10353154.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3729",
+                    "name": "Shoe Width",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "B"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3726",
+                    "name": "image_5",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/48/10353148.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3727",
+                    "name": "image_6",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/49/10353149.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3202",
+                    "name": "UPCcode",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0887232837181"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "skuId": "106478192",
+            "itemId": "3143209",
+            "imageURL": "//assets.academy.com/mgen/09/10536709.jpg",
+            "price": {
+                "salePrice": "",
+                "priceMessage": "",
+                "savings": "",
+                "listPrice": ""
+            },
+            "attributes": [
+                {
+                    "uniqueID": "35313",
+                    "name": "Tran_level",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "2"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35318",
+                    "name": "isSerialTrackedFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35319",
+                    "name": "labelPickFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "81813",
+                    "name": "vendorShipRestrictionFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35317",
+                    "name": "shipFromStoreFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "Y"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35314",
+                    "name": "Diff1",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "BLACKSIL"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35316",
+                    "name": "Diff3",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "WIDTHB"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35321",
+                    "name": "SafetyStockLevel",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35315",
+                    "name": "Diff2",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "FW6"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3707",
+                    "name": "Color",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "Black/White"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3716",
+                    "name": "Color",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "Black"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3728",
+                    "name": "Shoe Size",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "6"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3729",
+                    "name": "Shoe Width",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "B"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3726",
+                    "name": "image_5",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/10/10536710.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3202",
+                    "name": "UPCcode",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0883418849290"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "skuId": "106478256",
+            "itemId": "3143215",
+            "imageURL": "//assets.academy.com/mgen/09/10536709.jpg",
+            "price": {
+                "salePrice": "",
+                "priceMessage": "priceInCart",
+                "savings": "",
+                "listPrice": "63.74"
+            },
+            "attributes": [
+                {
+                    "uniqueID": "35313",
+                    "name": "Tran_level",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "2"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35318",
+                    "name": "isSerialTrackedFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35319",
+                    "name": "labelPickFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "81813",
+                    "name": "vendorShipRestrictionFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35317",
+                    "name": "shipFromStoreFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "Y"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35314",
+                    "name": "Diff1",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "BLACKSIL"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35316",
+                    "name": "Diff3",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "WIDTHB"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35321",
+                    "name": "SafetyStockLevel",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35315",
+                    "name": "Diff2",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "FW9"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3707",
+                    "name": "Color",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "Black/White"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3716",
+                    "name": "Color",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3728",
+                    "name": "Shoe Size",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "9"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3729",
+                    "name": "Shoe Width",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "B"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3726",
+                    "name": "image_5",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/10/10536710.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3202",
+                    "name": "UPCcode",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0883418849528"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "skuId": "106478264",
+            "itemId": "3143216",
+            "imageURL": "//assets.academy.com/mgen/09/10536709.jpg",
+            "price": {
+                "salePrice": "",
+                "priceMessage": "priceInCart",
+                "savings": "",
+                "listPrice": "63.74"
+            },
+            "attributes": [
+                {
+                    "uniqueID": "35313",
+                    "name": "Tran_level",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "2"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35318",
+                    "name": "isSerialTrackedFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35319",
+                    "name": "labelPickFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "81813",
+                    "name": "vendorShipRestrictionFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35317",
+                    "name": "shipFromStoreFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "Y"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35314",
+                    "name": "Diff1",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "BLACKSIL"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35316",
+                    "name": "Diff3",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "WIDTHB"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35321",
+                    "name": "SafetyStockLevel",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35315",
+                    "name": "Diff2",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "FW9.5"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3707",
+                    "name": "Color",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "Black/White"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3716",
+                    "name": "Color",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3728",
+                    "name": "Shoe Size",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "9.5"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3729",
+                    "name": "Shoe Width",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "B"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3726",
+                    "name": "image_5",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/10/10536710.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3202",
+                    "name": "UPCcode",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0883418849535"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "skuId": "106478272",
+            "itemId": "3143217",
+            "imageURL": "//assets.academy.com/mgen/09/10536709.jpg",
+            "price": {
+                "salePrice": "",
+                "priceMessage": "",
+                "savings": "",
+                "listPrice": ""
+            },
+            "attributes": [
+                {
+                    "uniqueID": "35313",
+                    "name": "Tran_level",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "2"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35318",
+                    "name": "isSerialTrackedFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35315",
+                    "name": "Diff2",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "FW10"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35319",
+                    "name": "labelPickFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "81813",
+                    "name": "vendorShipRestrictionFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "N"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35317",
+                    "name": "shipFromStoreFlag",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "Y"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35314",
+                    "name": "Diff1",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "BLACKSIL"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35316",
+                    "name": "Diff3",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "WIDTHB"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "35321",
+                    "name": "SafetyStockLevel",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3707",
+                    "name": "Color",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "Black/White"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3716",
+                    "name": "Color",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "Black"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3728",
+                    "name": "Shoe Size",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "10"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3729",
+                    "name": "Shoe Width",
+                    "usage": "Defining",
+                    "values": [
+                        {
+                            "value": "B"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3726",
+                    "name": "image_5",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "//assets.academy.com/mgen/10/10536710.jpg"
+                        }
+                    ]
+                },
+                {
+                    "uniqueID": "3202",
+                    "name": "UPCcode",
+                    "usage": "Descriptive",
+                    "values": [
+                        {
+                            "value": "0883418849542"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

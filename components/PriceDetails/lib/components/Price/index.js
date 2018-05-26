@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
@@ -26,7 +26,7 @@ const Wrapper = styled('span')`
     strikethrough ? 'font-weight: normal; font-family: MalloryCond-Medium;' : ''};
 `;
 
-class Price extends Component {
+class Price extends PureComponent {
   render() {
     const { price, color = 'black', strikethrough = false } = this.props;
     // eslint-disable-next-line no-useless-escape

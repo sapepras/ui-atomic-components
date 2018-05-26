@@ -2,7 +2,7 @@ import React from 'react';
 import { productDetailChildPropTypes } from '../../PropTypes';
 import * as css from '../../css';
 
-const XXXX = ({ listPrice }) => {
+const InCartPlusCompare = ({ listPrice }) => {
   if (!listPrice) {
     return null;
   }
@@ -25,6 +25,6 @@ const XXXX = ({ listPrice }) => {
   );
 };
 
-XXXX.propTypes = productDetailChildPropTypes;
+InCartPlusCompare.propTypes = productDetailChildPropTypes;
 
-export default XXXX;
+export default InCartPlusCompare;
