@@ -70,8 +70,8 @@ const mobileTitleTextFontsize = '12px';
 const desktopTitleTextFontSize = '14px'; // px @any vw
 
 // font sizes - title
-const mobileRatingTextFontsize = '11px';
-const desktopRatingTextFontSize = '12px'; // px @any vw
+const mobileRatingTextFontsize = '12px';
+const desktopRatingTextFontSize = '14px'; // px @any vw
 
 // font sizes price
 const mobilePriceFontSize = '28px';
@@ -292,6 +292,7 @@ styles.price = css`
   emo-ref: 'price';
   font-family: MalloryCond-Black;
   font-weight: bold;
+  line-height: 1;
   font-size: ${mobilePriceFontSize};
 
   @media only screen and (min-width: ${bp.md.min}) and (max-width: ${bp.md.max}) {

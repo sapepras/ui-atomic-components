@@ -13,7 +13,7 @@ const relative = css`
 `;
 
 const starsText = css`
-  letter-spacing: 0.5em;
+  letter-spacing: 0.2em;
   font-weight: bold;
 `;
 

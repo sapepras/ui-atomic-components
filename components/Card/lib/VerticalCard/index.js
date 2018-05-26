@@ -97,7 +97,7 @@ class VerticalCard extends Component {
           {!!rating &&
             !!colorCount &&
             !Number.isNaN(parseInt(colorCount, 10)) &&
-            parseInt(colorCount, 10) > 1 && <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>}
+            parseInt(colorCount, 10) > 1 && <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>}
           {!!colorCount &&
             !Number.isNaN(parseInt(colorCount, 10)) &&
             parseInt(colorCount, 10) > 1 && (
