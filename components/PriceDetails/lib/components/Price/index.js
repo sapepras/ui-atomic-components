@@ -5,8 +5,8 @@ import styled from 'react-emotion';
 const Small = styled('small')`
   display: inline-block;
   vertical-align: top;
-  padding-top: 0.2em;
-  font-size: 0.6em;
+  padding-top: 0.3em;
+  font-size: 0.45em;
   text-decoration: ${({ strikethrough }) => (strikethrough ? 'line-through' : 'none')};
 `;
 

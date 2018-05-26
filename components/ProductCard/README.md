@@ -6,43 +6,43 @@ You can pass a product object via the product attribute and the card will build 
 
 ### Attributes
 
-|     | attr                 | type    | default | desc                                                                                                           |
-| --- | -------------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------- |
-| [x] | cardType             | string  | default | Determines multiplier for responsive design: default, carousel, collection, grid, gridNarrow                   |
-| [x] | title                | string  |         | title text of card                                                                                             |
-| [x] | titleMaxCC           | integer | 25      | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
-| [x] | description          | string  |         | text describing item                                                                                           |
-| [x] | descriptionMaxCC     | integer | 40      | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
-| [x] | image                | string  |         | url pointing to image to be rendered in top of card                                                            |
-| [x] | imageAltText         | string  |         | Specifies an alternate text for the image.                                                                     |
-| [x] | imageWide            | boolean | false   | stretches the image to take up maximum header room, no padding                                                 |
-| [x] | imageSmall           | boolean | false   | adds extra padding around the image                                                                            |
-| [x] | rating               | float   |         | number of stars to show as colored for rating view                                                             |
-| [ ] | badge                | string  |         | Exact implementation being determined                                                                          |
-| [x] | overrideCardHeightPx | float   |         | Expected value in pixels. When screen is 1200px card height will be overrideCardHeightPx and scale accordingly |
-| [x] | overrideCardWidthPx  | float   |         | Expected value in pixels. When screen is 1200px card width will be overrideCardWidthPx and scale accordingly   |
-| [x] | priceObject          | object  |         | Exact implementation being determined                                                                          |
-| [x] | product              | object  |         | product json object as returned by api - details in below table                                                |
+| attr | type                 | default | desc    |                                                                                                                |
+|------|----------------------|---------|---------|----------------------------------------------------------------------------------------------------------------|
+| [x]  | cardType             | string  | default | Determines multiplier for responsive design: default, carousel, collection, grid, gridNarrow                   |
+| [x]  | title                | string  |         | title text of card                                                                                             |
+| [x]  | titleMaxCC           | integer | 25      | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
+| [x]  | description          | string  |         | text describing item                                                                                           |
+| [x]  | descriptionMaxCC     | integer | 40      | Any characters passing MaxCC will be truncated and replaced with an ellipses ...                               |
+| [x]  | image                | string  |         | url pointing to image to be rendered in top of card                                                            |
+| [x]  | imageAltText         | string  |         | Specifies an alternate text for the image.                                                                     |
+| [x]  | imageWide            | boolean | false   | stretches the image to take up maximum header room, no padding                                                 |
+| [x]  | imageSmall           | boolean | false   | adds extra padding around the image                                                                            |
+| [x]  | rating               | float   |         | number of stars to show as colored for rating view                                                             |
+| [ ]  | badge                | string  |         | Exact implementation being determined                                                                          |
+| [x]  | overrideCardHeightPx | float   |         | Expected value in pixels. When screen is 1200px card height will be overrideCardHeightPx and scale accordingly |
+| [x]  | overrideCardWidthPx  | float   |         | Expected value in pixels. When screen is 1200px card width will be overrideCardWidthPx and scale accordingly   |
+| [x]  | priceObject          | object  |         | Exact implementation being determined                                                                          |
+| [x]  | product              | object  |         | product json object as returned by api - details in below table                                                |
 
 <br/>
 
 ### product schema
 
-|     | product properties                   | Maps to attr             | type            | desc                                                              |
-| --- | ------------------------------------ | ------------------------ | --------------- | ----------------------------------------------------------------- |
-|     | product                              |                          | object          | product json object as returned by api                            |
-| [x] | product.manufacturer                 | title                    | string          | text describing item                                              |
-| [x] | product.name                         | description              | string          | text describing item                                              |
-| [x] | product.imageURL                     | image                    | string          | url pointing to image to be rendered in top of card               |
-| [x] | product.imageAltDescription          | imageAltText             | string          | Specifies an alternate text for the image.                        |
-| [ ] | product.bvRating                     | rating                   | string          | Partially implemented.                                            |
-| [ ] | product.adBug                        | badge                    | array of string | Partially implemented.                                            |
-| [x] | product.promoMessage                 | priceObject.promoMessage | string          |                                                                   |
-| [x] | product.priceRange                   | priceObject.priceRange   | string          |                                                                   |
-|     | product.defaultSkuPrice              |                          | object          |                                                                   |
-| [x] | product.defaultSkuPrice.priceMessage | priceObject.priceMessage | string          | contains misclaneious text data for a variety of price variations |
-| [x] | product.defaultSkuPrice.salePrice    | priceObject.salePrice    | string          |                                                                   |
-| [x] | product.defaultSkuPrice.listPrice    | priceObject.listPrice    | string          |                                                                   |
+| product properties      | Maps to attr                         | type                     | desc                                   |                                                                   |
+|-------------------------|--------------------------------------|--------------------------|----------------------------------------|-------------------------------------------------------------------|
+| product                 |                                      | object                   | product json object as returned by api |                                                                   |
+| [x]                     | product.manufacturer                 | title                    | string                                 | text describing item                                              |
+| [x]                     | product.name                         | description              | string                                 | text describing item                                              |
+| [x]                     | product.imageURL                     | image                    | string                                 | url pointing to image to be rendered in top of card               |
+| [x]                     | product.imageAltDescription          | imageAltText             | string                                 | Specifies an alternate text for the image.                        |
+| [ ]                     | product.bvRating                     | rating                   | string                                 | Partially implemented.                                            |
+| [ ]                     | product.adBug                        | badge                    | array of string                        | Partially implemented.                                            |
+| [x]                     | product.promoMessage                 | priceObject.promoMessage | string                                 |                                                                   |
+| [x]                     | product.priceRange                   | priceObject.priceRange   | string                                 |                                                                   |
+| product.defaultSkuPrice |                                      | object                   |                                        |                                                                   |
+| [x]                     | product.defaultSkuPrice.priceMessage | priceObject.priceMessage | string                                 | contains misclaneious text data for a variety of price variations |
+| [x]                     | product.defaultSkuPrice.salePrice    | priceObject.salePrice    | string                                 |                                                                   |
+| [x]                     | product.defaultSkuPrice.listPrice    | priceObject.listPrice    | string                                 |                                                                   |
 
 <br/>
 
@@ -90,17 +90,17 @@ You can pass a product object via the product attribute and the card will build 
 
 ### price variation logic
 
-|     | PriceType         | priceMessage key | conditional rquirements                                                                                                              |
-| --- | ----------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| [ ] | clearance         |                  | (adBugKeys.length > 0 && messageContains(adBugKeys.join(","), AdBugTypes.clearance) && isStandard(priceObject))                      |
-| [ ] | clearanceRange    |                  | (adBugKeys.length > 0 && messageContains(adBugKeys.join(","), AdBugTypes.clearance) && isRange(priceObject))                         |
-| [ ] | inCartPlusCompare | priceInCart      | (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.inCartPlusCompare) && !isEmptyPrice(listPrice))                |
-| [ ] | callFor           | specialPrice     | (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.callFor))                                                      |
-| [ ] | drop              |                  | (adBugKeys.length > 0 && messageContains(adBugKeys.join(","), AdBugTypes.pricedrop) && isWasNow(priceObject))                        |
-| [ ] | hotDeal           |                  | (adBugKeys.length > 0 && messageContains(adBugKeys.join(","), AdBugTypes.hotDeal) && isWasNow(priceObject))                          |
-| [ ] | wasNow            | wasNowPrice      | (isEmpty(priceMessage) && !isEmptyPrice(listPrice) && !isEmptyPrice(salePrice) && priceToFloat(salePrice) < priceToFloat(listPrice)) |
-| [ ] | range             |                  | !isEmptyPrice(priceRange)                                                                                                            |
-| [ ] | standard          |                  | (!isEmptyPrice(salePrice) OR !isEmptyPrice(listPrice))                                                                               |
+| PriceType | priceMessage key  | conditional rquirements |                                                                                                                                      |
+|-----------|-------------------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| [ ]       | clearance         |                         | (adBugKeys.length > 0 && messageContains(adBugKeys.join(","), AdBugTypes.clearance) && isStandard(priceObject))                      |
+| [ ]       | clearanceRange    |                         | (adBugKeys.length > 0 && messageContains(adBugKeys.join(","), AdBugTypes.clearance) && isRange(priceObject))                         |
+| [ ]       | inCartPlusCompare | priceInCart             | (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.inCartPlusCompare) && !isEmptyPrice(listPrice))                |
+| [ ]       | callFor           | specialPrice            | (!isEmpty(priceTypeKeys) && messageContains(priceTypeKeys, PriceTypes.callFor))                                                      |
+| [ ]       | drop              |                         | (adBugKeys.length > 0 && messageContains(adBugKeys.join(","), AdBugTypes.pricedrop) && isWasNow(priceObject))                        |
+| [ ]       | hotDeal           |                         | (adBugKeys.length > 0 && messageContains(adBugKeys.join(","), AdBugTypes.hotDeal) && isWasNow(priceObject))                          |
+| [ ]       | wasNow            | wasNowPrice             | (isEmpty(priceMessage) && !isEmptyPrice(listPrice) && !isEmptyPrice(salePrice) && priceToFloat(salePrice) < priceToFloat(listPrice)) |
+| [ ]       | range             |                         | !isEmptyPrice(priceRange)                                                                                                            |
+| [ ]       | standard          |                         | (!isEmptyPrice(salePrice) OR !isEmptyPrice(listPrice))                                                                               |
 
 <br><br><br>
 
@@ -125,10 +125,11 @@ You can pass a product object via the product attribute and the card will build 
 {
   window.someProd = {
     name:
-      "this is a long description this is a long description this is a long description this is a long description this is a long description",
+      "Sed ut perspiciatis unde omnis este natus error sit volupt accusantiu laudantium cusantiu",
     id: "10001",
     parentCategoryId: "10001",
-    manufacturer: "Under Armour",
+    manufacturer: "Wenzel",
+    colorCount: 2,
     title: "Shoes",
     itemId: "partNumber",
     imageAltDescription: "TEST ALT IMAGE",
@@ -136,7 +137,7 @@ You can pass a product object via the product attribute and the card will build 
     adBug: [],
     defaultSkuPrice: {
       priceMessage: "standard messaging",
-      listPrice: "$ 23"
+      listPrice: "$ 99.99"
     }
   };
 
@@ -243,11 +244,9 @@ You can pass a product object via the product attribute and the card will build 
       horizontalMobile
       imageSmall
       product={window.someProd}
-      rating={4}
+      rating={5}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      titleMaxCC={7}
-      descriptionMaxCC={7}
       cardType="default"
     />
   </div>
@@ -259,7 +258,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="carousel"
+      cardType="default"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -270,7 +269,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="collection"
+      cardType="default"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -281,7 +280,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="grid"
+      cardType="default"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -292,7 +291,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="gridnarrow"
+      cardType="default"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -303,6 +302,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
+      cardType="default"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -313,6 +313,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
+      cardType="default"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -323,6 +324,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
+      cardType="default"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -333,6 +335,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
+      cardType="default"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -342,6 +345,7 @@ You can pass a product object via the product attribute and the card will build 
       product={window.soloSalePrice}
       rating={4}
       ctaLink="http://www.google.com"
+      cardType="default"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -351,6 +355,7 @@ You can pass a product object via the product attribute and the card will build 
       product={window.failedClearance}
       rating={4}
       ctaLink="http://www.google.com"
+      cardType="default"
     />
   </div>
 </div>;

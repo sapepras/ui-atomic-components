@@ -15,7 +15,7 @@ export const getCardProps = (product = {}, props = {}) => {
   const priceObject = determinePriceObject(props, product);
   const mergedProps = {
     title: ellipsesText(determineTitle(props, product), props.titleMaxCC || 25),
-    description: ellipsesText(determineDescription(props, product), props.descriptionMaxCC || 40),
+    description: ellipsesText(determineDescription(props, product), props.descriptionMaxCC || 100),
     image: determineImage(props, product),
     imageAltText: determineImageAltText(props, product),
     rating: determineRating(props, product),

@@ -44,7 +44,7 @@ const containerWidth = '33em'; // 330px @1200px vw
 // container-row starting dimensions
 const headerHeight = '27em'; // 270px @1200px vw
 const contentFooterHeight = '2.5em'; // 25px @1200px vw
-const footerHeight = '8.5em'; // 85px @1200px vw
+const footerHeight = '8.2em'; // 85px @1200px vw
 
 // image starting values
 const imageWidth = '27em'; // 270px @1200px vw
@@ -58,22 +58,32 @@ const smallImageHeight = '19em'; // 190px @1200px vw
 const smallImageTB = '4.2em'; // 42px @1200px vw
 
 // padding defaults
-const paddingLR = '2.7em'; // 27px @1200px vw
+const paddingLR = '2.9em'; // 27px @1200px vw
 const paddingT = '2.5em'; // 25px @1200px vw
 
-// default font sizes
+// font sizes
 const mobileTextFontsize = '14px';
 const desktopTextFontSize = '16px'; // px @any vw
+
+// font sizes - title
+const mobileTitleTextFontsize = '12px';
+const desktopTitleTextFontSize = '14px'; // px @any vw
+
+// font sizes - title
+const mobileRatingTextFontsize = '11px';
+const desktopRatingTextFontSize = '12px'; // px @any vw
+
+// font sizes price
 const mobilePriceFontSize = '28px';
 const desktopSmallPriceFontSize = '36px';
-const desktopPriceFontSize = '42px'; // px @any vw
+const desktopPriceFontSize = '40px'; // px @any vw
 
 /**
  * Outer Most Container
  */
 
 styles.container = css`
-  emo-ref: "container";
+  emo-ref: 'container';
   position: relative;
   display: flex;
   flex-direction: column;
@@ -89,13 +99,13 @@ styles.container = css`
 
 styles.card = css`
   ${styles.container};
-  emo-ref: "card";
+  emo-ref: 'card';
   background: #fff;
   text-align: left;
   border-radius: 6px;
-  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.07);
   overflow: hidden;
-  font-family: Mallory-Black, Helvetica, sans-serif;
+  font-family: Mallory, Helvetica, sans-serif;
   color: #33333;
 `;
 
@@ -104,7 +114,7 @@ styles.card = css`
  */
 
 styles.header = css`
-  emo-ref: "header";
+  emo-ref: 'header';
   order: 0;
   flex: 0 0 auto;
   align-self: stretch;
@@ -112,7 +122,7 @@ styles.header = css`
 `;
 
 styles.body = css`
-  emo-ref: "body";
+  emo-ref: 'body';
   order: 0;
   flex: 1 0 auto;
   align-self: stretch;
@@ -121,14 +131,14 @@ styles.body = css`
 
 styles.contentFooter = css`
   ${styles.text};
-  emo-ref: "contentFooter";
+  emo-ref: 'contentFooter';
   padding-left: ${paddingLR};
   padding-right: ${paddingLR};
   height: ${contentFooterHeight};
 `;
 
 styles.footer = css`
-  emo-ref: "footer";
+  emo-ref: 'footer';
   order: 0;
   flex: 0 0 auto;
   align-self: stretch;
@@ -141,7 +151,7 @@ styles.footer = css`
 
 styles.cardDesktopOnly = css`
   ${styles.card};
-  emo-ref: "cardDesktopOnly";
+  emo-ref: 'cardDesktopOnly';
   display: none;
 
   @media only screen and (min-width: 768px) {
@@ -154,7 +164,7 @@ styles.cardDesktopOnly = css`
  */
 
 styles.imageWide = css`
-  emo-ref: "imageWide";
+  emo-ref: 'imageWide';
   display: block;
   max-width: 100%;
   height: auto;
@@ -163,7 +173,7 @@ styles.imageWide = css`
 
 styles.image = css`
   ${styles.imageWide};
-  emo-ref: "image";
+  emo-ref: 'image';
   width: ${imageWidth};
   max-width: ${imageWidth};
   margin-left: ${imageLR};
@@ -177,7 +187,7 @@ styles.image = css`
 
 styles.imageSmall = css`
   ${styles.imageWide};
-  emo-ref: "imageSmall";
+  emo-ref: 'imageSmall';
   width: ${smallImageWidth};
   max-width: ${smallImageWidth};
   margin-left: ${smallImageLR};
@@ -191,7 +201,7 @@ styles.imageSmall = css`
 
 styles.emptyImage = css`
   ${styles.imageSmall};
-  emo-ref: "emptyImage";
+  emo-ref: 'emptyImage';
   background-color: #d8d8d8;
   display: inline-block;
 `;
@@ -201,14 +211,14 @@ styles.emptyImage = css`
  */
 
 styles.contentPaddingLR = css`
-  emo-ref: "contentPaddingLR";
+  emo-ref: 'contentPaddingLR';
   padding-left: ${paddingLR};
   padding-right: ${paddingLR};
 `;
 
 styles.content = css`
   ${styles.contentPaddingLR};
-  emo-ref: "content";
+  emo-ref: 'content';
   padding-top: ${paddingT};
   padding-bottom: 5px;
   height: 100%;
@@ -221,6 +231,7 @@ styles.content = css`
 
 styles.text = css`
   emo-ref: "text";
+  font-family: Mallory-Book;
   font-size: ${mobileTextFontsize};
 
   @media only screen and (min-width: ${bp.md.min}) {
@@ -229,22 +240,48 @@ styles.text = css`
 }
 `;
 
+styles.titleText = css`
+  emo-ref: "titleText";
+  font-family: Mallory-Book;
+  font-size: ${mobileTitleTextFontsize};
+
+  @media only screen and (min-width: ${bp.md.min}) {
+    font-size: ${desktopTitleTextFontSize};
+  }
+}
+`;
+
+styles.ratingText = css`
+  emo-ref: "ratingText";
+  font-family: Mallory-Book;
+  font-size: ${mobileRatingTextFontsize};
+
+  @media only screen and (min-width: ${bp.md.min}) {
+    font-size: ${desktopRatingTextFontSize};
+  }
+}
+`;
+
 styles.description = css`
   ${styles.text};
-  emo-ref: "description";
+  emo-ref: 'description';
+  line-height: 1.25;
 `;
 
 styles.title = css`
-  ${styles.text};
-  emo-ref: "title";
+  ${styles.titleText};
+  emo-ref: 'title';
   color: #7f7f7f;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  line-height: 1.43;
+  letter-spacing: 0.7px;
 `;
 
 styles.rating = css`
-  ${styles.text};
-  emo-ref: "rating";
+  ${styles.ratingText};
+  emo-ref: 'rating';
 `;
 
 /**
@@ -252,7 +289,8 @@ styles.rating = css`
  */
 
 styles.price = css`
-  emo-ref: "price";
+  emo-ref: 'price';
+  font-family: MalloryCond-Black;
   font-weight: bold;
   font-size: ${mobilePriceFontSize};
 
@@ -266,14 +304,14 @@ styles.price = css`
 `;
 
 styles.divider = css`
-  emo-ref: "divider";
+  emo-ref: 'divider';
   width: 100%;
   border-bottom: 1px solid rgb(225, 225, 225);
-  margin: 2px 0 7px;
+  margin: 2px 0 5px;
 `;
 
 styles.messageText = css`
-  emo-ref: "messageText";
+  emo-ref: 'messageText';
   font-family: Mallory;
   font-size: 12px;
   color: #585858;
