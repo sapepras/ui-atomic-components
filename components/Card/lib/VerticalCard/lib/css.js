@@ -91,7 +91,6 @@ styles.container = css`
   justify-content: space-between;
   align-content: stretch;
   align-items: flex-start;
-  /* border: 1px solid red; */
 
   height: ${containerHeight};
   width: ${containerWidth};
@@ -107,7 +106,7 @@ styles.card = css`
   overflow: hidden;
   font-family: Mallory, Helvetica, sans-serif;
   color: #33333;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 `;
 
 /**
