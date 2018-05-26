@@ -3,7 +3,7 @@ import { productDetailChildPropTypes } from '../../PropTypes';
 import Price from '../Price';
 import * as css from '../../css';
 
-const XXXX = props => {
+const Clearance = props => {
   const { listPrice, salePrice, priceMessage } = props;
   const price = salePrice || listPrice;
   return price ? (
@@ -14,6 +14,6 @@ const XXXX = props => {
   ) : null;
 };
 
-XXXX.propTypes = productDetailChildPropTypes;
+Clearance.propTypes = productDetailChildPropTypes;
 
-export default XXXX;
+export default Clearance;

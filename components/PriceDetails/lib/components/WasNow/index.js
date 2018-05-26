@@ -9,7 +9,7 @@ const droppedPrice = css`
   display: inline-block;
 `;
 
-const XXXX = props => {
+const WasNow = props => {
   const { salePrice, listPrice, savings } = props;
   return (
     <div>
@@ -29,6 +29,6 @@ const XXXX = props => {
   );
 };
 
-XXXX.propTypes = productDetailChildPropTypes;
+WasNow.propTypes = productDetailChildPropTypes;
 
-export default XXXX;
+export default WasNow;
