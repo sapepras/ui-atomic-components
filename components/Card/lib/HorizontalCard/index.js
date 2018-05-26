@@ -25,13 +25,12 @@ class HorizontalCard extends Component {
       rating,
       priceObject,
       badge,
-      auid,
       hideOnDesktop,
       colorCount,
       styleOverride = {}
     } = this.props; // eslint-disable-line object-curly-newline
     return (
-      <div className={this.renderCardClassName(hideOnDesktop, styleOverride)} data-auid={auid}>
+      <div className={this.renderCardClassName(hideOnDesktop, styleOverride)}>
         {!!badge && (
           <Badge small text={badge}>
             {badge}
@@ -102,7 +101,6 @@ HorizontalCard.propTypes = {
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   priceObject: PropTypes.shape(productDetailPropTypes),
   badge: PropTypes.string,
-  auid: PropTypes.string,
   hideOnDesktop: PropTypes.bool,
   colorCount: PropTypes.string,
   styleOverride: PropTypes.object

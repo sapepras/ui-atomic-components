@@ -52,7 +52,6 @@ class VerticalCard extends Component {
       rating,
       priceObject,
       badge,
-      auid,
       desktopOnly,
       overrideCardHeightPx,
       overrideCardWidthPx,
@@ -67,7 +66,6 @@ class VerticalCard extends Component {
           styleOverride.card
         )}
         style={this.renderAutoMargins(autoMargins)}
-        data-auid={auid}
       >
         {!!badge && <Badge text={badge}>{badge}</Badge>}
         {/* eslint-disable-next-line react/jsx-indent */}
@@ -133,7 +131,6 @@ VerticalCard.propTypes = {
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   priceObject: PropTypes.shape(productDetailPropTypes),
   badge: PropTypes.string,
-  auid: PropTypes.string,
   desktopOnly: PropTypes.bool,
   overrideCardHeightPx: PropTypes.number,
   overrideCardWidthPx: PropTypes.number,
