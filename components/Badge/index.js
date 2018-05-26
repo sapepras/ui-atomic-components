@@ -15,6 +15,7 @@ const StyledDiv = styled('div')`
   padding: ${({ small }) => (small ? '4px 7px;' : '6px 12px;')};
   font-family: Mallory-Black;
   text-transform: uppercase;
+  line-height: 1;
 `;
 
 const Badge = props => <StyledDiv {...props}>{props.text}</StyledDiv>;
