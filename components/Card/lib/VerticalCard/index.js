@@ -13,7 +13,6 @@ const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) 
 class VerticalCard extends Component {
   getCardTypeStyles(cardType) {
     const result = cardType && allStyles[cardType] ? allStyles[cardType] : allStyles.standard;
-    console.log(result);
     return result;
   }
 
