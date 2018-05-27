@@ -65,12 +65,17 @@ class VerticalCard extends Component {
       cardType
     } = this.props; // eslint-disable-line object-curly-newline
     const cardTypeStyles = this.getCardTypeStyles(cardType);
+    const small = cardType === 'hold240';
     return (
       <div
         className={wcx(this.renderCardClassName(desktopOnly, overrideCardHeightPx, overrideCardWidthPx, cardType), styleOverride.card)}
         style={this.renderAutoMargins(autoMargins)}
       >
-        {!!badge && <Badge text={badge}>{badge}</Badge>}
+        {!!badge && (
+          <Badge text={badge} small={small}>
+            {badge}
+          </Badge>
+        )}
         {/* eslint-disable-next-line react/jsx-indent */}
         <div className={wcx(cardTypeStyles.header, styleOverride.header)}>
           {!!image && <img src={image} alt={imageAltText} className={this.renderImageClassName(imageWide, imageSmall, styleOverride, cardType)} />}

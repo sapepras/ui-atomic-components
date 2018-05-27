@@ -50,10 +50,10 @@ const rootVws = {
     xl: '0.78125vw' // px
   },
   hold240: {
-    xs: '7px', // vw
-    sm: '7px', // vw
-    md: '0.908173562vw', // md: "1.009081736vw", // vw
-    lg: '0.834028357vw', // px
+    xs: '10px', // vw
+    sm: '10px', // vw
+    md: '10px', // md: "1.009081736vw", // vw
+    lg: '10px', // px
     xl: '10px' // px
   }
 };

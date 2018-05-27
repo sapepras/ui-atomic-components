@@ -34,44 +34,44 @@ const styles = {};
  */
 
 // container starting dimensions
-const containerHeight = '50em'; // 500px @1200px vw
-const containerWidth = '33em'; // 330px @1200px vw
+const containerHeight = '38.4em'; // 500px @1200px vw
+const containerWidth = '24em'; // 330px @1200px vw
 
 // container-row starting dimensions
-const headerHeight = '27em'; // 270px @1200px vw
+const headerHeight = '19.6em'; // 270px @1200px vw
 const contentFooterHeight = '2.5em'; // 25px @1200px vw
-const footerHeight = '8.2em'; // 85px @1200px vw
+const footerHeight = '8em'; // 85px @1200px vw
 
 // image starting values
-const imageWidth = '27em'; // 270px @1200px vw
-const imageLR = '2.8em'; // 28px @1200px vw
-const imageHeight = '27em'; // 270px @1200px vw
+const imageWidth = '19.6em'; // 270px @1200px vw
+const imageLR = '2em'; // 28px @1200px vw
+const imageHeight = '19.6em'; // 270px @1200px vw
 const imageTB = '0'; // 0px @1200px vw
 
-const smallImageWidth = '19em'; // 190px @1200px vw
-const smallImageLR = '7.3em'; // 73px @1200px vw
-const smallImageHeight = '19em'; // 190px @1200px vw
-const smallImageTB = '4.2em'; // 42px @1200px vw
+const smallImageWidth = '15em'; // 190px @1200px vw
+const smallImageLR = '4.4em'; // 73px @1200px vw
+const smallImageHeight = '15em'; // 190px @1200px vw
+const smallImageTB = '2.3em'; // 42px @1200px vw
 
 // padding defaults
-const paddingLR = '2.9em'; // 27px @1200px vw
-const paddingT = '2.5em'; // 25px @1200px vw
+const paddingLR = '2em'; // 27px @1200px vw
+const paddingT = '0.5em'; // 25px @1200px vw
 
 // font sizes
 const mobileTextFontsize = '14px';
-const desktopTextFontSize = '16px'; // px @any vw
+const desktopTextFontSize = '14px'; // px @any vw
 
 // font sizes - title
-const mobileTitleTextFontsize = '12px';
+const mobileTitleTextFontsize = '14px';
 const desktopTitleTextFontSize = '14px'; // px @any vw
 
 // font sizes - title
 const mobileRatingTextFontsize = '12px';
-const desktopRatingTextFontSize = '14px'; // px @any vw
+const desktopRatingTextFontSize = '12px'; // px @any vw
 
 // font sizes price
-const mobilePriceFontSize = '28px';
-const desktopSmallPriceFontSize = '36px';
+const mobilePriceFontSize = '40px';
+const desktopSmallPriceFontSize = '40px';
 const desktopPriceFontSize = '40px'; // px @any vw
 
 /**
@@ -98,7 +98,7 @@ styles.card = css`
   background: #fff;
   text-align: left;
   border-radius: 6px;
-  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 0 rgba(0, 0, 0, 0.04), 0 0 2px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
   font-family: Mallory, Helvetica, sans-serif;
   color: #33333;
@@ -310,7 +310,7 @@ styles.divider = css`
 styles.messageText = css`
   emo-ref: 'messageText';
   font-family: Mallory;
-  font-size: 12px;
+  font-size: 10px;
   color: #585858;
 `;
 
