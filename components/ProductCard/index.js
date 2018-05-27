@@ -5,6 +5,7 @@ import Card from '../Card';
 
 // import failedOneJson from './lib/failed_1.json';
 // import failedTwoJson from './lib/failed_2.json';
+// import failedThreeJson from './lib/failed_3.json';
 
 class ProductCard extends PureComponent {
   render() {
@@ -41,5 +42,6 @@ ProductCard.propTypes = {
 
 // ProductCard.failedOneJson = failedOneJson;
 // ProductCard.failedTwoJson = failedTwoJson;
+// ProductCard.failedThreeJson = failedThreeJson;
 
 export default ProductCard;

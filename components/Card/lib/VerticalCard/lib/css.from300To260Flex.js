@@ -102,7 +102,6 @@ styles.card = css`
   overflow: hidden;
   font-family: Mallory, Helvetica, sans-serif;
   color: #33333;
-  /* border: 1px solid red; */
 `;
 
 /**

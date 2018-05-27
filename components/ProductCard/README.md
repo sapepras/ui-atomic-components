@@ -143,6 +143,7 @@ You can pass a product object via the product attribute and the card will build 
 
   window.callFor = {
     ...window.someProd,
+    colorCount: "3",
     manufacturer: "CallFor",
     adBug: [],
     colorCount: "3",
@@ -236,6 +237,13 @@ You can pass a product object via the product attribute and the card will build 
     ...window.someProd,
     ...(ProductCard.failedTwoJson || {})
   };
+
+  window.failedColorCount = {
+    ...window.someProd,
+    ...(ProductCard.failedThreeJson || {})
+  };
+
+  window.forceCardType = "from300To260Flex";
 }
 
 <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -247,7 +255,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={5}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="hold240"
+      cardType={window.forceCardType}
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -258,7 +266,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="hold240"
+      cardType={window.forceCardType}
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -269,7 +277,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="hold240"
+      cardType={window.forceCardType}
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -279,7 +287,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       imageURL="//assets.academy.com/mgen/51/10353151.jpg"
-      cardType="hold240"
+      cardType={window.forceCardType}
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -289,7 +297,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="hold240"
+      cardType={window.forceCardType}
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -300,7 +308,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="hold240"
+      cardType={window.forceCardType}
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -311,7 +319,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="hold240"
+      cardType={window.forceCardType}
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -322,7 +330,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="hold240"
+      cardType={window.forceCardType}
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -333,7 +341,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="hold240"
+      cardType={window.forceCardType}
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -343,7 +351,7 @@ You can pass a product object via the product attribute and the card will build 
       product={window.soloSalePrice}
       rating={4}
       ctaLink="http://www.google.com"
-      cardType="hold240"
+      cardType={window.forceCardType}
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -353,7 +361,17 @@ You can pass a product object via the product attribute and the card will build 
       product={window.failedClearance}
       rating={4}
       ctaLink="http://www.google.com"
-      cardType="hold240"
+      cardType={window.forceCardType}
+    />
+  </div>
+  <div style={{ flex: "1 1 auto", margin: "10px" }}>
+    <ProductCard
+      horizontalMobile
+      imageSmall
+      product={window.failedColorCount}
+      rating={4}
+      ctaLink="http://www.google.com"
+      cardType={window.forceCardType}
     />
   </div>
 </div>;
