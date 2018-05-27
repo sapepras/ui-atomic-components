@@ -131,6 +131,7 @@ styles.contentFooter = css`
   padding-left: ${paddingLR};
   padding-right: ${paddingLR};
   height: ${contentFooterHeight};
+  overflow: hidden;
 `;
 
 styles.footer = css`

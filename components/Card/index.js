@@ -20,8 +20,8 @@ class Card extends Component {
   }
 
   renderMultiplier(cardType, styleOverride = {}) {
-    if (cardType && typeof cardType === 'string' && vwMultipliers[cardType.toLowerCase()]) {
-      return wcx(vwMultipliers[cardType.toLowerCase()], styleOverride.rootVws);
+    if (cardType && typeof cardType === 'string' && vwMultipliers[cardType]) {
+      return wcx(vwMultipliers[cardType], styleOverride.rootVws);
     }
     return wcx(vwMultipliers.standard, styleOverride.rootVws);
   }
