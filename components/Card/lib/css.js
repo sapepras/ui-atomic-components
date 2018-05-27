@@ -43,8 +43,8 @@ const rootVws = {
     xl: '10px' // px
   },
   from300To260Flex: {
-    xs: '10px', // vw
-    sm: '10px', // vw
+    xs: '8.4px', // vw
+    sm: '8.4px', // vw
     md: '10px', // md: "1.009081736vw", // vw
     lg: '10px', // px
     xl: '10px' // px
