@@ -36,17 +36,17 @@ const rootVws = {
     xl: '10px' // px
   },
   from300To260: {
-    xs: '7px', // vw
-    sm: '7px', // vw
-    md: '0.908173562vw', // md: "1.009081736vw", // vw
-    lg: '0.834028357vw', // px
+    xs: '8.4px', // vw
+    sm: '8.4px', // vw
+    md: '10px', // md: "1.009081736vw", // vw
+    lg: '10px', // px
     xl: '10px' // px
   },
   from300To260Flex: {
-    xs: '7px', // vw
-    sm: '7px', // vw
-    md: '0.908173562vw', // md: "1.009081736vw", // vw
-    lg: '0.834028357vw', // px
+    xs: '10px', // vw
+    sm: '10px', // vw
+    md: '10px', // md: "1.009081736vw", // vw
+    lg: '10px', // px
     xl: '10px' // px
   },
   hold240: {

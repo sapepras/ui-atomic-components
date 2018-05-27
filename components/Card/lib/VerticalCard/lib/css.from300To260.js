@@ -34,22 +34,22 @@ const styles = {};
  */
 
 // container starting dimensions
-const containerHeight = '50em'; // 500px @1200px vw
-const containerWidth = '33em'; // 330px @1200px vw
+const containerHeight = '47.5em'; // 500px @1200px vw
+const containerWidth = '30em'; // 330px @1200px vw
 
 // container-row starting dimensions
-const headerHeight = '27em'; // 270px @1200px vw
+const headerHeight = '20.5em'; // 270px @1200px vw
 const contentFooterHeight = '2.5em'; // 25px @1200px vw
 const footerHeight = '8.2em'; // 85px @1200px vw
 
 // image starting values
 const imageWidth = '27em'; // 270px @1200px vw
-const imageLR = '2.8em'; // 28px @1200px vw
+const imageLR = '1.5em'; // 28px @1200px vw
 const imageHeight = '27em'; // 270px @1200px vw
 const imageTB = '0'; // 0px @1200px vw
 
 const smallImageWidth = '19em'; // 190px @1200px vw
-const smallImageLR = '7.3em'; // 73px @1200px vw
+const smallImageLR = '5.74em'; // 73px @1200px vw
 const smallImageHeight = '19em'; // 190px @1200px vw
 const smallImageTB = '4.2em'; // 42px @1200px vw
 
@@ -59,10 +59,10 @@ const paddingT = '2.5em'; // 25px @1200px vw
 
 // font sizes
 const mobileTextFontsize = '14px';
-const desktopTextFontSize = '16px'; // px @any vw
+const desktopTextFontSize = '14px'; // px @any vw
 
 // font sizes - title
-const mobileTitleTextFontsize = '12px';
+const mobileTitleTextFontsize = '14px';
 const desktopTitleTextFontSize = '14px'; // px @any vw
 
 // font sizes - title
@@ -102,7 +102,7 @@ styles.card = css`
   overflow: hidden;
   font-family: Mallory, Helvetica, sans-serif;
   color: #33333;
-  /* border: 1px solid gray; */
+  /* border: 1px solid red; */
 `;
 
 /**

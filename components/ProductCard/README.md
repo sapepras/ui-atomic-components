@@ -247,7 +247,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={5}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="default"
+      cardType="from300To260"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -258,7 +258,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="default"
+      cardType="from300To260"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -269,29 +269,27 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="default"
+      cardType="from300To260"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
     <ProductCard
       horizontalMobile
-      imageSmall
       product={window.clearanceRange}
       rating={4}
       price={"12.99"}
-      ctaLink="http://www.google.com"
-      cardType="default"
+      imageURL="//assets.academy.com/mgen/51/10353151.jpg"
+      cardType="from300To260"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
     <ProductCard
       horizontalMobile
-      imageSmall
       product={window.priceDrop}
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="default"
+      cardType="from300To260"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -302,7 +300,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="default"
+      cardType="from300To260"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -313,7 +311,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="default"
+      cardType="from300To260"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -324,7 +322,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="default"
+      cardType="from300To260"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -335,7 +333,7 @@ You can pass a product object via the product attribute and the card will build 
       rating={4}
       price={"12.99"}
       ctaLink="http://www.google.com"
-      cardType="default"
+      cardType="from300To260"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -345,7 +343,7 @@ You can pass a product object via the product attribute and the card will build 
       product={window.soloSalePrice}
       rating={4}
       ctaLink="http://www.google.com"
-      cardType="default"
+      cardType="from300To260"
     />
   </div>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
@@ -355,7 +353,7 @@ You can pass a product object via the product attribute and the card will build 
       product={window.failedClearance}
       rating={4}
       ctaLink="http://www.google.com"
-      cardType="default"
+      cardType="from300To260"
     />
   </div>
 </div>;
