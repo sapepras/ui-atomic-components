@@ -12,7 +12,13 @@ const relative = css`
   position: relative;
 `;
 
+const starsText = css`
+  letter-spacing: 0.2em;
+  font-weight: bold;
+`;
+
 const stars = css`
+  ${starsText};
   position: absolute;
   top: 0;
   left: 0;
@@ -37,7 +43,7 @@ const Rating = (props = {}) => {
         <div className={stars} style={starStyle}>
           ★★★★★
         </div>
-        <div style={starBackgroundStyle}>☆☆☆☆☆</div>
+        <div className={starsText} style={starBackgroundStyle}>☆☆☆☆☆</div>
       </div>
     </div>
   );

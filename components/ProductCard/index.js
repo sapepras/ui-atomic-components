@@ -5,9 +5,13 @@ import Card from '../Card';
 
 // import failedOneJson from './lib/failed_1.json';
 // import failedTwoJson from './lib/failed_2.json';
+// import failedThreeJson from './lib/failed_3.json';
 
 class ProductCard extends PureComponent {
   render() {
+    // if (document && document.getElementsByClassName('rsg--sidebar-4').length > 0) {
+    //   document.getElementsByClassName('rsg--sidebar-4')[0].style.display = 'none';
+    // }
     const { product, ...remainingProps } = this.props; // eslint-disable-line
 
     return <Card {...getCardProps(product, remainingProps)} />;
@@ -38,5 +42,6 @@ ProductCard.propTypes = {
 
 // ProductCard.failedOneJson = failedOneJson;
 // ProductCard.failedTwoJson = failedTwoJson;
+// ProductCard.failedThreeJson = failedThreeJson;
 
 export default ProductCard;
