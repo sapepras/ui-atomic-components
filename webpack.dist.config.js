@@ -11,7 +11,8 @@ const baseConfig = () => ({
     ProductCard: './components/ProductCard',
     Drawer: './components/Drawer',
     Rating: './components/Rating',
-    PriceDetails: './components/PriceDetails'
+    PriceDetails: './components/PriceDetails',
+    Badge: './components/Badge'
   },
   output: {
     // Compile into js/build.js
