@@ -10,7 +10,8 @@ const baseConfig = () => ({
     Anchor: './components/Anchor',
     ProductCard: './components/ProductCard',
     Drawer: './components/Drawer',
-    Rating: './components/Rating'
+    Rating: './components/Rating',
+    PriceDetails: './components/PriceDetails'
   },
   output: {
     // Compile into js/build.js
@@ -57,11 +58,7 @@ const baseConfig = () => ({
         // Preprocess our own .scss files
         test: /\.scss/,
         exclude: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader?modules&importLoaders=1',
-          'sass-loader'
-        ]
+        use: ['style-loader', 'css-loader?modules&importLoaders=1', 'sass-loader']
       },
       {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
