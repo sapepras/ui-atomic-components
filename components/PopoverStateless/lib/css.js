@@ -56,7 +56,6 @@ const getPopoverModalWrapperDirectionStyles = direction => {
 export const PopoverModalWrapper = styled('div')`
   ${popoverModalWrapperBase};
   ${props => getPopoverModalWrapperDirectionStyles(props.direction)};
-  ${props => (props.open ? 'display: block' : 'display: none')};
 `;
 
 const popoverBase = css`
@@ -67,7 +66,6 @@ const popoverBase = css`
   padding: 15px;
   background: #fff;
   border-radius: 3px;
-  padding: 25px 35px;
 
   &,
   &:before {

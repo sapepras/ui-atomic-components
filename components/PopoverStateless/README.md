@@ -6,10 +6,13 @@ This component is stateless.  If you use this component you will manually have t
 | open      | bool   | false   | false    | determines if popover is open or not      |
 
 ```jsx
-<Popover.Wrapper>
+<PopoverStateless.Wrapper>
     <button>stateless</button>
-    <Popover.Modal direction="right" open={true}>
-        <div style={{width: '200px'}}>There is context</div>
-    </Popover.Modal>
-</Popover.Wrapper>
+    <PopoverStateless.Modal direction="right" open={true}>
+        <div style={{width: '200px', margin: '25px 35px'}}>
+            Use margins to increase white space between
+            popover modal border and popover modal content.
+        </div>
+    </PopoverStateless.Modal>
+</PopoverStateless.Wrapper>
 ```

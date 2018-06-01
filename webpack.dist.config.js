@@ -13,7 +13,7 @@ const baseConfig = () => ({
     Rating: './components/Rating',
     PriceDetails: './components/PriceDetails',
     Badge: './components/Badge',
-    Popover: './components/Popover'
+    PopoverStateless: './components/PopoverStateless'
   },
   output: {
     // Compile into js/build.js

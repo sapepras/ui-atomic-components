@@ -5,6 +5,6 @@ import Drawer from './components/Drawer';
 import ProductCard from './components/ProductCard';
 import PriceDetails from './components/PriceDetails';
 import Badge from './components/Badge';
-import Popover from './components/Popover';
+import PopoverStateless from './components/PopoverStateless';
 
-export { Button, Anchor, Input, Drawer, ProductCard, PriceDetails, Badge, Popover };
+export { Button, Anchor, Input, Drawer, ProductCard, PriceDetails, Badge, PopoverStateless };
