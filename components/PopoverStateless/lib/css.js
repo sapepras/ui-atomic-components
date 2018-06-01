@@ -16,25 +16,33 @@ const popoverModalWrapperBase = css`
 
 const popoverModalWrapperLeft = css`
   top: 50%;
+  bottom: auto;
+  left: auto;
   right: 100%;
   transform: translateY(-50%);
 `;
 
 const popoverModalWrapperRight = css`
   top: 50%;
+  bottom: auto;
   left: 100%;
+  right: auto;
   transform: translateY(-50%);
 `;
 
 const popoverModalWrapperTop = css`
-  left: 50%;
+  top: auto;
   bottom: 100%;
+  left: 50%;
+  right: auto;
   transform: translateX(-50%);
 `;
 
 const popoverModalWrapperBottom = css`
-  left: 50%;
   top: 100%;
+  bottom: auto;
+  left: 50%;
+  right: auto;
   transform: translateX(-50%);
 `;
 
@@ -55,7 +63,11 @@ const getPopoverModalWrapperDirectionStyles = direction => {
 
 export const PopoverModalWrapper = styled('div')`
   ${popoverModalWrapperBase};
-  ${props => getPopoverModalWrapperDirectionStyles(props.direction)};
+  ${({ direction = {} }) => getPopoverModalWrapperDirectionStyles(direction.mobile)};
+
+  @media only screen and (min-width: 768px) {
+    ${({ direction = {} }) => getPopoverModalWrapperDirectionStyles(direction.desktop)};
+  }
 `;
 
 const popoverBase = css`
@@ -91,8 +103,10 @@ const popoverLeft = css`
   &:before,
   &:after {
     top: 50%;
+    bottom: auto;
     left: 100%;
-    margin-left: -12px;
+    right: auto;
+    margin: 0 0 0 -12px;
     border-bottom: 0;
     border-left: 0;
     -webkit-transform: translateY(-50%) rotate(45deg);
@@ -107,8 +121,10 @@ const popoverRight = css`
   &:before,
   &:after {
     top: 50%;
+    bottom: auto;
     left: 0;
-    margin-left: -12px;
+    right: auto;
+    margin: 0 0 0 -12px;
     border-top: 0;
     border-right: 0;
     -webkit-transform: translateY(-50%) rotate(45deg);
@@ -123,8 +139,10 @@ const popoverTop = css`
   &:before,
   &:after {
     top: 100%;
+    bottom: auto;
     left: 50%;
-    margin-top: -12px;
+    right: auto;
+    margin: -12px 0 0 0;
     border-top: 0;
     border-left: 0;
     -webkit-transform: translateX(-50%) rotate(45deg);
@@ -138,8 +156,11 @@ const popoverTop = css`
 const popoverBottom = css`
   &:before,
   &:after {
+    top: auto;
     bottom: 100%;
     left: 50%;
+    right: auto;
+    margin: 0 0 -12px 0;
     margin-bottom: -12px;
     border-bottom: 0;
     border-right: 0;
@@ -168,5 +189,9 @@ const getPopoverDirectionStyles = direction => {
 
 export const Popover = styled('div')`
   ${popoverBase};
-  ${props => getPopoverDirectionStyles(props.direction)};
+  ${({ direction = {} }) => getPopoverDirectionStyles(direction.mobile)};
+
+  @media only screen and (min-width: 768px) {
+    ${({ direction = {} }) => getPopoverDirectionStyles(direction.desktop)};
+  }
 `;
