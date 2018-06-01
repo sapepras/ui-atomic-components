@@ -43,7 +43,7 @@ const Rating = (props = {}) => {
         <div className={stars} style={starStyle}>
           ★★★★★
         </div>
-        <div className={starsText} style={starBackgroundStyle}>☆☆☆☆☆</div>
+        <div className={starsText} style={starBackgroundStyle}>★★★★★</div>
       </div>
     </div>
   );
