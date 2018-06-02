@@ -229,16 +229,19 @@ styles.text = css`
   emo-ref: "text";
   font-family: Mallory-Book;
   font-size: ${mobileTextFontsize};
+  color: #4c4c4c;
 
   @media only screen and (min-width: ${bp.md.min}) {
     font-size: ${desktopTextFontSize};
+    color: #333333;
+    
   }
 }
 `;
 
 styles.titleText = css`
   emo-ref: "titleText";
-  font-family: Mallory-Book;
+  font-family: Mallory-Medium;
   font-size: ${mobileTitleTextFontsize};
 
   @media only screen and (min-width: ${bp.md.min}) {
