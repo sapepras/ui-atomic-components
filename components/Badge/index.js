@@ -13,7 +13,7 @@ const StyledDiv = styled('div')`
   left: ${({ small }) => (small ? '18px' : '2.2em')};
   font-size: ${({ small }) => (small ? '10px' : '14px')};
   padding: ${({ small }) => (small ? '5px 8px;' : '6px 12px;')};
-  font-family: ${({ small }) => (small ? 'Mallory' : 'Mallory-Black')};
+  font-family: 'Mallory-Bold';
   font-weight: ${({ small }) => (small ? 'bold' : 'normal')};
   text-transform: uppercase;
   line-height: 1;
