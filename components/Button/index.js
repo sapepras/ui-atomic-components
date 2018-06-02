@@ -35,18 +35,17 @@ const primaryBtnStyle = props => css`
   padding: 1rem;
   &:hover {
     background-color: #0255cc;
-    border: 2px solid #0255cc;
-    border-style: dotted;
+    border: 3px solid #0255cc;
   }
 
   &:focus {
     background-color: #0055a6;
-    border: 2px dotted #fff;
+    border: 3px solid #fff;
   }
 
   &:active {
     background-color: #003366;
-    border: 2px dotted #003366;
+    border: 3px solid #003366;
   }
 `;
 
