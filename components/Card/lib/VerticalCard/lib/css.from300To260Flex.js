@@ -97,7 +97,7 @@ styles.card = css`
   emo-ref: 'card';
   background: #fff;
   text-align: left;
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.07);
   overflow: hidden;
   font-family: Mallory, Helvetica, sans-serif;
