@@ -59,7 +59,7 @@ const paddingT = '2.5em'; // 25px @1200px vw
 
 // font sizes
 const mobileTextFontsize = '14px';
-const desktopTextFontSize = '14px'; // px @any vw
+const desktopTextFontSize = '16px'; // px @any vw
 
 // font sizes - title
 const mobileTitleTextFontsize = '14px';
@@ -97,7 +97,7 @@ styles.card = css`
   emo-ref: 'card';
   background: #fff;
   text-align: left;
-  border-radius: 6px;
+  border-radius: 4px;
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.07);
   overflow: hidden;
   font-family: Mallory, Helvetica, sans-serif;
@@ -229,16 +229,19 @@ styles.text = css`
   emo-ref: "text";
   font-family: Mallory-Book;
   font-size: ${mobileTextFontsize};
+  color: #4c4c4c;
 
   @media only screen and (min-width: ${bp.md.min}) {
     font-size: ${desktopTextFontSize};
+    color: #333333;
+    
   }
 }
 `;
 
 styles.titleText = css`
   emo-ref: "titleText";
-  font-family: Mallory-Book;
+  font-family: Mallory-Medium;
   font-size: ${mobileTitleTextFontsize};
 
   @media only screen and (min-width: ${bp.md.min}) {
