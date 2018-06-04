@@ -1,9 +1,5 @@
 import { getFirstDefined, ellipsesText } from '../../../util/component';
-import { determinePriceType } from '../../PriceDetails/lib/PredictivePriceTypes';
-import { DuplicatePriceTypeMapToPriceType, getPriceTypeKeyByValue } from '../../PriceDetails/lib/PriceTypes';
-import MessageTypes from '../../PriceDetails/lib/MessageTypes';
-import AdBugTypes from '../../PriceDetails/lib/AdBugTypes';
-
+import { determinePriceObjectFromProductInfo } from '../../PriceDetails/lib/util';
 const MapPriceTypeToBadge = {
   clearance: 'Clearance',
   clearanceRange: 'Clearance',
@@ -12,7 +8,7 @@ const MapPriceTypeToBadge = {
 };
 
 export const getCardProps = (product = {}, props = {}) => {
-  const priceObject = determinePriceObject(props, product);
+  const priceObject = determinePriceObjectFromProductInfo(props, product);
   const mergedProps = {
     title: ellipsesText(determineTitle(props, product), props.titleMaxCC || 25),
     description: ellipsesText(determineDescription(props, product), props.descriptionMaxCC || 100),
@@ -56,52 +52,4 @@ const determineBadge = (props, product, priceType) => {
 
 const determineColorCount = (props, product) => getFirstDefined([props.colorCount, product.colorCount]);
 
-const determinePriceObject = (props = {}, product = {}) => {
-  const { priceObject = {} } = props;
-  const { adBug: arrAdBug = [], defaultSkuPrice = {} } = product;
-  const adBug = arrAdBug.length > 0 ? arrAdBug[0] : null;
-  const adBugKeys = getAdBugKeys(arrAdBug);
-  const messageKeys = getMessageTypeKeys(defaultSkuPrice.priceMessage);
-  const priceTypeKeys = getPriceTypeKeys(defaultSkuPrice.priceMessage);
-  const newPriceObject = {
-    adBug,
-    adBugKeys,
-    messageKeys,
-    priceTypeKeys,
-    ...defaultSkuPrice,
-    priceObject
-  }; // eslint-disable-line object-curly-newline
-  if (product.priceRange) {
-    newPriceObject.priceRange = product.priceRange;
-  }
-  if (props.priceObject && props.priceObject.priceRange) {
-    newPriceObject.priceRange = props.priceObject.priceRange;
-  }
-  const priceType = determinePriceType(newPriceObject);
-  return { priceType, ...newPriceObject };
-};
-
 const determineCtaLink = (props, product) => getFirstDefined([props.ctaLink, product.seoURL]);
-
-const getAdBugKeys = (adBugs = []) => adBugs.map(adBug => adBug.trim().toLowerCase()).filter(adBugLCase => AdBugTypes[adBugLCase] && true);
-
-const getMessageTypeKeys = (priceMessages = '') => {
-  priceMessages
-    .split(',')
-    .map(priceMessage => priceMessage.trim().toLowerCase())
-    .filter(priceMessageLCase => MessageTypes[priceMessageLCase] && true)
-    .join(',');
-};
-
-const getPriceTypeKeys = (priceMessages = '') => {
-  const result = priceMessages
-    .split(',')
-    .map(priceMessage => priceMessage.replace(/\s/g, '').toLowerCase())
-    .map(priceMessageLCase =>
-        getPriceTypeKeyByValue(DuplicatePriceTypeMapToPriceType[priceMessageLCase])
-          ? DuplicatePriceTypeMapToPriceType[priceMessageLCase]
-          : priceMessageLCase)
-    .filter(priceMessageLCase => getPriceTypeKeyByValue(priceMessageLCase) && true)
-    .join(',');
-  return result;
-};

@@ -1,49 +1,57 @@
 import React, { PureComponent } from 'react';
 import { productDetailPropTypes } from './lib/PropTypes';
 import PriceTypes from './lib/PriceTypes';
-import {
-  CallFor,
-  Clearance,
-  ClearanceRange,
-  InCartPlusCompare,
-  Range,
-  Standard,
-  WasNow
-} from './lib/components';
+import { determinePriceObjectFromProductInfo, determinePriceObjectFromProduct, determinePriceObjectFromProps } from './lib/util';
+import { CallFor, Clearance, ClearanceRange, InCartPlusCompare, Range, Standard, WasNow } from './lib/components';
 
 class PriceDetails extends PureComponent {
   render() {
-    const { priceType = '' } = this.props;
-    switch (priceType) {
+    const { priceType, product, productSchema, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
+    let mergedProps = remainingProps;
+    let newPriceType = priceType;
+    if (!priceType) {
+      if (product && productSchema && productSchema.toLowerCase() === 'product') {
+        mergedProps = determinePriceObjectFromProduct(remainingProps, product);
+        newPriceType = mergedProps.priceType;
+      } else if (product && productSchema && productSchema.toLowerCase() === 'productinfo') {
+        mergedProps = determinePriceObjectFromProductInfo(remainingProps, product);
+        newPriceType = mergedProps.priceType;
+      } else {
+        mergedProps = determinePriceObjectFromProps(remainingProps);
+        newPriceType = mergedProps.priceType;
+      }
+    }
+
+    switch (newPriceType) {
       case PriceTypes.standard:
-        return <Standard {...this.props} />;
+        return <Standard {...mergedProps} />;
 
       case PriceTypes.callFor:
-        return <CallFor {...this.props} />;
+        return <CallFor {...mergedProps} />;
 
       case PriceTypes.clearance:
-        return <Clearance {...this.props} />;
+        return <Clearance {...mergedProps} />;
 
       case PriceTypes.clearanceRange:
-        return <ClearanceRange {...this.props} />;
+        return <ClearanceRange {...mergedProps} />;
 
       case PriceTypes.drop:
-        return <WasNow {...this.props} />;
+        return <WasNow {...mergedProps} />;
 
       case PriceTypes.hotDeal:
-        return <WasNow {...this.props} />;
+        return <WasNow {...mergedProps} />;
 
       case PriceTypes.inCartPlusCompare:
-        return <InCartPlusCompare {...this.props} />;
+        return <InCartPlusCompare {...mergedProps} />;
 
       case PriceTypes.range:
-        return <Range {...this.props} />;
+        return <Range {...mergedProps} />;
 
       case PriceTypes.wasNow:
-        return <WasNow {...this.props} />;
+        return <WasNow {...mergedProps} />;
 
       default:
-        return <Standard {...this.props} />;
+        return <Standard {...mergedProps} />;
     }
   }
 }
