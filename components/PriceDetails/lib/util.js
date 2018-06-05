@@ -29,10 +29,13 @@ export const determinePriceObjectFromProductInfo = (props = {}, product = {}) =>
 };
 
 export const determinePriceObjectFromProduct = (props = {}, product = {}) => {
-  const { priceObject = {} } = props;
-  const { adBug } = product;
+  const priceObject = props; // eslint-disable-line
+
+  const { adBug: arrAdBug = [] } = product;
+  const adBug = arrAdBug.length > 0 ? arrAdBug[0] : null;
+  const adBugKeys = getAdBugKeys(arrAdBug);
+
   const defaultSkuPrice = getDefaultSkuPriceFromSkus(product);
-  const adBugKeys = getAdBugKeys([adBug]);
   const messageKeys = getMessageTypeKeys(defaultSkuPrice.priceMessage);
   const priceTypeKeys = getPriceTypeKeys(defaultSkuPrice.priceMessage);
   const newPriceObject = {
@@ -41,16 +44,16 @@ export const determinePriceObjectFromProduct = (props = {}, product = {}) => {
     messageKeys,
     priceTypeKeys,
     ...defaultSkuPrice,
-    priceObject
+    ...priceObject
   }; // eslint-disable-line object-curly-newline
   if (product.priceRange) {
     newPriceObject.priceRange = product.priceRange;
   }
-  if (props.priceObject && props.priceObject.priceRange) {
-    newPriceObject.priceRange = props.priceObject.priceRange;
+  if (priceObject && priceObject.priceRange) {
+    newPriceObject.priceRange = priceObject.priceRange;
   }
-  const priceType = determinePriceType(newPriceObject);
-  return { priceType, ...newPriceObject };
+  const newPriceType = determinePriceType(newPriceObject);
+  return { priceType: newPriceType, ...newPriceObject };
 };
 
 export const determinePriceObjectFromProps = (props = {}) => {
@@ -86,5 +89,5 @@ const getPriceTypeKeys = (priceMessages = '') => {
 const getDefaultSkuPriceFromSkus = product => {
   const { defaultSku, sKUs = [] } = product;
   const defaultSkuPrice = sKUs.find(sku => sku.skuId === defaultSku);
-  return defaultSkuPrice || {};
+  return defaultSkuPrice.price || {};
 };

@@ -3,6 +3,8 @@ import { productDetailPropTypes } from './lib/PropTypes';
 import PriceTypes from './lib/PriceTypes';
 import { determinePriceObjectFromProductInfo, determinePriceObjectFromProduct, determinePriceObjectFromProps } from './lib/util';
 import { CallFor, Clearance, ClearanceRange, InCartPlusCompare, Range, Standard, WasNow } from './lib/components';
+// import json1 from './lib/schematest_product.json';
+// import json2 from './lib/schematest_productinfo.array.json';
 
 class PriceDetails extends PureComponent {
   render() {
@@ -57,5 +59,8 @@ class PriceDetails extends PureComponent {
 }
 
 PriceDetails.propTypes = productDetailPropTypes;
+
+// PriceDetails.json1 = json1;
+// PriceDetails.json2 = json2;
 
 export default PriceDetails;
