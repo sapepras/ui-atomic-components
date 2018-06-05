@@ -17,7 +17,7 @@ const parseDirection = direction => {
 
 const PopoverModal = props =>
   props.open ? (
-    <PopoverModalWrapper direction={parseDirection(props.direction)}>
+    <PopoverModalWrapper direction={parseDirection(props.direction)} lineHeightFix={props.lineHeightFix}>
       <Popover direction={parseDirection(props.direction)}>{props.children}</Popover>
     </PopoverModalWrapper>
   ) : null;
@@ -28,7 +28,8 @@ const directionObject = PropTypes.shape({ mobile: directionString, desktop: dire
 PopoverModal.propTypes = {
   children: PropTypes.any,
   direction: PropTypes.oneOfType([directionString, directionObject]),
-  open: PropTypes.bool
+  open: PropTypes.bool,
+  lineHeightFix: PropTypes.number.isRequired
 };
 
 export default PopoverModal;
