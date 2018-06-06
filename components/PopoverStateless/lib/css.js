@@ -3,6 +3,11 @@ import styled, { css } from 'react-emotion';
 export const popoverWrapper = css`
   position: relative;
   display: inline-block;
+  line-height: 0;
+`;
+
+export const LineHeightFix = styled('div')`
+  line-height: ${({ lineHeightFix }) => lineHeightFix};
 `;
 
 export const popoverAnchor = css`
@@ -63,6 +68,7 @@ const getPopoverModalWrapperDirectionStyles = direction => {
 
 export const PopoverModalWrapper = styled('div')`
   ${popoverModalWrapperBase};
+  line-height: ${({ lineHeightFix }) => lineHeightFix};
   ${({ direction = {} }) => getPopoverModalWrapperDirectionStyles(direction.mobile)};
 
   @media only screen and (min-width: 768px) {
