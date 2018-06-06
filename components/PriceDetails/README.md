@@ -1,10 +1,15 @@
 ```jsx
-<PriceDetails
-  minPriceRange="19.99"
-  maxPriceRange="19.99"
-  priceMessage="19.99"
-  salePrice="19.99"
-  listPrice="19.99"
-  priceRange="19.99"
-/>
+<PriceDetails listPrice="12.29"/>
+<hr/>
+<PriceDetails listPrice="12.29" salePrice="5.99"/>
+<hr/>
+<PriceDetails listPrice="12.29" salePrice="5.99" savings="21%"/>
+<hr/>
+<PriceDetails priceRange="13.50-45.99"/>
+<hr/>
+<PriceDetails priceRange="13.50-45.99" adBugKeys={['clearance']}/>
+<hr/>
+<PriceDetails listPrice="22.35" priceTypeKeys={'priceincart'}/>
+<hr/>
+<PriceDetails priceTypeKeys={'specialprice'}/>
 ```
