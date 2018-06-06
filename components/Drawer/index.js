@@ -53,7 +53,7 @@ class Drawer extends Component {
   }
 
   render() {
-    const { title, auid } = this.props;
+    const { title, auid, tabIndex } = this.props;
     let classlist = '';
     if (this.state.isOpen) {
       classlist = `${this.props.openIcon}`;
@@ -63,7 +63,7 @@ class Drawer extends Component {
 
     return (
       <div className={DrawerWrapStyle} data-auid={`facetdrawer${auid}`}>
-        <StyledDiv onClick={this.toggleDrawer}><span>{title}</span><i className={classlist} />
+        <StyledDiv onClick={this.toggleDrawer} tabIndex={tabIndex}><span>{title}</span><i className={classlist} />
         </StyledDiv>
         {this.state.isOpen && <div className={DrawerContentStyle}>{this.props.children}</div>}
       </div>
@@ -73,7 +73,8 @@ class Drawer extends Component {
 
 Drawer.defaultProps = {
   children: null,
-  isOpen: false
+  isOpen: false,
+  tabIndex: 0
 };
 
 Drawer.propTypes = {
@@ -82,7 +83,8 @@ Drawer.propTypes = {
   isOpen: PropTypes.bool,
   openIcon: PropTypes.string,
   closeIcon: PropTypes.string,
-  auid: PropTypes.string
+  auid: PropTypes.string,
+  tabIndex: PropTypes.number
 };
 
 export default Drawer;

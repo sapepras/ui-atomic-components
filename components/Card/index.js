@@ -27,7 +27,7 @@ class Card extends Component {
   }
 
   render() {
-    const { auid, horizontalMobile, ctaLink, onClickLogGA, cardType, styleOverride = {}, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
+    const { auid, tabIndex, horizontalMobile, ctaLink, onClickLogGA, cardType, styleOverride = {}, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
     const thisOnClickGoTo = this.onClickGoTo(ctaLink, onClickLogGA);
     let clickAttributes = {};
     if (ctaLink) {
@@ -38,7 +38,7 @@ class Card extends Component {
       };
     }
     return (
-      <div data-auid={auid} {...clickAttributes} className={this.renderMultiplier(cardType, styleOverride.Card)}>
+      <div data-auid={auid} {...clickAttributes} tabIndex={tabIndex} className={this.renderMultiplier(cardType, styleOverride.Card)}>
         <VerticalCard {...remainingProps} styleOverride={styleOverride.Vertical} desktopOnly={horizontalMobile} cardType={cardType} />
         {!!horizontalMobile && <HorizontalCard {...remainingProps} styleOverride={styleOverride.Horizontal} hideOnDesktop={horizontalMobile} />}
       </div>
@@ -46,13 +46,18 @@ class Card extends Component {
   }
 }
 
+Card.dafultProps = {
+  tabindex: 0
+};
+
 Card.propTypes = {
   auid: PropTypes.string,
   horizontalMobile: PropTypes.bool,
   ctaLink: PropTypes.string,
   onClickLogGA: PropTypes.func,
   cardType: PropTypes.string,
-  styleOverride: PropTypes.object
+  styleOverride: PropTypes.object,
+  tabIndex: PropTypes.number
 };
 
 export default Card;
