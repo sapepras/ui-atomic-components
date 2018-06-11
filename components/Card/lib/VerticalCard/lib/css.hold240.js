@@ -110,6 +110,7 @@ styles.card = css`
 
 styles.header = css`
   emo-ref: 'header';
+  position: relative;
   order: 0;
   flex: 0 0 auto;
   align-self: stretch;
@@ -312,6 +313,31 @@ styles.messageText = css`
   font-family: Mallory;
   font-size: 10px;
   color: #585858;
+`;
+
+const quickViewPositioning = css`
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: none;
+
+  div:hover > div > & {
+    display: block;
+  }
+`;
+
+styles.quickView = css`
+  ${quickViewPositioning};
+  min-height: 50px;
+  height: 50px;
+  min-width: 150px;
+  width: 150px;
+  font-family: Mallory;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: underline;
+  padding: 0;
 `;
 
 export default styles;
