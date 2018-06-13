@@ -97,10 +97,10 @@ class VerticalCard extends Component {
           )}
           {!!rating &&
             !!colorCount &&
-            !Number.isNaN(parseInt(colorCount, 10)) &&
+            !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
             parseInt(colorCount, 10) > 1 && <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>}
           {!!colorCount &&
-            !Number.isNaN(parseInt(colorCount, 10)) &&
+            !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
             parseInt(colorCount, 10) > 1 && (
               <span className={wcx(cardTypeStyles.messageText, styleOverride.messageText)}>{colorCount} colors available</span>
             )}

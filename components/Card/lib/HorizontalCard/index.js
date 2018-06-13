@@ -56,14 +56,14 @@ class HorizontalCard extends Component {
               {!!rating && <Rating value={rating} />}
               {!!rating &&
               !!colorCount &&
-              !Number.isNaN(parseInt(colorCount, 10)) &&
+              !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
               parseInt(colorCount, 10) > 1 && (
                 <span className={wcx(css.messageText, styleOverride.messageText)}>
                     &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                 </span>
               )}
               {!!colorCount &&
-              !Number.isNaN(parseInt(colorCount, 10)) &&
+              !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
               parseInt(colorCount, 10) > 1 && (
                 <span className={wcx(css.messageText, styleOverride.messageText)}>
                     {colorCount} colors available
