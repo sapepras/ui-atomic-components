@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
-import { getBadgeColorHex } from './lib/util';
+import getBadgeColor from './lib/util';
 
 const StyledDiv = styled('div')`
   position: ${({ disableAbsolutePositioning }) =>
@@ -9,7 +9,7 @@ const StyledDiv = styled('div')`
   ${({ disableAbsolutePositioning }) =>
     disableAbsolutePositioning ? 'display: inline-block;' : ''} top: 0px;
   color: #fff;
-  background-color: ${({ text }) => getBadgeColorHex(text)};
+  background-color: ${({ text }) => getBadgeColor(text)};
   left: ${({ small }) => (small ? '18px' : '2.2em')};
   font-size: ${({ small }) => (small ? '10px' : '14px')};
   padding: ${({ small }) => (small ? '5px 8px;' : '6px 12px;')};
