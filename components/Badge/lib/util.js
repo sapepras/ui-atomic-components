@@ -1,15 +1,13 @@
 const defaultBadgeColor = 'blue';
 
 const badgeInfo = {
-  red: ['clearance', 'hot deal', 'price drop', /^\d{1,3}% off$/],
+  red: ['clearance', 'hot deal', 'price drop', /^[0-9]{1,3}% off$/],
   blue: ['new', 'ships to store', 'customize']
 };
 
-const matches = (strOrRE, strValToTest) => new RegExp(strOrRE, 'i').test(strValToTest);
-
 export const getBadgeColor = badgeText => {
-  const color = Object.keys(badgeInfo).find(colorKey =>
-    badgeInfo[colorKey].some(re => matches(re, badgeText))
+  const color = Object.keys(badgeInfo).filter(colorKey =>
+    badgeInfo[colorKey].some(re => new RegExp(`${re}`, 'i').test(badgeText))
   ); // eslint-disable-line function-paren-newline
   return color || defaultBadgeColor;
 };
