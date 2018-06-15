@@ -329,15 +329,17 @@ const quickViewPositioning = css`
 
 styles.quickView = css`
   ${quickViewPositioning};
-  min-height: 50px;
-  height: 50px;
-  min-width: 150px;
-  width: 150px;
+  min-height: 40px;
+  height: 40px;
+  min-width: 130px;
+  width: 130px;
   font-family: Mallory;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   text-transform: underline;
   padding: 0;
+  outline: none;
+  cursor: pointer;
 `;
 
 export default styles;

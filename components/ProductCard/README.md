@@ -243,7 +243,7 @@ You can pass a product object via the product attribute and the card will build 
     ...(ProductCard.failedThreeJson || {})
   };
 
-  window.forceCardType = "standard";
+  window.forceCardType = "hold240";
 }
 
 <div style={{ display: "flex", flexWrap: "wrap" }}>

@@ -341,6 +341,8 @@ styles.quickView = css`
   font-weight: bold;
   text-transform: underline;
   padding: 0;
+  outline: none;
+  cursor: pointer;
 `;
 
 export default styles;
