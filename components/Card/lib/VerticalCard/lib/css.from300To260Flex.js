@@ -322,7 +322,8 @@ const quickViewPositioning = css`
   transform: translateX(-50%);
   display: none;
 
-  div:hover > div > & {
+  @media only screen and (min-width: 768px) {
+    div:hover > div > & {
     display: block;
   }
 `;

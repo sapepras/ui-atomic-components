@@ -248,8 +248,7 @@ You can pass a product object via the product attribute and the card will build 
 
 <div style={{ display: "flex", flexWrap: "wrap" }}>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
-    <ProductCard
-      horizontalMobile
+    <ProductCard      
       imageSmall
       enableQuickView
       product={window.someProd}
