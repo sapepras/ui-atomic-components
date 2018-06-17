@@ -19,6 +19,19 @@ class Card extends Component {
     };
   }
 
+  createLogGA(PubSub, eventAction, productName) {
+    return () => {
+      if (PubSub && PubSub.publish) {
+        PubSub.publish('gtm:dataLayer', {
+          event: 'productCardClicks',
+          eventCategory: 'Product Card Clicks',
+          eventAction,
+          eventLabel: productName
+        });
+      }
+    };
+  }
+
   renderMultiplier(cardType, styleOverride = {}) {
     if (cardType && typeof cardType === 'string' && vwMultipliers[cardType]) {
       return wcx(vwMultipliers[cardType], styleOverride.rootVws);
@@ -27,7 +40,9 @@ class Card extends Component {
   }
 
   render() {
-    const { auid, tabIndex, horizontalMobile, ctaLink, onClickLogGA, cardType, styleOverride = {}, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
+    const defaultLogGA = this.createLogGA(this.props.PubSub, 'Product Detail', this.props.description);
+    const defaultQuickViewLogGA = this.createLogGA(this.props.PubSub, 'Quickview', this.props.description);
+    const { auid, tabIndex, horizontalMobile, ctaLink, onClickLogGA = defaultLogGA, cardType, styleOverride = {}, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
     const thisOnClickGoTo = this.onClickGoTo(ctaLink, onClickLogGA);
     let clickAttributes = {};
     if (ctaLink) {
@@ -39,7 +54,13 @@ class Card extends Component {
     }
     return (
       <div data-auid={auid} {...clickAttributes} tabIndex={tabIndex} className={this.renderMultiplier(cardType, styleOverride.Card)}>
-        <VerticalCard {...remainingProps} styleOverride={styleOverride.Vertical} desktopOnly={horizontalMobile} cardType={cardType} />
+        <VerticalCard
+          {...remainingProps}
+          onClickQuickViewLogGa={defaultQuickViewLogGA}
+          styleOverride={styleOverride.Vertical}
+          desktopOnly={horizontalMobile}
+          cardType={cardType}
+        />
         {!!horizontalMobile && <HorizontalCard {...remainingProps} styleOverride={styleOverride.Horizontal} hideOnDesktop={horizontalMobile} />}
       </div>
     );
@@ -52,12 +73,14 @@ Card.dafultProps = {
 
 Card.propTypes = {
   auid: PropTypes.string,
+  description: PropTypes.string,
   horizontalMobile: PropTypes.bool,
   ctaLink: PropTypes.string,
   onClickLogGA: PropTypes.func,
   cardType: PropTypes.string,
   styleOverride: PropTypes.object,
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
+  PubSub: PropTypes.any.isRequired
 };
 
 export default Card;

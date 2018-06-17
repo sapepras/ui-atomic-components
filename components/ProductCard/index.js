@@ -37,7 +37,8 @@ ProductCard.propTypes = {
   price: PropTypes.string,
   badge: PropTypes.string,
   titleMaxCC: PropTypes.number,
-  descriptionMaxCC: PropTypes.number
+  descriptionMaxCC: PropTypes.number,
+  PubSub: PropTypes.any
 };
 
 // ProductCard.failedOneJson = failedOneJson;
