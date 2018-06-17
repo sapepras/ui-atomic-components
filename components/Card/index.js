@@ -60,6 +60,7 @@ class Card extends Component {
           styleOverride={styleOverride.Vertical}
           desktopOnly={horizontalMobile}
           cardType={cardType}
+          quickViewAuid={`${auid}_quickview`}
         />
         {!!horizontalMobile && <HorizontalCard {...remainingProps} styleOverride={styleOverride.Horizontal} hideOnDesktop={horizontalMobile} />}
       </div>

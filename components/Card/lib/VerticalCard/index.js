@@ -83,7 +83,8 @@ class VerticalCard extends Component {
       cardType,
       enableQuickView,
       onClickQuickView = () => null,
-      onClickQuickViewLogGa = null
+      onClickQuickViewLogGa = null,
+      quickViewAuid
     } = this.props; // eslint-disable-line object-curly-newline
     const cardTypeStyles = this.getCardTypeStyles(cardType);
     const small = cardType === 'hold240';
@@ -103,6 +104,7 @@ class VerticalCard extends Component {
           {!image && <div className={wcx(cardTypeStyles.emptyImage, styleOverride.emptyImage)} />}
           {!!enableQuickView && (
             <Button
+              auid={quickViewAuid}
               className={wcx(cardTypeStyles.quickView, styleOverride.quickView)}
               onClick={this.wrapClickViewClick(onClickQuickView, onClickQuickViewLogGa)}
             >
@@ -167,7 +169,8 @@ VerticalCard.propTypes = {
   cardType: PropTypes.string,
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
-  onClickQuickViewLogGa: PropTypes.func
+  onClickQuickViewLogGa: PropTypes.func,
+  quickViewAuid: PropTypes.string
 };
 
 export default VerticalCard;
