@@ -182,7 +182,7 @@ You can pass a product object via the product attribute and the card will build 
     defaultSkuPrice: {
       salePrice: "$ 22.5",
       listPrice: "$ 23",
-      savings: "20%"
+      savings: "20%",
     }
   };
 
@@ -224,7 +224,8 @@ You can pass a product object via the product attribute and the card will build 
     defaultSkuPrice: {
       salePrice: "$ 22.5",
       listPrice: "$ 23",
-      savings: "30%"
+      savings: "30%",
+      priceMessage: "wasNowPrice"
     }
   };
 
@@ -349,7 +350,6 @@ You can pass a product object via the product attribute and the card will build 
       enableQuickView
       product={window.wasNow}
       rating={4}
-      price={"12.99"}
       ctaLink="http://www.google.com"
       cardType={window.forceCardType}
     />
