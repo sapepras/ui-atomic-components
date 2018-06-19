@@ -10,12 +10,16 @@ export const determinePriceObjectFromProductInfo = (props = {}, product = {}) =>
   const adBugKeys = getAdBugKeys(arrAdBug);
   const messageKeys = getMessageTypeKeys(defaultSkuPrice.priceMessage);
   const priceTypeKeys = getPriceTypeKeys(defaultSkuPrice.priceMessage);
+  let updatedDefaultSkuPricesInObject = { ...defaultSkuPrice, ...{ listPrice: parseFloat(defaultSkuPrice.listPrice, 10).toFixed(2) } };
+  if (defaultSkuPrice.salePrice && defaultSkuPrice.salePrice.length) {
+    updatedDefaultSkuPricesInObject = { ...updatedDefaultSkuPricesInObject, ...{ salePrice: parseFloat(defaultSkuPrice.salePrice, 10).toFixed(2) } };
+  }
   const newPriceObject = {
     adBug,
     adBugKeys,
     messageKeys,
     priceTypeKeys,
-    ...defaultSkuPrice,
+    ...updatedDefaultSkuPricesInObject,
     priceObject
   }; // eslint-disable-line object-curly-newline
   if (product.priceRange) {
@@ -38,12 +42,16 @@ export const determinePriceObjectFromProduct = (props = {}, product = {}) => {
   const defaultSkuPrice = getDefaultSkuPriceFromSkus(product);
   const messageKeys = getMessageTypeKeys(defaultSkuPrice.priceMessage);
   const priceTypeKeys = getPriceTypeKeys(defaultSkuPrice.priceMessage);
+  let updatedDefaultSkuPricesInObject = { ...defaultSkuPrice, ...{ listPrice: parseFloat(defaultSkuPrice.listPrice, 10).toFixed(2) } };
+  if (defaultSkuPrice.salePrice && defaultSkuPrice.salePrice.length) {
+    updatedDefaultSkuPricesInObject = { ...updatedDefaultSkuPricesInObject, ...{ salePrice: parseFloat(defaultSkuPrice.salePrice, 10).toFixed(2) } };
+  }
   const newPriceObject = {
     adBug,
     adBugKeys,
     messageKeys,
     priceTypeKeys,
-    ...defaultSkuPrice,
+    ...updatedDefaultSkuPricesInObject,
     ...priceObject
   }; // eslint-disable-line object-curly-newline
   if (product.priceRange) {
