@@ -182,7 +182,7 @@ You can pass a product object via the product attribute and the card will build 
     defaultSkuPrice: {
       salePrice: "$ 22.5",
       listPrice: "$ 23",
-      savings: "20%"
+      savings: "20%",
     }
   };
 
@@ -224,7 +224,8 @@ You can pass a product object via the product attribute and the card will build 
     defaultSkuPrice: {
       salePrice: "$ 22.5",
       listPrice: "$ 23",
-      savings: "30%"
+      savings: "30%",
+      priceMessage: "wasNowPrice"
     }
   };
 
@@ -243,14 +244,14 @@ You can pass a product object via the product attribute and the card will build 
     ...(ProductCard.failedThreeJson || {})
   };
 
-  window.forceCardType = "from300To260Flex";
+  window.forceCardType = "hold240";
 }
 
 <div style={{ display: "flex", flexWrap: "wrap" }}>
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
-    <ProductCard
-      horizontalMobile
+    <ProductCard      
       imageSmall
+      enableQuickView
       product={window.someProd}
       rating={5}
       price={"12.99"}
@@ -262,6 +263,7 @@ You can pass a product object via the product attribute and the card will build 
     <ProductCard
       horizontalMobile
       imageSmall
+      enableQuickView
       product={window.callFor}
       rating={4}
       price={"12.99"}
@@ -273,6 +275,7 @@ You can pass a product object via the product attribute and the card will build 
     <ProductCard
       horizontalMobile
       imageSmall
+      enableQuickView
       product={window.clearance}
       rating={4}
       price={"12.99"}
@@ -283,6 +286,8 @@ You can pass a product object via the product attribute and the card will build 
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
     <ProductCard
       horizontalMobile
+      imageSmall
+      enableQuickView
       product={window.clearanceRange}
       rating={4}
       price={"12.99"}
@@ -293,6 +298,8 @@ You can pass a product object via the product attribute and the card will build 
   <div style={{ flex: "1 1 auto", margin: "10px" }}>
     <ProductCard
       horizontalMobile
+      imageSmall
+      enableQuickView
       product={window.priceDrop}
       rating={4}
       price={"12.99"}
@@ -304,6 +311,7 @@ You can pass a product object via the product attribute and the card will build 
     <ProductCard
       horizontalMobile
       imageSmall
+      enableQuickView
       product={window.hotDeal}
       rating={4}
       price={"12.99"}
@@ -315,6 +323,7 @@ You can pass a product object via the product attribute and the card will build 
     <ProductCard
       horizontalMobile
       imageSmall
+      enableQuickView
       product={window.inCartPlusCompare}
       rating={4}
       price={"12.99"}
@@ -326,6 +335,7 @@ You can pass a product object via the product attribute and the card will build 
     <ProductCard
       horizontalMobile
       imageSmall
+      enableQuickView
       product={window.range}
       rating={4}
       price={"12.99"}
@@ -337,9 +347,9 @@ You can pass a product object via the product attribute and the card will build 
     <ProductCard
       horizontalMobile
       imageSmall
+      enableQuickView
       product={window.wasNow}
       rating={4}
-      price={"12.99"}
       ctaLink="http://www.google.com"
       cardType={window.forceCardType}
     />
@@ -348,6 +358,7 @@ You can pass a product object via the product attribute and the card will build 
     <ProductCard
       horizontalMobile
       imageSmall
+      enableQuickView
       product={window.soloSalePrice}
       rating={4}
       ctaLink="http://www.google.com"
@@ -358,6 +369,7 @@ You can pass a product object via the product attribute and the card will build 
     <ProductCard
       horizontalMobile
       imageSmall
+      enableQuickView
       product={window.failedClearance}
       rating={4}
       ctaLink="http://www.google.com"
@@ -368,6 +380,7 @@ You can pass a product object via the product attribute and the card will build 
     <ProductCard
       horizontalMobile
       imageSmall
+      enableQuickView
       product={window.failedColorCount}
       rating={4}
       ctaLink="http://www.google.com"

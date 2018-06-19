@@ -1,7 +1,7 @@
 ```jsx
 <PriceDetails listPrice="12.29"/>
 <hr/>
-<PriceDetails listPrice="12.29" salePrice="5.99"/>
+<PriceDetails listPrice="12.29" salePrice="5.99" priceMessage="wasNowPrice"/>
 <hr/>
 <PriceDetails listPrice="12.29" salePrice="5.99" savings="21%"/>
 <hr/>

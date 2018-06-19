@@ -107,9 +107,8 @@ const isHotDeal = priceObject => {
 
 // If ( priceMessage IS EMPTY &&  (listPrice != null && salePrice< listPrice ) )--- >Show Was now pricing
 const isWasNow = priceObject => {
-  const { priceMessage, listPrice, salePrice } = priceObject;
+  const { listPrice, salePrice } = priceObject;
   if (
-    isEmpty(priceMessage) &&
     !isEmptyPrice(listPrice) &&
     !isEmptyPrice(salePrice) &&
     priceToFloat(salePrice) < priceToFloat(listPrice)
