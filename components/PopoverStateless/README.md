@@ -11,7 +11,7 @@ This component is stateless.  If you use this component you will manually have t
 
 <PopoverStateless.Wrapper>
     <button>Change Mobile/Desktop</button>
-    <PopoverStateless.Modal direction={{mobile: 'top', desktop: 'right'}} open={true}>
+    <PopoverStateless.Modal direction={{mobile: 'top', desktop: 'right'}} open={true} lineHeightFix={1.5}>
         <div style={{width: '200px', margin: '25px 35px'}}>
             Use margins to increase white space between
             popover modal border and popover modal content.
@@ -25,7 +25,7 @@ This component is stateless.  If you use this component you will manually have t
 
 <PopoverStateless.Wrapper>
     <button>Same for Mobile/Desktop</button>
-    <PopoverStateless.Modal direction="right" open={true}>
+    <PopoverStateless.Modal direction="right" open={true} lineHeightFix={1.5}>
         <div style={{width: '200px', margin: '25px 35px'}}>
             Use margins to increase white space between
             popover modal border and popover modal content.

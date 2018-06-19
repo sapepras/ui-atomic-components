@@ -6,14 +6,33 @@ import { productDetailPropTypes } from '../../../PriceDetails/lib/PropTypes';
 
 import Badge from '../../../Badge';
 import Rating from '../../../Rating';
+import Button from '../../../Button';
 import PriceDetails from '../../../PriceDetails';
 
 const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
 
 class VerticalCard extends Component {
+  constructor(props) {
+    super(props);
+    this.wrapClickViewClick = this.wrapClickViewClick.bind(this);
+  }
+
   getCardTypeStyles(cardType) {
     const result = cardType && allStyles[cardType] ? allStyles[cardType] : allStyles.standard;
     return result;
+  }
+
+  wrapClickViewClick(onClickQuickView, onClickQuickViewLogGa) {
+    return e => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (onClickQuickViewLogGa) {
+        onClickQuickViewLogGa();
+      }
+      if (onClickQuickView) {
+        onClickQuickView();
+      }
+    };
   }
 
   renderImageClassName(imageWide, imageSmall, styleOverride, cardType) {
@@ -61,7 +80,11 @@ class VerticalCard extends Component {
       colorCount,
       autoMargins = false,
       styleOverride = {},
-      cardType
+      cardType,
+      enableQuickView,
+      onClickQuickView = () => null,
+      onClickQuickViewLogGa = null,
+      quickViewAuid
     } = this.props; // eslint-disable-line object-curly-newline
     const cardTypeStyles = this.getCardTypeStyles(cardType);
     const small = cardType === 'hold240';
@@ -79,6 +102,15 @@ class VerticalCard extends Component {
         <div className={wcx(cardTypeStyles.header, styleOverride.header)}>
           {!!image && <img src={image} alt={imageAltText} className={this.renderImageClassName(imageWide, imageSmall, styleOverride, cardType)} />}
           {!image && <div className={wcx(cardTypeStyles.emptyImage, styleOverride.emptyImage)} />}
+          {!!enableQuickView && (
+            <Button
+              auid={quickViewAuid}
+              className={wcx(cardTypeStyles.quickView, styleOverride.quickView)}
+              onClick={this.wrapClickViewClick(onClickQuickView, onClickQuickViewLogGa)}
+            >
+              Quick View
+            </Button>
+          )}
         </div>
         {/* eslint-disable-next-line react/jsx-indent */}
         <div className={wcx(cardTypeStyles.body, styleOverride.body)}>
@@ -134,7 +166,11 @@ VerticalCard.propTypes = {
   colorCount: PropTypes.string,
   autoMargins: PropTypes.bool,
   styleOverride: PropTypes.object,
-  cardType: PropTypes.string
+  cardType: PropTypes.string,
+  enableQuickView: PropTypes.bool,
+  onClickQuickView: PropTypes.func,
+  onClickQuickViewLogGa: PropTypes.func,
+  quickViewAuid: PropTypes.string
 };
 
 export default VerticalCard;
