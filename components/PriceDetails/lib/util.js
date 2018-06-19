@@ -58,9 +58,12 @@ export const determinePriceObjectFromProduct = (props = {}, product = {}) => {
 
 export const determinePriceObjectFromProps = (props = {}) => {
   const priceObject = props;
-  const newPriceObject = { ...priceObject };
-  const priceType = determinePriceType(newPriceObject);
-  return { priceType, ...newPriceObject };
+  let updatedDefaultSkuPricesInObject = { ...priceObject, ...{ listPrice: parseFloat(priceObject.listPrice, 10).toFixed(2) } };
+  if (priceObject.salePrice && priceObject.salePrice.length) {
+    updatedDefaultSkuPricesInObject = { ...updatedDefaultSkuPricesInObject, ...{ salePrice: parseFloat(priceObject.salePrice, 10).toFixed(2) } };
+  }
+  const priceType = determinePriceType(updatedDefaultSkuPricesInObject);
+  return { priceType, ...updatedDefaultSkuPricesInObject };
 };
 
 const getAdBugKeys = (adBugs = []) => adBugs.map(adBug => adBug.trim().toLowerCase()).filter(adBugLCase => AdBugTypes[adBugLCase] && true);
