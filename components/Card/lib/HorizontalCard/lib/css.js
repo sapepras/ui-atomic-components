@@ -55,7 +55,8 @@ styles.card = css`
   overflow: hidden;
   font-family: Mallory-Black, Helvetica, sans-serif;
   color: #33333;
-  height: 190px;
+  min-height: 190px;
+  height: auto;
   width: 375px;
   max-width: 90vw;
 `;
@@ -221,5 +222,13 @@ styles.messageText = css`
   font-family: Mallory;
   color: #585858;
 `;
+
+styles.promoText = css`
+  emo-ref: 'promoText';
+  font-size: 14px;
+  font-weight: 400;
+  color: #e43737;
+`;
+
 
 export default styles;
