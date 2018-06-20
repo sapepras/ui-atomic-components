@@ -3,6 +3,8 @@ coverage
 node_modules
 stats.json
 .nyc_output
+# Built Files
+dist
 
 # Cruft
 .DS_Store
