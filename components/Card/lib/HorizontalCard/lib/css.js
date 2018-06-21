@@ -57,8 +57,8 @@ styles.card = css`
   color: #33333;
   min-height: 190px;
   height: auto;
-  width: 375px;
-  max-width: 90vw;
+  width: 100%;
+  max-width: 100vw;
 `;
 
 styles.cardHideOnDesktop = css`
@@ -80,7 +80,7 @@ styles.leftColumn = css`
   order: 0;
   flex: 0 0 auto;
   align-self: auto;
-  width: 125px;
+  width: 150px;
 `;
 
 /**
@@ -103,8 +103,8 @@ styles.rightColumn = css`
   flex: 0 0 auto;
   align-self: auto;
   ${styles.rowContainer};
-  width: 250px;
-  max-width: 60vw;
+  width: 265px;
+  max-width: 70vw;
 `;
 
 /**

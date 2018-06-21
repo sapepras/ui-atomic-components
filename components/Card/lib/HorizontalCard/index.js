@@ -37,14 +37,14 @@ class HorizontalCard extends Component {
             {badge}
           </Badge>
         )}
-        <div className={wcx(css.leftColumn, styleOverride.leftColumn)}>
+        <div className={wcx(css.leftColumn, styleOverride.leftColumn) + " col-4 p-0"}>
           {image && (
             <img src={image} alt={imageAltText} className={wcx(css.image, styleOverride.image)} />
           )}
           {!image && <div className={wcx(css.emptyImage, styleOverride.emptyImage)} />}
         </div>
 
-        <div className={wcx(css.rightColumn, styleOverride.rightColumn)}>
+        <div className={wcx(css.rightColumn, styleOverride.rightColumn) + " col-7 pl-0"}>
           <div className={wcx(css.rowHeader, styleOverride.rowHeader)} />
           <div className={wcx(css.rowBody, styleOverride.rowBody)}>
             <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
