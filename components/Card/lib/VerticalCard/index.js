@@ -145,10 +145,11 @@ class VerticalCard extends Component {
           <div className={wcx(cardTypeStyles.price, styleOverride.price)}>{priceObject && <PriceDetails {...priceObject} />}</div>
         </div>
         {/* eslint-disable-next-line react/jsx-indent */}
-        {promoMessage && <div className={cx(cardTypeStyles.contentPaddingLR, styleOverride.contentPaddingLR, cardTypeStyles.contentPaddingTB)}>
-          {/* eslint-disable-next-line react/jsx-indent */}
-          <div className={wcx(cardTypeStyles.promoText)}>{promoMessage}</div>
-        </div>}
+        {promoMessage &&
+          <div className={cx(cardTypeStyles.contentPaddingLR, styleOverride.contentPaddingLR, cardTypeStyles.contentPaddingTB)}>
+            {/* eslint-disable-next-line react/jsx-indent */}
+            <div className={wcx(cardTypeStyles.promoText)}>{promoMessage}</div>
+          </div>}
       </div>
     );
   }
