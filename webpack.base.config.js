@@ -5,13 +5,56 @@
 const path = require('path');
 
 const baseConfig = () => ({
-  entry: 'index.js',
+  entry: {
+    Button: './components/Button',
+    Anchor: './components/Anchor',
+    ProductCard: './components/ProductCard',
+    Drawer: './components/Drawer',
+    Rating: './components/Rating',
+    PriceDetails: './components/PriceDetails',
+    Badge: './components/Badge',
+    PopoverStateless: './components/PopoverStateless'
+  },
   output: {
     // Compile into js/build.js
-    path: path.resolve(process.cwd(), 'dist'),
-    publicPath: '/',
-    filename: 'bundle.js'
+    library: ['academyatoms', '[name]'],
+    libraryTarget: 'umd',
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].js',
+    globalObject: 'this'
   },
+  externals: [
+    {
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react'
+      },
+      'react-dom': {
+        root: 'ReactDOM',
+        commonjs2: 'react-dom',
+        commonjs: 'react-dom',
+        amd: 'react-dom'
+      },
+      'prop-types': {
+        root: 'PropTypes',
+        commonjs2: 'prop-types',
+        commonjs: 'prop-types',
+        amd: 'prop-types'
+      },
+      emotion: {
+        commonjs2: 'emotion',
+        commonjs: 'emotion',
+        amd: 'emotion'
+      },
+      'react-emotion': {
+        commonjs2: 'react-emotion',
+        commonjs: 'react-emotion',
+        amd: 'react-emotion'
+      }
+    }
+  ],
   module: {
     rules: [
       {
@@ -33,11 +76,7 @@ const baseConfig = () => ({
         // Preprocess our own .scss files
         test: /\.scss/,
         exclude: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader?modules&importLoaders=1',
-          'sass-loader'
-        ]
+        use: ['style-loader', 'css-loader?modules&importLoaders=1', 'sass-loader']
       },
       {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
