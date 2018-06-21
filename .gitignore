@@ -3,6 +3,8 @@ coverage
 node_modules
 stats.json
 .nyc_output
+dist
+*.tgz
 
 # Cruft
 .DS_Store
@@ -10,5 +12,4 @@ npm-debug.log
 yarn-error.log
 .idea
 .vscode
-
 /nbproject/private/
