@@ -56,6 +56,8 @@ const smallImageTB = '4.2em'; // 42px @1200px vw
 // padding defaults
 const paddingLR = '2.9em'; // 27px @1200px vw
 const paddingT = '2.5em'; // 25px @1200px vw
+const paddingTP = 0; // 0 @1200px vw
+const paddingBT = '2em'; // 20px @1200px vw
 
 // font sizes
 const mobileTextFontsize = '14px';
@@ -74,6 +76,13 @@ const mobilePriceFontSize = '28px';
 const desktopSmallPriceFontSize = '36px';
 const desktopPriceFontSize = '40px'; // px @any vw
 
+/*
+ * Element width
+ */
+styles.w100 = css`
+  width: 100%;
+`;
+
 /**
  * Outer Most Container
  */
@@ -87,8 +96,9 @@ styles.container = css`
   justify-content: space-between;
   align-content: stretch;
   align-items: flex-start;
+  height: auto;
 
-  height: ${containerHeight};
+  min-height: ${containerHeight};
   width: ${containerWidth};
 `;
 
@@ -213,6 +223,12 @@ styles.contentPaddingLR = css`
   padding-right: ${paddingLR};
 `;
 
+styles.contentPaddingTB = css`
+  emo-ref: 'contentPaddingTB';
+  padding-top: ${paddingTP};
+  padding-bottom: ${paddingBT};
+`;
+
 styles.content = css`
   ${styles.contentPaddingLR};
   emo-ref: 'content';
@@ -313,6 +329,13 @@ styles.messageText = css`
   font-family: Mallory;
   font-size: 12px;
   color: #585858;
+`;
+
+styles.promoText = css`
+  emo-ref: 'promoText';
+  font-size: 14px;
+  font-weight: 400;
+  color: #e43737;
 `;
 
 const quickViewPositioning = css`

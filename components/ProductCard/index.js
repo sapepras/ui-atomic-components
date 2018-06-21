@@ -36,6 +36,7 @@ ProductCard.propTypes = {
   rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   price: PropTypes.string,
   badge: PropTypes.string,
+  promoMessage: PropTypes.string,
   titleMaxCC: PropTypes.number,
   descriptionMaxCC: PropTypes.number,
   PubSub: PropTypes.any.isRequired

@@ -25,25 +25,26 @@ class HorizontalCard extends Component {
       rating,
       priceObject,
       badge,
+      promoMessage,
       hideOnDesktop,
       colorCount,
       styleOverride = {}
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div className={this.renderCardClassName(hideOnDesktop, styleOverride)}>
-        {!!badge && (
+        {badge && (
           <Badge small text={badge}>
             {badge}
           </Badge>
         )}
-        <div className={wcx(css.leftColumn, styleOverride.leftColumn)}>
-          {!!image && (
+        <div className={wcx(css.leftColumn, styleOverride.leftColumn) + " col-4 p-0"}>
+          {image && (
             <img src={image} alt={imageAltText} className={wcx(css.image, styleOverride.image)} />
           )}
           {!image && <div className={wcx(css.emptyImage, styleOverride.emptyImage)} />}
         </div>
 
-        <div className={wcx(css.rightColumn, styleOverride.rightColumn)}>
+        <div className={wcx(css.rightColumn, styleOverride.rightColumn) + " col-7 pl-0"}>
           <div className={wcx(css.rowHeader, styleOverride.rowHeader)} />
           <div className={wcx(css.rowBody, styleOverride.rowBody)}>
             <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
@@ -53,16 +54,16 @@ class HorizontalCard extends Component {
           </div>
           <div className={wcx(css.rowFooterOne, styleOverride.rowFooterOne)}>
             <div className={wcx(css.rating, styleOverride.rating)}>
-              {!!rating && <Rating value={rating} />}
-              {!!rating &&
-              !!colorCount &&
+              {rating && <Rating value={rating} />}
+              {rating &&
+              colorCount &&
               !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
               parseInt(colorCount, 10) > 1 && (
                 <span className={wcx(css.messageText, styleOverride.messageText)}>
                     &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                 </span>
               )}
-              {!!colorCount &&
+              {colorCount &&
               !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
               parseInt(colorCount, 10) > 1 && (
                 <span className={wcx(css.messageText, styleOverride.messageText)}>
@@ -75,10 +76,17 @@ class HorizontalCard extends Component {
             <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
               <div className={wcx(css.divider, styleOverride.divider)} />
               <div className={wcx(css.price, styleOverride.price)}>
-                {!!priceObject && <PriceDetails {...priceObject} />}
+                {priceObject && <PriceDetails {...priceObject} />}
               </div>
             </div>
           </div>
+          {promoMessage && <div className={wcx(css.rowFooterTwo, styleOverride.rowFooterTwo)}>
+            <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
+              <div className={wcx(css.promoText)}>
+                {promoMessage}
+              </div>
+            </div>
+          </div>}
         </div>
       </div>
     );
@@ -93,6 +101,7 @@ HorizontalCard.propTypes = {
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   priceObject: PropTypes.shape(productDetailPropTypes),
   badge: PropTypes.string,
+  promoMessage: PropTypes.string,
   hideOnDesktop: PropTypes.bool,
   colorCount: PropTypes.string,
   styleOverride: PropTypes.object
