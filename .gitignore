@@ -4,6 +4,7 @@ node_modules
 stats.json
 .nyc_output
 dist
+*.tgz
 
 # Cruft
 .DS_Store
