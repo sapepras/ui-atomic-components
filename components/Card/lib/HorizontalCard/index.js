@@ -37,14 +37,14 @@ class HorizontalCard extends Component {
             {badge}
           </Badge>
         )}
-        <div className={wcx(css.leftColumn, styleOverride.leftColumn) + " col-4 p-0"}>
+        <div className={`${wcx(css.leftColumn, styleOverride.leftColumn)} col-4 p-0`}>
           {image && (
             <img src={image} alt={imageAltText} className={wcx(css.image, styleOverride.image)} />
           )}
           {!image && <div className={wcx(css.emptyImage, styleOverride.emptyImage)} />}
         </div>
 
-        <div className={wcx(css.rightColumn, styleOverride.rightColumn) + " col-7 pl-0"}>
+        <div className={`${wcx(css.rightColumn, styleOverride.rightColumn)} col-7 pl-0`}>
           <div className={wcx(css.rowHeader, styleOverride.rowHeader)} />
           <div className={wcx(css.rowBody, styleOverride.rowBody)}>
             <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
@@ -56,20 +56,20 @@ class HorizontalCard extends Component {
             <div className={wcx(css.rating, styleOverride.rating)}>
               {rating && <Rating value={rating} />}
               {rating &&
-              colorCount &&
-              !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
-              parseInt(colorCount, 10) > 1 && (
-                <span className={wcx(css.messageText, styleOverride.messageText)}>
+                colorCount &&
+                !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
+                parseInt(colorCount, 10) > 1 && (
+                  <span className={wcx(css.messageText, styleOverride.messageText)}>
                     &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                </span>
-              )}
+                  </span>
+                )}
               {colorCount &&
-              !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
-              parseInt(colorCount, 10) > 1 && (
-                <span className={wcx(css.messageText, styleOverride.messageText)}>
+                !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
+                parseInt(colorCount, 10) > 1 && (
+                  <span className={wcx(css.messageText, styleOverride.messageText)}>
                     {colorCount} colors available
-                </span>
-              )}
+                  </span>
+                )}
             </div>
           </div>
           <div className={wcx(css.rowFooterTwo, styleOverride.rowFooterTwo)}>
@@ -80,13 +80,14 @@ class HorizontalCard extends Component {
               </div>
             </div>
           </div>
-          {promoMessage && <div className={wcx(css.rowFooterTwo, styleOverride.rowFooterTwo)}>
-            <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
-              <div className={wcx(css.promoText)}>
-                {promoMessage}
+          {promoMessage &&
+            <div className={wcx(css.rowFooterTwo, styleOverride.rowFooterTwo)}>
+              <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
+                <div className={wcx(css.promoText)}>
+                  {promoMessage}
+                </div>
               </div>
-            </div>
-          </div>}
+            </div>}
         </div>
       </div>
     );
