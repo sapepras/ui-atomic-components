@@ -2,25 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 
-const commonBtnStyle = css`
-  border-radius: 30px;
-  min-height: 60px;
-  border-width: 3px;
-  border-style: solid;
+const BTN_SIZE_SMALL = 'S';
+const BTN_SIZE_MEDIUM = 'M';
+const BTN_SIZE_LARGE = 'L';
+
+const colorPrimary = '#0055a6';
+const colorHover = '#0255cc';
+const colorHoverSecondary = 'rgba(2, 85, 204, 0.1)';
+const colorMarineBlue = '#003366';
+const colorWhite = '#fff';
+const colorLightSteelBlue = '#b2cce4';
+
+const getPrimaryColor = props => (props.disabled ? `${colorLightSteelBlue} !important` : colorPrimary);
+const getCursorStyle = props => (props.disabled ? 'not-allowed !important' : 'pointer');
+
+const commonBtnStyle = props => css`
+  border-radius: 2.3125rem;
+  min-height: 3.75rem;
   font-size: 0.8rem;
   font-weight: bold;
   text-transform: uppercase;
+  cursor: ${getCursorStyle(props)};
 `;
 
 const sizeStyles = props => {
   let minWidth = '180px';
 
-  if (props.size === 'S') {
+  if (props.size === BTN_SIZE_SMALL) {
     minWidth = '120px';
-  } else if (props.size === 'M') {
+  } else if (props.size === BTN_SIZE_MEDIUM) {
     minWidth = '150px';
-  } else {
-    minWidth = '180px';
   }
 
   return css`
@@ -29,66 +40,54 @@ const sizeStyles = props => {
 };
 
 const primaryBtnStyle = props => css`
-  color: #fff;
-  border-color: ${props.disabled ? 'transparent' : '#005599'};
-  background-color: ${props.disabled ? 'rgba(2, 85, 204, 0.1)' : '#005599'};
+  border: none;
+  color: ${colorWhite};
+  background-color: ${getPrimaryColor(props)};
   padding: 1rem;
   &:hover {
-    background-color: #0255cc;
-    border: 3px solid #0255cc;
-  }
-
-  &:focus {
-    background-color: #0055a6;
-    border: 3px solid #fff;
+    background-color: ${colorHover};
   }
 
   &:active {
-    background-color: #003366;
-    border: 3px solid #003366;
+    background-color: ${colorMarineBlue};
   }
 `;
 
 const secondaryBrnStyles = props => css`
-  color: ${props.disabled ? 'rgba(2, 85, 204, 0.1)' : '#005599'};
-  border-color: ${props.disabled ? 'rgba(2, 85, 204, 0.1)' : '#005599'};
-  background-color: #fff;
+  border: 3px solid ${colorPrimary};
+  background-color: ${colorWhite};
+  color: ${getPrimaryColor(props)};
+  border-color: ${getPrimaryColor(props)};
+  background-color: ${props.disabled && `${colorWhite} !important`};
   padding: 1rem;
   &:hover {
-    background-color: #e6eefa;
-    border: 2px solid #003366;
-    border-style: dotted;
+    background-color: ${colorHoverSecondary};
+    border-color: ${colorHover};
+    color: ${colorHover};
   }
 
   &:focus {
-    background-color: #fff;
-    border: 2px dotted #005599;
+    background-color: ${colorWhite};
   }
 
   &:active {
-    background-color: #0255cc;
-    border: 2px dotted #0255cc;
-    color: #fff;
+    color: ${colorWhite};
+    background-color: ${colorHover};
   }
 `;
 
 const StyledButton = styled('button')`
   ${commonBtnStyle};
   ${sizeStyles};
-  ${props =>
-    props.btntype === 'secondary' ? secondaryBrnStyles : primaryBtnStyle};
+  ${props => (props.btntype === 'secondary' ? secondaryBrnStyles : primaryBtnStyle)};
 `;
 
 const Button = props => {
-  const { type, onClick, disabled, auid } = props; // eslint-disable-line
+  const {
+ type, onClick, disabled, auid
+} = props;
   return (
-    <StyledButton
-      data-auid={`btn${auid}`}
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
-      {...props}
-    >
+    <StyledButton data-auid={`btn${auid}`} type={type} disabled={disabled} onClick={onClick} {...props}>
       {props.children}
     </StyledButton>
   );
@@ -100,7 +99,7 @@ Button.propTypes = {
   /** Button status */
   disabled: PropTypes.bool,
   /** Btn Size variant */
-  size: PropTypes.oneOf(['L', 'M', 'S']),
+  size: PropTypes.oneOf([BTN_SIZE_LARGE, BTN_SIZE_MEDIUM, BTN_SIZE_SMALL]),
   /** Button type variant */
   btntype: PropTypes.oneOf(['primary', 'secondary']),
   /** Gets called when the user clicks on the button */
@@ -113,7 +112,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   type: 'button',
-  size: 'L',
+  size: BTN_SIZE_LARGE,
   btntype: 'primary',
   disabled: false
 };
