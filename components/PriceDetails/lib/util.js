@@ -103,13 +103,15 @@ const getDefaultSkuPriceFromSkus = product => {
   return defaultSkuPrice.price || {};
 };
 
-const cleanPrice = val => {
-  if (typeof val === 'number') {
-    return val.toString();
-  } else if (val === null || val === undefined) {
+export const cleanPrice = val => {
+  if (val === null || val === undefined) {
     return val;
   }
 
-  // assume string
-  return parseFloat(val.replace(/[^\d\.]/gi, ''), 10).toFixed(2); // eslint-disable-line no-useless-escape
+  // assume val is number || string
+  let result = (typeof val === 'number') ? val.toString() : val;
+  let floatResult = parseFloat(result.replace(/[^\d\.]/gi, ''), 10);// eslint-disable-line no-useless-escape
+  floatResult = (floatResult.toString().match(/\./gi)) ? floatResult.toFixed(2) : floatResult;
+  result = floatResult.toString();
+  return result;
 };
