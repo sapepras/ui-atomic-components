@@ -1,7 +1,7 @@
 {
   "name": "@academysports/fusion-components",
-  "sideEffects":false,
-  "version": "1.0.23",
+  "version": "1.0.24",
+  "sideEffects": false,
   "description": "A repository of the common atomic components used across the academy sites",
   "main": "index.js",
   "repository": {
@@ -11,7 +11,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc mocha --reporter spec test-setup.js \"components/**/tests/*.test.js\" ",
     "clean": "rimraf ./dist",
-    "build:dev":"npm run clean && webpack --config webpack.dev.config.js",
+    "build:dev": "npm run clean && webpack --config webpack.dev.config.js",
     "build": "npm run clean && webpack --config webpack.dist.config.js",
     "lint": "npm run lint:js",
     "lint:js": "npm run lint:eslint -- . ",

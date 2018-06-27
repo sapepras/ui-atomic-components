@@ -53,7 +53,7 @@ class VerticalCard extends Component {
     const cardTypeStyles = this.getCardTypeStyles(cardType);
     let result = desktopOnly ? cardTypeStyles.cardDesktopOnly : cardTypeStyles.card;
     if (overrideCardHeightPx) {
-      const overrideCardHeightStyle = ` height: ${(parseFloat(overrideCardHeightPx) / 10).toString()}em`;
+      const overrideCardHeightStyle = ` min-height: ${(parseFloat(overrideCardHeightPx) / 10).toString()}em`;
       result = appendProperties(result, overrideCardHeightStyle);
     }
     if (overrideCardWidthPx) {
@@ -74,6 +74,7 @@ class VerticalCard extends Component {
       rating,
       priceObject,
       badge,
+      promoMessage,
       desktopOnly,
       overrideCardHeightPx,
       overrideCardWidthPx,
@@ -93,16 +94,16 @@ class VerticalCard extends Component {
         className={wcx(this.renderCardClassName(desktopOnly, overrideCardHeightPx, overrideCardWidthPx, cardType), styleOverride.card)}
         style={this.renderAutoMargins(autoMargins)}
       >
-        {!!badge && (
+        {badge && (
           <Badge text={badge} small={small}>
             {badge}
           </Badge>
         )}
         {/* eslint-disable-next-line react/jsx-indent */}
         <div className={wcx(cardTypeStyles.header, styleOverride.header)}>
-          {!!image && <img src={image} alt={imageAltText} className={this.renderImageClassName(imageWide, imageSmall, styleOverride, cardType)} />}
+          {image && <img src={image} alt={imageAltText} className={this.renderImageClassName(imageWide, imageSmall, styleOverride, cardType)} />}
           {!image && <div className={wcx(cardTypeStyles.emptyImage, styleOverride.emptyImage)} />}
-          {!!enableQuickView && (
+          {enableQuickView && (
             <Button
               auid={quickViewAuid}
               className={wcx(cardTypeStyles.quickView, styleOverride.quickView)}
@@ -122,29 +123,33 @@ class VerticalCard extends Component {
         </div>
         {/* eslint-disable-next-line react/jsx-indent */}
         <div className={wcx(cardTypeStyles.contentFooter, styleOverride.contentFooter)}>
-          {!!rating && (
+          {rating && (
             <span className={wcx(cardTypeStyles.rating, styleOverride.rating)}>
               <Rating value={rating} />
             </span>
           )}
-          {!!rating &&
-            !!colorCount &&
+          {rating &&
+            colorCount &&
             !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
             parseInt(colorCount, 10) > 1 && <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>}
-          {!!colorCount &&
+          {colorCount &&
             !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
             parseInt(colorCount, 10) > 1 && (
               <span className={wcx(cardTypeStyles.messageText, styleOverride.messageText)}>{colorCount} colors available</span>
             )}
         </div>
         {/* eslint-disable-next-line react/jsx-indent */}
-        <div className={wcx(cardTypeStyles.footer, styleOverride.footer)}>
-          <div className={wcx(cardTypeStyles.contentPaddingLR, styleOverride.contentPaddingLR)}>
-            <div className={wcx(cardTypeStyles.divider, styleOverride.divider)} />
-            {/* eslint-disable-next-line react/jsx-indent */}
-            <div className={wcx(cardTypeStyles.price, styleOverride.price)}>{!!priceObject && <PriceDetails {...priceObject} />}</div>
-          </div>
+        <div className={cx(cardTypeStyles.contentPaddingLR, styleOverride.contentPaddingLR, cardTypeStyles.contentPaddingTB, cardTypeStyles.w100)}>
+          <div className={wcx(cardTypeStyles.divider, styleOverride.divider)} />
+          {/* eslint-disable-next-line react/jsx-indent */}
+          <div className={wcx(cardTypeStyles.price, styleOverride.price)}>{priceObject && <PriceDetails {...priceObject} />}</div>
         </div>
+        {/* eslint-disable-next-line react/jsx-indent */}
+        {promoMessage &&
+          <div className={cx(cardTypeStyles.contentPaddingLR, styleOverride.contentPaddingLR, cardTypeStyles.contentPaddingTB)}>
+            {/* eslint-disable-next-line react/jsx-indent */}
+            <div className={wcx(cardTypeStyles.promoText)}>{promoMessage}</div>
+          </div>}
       </div>
     );
   }
@@ -160,6 +165,7 @@ VerticalCard.propTypes = {
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   priceObject: PropTypes.shape(productDetailPropTypes),
   badge: PropTypes.string,
+  promoMessage: PropTypes.string,
   desktopOnly: PropTypes.bool,
   overrideCardHeightPx: PropTypes.number,
   overrideCardWidthPx: PropTypes.number,

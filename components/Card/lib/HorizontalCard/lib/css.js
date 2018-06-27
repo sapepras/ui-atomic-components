@@ -55,9 +55,10 @@ styles.card = css`
   overflow: hidden;
   font-family: Mallory-Black, Helvetica, sans-serif;
   color: #33333;
-  height: 190px;
-  width: 375px;
-  max-width: 90vw;
+  min-height: 190px;
+  height: auto;
+  width: 100%;
+  max-width: 100vw;
 `;
 
 styles.cardHideOnDesktop = css`
@@ -79,7 +80,7 @@ styles.leftColumn = css`
   order: 0;
   flex: 0 0 auto;
   align-self: auto;
-  width: 125px;
+  width: 150px;
 `;
 
 /**
@@ -102,8 +103,8 @@ styles.rightColumn = css`
   flex: 0 0 auto;
   align-self: auto;
   ${styles.rowContainer};
-  width: 250px;
-  max-width: 60vw;
+  width: 265px;
+  max-width: 70vw;
 `;
 
 /**
@@ -221,5 +222,13 @@ styles.messageText = css`
   font-family: Mallory;
   color: #585858;
 `;
+
+styles.promoText = css`
+  emo-ref: 'promoText';
+  font-size: 14px;
+  font-weight: 400;
+  color: #e43737;
+`;
+
 
 export default styles;

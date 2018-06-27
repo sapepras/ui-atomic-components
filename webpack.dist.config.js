@@ -6,8 +6,7 @@
 const baseConfig = require('./webpack.base.config');
 
 const distConfig = Object.assign(baseConfig(), {
-  mode: 'production',
-  devtool: 'source-map'
+  mode: 'production'
 });
 
 module.exports = distConfig;
