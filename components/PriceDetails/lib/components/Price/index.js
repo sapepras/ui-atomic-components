@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
+import { cleanPrice } from '../../util';
 
 const Small = styled('small')`
   display: inline-block;
@@ -30,7 +31,7 @@ class Price extends PureComponent {
   render() {
     const { price, color = 'black', strikethrough = false } = this.props;
     // eslint-disable-next-line no-useless-escape
-    const [num, dec] = price.replace(/[^\.\d]/g, '').split('.');
+    const [num, dec] = cleanPrice(price).split('.');
 
     if (!num || num.trim().length === 0) {
       return null;
