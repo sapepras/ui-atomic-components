@@ -13,7 +13,7 @@ const ClearanceRange = props => {
   return (
     <div>
       <Price price={minPrice} color="red" />
-      &nbsp;<span style={{ color: '#ee0000' }}>-</span>&nbsp;
+      &nbsp;<span className="c-price__sub" style={{ color: '#ee0000' }}>-</span>&nbsp;
       <Price price={maxPrice} color="red" />
     </div>
   );
