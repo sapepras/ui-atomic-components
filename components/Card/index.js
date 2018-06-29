@@ -62,7 +62,7 @@ Card.propTypes = {
   classes: PropTypes.string,
   auid: PropTypes.string,
   description: PropTypes.string,
-  horizontalMobile: PropTypes.string,
+  horizontalMobile: PropTypes.bool,
   ctaLink: PropTypes.string,
   onClickLogGA: PropTypes.func,
   styleOverride: PropTypes.object,
