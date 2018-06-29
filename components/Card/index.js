@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-// import VerticalCard from './lib/VerticalCard';
-// import HorizontalCard from './lib/HorizontalCard';
 import HybridCard from './lib/HybridCard';
 
 class Card extends Component {
