@@ -2,12 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
-const Small = styled('small')`
+const Super = styled('sup')`
   display: inline-block;
-  vertical-align: top;
-  padding-top: 0.3em;
-  font-size: 0.45em;
   text-decoration: ${({ strikethrough }) => (strikethrough ? 'line-through' : 'none')};
+  ${({ strikethrough }) => strikethrough ? 'font-family: MalloryCond-Medium;' : ''};
 `;
 
 const colorMap = {
@@ -19,11 +17,9 @@ const colorMap = {
 };
 
 const Wrapper = styled('span')`
-  color: ${({ color }) =>
-    colorMap[color.trim().toLowerCase()] ? colorMap[color.trim().toLowerCase()] : colorMap.black};
+  color: ${({ color }) => colorMap[color.trim().toLowerCase()] ? colorMap[color.trim().toLowerCase()] : colorMap.black};
   text-decoration: ${({ strikethrough }) => (strikethrough ? 'line-through' : 'none')};
-  ${({ strikethrough }) =>
-    strikethrough ? 'font-weight: normal; font-family: MalloryCond-Medium;' : ''};
+  ${({ strikethrough }) => strikethrough ? 'font-family: MalloryCond-Medium;' : ''};
 `;
 
 class Price extends PureComponent {
@@ -37,12 +33,12 @@ class Price extends PureComponent {
     }
 
     return (
-      <Wrapper color={color} strikethrough={strikethrough}>
-        <Small strikethrough={strikethrough}>$</Small>
+      <Wrapper className="c-price__sub" color={color} strikethrough={strikethrough}>
+        <Super className="c-price__super" strikethrough={strikethrough}>$</Super>
         {/* eslint-disable-next-line react/jsx-indent */}
         <span>{num}</span>
         {/* eslint-disable-next-line react/jsx-indent */}
-        <Small strikethrough={strikethrough}>{dec}</Small>
+        <Super className="c-price__super" strikethrough={strikethrough}>{dec.substr(0, 2)}</Super>
       </Wrapper>
     );
   }
