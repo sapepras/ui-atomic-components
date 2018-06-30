@@ -30,7 +30,6 @@ class HybridCard extends Component {
       horizontalMobile,
       partNumber
     } = this.props; // eslint-disable-line object-curly-newline
-    console.log('sssssssssssssss', partNumber);
     return (
       <div
         className={cx(
