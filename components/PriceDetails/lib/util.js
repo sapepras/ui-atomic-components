@@ -111,7 +111,7 @@ export const cleanPrice = val => {
   // assume val is number || string
   let result = (typeof val === 'number') ? val.toString() : val;
   let floatResult = parseFloat(result.replace(/[^\d\.]/gi, ''), 10);// eslint-disable-line no-useless-escape
-  floatResult = (floatResult.toString().match(/\./gi)) ? floatResult.toFixed(2) : floatResult;
+  floatResult = floatResult.toFixed(2);
   result = floatResult.toString();
   return result;
 };
