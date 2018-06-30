@@ -18,6 +18,7 @@ export const getCardProps = (product = {}, props = {}) => {
     badge: determineBadge(props, product, priceObject.priceType),
     colorCount: determineColorCount(props, product),
     ctaLink: determineCtaLink(props, product),
+    partNumber: determinePartNumber(props, product),
     priceObject,
     classes: props.classes
   };
@@ -34,6 +35,8 @@ const determineDescription = (props, product) => getFirstDefined([props.descript
 const determineImageAltText = (props, product) => getFirstDefined([props.imageAltText, product.imageAltDescription]);
 
 const determineRating = (props, product) => getFirstDefined([props.rating, product.bvRating]);
+
+const determinePartNumber = (props, product) => getFirstDefined([props.partNumber, product.partNumber]);
 
 const determineBadge = (props, product, priceType) => {
   if (props.badge) {

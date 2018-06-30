@@ -27,8 +27,10 @@ class HybridCard extends Component {
       badge,
       promoMessage,
       colorCount,
-      horizontalMobile
+      horizontalMobile,
+      partNumber
     } = this.props; // eslint-disable-line object-curly-newline
+    console.log('sssssssssssssss', partNumber);
     return (
       <div
         className={cx(
@@ -66,6 +68,7 @@ class HybridCard extends Component {
           <p className="c-product__description mb-0">{description}</p>
           <div className="c-product__ratings-reviews my-quarter">
             {rating && <Rating value={rating} />}
+            <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber}></span>
             {rating && colorCount &&
               !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
               parseInt(colorCount, 10) > 1 && (
@@ -110,7 +113,8 @@ HybridCard.propTypes = {
   smallBadge: PropTypes.bool,
   promoMessage: PropTypes.string,
   horizontalMobile: PropTypes.bool,
-  colorCount: PropTypes.string
+  colorCount: PropTypes.string,
+  partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 export default HybridCard;
