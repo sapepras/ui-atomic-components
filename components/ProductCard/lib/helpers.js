@@ -18,6 +18,7 @@ export const getCardProps = (product = {}, props = {}) => {
     badge: determineBadge(props, product, priceObject.priceType),
     colorCount: determineColorCount(props, product),
     ctaLink: determineCtaLink(props, product),
+    isGiftCard: product.isGiftCard === 'Y',
     priceObject,
     classes: props.classes
   };

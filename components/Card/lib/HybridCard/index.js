@@ -27,8 +27,10 @@ class HybridCard extends Component {
       badge,
       promoMessage,
       colorCount,
-      horizontalMobile
+      horizontalMobile,
+      isGiftCard
     } = this.props; // eslint-disable-line object-curly-newline
+
     return (
       <div
         className={cx(
@@ -51,7 +53,7 @@ class HybridCard extends Component {
             </Badge>
           )}
           {image && (
-            <img src={image} alt={imageAltText} className="w-100 pt-3 pt-md-1 px-1 px-md-4" />
+            <img src={image} alt={imageAltText} className="w-100 pt-3 pt-md-1 px-1 px-md-2" />
           )}
           {!image && <div className="" />}
         </div>
@@ -59,40 +61,42 @@ class HybridCard extends Component {
           className={cx(
             { 'col-7': horizontalMobile },
             { 'col-12': !horizontalMobile },
-            'col-md-12 py-2'
+            'col-md-12 pt-2 pb-2 pb-md-4'
           )}
         >
-          <div className="c-product__title mb-half">{title}</div>
+          <div className="c-product__title mb-0 mb-md-half">{title}</div>
           <p className="c-product__description mb-0">{description}</p>
-          <div className="c-product__ratings-reviews my-quarter">
+          <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
             {rating && <Rating value={rating} />}
             {rating && colorCount &&
-              !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
+              /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
               parseInt(colorCount, 10) > 1 && (
                 <span className="">
-                  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                  &nbsp;|&nbsp;
                 </span>
               )}
             {colorCount &&
-              !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
+              /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
               parseInt(colorCount, 10) > 1 && (
                 <span className="c-product__colors-available">
                   {colorCount} colors available
                 </span>
               )}
           </div>
-          <hr className="m-0" />
-          <section className="mt-quarter">
-            {priceObject && <PriceDetails {...priceObject} />}
-            {promoMessage &&
-              <div className="">
+          {!isGiftCard && (<hr className="m-0" />)}
+          {!isGiftCard && (
+            <section className="mt-half">
+              {priceObject && <PriceDetails {...priceObject} />}
+              {promoMessage &&
                 <div className="">
                   <div className="">
-                    {promoMessage}
+                    <div className="">
+                      {promoMessage}
+                    </div>
                   </div>
-                </div>
-              </div>}
-          </section>
+                </div>}
+            </section>
+          )}
         </div>
       </div>
     );
@@ -110,7 +114,8 @@ HybridCard.propTypes = {
   smallBadge: PropTypes.bool,
   promoMessage: PropTypes.string,
   horizontalMobile: PropTypes.bool,
-  colorCount: PropTypes.string
+  colorCount: PropTypes.string,
+  isGiftCard: PropTypes.string
 };
 
 export default HybridCard;
