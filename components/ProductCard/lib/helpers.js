@@ -18,7 +18,8 @@ export const getCardProps = (product = {}, props = {}) => {
     badge: determineBadge(props, product, priceObject.priceType),
     colorCount: determineColorCount(props, product),
     ctaLink: determineCtaLink(props, product),
-    priceObject
+    priceObject,
+    classes: props.classes
   };
 
   return { ...props, ...mergedProps };

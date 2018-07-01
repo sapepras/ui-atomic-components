@@ -10,13 +10,13 @@ const StyledDiv = styled('div')`
     disableAbsolutePositioning ? 'display: inline-block;' : ''} top: 0px;
   color: #fff;
   background-color: ${({ text }) => getBadgeColor(text)};
-  left: ${({ small }) => (small ? '18px' : '2.2em')};
+  left: 15px;
   font-size: ${({ small }) => (small ? '10px' : '14px')};
-  padding: ${({ small }) => (small ? '5px 8px;' : '6px 12px;')};
+  padding: ${({ small }) => (small ? '3px 8px;' : '4px 12px;')};
   font-family: 'Mallory-Bold';
   font-weight: ${({ small }) => (small ? 'bold' : 'normal')};
   text-transform: uppercase;
-  line-height: 1;
+  line-height: ${({ small }) => (small ? '14px' : '20px')};
   letter-spacing: normal;
 `;
 

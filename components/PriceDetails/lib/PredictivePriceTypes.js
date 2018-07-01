@@ -6,10 +6,10 @@ const priceTypePriorities = [
   PriceTypes.inCartPlusCompare,
   PriceTypes.callFor,
   PriceTypes.clearanceRange,
-  PriceTypes.clearance,
   PriceTypes.drop,
   PriceTypes.hotDeal,
   PriceTypes.wasNow,
+  PriceTypes.clearance,
   PriceTypes.range,
   PriceTypes.standard
 ];

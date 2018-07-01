@@ -1,6 +1,6 @@
 import React from 'react';
 import { productDetailChildPropTypes } from '../../PropTypes';
-import * as css from '../../css';
+// import * as css from '../../css';
 
 const InCartPlusCompare = ({ listPrice }) => {
   if (!listPrice) {
@@ -15,10 +15,10 @@ const InCartPlusCompare = ({ listPrice }) => {
   const formattedListPrice = dec && dec.length > 0 ? `$${num}.${dec}` : `$${num}.00`;
   return (
     <div>
-      <div className={css.titleText} style={{ color: '#ee0000' }}>
+      <div className="c-price-in-cart" style={{ color: '#ee0000' }}>
         Our Price in Cart
       </div>
-      <div className={css.contentText} style={{ color: '#7f7f7f' }}>
+      <div className="c-price-compare" style={{ color: '#7f7f7f' }}>
         Compare at {formattedListPrice}
       </div>
     </div>

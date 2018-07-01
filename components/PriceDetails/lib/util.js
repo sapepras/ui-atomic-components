@@ -10,9 +10,9 @@ export const determinePriceObjectFromProductInfo = (props = {}, product = {}) =>
   const adBugKeys = getAdBugKeys(arrAdBug);
   const messageKeys = getMessageTypeKeys(defaultSkuPrice.priceMessage);
   const priceTypeKeys = getPriceTypeKeys(defaultSkuPrice.priceMessage);
-  let updatedDefaultSkuPricesInObject = { ...defaultSkuPrice, ...{ listPrice: parseFloat(defaultSkuPrice.listPrice, 10).toFixed(2) } };
+  let updatedDefaultSkuPricesInObject = { ...defaultSkuPrice, ...{ listPrice: cleanPrice(defaultSkuPrice.listPrice) } };
   if (defaultSkuPrice.salePrice && defaultSkuPrice.salePrice.length) {
-    updatedDefaultSkuPricesInObject = { ...updatedDefaultSkuPricesInObject, ...{ salePrice: parseFloat(defaultSkuPrice.salePrice, 10).toFixed(2) } };
+    updatedDefaultSkuPricesInObject = { ...updatedDefaultSkuPricesInObject, ...{ salePrice: cleanPrice(defaultSkuPrice.salePrice) } };
   }
   const newPriceObject = {
     adBug,
@@ -42,9 +42,9 @@ export const determinePriceObjectFromProduct = (props = {}, product = {}) => {
   const defaultSkuPrice = getDefaultSkuPriceFromSkus(product);
   const messageKeys = getMessageTypeKeys(defaultSkuPrice.priceMessage);
   const priceTypeKeys = getPriceTypeKeys(defaultSkuPrice.priceMessage);
-  let updatedDefaultSkuPricesInObject = { ...defaultSkuPrice, ...{ listPrice: parseFloat(defaultSkuPrice.listPrice, 10).toFixed(2) } };
+  let updatedDefaultSkuPricesInObject = { ...defaultSkuPrice, ...{ listPrice: cleanPrice(defaultSkuPrice.listPrice) } };
   if (defaultSkuPrice.salePrice && defaultSkuPrice.salePrice.length) {
-    updatedDefaultSkuPricesInObject = { ...updatedDefaultSkuPricesInObject, ...{ salePrice: parseFloat(defaultSkuPrice.salePrice, 10).toFixed(2) } };
+    updatedDefaultSkuPricesInObject = { ...updatedDefaultSkuPricesInObject, ...{ salePrice: cleanPrice(defaultSkuPrice.salePrice) } };
   }
   const newPriceObject = {
     adBug,
@@ -66,9 +66,9 @@ export const determinePriceObjectFromProduct = (props = {}, product = {}) => {
 
 export const determinePriceObjectFromProps = (props = {}) => {
   const priceObject = props;
-  let updatedDefaultSkuPricesInObject = { ...priceObject, ...{ listPrice: parseFloat(priceObject.listPrice, 10).toFixed(2) } };
+  let updatedDefaultSkuPricesInObject = { ...priceObject, ...{ listPrice: cleanPrice(priceObject.listPrice) } };
   if (priceObject.salePrice && priceObject.salePrice.length) {
-    updatedDefaultSkuPricesInObject = { ...updatedDefaultSkuPricesInObject, ...{ salePrice: parseFloat(priceObject.salePrice, 10).toFixed(2) } };
+    updatedDefaultSkuPricesInObject = { ...updatedDefaultSkuPricesInObject, ...{ salePrice: cleanPrice(priceObject.salePrice) } };
   }
   const priceType = determinePriceType(updatedDefaultSkuPricesInObject);
   return { priceType, ...updatedDefaultSkuPricesInObject };
@@ -101,4 +101,17 @@ const getDefaultSkuPriceFromSkus = product => {
   const { defaultSku, sKUs = [] } = product;
   const defaultSkuPrice = sKUs.find(sku => sku.skuId === defaultSku);
   return defaultSkuPrice.price || {};
+};
+
+export const cleanPrice = val => {
+  if (val === null || val === undefined) {
+    return val;
+  }
+
+  // assume val is number || string
+  let result = (typeof val === 'number') ? val.toString() : val;
+  let floatResult = parseFloat(result.replace(/[^\d\.]/gi, ''), 10);// eslint-disable-line no-useless-escape
+  floatResult = floatResult.toFixed(2);
+  result = floatResult.toString();
+  return result;
 };

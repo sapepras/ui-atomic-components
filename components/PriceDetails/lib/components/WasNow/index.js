@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { css, cx } from 'emotion';
 import * as style from '../../css';
 import { productDetailChildPropTypes } from '../../PropTypes';
 import Price from '../Price';
@@ -15,7 +15,7 @@ const WasNow = props => {
     <div>
       <Price price={salePrice} color="red" />
       &nbsp;&nbsp;&nbsp;
-      <span className={droppedPrice}>
+      <span className={cx('list-price', droppedPrice)}>
         <Price price={listPrice} color="gray" strikethrough />
       </span>
       {!!savings && (
