@@ -28,7 +28,8 @@ class HybridCard extends Component {
       promoMessage,
       colorCount,
       horizontalMobile,
-      isGiftCard
+      isGiftCard,
+      partNumber
     } = this.props; // eslint-disable-line object-curly-newline
 
     return (
@@ -68,6 +69,7 @@ class HybridCard extends Component {
           <p className="c-product__description mb-0">{description}</p>
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
             {rating && <Rating value={rating} />}
+            <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber}></span>
             {rating && colorCount &&
               /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
               parseInt(colorCount, 10) > 1 && (
@@ -115,7 +117,8 @@ HybridCard.propTypes = {
   promoMessage: PropTypes.string,
   horizontalMobile: PropTypes.bool,
   colorCount: PropTypes.string,
-  isGiftCard: PropTypes.string
+  isGiftCard: PropTypes.string,
+  partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 export default HybridCard;
