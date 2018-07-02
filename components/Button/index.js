@@ -5,6 +5,7 @@ import styled, { css } from 'react-emotion';
 const BTN_SIZE_SMALL = 'S';
 const BTN_SIZE_MEDIUM = 'M';
 const BTN_SIZE_LARGE = 'L';
+const BTN_SIZE_XSMALL = 'XS';
 
 const colorPrimary = '#0055a6';
 const colorHover = '#0255cc';
@@ -17,9 +18,8 @@ const getPrimaryColor = props => (props.disabled ? `${colorLightSteelBlue} !impo
 const getCursorStyle = props => (props.disabled ? 'not-allowed !important' : 'pointer');
 
 const commonBtnStyle = props => css`
-  border-radius: 2.3125rem;
-  min-height: 3.75rem;
-  font-size: 0.8rem;
+  border-radius: 2.1875rem;
+  font-family: 'Mallory-Bold';
   font-weight: bold;
   text-transform: uppercase;
   cursor: ${getCursorStyle(props)};
@@ -27,15 +27,37 @@ const commonBtnStyle = props => css`
 
 const sizeStyles = props => {
   let minWidth = '180px';
-
-  if (props.size === BTN_SIZE_SMALL) {
-    minWidth = '120px';
-  } else if (props.size === BTN_SIZE_MEDIUM) {
+  let fontSize = '1rem';
+  let letterSpacing = '0.5px';
+  let lineHeight = '1.375rem';
+  let minHeight = '4.375rem';
+  let padding = '1rem 2rem';
+  if (props.size === BTN_SIZE_MEDIUM) {
     minWidth = '150px';
+    minHeight = '3.75rem';
+  } else if (props.size === BTN_SIZE_SMALL) {
+    minWidth = '120px';
+    fontSize = '0.875rem';
+    letterSpacing = '0.4px';
+    lineHeight = '1.125rem';
+    minHeight = '3.125rem';
+    padding = '1rem 1.5rem';
+  } else if (props.size === BTN_SIZE_XSMALL) {
+    minWidth = '120px';
+    fontSize = '0.75rem';
+    letterSpacing = '0.3px';
+    lineHeight = '1rem';
+    minHeight = '2.5rem';
+    padding = '1rem 1.5rem';
   }
 
   return css`
     min-width: ${minWidth};
+    font-size: ${fontSize};
+    letter-spacing: ${letterSpacing};
+    line-height: ${lineHeight};
+    min-height: ${minHeight};
+    padding: ${padding};
   `;
 };
 
@@ -43,7 +65,6 @@ const primaryBtnStyle = props => css`
   border: none;
   color: ${colorWhite};
   background-color: ${getPrimaryColor(props)};
-  padding: 1rem;
   &:hover {
     background-color: ${colorHover};
   }
@@ -59,7 +80,6 @@ const secondaryBrnStyles = props => css`
   color: ${getPrimaryColor(props)};
   border-color: ${getPrimaryColor(props)};
   background-color: ${props.disabled && `${colorWhite} !important`};
-  padding: 1rem;
   &:hover {
     background-color: ${colorHoverSecondary};
     border-color: ${colorHover};
