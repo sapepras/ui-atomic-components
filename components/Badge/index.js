@@ -11,12 +11,12 @@ const StyledDiv = styled('div')`
   color: #fff;
   background-color: ${({ text }) => getBadgeColor(text)};
   left: 15px;
-  font-size: ${({ small }) => (small ? '10px' : '14px')};
-  padding: ${({ small }) => (small ? '3px 8px;' : '4px 12px;')};
+  font-size: ${({ smallBadge }) => (smallBadge ? '10px' : '14px')};
+  padding: ${({ smallBadge }) => (smallBadge ? '3px 8px;' : '4px 12px;')};
   font-family: 'Mallory-Bold';
-  font-weight: ${({ small }) => (small ? 'bold' : 'normal')};
+  font-weight: ${({ smallBadge }) => (smallBadge ? 'bold' : 'normal')};
   text-transform: uppercase;
-  line-height: ${({ small }) => (small ? '14px' : '20px')};
+  line-height: ${({ smallBadge }) => (smallBadge ? '14px' : '20px')};
   letter-spacing: normal;
 `;
 
@@ -25,7 +25,7 @@ const Badge = props => <StyledDiv {...props}>{props.text}</StyledDiv>;
 Badge.propTypes = {
   text: PropTypes.string.isRequired,
   disableAbsolutePositioning: PropTypes.bool,
-  small: PropTypes.bool
+  smallBadge: PropTypes.bool
 };
 
 export default Badge;
