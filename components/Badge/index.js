@@ -20,7 +20,7 @@ const StyledDiv = styled('div')`
   letter-spacing: normal;
 `;
 
-const Badge = props => <StyledDiv {...props}>{props.text}</StyledDiv>;
+const Badge = props => <StyledDiv {...props} className="badge">{props.text}</StyledDiv>;
 
 Badge.propTypes = {
   text: PropTypes.string.isRequired,
