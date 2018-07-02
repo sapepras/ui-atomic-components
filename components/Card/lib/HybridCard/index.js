@@ -38,7 +38,8 @@ class HybridCard extends Component {
           { vertical: !horizontalMobile },
           { horizontal: horizontalMobile },
           'product-card mb-quarter mb-md-4',
-          css.productCard
+          css.productCard,
+          horizontalMobile ? css.horizontal : ''
         )}
       >
         <div
@@ -48,10 +49,11 @@ class HybridCard extends Component {
             'col-md-12 flex-sm-grow position-relative'
           )}
         >
-          {badge && (
-            <Badge smallBadge text={badge}>
-              {badge}
-            </Badge>
+          {badge && (horizontalMobile ? (
+            <Badge smallBadge text={badge}>{badge}</Badge>
+          ) : (
+            <Badge text={badge}>{badge}</Badge>
+          )
           )}
           {image && (
             <img src={image} alt={imageAltText} className="w-100 pt-3 pt-md-1 px-1 px-md-2" />
@@ -112,12 +114,12 @@ HybridCard.propTypes = {
   imageAltText: PropTypes.string,
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   priceObject: PropTypes.shape(productDetailPropTypes),
-  badge: PropTypes.string,
   smallBadge: PropTypes.bool,
   promoMessage: PropTypes.string,
   horizontalMobile: PropTypes.bool,
   colorCount: PropTypes.string,
   isGiftCard: PropTypes.string,
+  badge: PropTypes.string,
   partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 

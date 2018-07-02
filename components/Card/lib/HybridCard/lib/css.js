@@ -3,6 +3,7 @@
  */
 
 import { css } from 'emotion';
+import { bp } from '../../../../../util/style';
 
 const styles = {};
 
@@ -11,6 +12,15 @@ styles.productCard = css`
   border-radius: 4px;
   background-color: #fff;
 `;
-
+styles.horizontal = css`
+ & .badge {
+  @media only screen and (min-width: ${bp.md.min}) {
+  font-size: 14px;
+  padding: 4px 12px;
+  font-weight:  normal;
+  line-height: 20px;
+  }
+ }
+`;
 export default styles;
 
