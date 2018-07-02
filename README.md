@@ -18,9 +18,13 @@
 
 * For local testing of atomic-components that are in progress do a `npm link` in the repo which will export the repo as a npm module to your local npm module folder. 
 
-* Go to your target repo and `npm link fusion-components` to enable a symlink between your consuming repo's node_modules and the atomic-component repository.
+* Go to your target repo and `npm link @academy/fusion-components` to enable a symlink between your consuming repo's node_modules and the atomic-component repository.
 
-* Once you have completed developement , pls make sure to export your component in the root `index.js` . Also add an addition in `webpack.dist.config.js`'s `entry` option to enable your component to be built.
+* Once you have completed developement , pls make sure to export your component in the root `index.js` . Also add an addition in `webpack.dist.config.js`'s `entry` option to enable your component to be built. This is a multi-part module , so it requires multiple entry points
+
+* Once dev is done - run `npm run build` to create the dist folder 
+
+* Run `npm pack` to generate the tarball to get an idea of how the components are going to be present when you do a `npm install`
 
 * After adding and commiting your components to your branch and raise a PR.
 
@@ -29,7 +33,7 @@
 
 Uses `prettier` and `eslint` for linting .
 Uses `emotionJS` for styling
-Uses mocha,chai,enzyme,sinon + JSDOM for unit testing.
+Uses `mocha`,`chai`,`enzyme`,`sinon` + `JSDOM` for unit testing.
 
 #### What is Atomic Design?
 
