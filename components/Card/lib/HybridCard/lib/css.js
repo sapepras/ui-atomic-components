@@ -22,5 +22,8 @@ styles.horizontal = css`
   }
  }
 `;
+styles.hrStyles = css`
+border: 0.5px solid #cccccc;
+`;
 export default styles;
 

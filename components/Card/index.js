@@ -4,7 +4,9 @@ import styled from 'react-emotion';
 import HybridCard from './lib/HybridCard';
 
 const StyledAnchor = styled('a')`
+color:#333333;
 &:hover {
+  color:#333333;
   text-decoration: none;
   cursor: pointer;
 }
@@ -43,7 +45,7 @@ class Card extends Component {
     if (ctaLink) {
       clickAttributes = {
         onClick: thisOnClickGoTo,
-        onKeyPress: thisOnClickGoTo
+        onKeyPress: e => e.keyCode === 13 ? thisOnClickGoTo : ''
       };
     }
     return (
