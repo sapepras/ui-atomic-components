@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styled from 'react-emotion';
 import HybridCard from './lib/HybridCard';
 
-const StyledA = styled('a')`
+const StyledAnchor = styled('a')`
 &:hover {
   text-decoration: none;
   cursor: pointer;
@@ -48,13 +48,13 @@ class Card extends Component {
     }
     return (
       <div className={classes}>
-        <StyledA href={ctaLink} data-auid={auid} {...clickAttributes} tabIndex={tabIndex}>
+        <StyledAnchor href={ctaLink} data-auid={auid} {...clickAttributes} tabIndex={tabIndex}>
           <HybridCard
             {...remainingProps}
             onClickQuickViewLogGa={defaultQuickViewLogGA}
             quickViewAuid={`${auid}_quickview`}
           />
-        </StyledA>
+        </StyledAnchor>
       </div>
     );
   }
