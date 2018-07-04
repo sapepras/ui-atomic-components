@@ -87,7 +87,7 @@ class HybridCard extends Component {
                 </span>
               )}
           </div>
-          {!isGiftCard && (<hr className="m-0" />)}
+          {!isGiftCard && (<hr className={`m-0 ${css.hrStyles}`} />)}
           {!isGiftCard && (
             <section className="mt-half">
               {priceObject && <PriceDetails {...priceObject} />}

@@ -1,7 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import styled from 'react-emotion';
 import HybridCard from './lib/HybridCard';
 
+const StyledAnchor = styled('a')`
+color:#333333;
+&:hover {
+  color:#333333;
+  text-decoration: none;
+  cursor: pointer;
+}
+`;
 class Card extends Component {
   onClickGoTo(url, onClickLogGA) {
     return () => {
@@ -36,17 +45,18 @@ class Card extends Component {
     if (ctaLink) {
       clickAttributes = {
         onClick: thisOnClickGoTo,
-        onKeyPress: thisOnClickGoTo,
-        style: { cursor: 'pointer' }
+        onKeyPress: e => e.keyCode === 13 ? thisOnClickGoTo : ''
       };
     }
     return (
-      <div data-auid={auid} {...clickAttributes} tabIndex={tabIndex} className={classes}>
-        <HybridCard
-          {...remainingProps}
-          onClickQuickViewLogGa={defaultQuickViewLogGA}
-          quickViewAuid={`${auid}_quickview`}
-        />
+      <div className={classes}>
+        <StyledAnchor href={ctaLink} data-auid={auid} {...clickAttributes} tabIndex={tabIndex}>
+          <HybridCard
+            {...remainingProps}
+            onClickQuickViewLogGa={defaultQuickViewLogGA}
+            quickViewAuid={`${auid}_quickview`}
+          />
+        </StyledAnchor>
       </div>
     );
   }
