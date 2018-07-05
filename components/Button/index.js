@@ -9,7 +9,7 @@ const BTN_SIZE_XSMALL = 'XS';
 
 const colorPrimary = '#0055a6';
 const colorHover = '#0255cc';
-const colorHoverSecondary = 'rgba(2, 85, 204, 0.1)';
+const colorHoverSecondary = '#0055a6';
 const colorMarineBlue = '#003366';
 const colorWhite = '#fff';
 const colorLightSteelBlue = '#b2cce4';
