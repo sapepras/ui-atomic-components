@@ -4,12 +4,12 @@ import styled from 'react-emotion';
 import HybridCard from './lib/HybridCard';
 
 const StyledAnchor = styled('a')`
-color:#333333;
-&:hover {
-  color:#333333;
-  text-decoration: none;
-  cursor: pointer;
-}
+  color: #333333;
+  &:hover {
+    color: #333333;
+    text-decoration: none;
+    cursor: pointer;
+  }
 `;
 class Card extends Component {
   onClickGoTo(url, onClickLogGA) {
@@ -45,17 +45,13 @@ class Card extends Component {
     if (ctaLink) {
       clickAttributes = {
         onClick: thisOnClickGoTo,
-        onKeyPress: e => e.keyCode === 13 ? thisOnClickGoTo : ''
+        onKeyPress: e => (e.keyCode === 13 ? thisOnClickGoTo : '')
       };
     }
     return (
       <div className={classes}>
         <StyledAnchor href={ctaLink} data-auid={auid} {...clickAttributes} tabIndex={tabIndex}>
-          <HybridCard
-            {...remainingProps}
-            onClickQuickViewLogGa={defaultQuickViewLogGA}
-            quickViewAuid={`${auid}_quickview`}
-          />
+          <HybridCard {...remainingProps} onClickQuickViewLogGa={defaultQuickViewLogGA} quickViewAuid={`${auid}_quickview`} />
         </StyledAnchor>
       </div>
     );
@@ -75,7 +71,10 @@ Card.propTypes = {
   onClickLogGA: PropTypes.func,
   styleOverride: PropTypes.object,
   tabIndex: PropTypes.number,
-  PubSub: PropTypes.any.isRequired
+  PubSub: PropTypes.any.isRequired,
+  enableQuickView: PropTypes.bool,
+  onClickQuickView: PropTypes.func,
+  onClickQuickViewLogGa: PropTypes.func
 };
 
 export default Card;

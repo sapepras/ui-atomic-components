@@ -5,12 +5,26 @@ import css from './lib/css';
 import { productDetailPropTypes } from '../../../PriceDetails/lib/PropTypes';
 
 import Badge from '../../../Badge';
+import Button from '../../../Button';
 import Rating from '../../../Rating';
 import PriceDetails from '../../../PriceDetails';
 
 const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
 
 class HybridCard extends Component {
+  wrapClickViewClick(onClickQuickView, onClickQuickViewLogGa) {
+    return e => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (onClickQuickViewLogGa) {
+        onClickQuickViewLogGa();
+      }
+      if (onClickQuickView) {
+        onClickQuickView();
+      }
+    };
+  }
+
   renderCardClassName(hideOnDesktop, styleOverride) {
     const result = hideOnDesktop ? css.cardHideOnDesktop : css.card;
     return wcx(result, styleOverride.card);
@@ -29,7 +43,11 @@ class HybridCard extends Component {
       colorCount,
       horizontalMobile,
       isGiftCard,
-      partNumber
+      partNumber,
+      enableQuickView,
+      onClickQuickView = () => null,
+      onClickQuickViewLogGa = null,
+      quickViewAuid
     } = this.props; // eslint-disable-line object-curly-newline
 
     return (
@@ -42,63 +60,53 @@ class HybridCard extends Component {
           horizontalMobile ? css.horizontal : ''
         )}
       >
-        <div
-          className={cx(
-            { 'col-5': horizontalMobile },
-            { 'col-12': !horizontalMobile },
-            'col-md-12 flex-sm-grow position-relative'
-          )}
-        >
-          {badge && (horizontalMobile ? (
-            <Badge smallBadge text={badge}>{badge}</Badge>
-          ) : (
-            <Badge text={badge}>{badge}</Badge>
-          )
-          )}
-          {image && (
-            <img src={image} alt={imageAltText} className="w-100 pt-3 pt-md-1 px-1 px-md-2" />
-          )}
+        <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 flex-sm-grow position-relative')}>
+          {badge &&
+            (horizontalMobile ? (
+              <Badge smallBadge text={badge}>
+                {badge}
+              </Badge>
+            ) : (
+              <Badge text={badge}>{badge}</Badge>
+            ))}
+          {image && <img src={image} alt={imageAltText} className="w-100 pt-3 pt-md-1 px-1 px-md-2" />}
           {!image && <div className="" />}
-        </div>
-        <div
-          className={cx(
-            { 'col-7': horizontalMobile },
-            { 'col-12': !horizontalMobile },
-            'col-md-12 pt-2 pb-2 pb-md-4'
+          {enableQuickView && (
+            <Button
+              size="S"
+              auid={quickViewAuid}
+              className={css.quickView}
+              onClick={this.wrapClickViewClick(onClickQuickView, onClickQuickViewLogGa)}
+            >
+              Quick View
+            </Button>
           )}
-        >
+        </div>
+        <div className={cx({ 'col-7': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 pt-2 pb-2 pb-md-4')}>
           <div className="c-product__title mb-0 mb-md-half">{title}</div>
           <p className="c-product__description mb-0">{description}</p>
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
             {rating && <Rating value={rating} />}
-            <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber}></span>
-            {rating && colorCount &&
+            <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />
+            {rating &&
+              colorCount &&
               /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
-              parseInt(colorCount, 10) > 1 && (
-                <span className="">
-                  &nbsp;|&nbsp;
-                </span>
-              )}
+              parseInt(colorCount, 10) > 1 && <span className="">&nbsp;|&nbsp;</span>}
             {colorCount &&
               /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
-              parseInt(colorCount, 10) > 1 && (
-                <span className="c-product__colors-available">
-                  {colorCount} colors available
-                </span>
-              )}
+              parseInt(colorCount, 10) > 1 && <span className="c-product__colors-available">{colorCount} colors available</span>}
           </div>
-          {!isGiftCard && (<hr className={`m-0 ${css.hrStyles}`} />)}
+          {!isGiftCard && <hr className={`m-0 ${css.hrStyles}`} />}
           {!isGiftCard && (
             <section className="mt-half">
               {priceObject && <PriceDetails {...priceObject} />}
-              {promoMessage &&
+              {promoMessage && (
                 <div className="">
                   <div className="">
-                    <div className="">
-                      {promoMessage}
-                    </div>
+                    <div className="">{promoMessage}</div>
                   </div>
-                </div>}
+                </div>
+              )}
             </section>
           )}
         </div>
@@ -120,7 +128,11 @@ HybridCard.propTypes = {
   colorCount: PropTypes.string,
   isGiftCard: PropTypes.string,
   badge: PropTypes.string,
-  partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  enableQuickView: PropTypes.bool,
+  onClickQuickView: PropTypes.func,
+  onClickQuickViewLogGa: PropTypes.func,
+  quickViewAuid: PropTypes.string
 };
 
 export default HybridCard;

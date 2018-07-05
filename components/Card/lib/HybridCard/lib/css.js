@@ -13,17 +13,45 @@ styles.productCard = css`
   background-color: #fff;
 `;
 styles.horizontal = css`
- & .badge {
-  @media only screen and (min-width: ${bp.md.min}) {
-  font-size: 14px;
-  padding: 4px 12px;
-  font-weight:  normal;
-  line-height: 20px;
+  & .badge {
+    @media only screen and (min-width: ${bp.md.min}) {
+      font-size: 14px;
+      padding: 4px 12px;
+      font-weight: normal;
+      line-height: 20px;
+    }
   }
- }
 `;
 styles.hrStyles = css`
-border: 0.5px solid #cccccc;
+  border: 0.5px solid #cccccc;
 `;
-export default styles;
 
+const quickViewPositioning = css`
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: none;
+
+  @media only screen and (min-width: 768px) {
+    div:hover > div > & {
+    display: block;
+  }
+`;
+
+styles.quickView = css`
+  ${quickViewPositioning};
+  min-height: 50px;
+  height: 50px;
+  min-width: 150px;
+  width: 150px;
+  font-family: Mallory;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: underline;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+`;
+
+export default styles;
