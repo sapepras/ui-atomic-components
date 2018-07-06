@@ -26,28 +26,18 @@ class Card extends Component {
   createLogGA(gtmDataLayer, eventAction, productName) {
     return () => {
       if (gtmDataLayer) {
-        if (this.props.pageInfo && this.props.pageInfo.isSearch) {
-          gtmDataLayer.push({
-            event: 'search',
-            eventCategory: 'Internal Search',
-            eventAction: 'Search Result Product Click',
-            eventLabel: `${this.props.pageInfo.searchTerm}`,
-            eventValue: `${this.props.totalItemCount}`
-          });
-        } else {
-          gtmDataLayer.push({
-            event: 'productCardClicks',
-            eventCategory: 'Product Card Clicks',
-            eventAction,
-            eventLabel: productName
-          });
-        }
+        gtmDataLayer.push({
+          event: 'productCardClicks',
+          eventCategory: 'Product Card Clicks',
+          eventAction,
+          eventLabel: productName
+        });
       }
     };
   }
 
   render() {
-    const defaultLogGA = this.createLogGA(this.props.gtmDataLayer, 'Product Detail', this.props.description);
+    const defaultLogGA = this.props.cardAnalytics;
     const defaultQuickViewLogGA = this.createLogGA(this.props.gtmDataLayer, 'Quickview', this.props.description);
     const { auid, tabIndex, ctaLink, onClickLogGA = defaultLogGA, classes, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
     const thisOnClickGoTo = this.onClickGoTo(ctaLink, onClickLogGA);
@@ -85,8 +75,7 @@ Card.propTypes = {
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
   onClickQuickViewLogGa: PropTypes.func,
-  pageInfo: PropTypes.object,
-  totalItemCount: PropTypes.string
+  cardAnalytics: PropTypes.func
 };
 
 export default Card;
