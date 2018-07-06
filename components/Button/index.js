@@ -95,7 +95,7 @@ const secondaryBrnStyles = props => css`
   &:active {
     outline:none;
     color: ${colorWhite};
-    background-color: ${colorHover};
+    background-color: ${colorPrimary};
   }
 `;
 
