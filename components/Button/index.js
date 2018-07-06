@@ -70,6 +70,7 @@ const primaryBtnStyle = props => css`
   }
 
   &:active {
+    outline:none;
     background-color: ${colorMarineBlue};
   }
 `;
@@ -87,10 +88,12 @@ const secondaryBrnStyles = props => css`
   }
 
   &:focus {
+    outline:none;
     background-color: ${colorWhite};
   }
 
   &:active {
+    outline:none;
     color: ${colorWhite};
     background-color: ${colorHover};
   }
