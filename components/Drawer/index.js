@@ -30,30 +30,41 @@ const DrawerWrapStyle = css`
 `;
 
 const DrawerContentStyle = css`
-  background-color: #f4f4f4e6;
   min-height: 62px;
   padding: 0.8rem;
   border-top: 1px solid #f6f6f6;
+`;
+
+const SetBackground = color => css`
+  background-color: ${color};
 `;
 
 class Drawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: this.props.isOpen
+      isOpen: this.props.isCollapsible ? this.props.isOpen : true
     };
 
     this.toggleDrawer = this.toggleDrawer.bind(this);
   }
 
   toggleDrawer() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+    if (this.props.isCollapsible) {
+      this.setState({
+        isOpen: !this.state.isOpen
+      });
+    } else {
+      this.setState({
+        isOpen: true
+      });
+    }
   }
 
   render() {
-    const { title, auid, tabIndex } = this.props;
+    const {
+      title, auid, tabIndex, isCollapsible
+    } = this.props;
     let classlist = '';
     if (this.state.isOpen) {
       classlist = `${this.props.openIcon}`;
@@ -63,9 +74,10 @@ class Drawer extends Component {
 
     return (
       <div className={DrawerWrapStyle} data-auid={`facetdrawer${auid}`}>
-        <StyledDiv onClick={this.toggleDrawer} tabIndex={tabIndex}><span>{title}</span><i className={classlist} />
+        <StyledDiv onClick={this.toggleDrawer} tabIndex={tabIndex}>
+          <div className="w-100 d-flex">{title}{isCollapsible && <div className="align-self-center"><i className={classlist} /></div>}</div>
         </StyledDiv>
-        {this.state.isOpen && <div className={DrawerContentStyle}>{this.props.children}</div>}
+        {this.state.isOpen && <div className={`${DrawerContentStyle} ${SetBackground(this.props.backgroundColor)}`}>{this.props.children}</div>}
       </div>
     );
   }
@@ -74,17 +86,24 @@ class Drawer extends Component {
 Drawer.defaultProps = {
   children: null,
   isOpen: false,
-  tabIndex: 0
+  tabIndex: 0,
+  backgroundColor: '#f4f4f4e6',
+  isCollapsible: true
 };
 
 Drawer.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
   children: PropTypes.element,
   isOpen: PropTypes.bool,
   openIcon: PropTypes.string,
   closeIcon: PropTypes.string,
   auid: PropTypes.string,
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
+  backgroundColor: PropTypes.string,
+  isCollapsible: PropTypes.bool
 };
 
 export default Drawer;
