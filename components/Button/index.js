@@ -22,6 +22,7 @@ const commonBtnStyle = props => css`
   font-family: 'Mallory-Bold';
   font-weight: bold;
   text-transform: uppercase;
+  outline: none;
   cursor: ${getCursorStyle(props)};
 `;
 
