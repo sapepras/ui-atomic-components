@@ -66,7 +66,7 @@ const getPopoverModalWrapperDirectionStyles = direction => {
   }
 };
 
-export const PopoverModalWrapper = styled('div')`
+export const StyledPopoverModalWrapper = styled('div')`
   ${popoverModalWrapperBase};
   line-height: ${({ lineHeightFix }) => lineHeightFix};
   ${({ direction = {} }) => getPopoverModalWrapperDirectionStyles(direction.mobile)};
@@ -193,7 +193,7 @@ const getPopoverDirectionStyles = direction => {
   }
 };
 
-export const Popover = styled('div')`
+export const StyledPopover = styled('div')`
   ${popoverBase};
   ${({ direction = {} }) => getPopoverDirectionStyles(direction.mobile)};
 
