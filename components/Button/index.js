@@ -33,7 +33,7 @@ const sizeStyles = props => {
   let letterSpacing = '0.5px';
   let lineHeight = '1.375rem';
   let minHeight = '4.375rem';
-  let padding = (props.btntype === 'secondary') ? '1rem 2rem' : '0.75rem 2rem';
+  let padding = (props.btntype === 'primary') ? '1rem 2rem' : '0.75rem 2rem';
   if (props.size === BTN_SIZE_MEDIUM) {
     minWidth = '150px';
     minHeight = '3.75rem';
@@ -43,14 +43,14 @@ const sizeStyles = props => {
     letterSpacing = '0.4px';
     lineHeight = '1.125rem';
     minHeight = '3.125rem';
-    padding = (props.btntype === 'secondary') ? '1rem 1.5rem' : '0.75rem 1.5rem';
+    padding = (props.btntype === 'primary') ? '1rem 1.5rem' : '0.75rem 1.5rem';
   } else if (props.size === BTN_SIZE_XSMALL) {
     minWidth = '120px';
     fontSize = '0.75rem';
     letterSpacing = '0.3px';
     lineHeight = '1rem';
     minHeight = '2.5rem';
-    padding = (props.btntype === 'secondary') ? '1rem 1.5rem' : '0.75rem 1.5rem';
+    padding = (props.btntype === 'primary') ? '1rem 1.5rem' : '0.75rem 1.5rem';
   }
 
   return css`
