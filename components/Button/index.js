@@ -18,6 +18,7 @@ const getPrimaryColor = props => (props.disabled ? `${colorLightSteelBlue} !impo
 const getCursorStyle = props => (props.disabled ? 'not-allowed !important' : 'pointer');
 
 const commonBtnStyle = props => css`
+  position: relative;
   border-radius: 2.1875rem;
   font-family: 'Mallory-Bold';
   font-weight: bold;
@@ -69,7 +70,21 @@ const primaryBtnStyle = props => css`
   &:hover {
     background-color: ${colorHover};
   }
-
+  &:focus {
+    outline:none;
+    background-color: ${colorPrimary};
+  }
+  &:focus:before{
+    content: "";
+    border: 2px dotted ${colorPrimary};
+    border-radius: 37px;
+    display: block;
+    position: absolute;
+    top: -4px;
+    right:-4px;
+    left:-4px;
+    bottom:-4px;
+  }
   &:active {
     outline:none;
     background-color: ${colorMarineBlue};
@@ -92,7 +107,17 @@ const secondaryBrnStyles = props => css`
     outline:none;
     background-color: ${colorWhite};
   }
-
+  &:focus:before{
+    content: "";
+    border: 2px dotted ${colorPrimary};
+    border-radius: 35px;
+    display: block;
+    position: absolute;
+    top: -4px;
+    right:-4px;
+    left:-4px;
+    bottom:-4px;
+  }
   &:active {
     outline:none;
     color: ${colorWhite};
@@ -126,6 +151,8 @@ Button.propTypes = {
   size: PropTypes.oneOf([BTN_SIZE_LARGE, BTN_SIZE_MEDIUM, BTN_SIZE_SMALL]),
   /** Button type variant */
   btntype: PropTypes.oneOf(['primary', 'secondary']),
+  /** button background color */
+  btnBG: PropTypes.oneOf(['primary', 'secondary']),
   /** Gets called when the user clicks on the button */
   onClick: PropTypes.func,
   /** Automated Test Id */
