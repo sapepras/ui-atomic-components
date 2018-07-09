@@ -151,8 +151,6 @@ Button.propTypes = {
   size: PropTypes.oneOf([BTN_SIZE_LARGE, BTN_SIZE_MEDIUM, BTN_SIZE_SMALL]),
   /** Button type variant */
   btntype: PropTypes.oneOf(['primary', 'secondary']),
-  /** button background color */
-  btnBG: PropTypes.oneOf(['primary', 'secondary']),
   /** Gets called when the user clicks on the button */
   onClick: PropTypes.func,
   /** Automated Test Id */
