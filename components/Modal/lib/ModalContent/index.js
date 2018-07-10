@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { cx, css } from 'react-emotion';
-export const bp = {
-  xs: { min: '0', max: '575px' },
-  sm: { min: '576px', max: '767px' },
-  md: { min: '768px', max: '991px' },
-  lg: { min: '992px', max: '1199px' },
-  xl: { min: '1200px', max: '' }
-};
+import { bp } from '../../../../util/style';
 
 const modalContentStyle = css`
   position: relative;
