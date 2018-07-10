@@ -1,28 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'react-emotion';
+import { css } from 'react-emotion';
 
 const CommonStyles = props => css`
   padding: 0.2rem 0.5rem;
-  width: ${props.width}rem;
-  height: ${props.height}rem;
-  border-radius: ${props.borderRadius ? props.borderRadius : '4'}px;
-  border: solid ${props.borderWidth ? props.borderWidth : '1'}px ${props.borderColor ? props.borderColor : 'rgba(0, 0, 0, 0.2)'};
+  width: ${props.width};
+  height: ${props.height};
+  border-radius: ${props.borderRadius};
+  border: solid ${props.borderWidth} ${props.borderColor};
   line-height: 1.25;
-  font-size: ${props.fontSize ? props.fontSize : '1'}rem;
-  font-weight: ${props.fontWeight ? props.fontWeight : '300'};
+  font-size: ${props.fontSize};
+  font-weight: ${props.fontWeight};
   opacity: ${props.disabled ? '0.5' : '1'}
-  &:active {
-    border: solid ${props.activeBorderWidth ? props.activeBorderWidth : '1'}px ${props.activeBorderColor ? props.activeBorderColor : '#585858'};
-  }
   &:focus {
-    border: solid ${props.activeBorderWidth ? props.activeBorderWidth : '1'}px ${props.activeBorderColor ? props.activeBorderColor : '#585858'};
+    border: solid ${props.activeBorderWidth} ${props.activeBorderColor};
   }
   ${props.className};
-`;
-
-const StyledInput = styled('input')`
-  ${CommonStyles};
 `;
 
 const InputField = props => {
@@ -30,14 +23,23 @@ const InputField = props => {
         className, type, disabled, onChange, placeholder, value, width, height, fontSize, borderWidth, borderColor, borderRadius, activeBorderColor, activeBorderWidth, fontWeight
     } = props;
     return (
-      <StyledInput className={className} disabled={disabled} type={type} onChange={onChange} placeholder={placeholder} value={value} width={width} height={height} fontSize={fontSize} borderColor={borderColor} borderWidth={borderWidth} borderRadius={borderRadius} activeBorderColor={activeBorderColor} activeBorderWidth={activeBorderWidth} fontWeight={fontWeight} />
+      <input className={`${CommonStyles(props)} ${className}`} disabled={disabled} type={type} onChange={onChange} placeholder={placeholder} value={value} width={width} height={height} fontSize={fontSize} borderColor={borderColor} borderWidth={borderWidth} borderRadius={borderRadius} activeBorderColor={activeBorderColor} activeBorderWidth={activeBorderWidth} fontWeight={fontWeight} />
     );
   };
 
 InputField.defaultProps = {
   type: 'text',
   disabled: false,
-  placeholder: ''
+  placeholder: '',
+  width: '40rem',
+  height: '2.5rem',
+  borderRadius: '4px',
+  borderWidth: '1px',
+  borderColor: 'rgba(0, 0, 0, 0.2)',
+  fontSize: '1rem',
+  fontWeight: '300',
+  activeBorderWidth: '1px',
+  activeBorderColor: '#585858'
 };
 
 InputField.propTypes = {
