@@ -34,7 +34,11 @@ const InputField = props => {
     );
   };
 
-InputField.defaultProps = {};
+InputField.defaultProps = {
+  type: 'text',
+  disabled: false,
+  placeholder: ''
+};
 
 InputField.propTypes = {
     className: PropTypes.string,
