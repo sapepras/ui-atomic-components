@@ -107,13 +107,12 @@ const Button = props => {
  type, onClick, disabled, auid, ImgUrl, ImgWidth, ImgHeight, size
 } = props;
   const ImgH = ImgUrl && !ImgHeight ? '30px' : ImgHeight;
-  const alt = ImgUrl ? 'icon' : '';
-  let ImgW = (size === 'L') && ImgUrl && !ImgWidth ? '70px' : ImgWidth;
-  ImgW = (size === 'M') && ImgUrl && !ImgWidth && !ImgW ? '60px' : ImgW;
-  ImgW = (size === 'S') && ImgUrl && !ImgWidth && !ImgW ? '50px' : ImgW;
+  let ImgW = (size === 'L') && !ImgWidth ? '70px' : ImgWidth;
+  ImgW = (size === 'M') && !ImgWidth && !ImgW ? '60px' : ImgW;
+  ImgW = (size === 'S') && !ImgWidth && !ImgW ? '50px' : ImgW;
   return (
     <StyledButton data-auid={`btn${auid}`} type={type} disabled={disabled} onClick={onClick} {...props}>
-      {props.children } <img alt={alt} width={ImgW} height={ImgH} src={ImgUrl} />
+      {props.children } { ImgUrl && <img alt="icon" width={ImgW} height={ImgH} src={ImgUrl} />}
     </StyledButton>
   );
 };
