@@ -5,11 +5,10 @@ import styled, { css } from 'react-emotion';
 const BTN_SIZE_SMALL = 'S';
 const BTN_SIZE_MEDIUM = 'M';
 const BTN_SIZE_LARGE = 'L';
-const BTN_SIZE_XSMALL = 'XS';
 
 const colorPrimary = '#0055a6';
 const colorHover = '#0255cc';
-const colorHoverSecondary = '#0055a6';
+const colorHoverSecondary = 'rgba(2, 85, 204, 0.1)';
 const colorMarineBlue = '#003366';
 const colorWhite = '#fff';
 const colorLightSteelBlue = '#b2cce4';
@@ -18,8 +17,9 @@ const getPrimaryColor = props => (props.disabled ? `${colorLightSteelBlue} !impo
 const getCursorStyle = props => (props.disabled ? 'not-allowed !important' : 'pointer');
 
 const commonBtnStyle = props => css`
-  border-radius: 2.1875rem;
-  font-family: 'Mallory-Bold';
+  border-radius: 2.3125rem;
+  min-height: 3.75rem;
+  font-size: 0.8rem;
   font-weight: bold;
   text-transform: uppercase;
   cursor: ${getCursorStyle(props)};
@@ -27,37 +27,15 @@ const commonBtnStyle = props => css`
 
 const sizeStyles = props => {
   let minWidth = '180px';
-  let fontSize = '1rem';
-  let letterSpacing = '0.5px';
-  let lineHeight = '1.375rem';
-  let minHeight = '4.375rem';
-  let padding = '1rem 2rem';
-  if (props.size === BTN_SIZE_MEDIUM) {
+
+  if (props.size === BTN_SIZE_SMALL) {
+    minWidth = '120px';
+  } else if (props.size === BTN_SIZE_MEDIUM) {
     minWidth = '150px';
-    minHeight = '3.75rem';
-  } else if (props.size === BTN_SIZE_SMALL) {
-    minWidth = '120px';
-    fontSize = '0.875rem';
-    letterSpacing = '0.4px';
-    lineHeight = '1.125rem';
-    minHeight = '3.125rem';
-    padding = '1rem 1.5rem';
-  } else if (props.size === BTN_SIZE_XSMALL) {
-    minWidth = '120px';
-    fontSize = '0.75rem';
-    letterSpacing = '0.3px';
-    lineHeight = '1rem';
-    minHeight = '2.5rem';
-    padding = '1rem 1.5rem';
   }
 
   return css`
     min-width: ${minWidth};
-    font-size: ${fontSize};
-    letter-spacing: ${letterSpacing};
-    line-height: ${lineHeight};
-    min-height: ${minHeight};
-    padding: ${padding};
   `;
 };
 
@@ -65,6 +43,7 @@ const primaryBtnStyle = props => css`
   border: none;
   color: ${colorWhite};
   background-color: ${getPrimaryColor(props)};
+  padding: 1rem;
   &:hover {
     background-color: ${colorHover};
   }
@@ -80,6 +59,7 @@ const secondaryBrnStyles = props => css`
   color: ${getPrimaryColor(props)};
   border-color: ${getPrimaryColor(props)};
   background-color: ${props.disabled && `${colorWhite} !important`};
+  padding: 1rem;
   &:hover {
     background-color: ${colorHoverSecondary};
     border-color: ${colorHover};
@@ -104,11 +84,16 @@ const StyledButton = styled('button')`
 
 const Button = props => {
   const {
- type, onClick, disabled, auid
+ type, onClick, disabled, auid, ImgUrl, ImgWidth, ImgHeight, size
 } = props;
+  const ImgH = ImgUrl && !ImgHeight ? '30px' : ImgHeight;
+  const alt = ImgUrl ? 'icon' : '';
+  let ImgW = (size === 'L') && ImgUrl && !ImgWidth ? '70px' : ImgWidth;
+  ImgW = (size === 'M') && ImgUrl && !ImgWidth && !ImgW ? '60px' : ImgW;
+  ImgW = (size === 'S') && ImgUrl && !ImgWidth && !ImgW ? '50px' : ImgW;
   return (
     <StyledButton data-auid={`btn${auid}`} type={type} disabled={disabled} onClick={onClick} {...props}>
-      {props.children}
+      {props.children} <img alt={alt} width={ImgW} height={ImgH} src={ImgUrl} />
     </StyledButton>
   );
 };
@@ -127,7 +112,13 @@ Button.propTypes = {
   /** Automated Test Id */
   auid: PropTypes.string.isRequired,
   /** Button label */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  /** Image Url */
+  ImgUrl: PropTypes.string,
+  /** Image Width */
+  ImgWidth: PropTypes.string,
+  /** Image Height */
+  ImgHeight: PropTypes.string
 };
 
 Button.defaultProps = {

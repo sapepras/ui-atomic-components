@@ -40,6 +40,23 @@ Secondary Button - Disabled
 </Button>
 ```
 
+Primary Button - Image Icon
+
+```jsx
+<Button auid="button-5" btntype="secondary" disabled={true} ImgUrl="https://imageurl.jpg" ImgHeight="20px" ImgWidth="35px">
+  Primary Button
+</Button>
+```
+
+Secondary Button - Image Icon
+
+```jsx
+<Button auid="button-5" btntype="secondary" disabled={true} ImgUrl="https://imageurl.jpg" ImgHeight="20px" ImgWidth="35px">
+  Secondary
+</Button>
+```
+
 ###### Notes
 
 * `min-width` on the buttons will be removed once size variants are introduced
+* Default height and width will be set if ImgHeight and ImgWidth is not passed with ImgUrl
