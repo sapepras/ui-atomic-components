@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 
-const DropdownStyle = css`
+const DropdownStyle = props => css`
     ul {
         margin: 0;
         padding: 0;
@@ -10,7 +10,7 @@ const DropdownStyle = css`
         position: relative;
         background: #fff;
         z-index: 1;
-        border-radius: 5px;
+        border-radius: ${props.listBorderRadius ? props.listBorderRadius : '5px'};
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
         padding: 0.75rem 1rem;
@@ -22,12 +22,12 @@ const DropdownStyle = css`
         }
         &:first-child {
             &:hover {
-            border-radius: 5px 5px 0 0;
+            border-radius: ${props.listBorderRadius ? props.listBorderRadius : '5px'} ${props.listBorderRadius ? props.listBorderRadius : '5px'} 0 0;
             }
         }
         &:last-child {
             &:hover {
-            border-radius: 0 0 5px 5px;
+            border-radius: 0 0 ${props.listBorderRadius ? props.listBorderRadius : '5px'} ${props.listBorderRadius ? props.listBorderRadius : '5px'};
             }
         }
     }
@@ -78,11 +78,11 @@ class Dropdown extends Component {
 
     render() {
         const {
-            DropdownOptions, multi, titleClass, subtitleClass, onSelectOption
+            DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled
         } = this.props;
         return (
           <div className={`${DropdownStyle}`}>
-            <button type="button" className={`${btnStyle(this.props)} d-flex justify-content-between align-items-center`} onClick={() => this.setState({ dropdowncollapse: !this.state.dropdowncollapse })}>
+            <button type="button" className={`${btnStyle(this.props)} d-flex justify-content-between align-items-center`} disabled={disabled} onClick={() => this.setState({ dropdowncollapse: !this.state.dropdowncollapse })}>
               {this.renderButtonContents(this.state.selectedOption, titleClass, subtitleClass)}
               <span className={!this.state.dropdowncollapse ? 'academyicon icon-chevron-down' : 'academyicon icon-chevron-up'} />
             </button>
@@ -104,7 +104,8 @@ const DropdownList = props => (
  );
 
 Dropdown.defaultProps = {
-    initiallySelectedOption: { title: 'Select' }
+    initiallySelectedOption: { title: 'Select' },
+    disabled: false
 };
 
 Dropdown.propTypes = {
@@ -113,7 +114,8 @@ Dropdown.propTypes = {
     multi: PropTypes.bool,
     subtitleClass: PropTypes.object,
     onSelectOption: PropTypes.func,
-    initiallySelectedOption: PropTypes.object
+    initiallySelectedOption: PropTypes.object,
+    disabled: PropTypes.bool
 };
 
 export default Dropdown;
