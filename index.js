@@ -5,5 +5,5 @@ import ProductCard from './components/ProductCard';
 import PriceDetails from './components/PriceDetails';
 import Badge from './components/Badge';
 import PopoverStateless from './components/PopoverStateless';
-
-export { Button, Anchor, Drawer, ProductCard, PriceDetails, Badge, PopoverStateless };
+import InputField from './components/InputField';
+export { Button, Anchor, Drawer, ProductCard, PriceDetails, Badge, PopoverStateless, InputField };

@@ -13,7 +13,8 @@ const baseConfig = () => ({
     Rating: './components/Rating',
     PriceDetails: './components/PriceDetails',
     Badge: './components/Badge',
-    PopoverStateless: './components/PopoverStateless'
+    PopoverStateless: './components/PopoverStateless',
+    InputField: './components/InputField'
   },
   output: {
     // Compile into js/build.js
