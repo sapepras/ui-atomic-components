@@ -21,6 +21,7 @@ const StyledDiv = styled('div')`
   & > p {
     margin: 0px;
   }
+  z-index:10;
 `;
 
 const DrawerWrapStyle = css`
@@ -35,8 +36,20 @@ const DrawerContentStyle = css`
   border-top: 1px solid #f6f6f6;
 `;
 
+const MakeScrollable = css`
+  overflow-y: scroll;
+`;
+
 const SetBackground = color => css`
   background-color: ${color};
+`;
+
+const SetMaxHeight = bodyHeight => css`
+  max-height: ${bodyHeight};
+`;
+
+const ExpandUpward = bodyHeight => css`
+  margin-top: -${bodyHeight};
 `;
 
 class Drawer extends Component {
@@ -45,7 +58,6 @@ class Drawer extends Component {
     this.state = {
       isOpen: this.props.isCollapsible ? this.props.isOpen : true
     };
-
     this.toggleDrawer = this.toggleDrawer.bind(this);
   }
 
@@ -63,7 +75,7 @@ class Drawer extends Component {
 
   render() {
     const {
-      title, auid, tabIndex, isCollapsible
+      title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
     } = this.props;
     let classlist = '';
     if (this.state.isOpen) {
@@ -73,11 +85,11 @@ class Drawer extends Component {
     }
 
     return (
-      <div className={DrawerWrapStyle} data-auid={`facetdrawer${auid}`}>
-        <StyledDiv onClick={this.toggleDrawer} tabIndex={tabIndex}>
+      <div className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
+        <StyledDiv className={`${this.state.isOpen ? titleStyleOpen : null} ${titleStyle}`} onClick={this.toggleDrawer} tabIndex={tabIndex}>
           <div className="w-100 d-flex">{title}{isCollapsible && <div className="align-self-center"><i className={classlist} /></div>}</div>
         </StyledDiv>
-        {this.state.isOpen && <div className={`${DrawerContentStyle} ${SetBackground(this.props.backgroundColor)}`}>{this.props.children}</div>}
+        {this.state.isOpen && <div className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${bodyHeight ? SetMaxHeight(bodyHeight) : ''} ${SetBackground(this.props.backgroundColor)}`} ref={this.DrawerBody}>{this.props.children}</div>}
       </div>
     );
   }
@@ -88,14 +100,19 @@ Drawer.defaultProps = {
   isOpen: false,
   tabIndex: 0,
   backgroundColor: '#f4f4f4e6',
-  isCollapsible: true
+  isCollapsible: true,
+  expandBelow: true,
+  bodyHeight: null,
+  bodyStyle: null,
+  titleStyle: null,
+  titleStyleOpen: null
 };
 
 Drawer.propTypes = {
   title: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element
-  ]),
+  ]).isRequired,
   children: PropTypes.element,
   isOpen: PropTypes.bool,
   openIcon: PropTypes.string,
@@ -103,7 +120,12 @@ Drawer.propTypes = {
   auid: PropTypes.string,
   tabIndex: PropTypes.number,
   backgroundColor: PropTypes.string,
-  isCollapsible: PropTypes.bool
+  isCollapsible: PropTypes.bool,
+  expandBelow: PropTypes.bool,
+  bodyHeight: PropTypes.string,
+  bodyStyle: PropTypes.object,
+  titleStyle: PropTypes.object,
+  titleStyleOpen: PropTypes.object
 };
 
 export default Drawer;
