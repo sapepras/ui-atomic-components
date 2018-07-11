@@ -17,9 +17,6 @@ class Modal extends React.Component {
       isOpen: this.props.isOpen
     };
     this.modalTarget = null;
-    this.prevDiff = -1;
-    this.handleTouchStart = this.handleTouchStart.bind(this);
-    this.handleTouchMove = this.handleTouchMove.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.storeContentTarget = this.storeContentTarget.bind(this);
     this.handleOverlayClick = this.handleOverlayClick.bind(this);
@@ -33,8 +30,6 @@ class Modal extends React.Component {
     document.body.appendChild(this.el);
     this.el.focus();
     this.addBodyOverrides();
-    this.el.addEventListener('touchstart', this.handleTouchStart);
-    this.el.addEventListener('touchmove', this.handleTouchMove);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,39 +54,6 @@ class Modal extends React.Component {
 
   removeBodyOverrides() {
     document.body.classList.remove(bodyOverrides);
-  }
-
-  /**
-   * This will be handled soon
-   * @param {event}
-   */
-  handleTouchStart(event) {
-    // event.preventDefault();
-    console.log(event.touches.length);
-  }
-
-  /**
-   * This will be handled soon
-   * @param {event}
-   */
-  handleTouchMove(event) {
-    // console.log(event.touches);
-    if (event.touches.length === 2) {
-      const { touches } = event;
-      const curDiff = Math.abs(touches[0].clientX - touches[1].clientX);
-
-      if (this.prevDiff > 0) {
-        if (curDiff < this.prevDiff) {
-          // The distance between the two pointers has decreased
-          console.log(`pr${this.prevDiff} - cur${curDiff}`);
-          // this.setState({
-          //   isOpen: false
-          // });
-        }
-      }
-      // Cache the distance for the next move event
-      this.prevDiff = curDiff;
-    }
   }
 
   handleClose() {
