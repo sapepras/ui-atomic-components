@@ -6,6 +6,7 @@ const StyledDiv = styled('div')`
   background-color: #ffffff;
   min-height: 62px;
   font-size: 16px;
+  line-height:1.25rem;
   letter-spacing: 0.5;
   font-color: #585858;
   line-color: #e6e6e6;
