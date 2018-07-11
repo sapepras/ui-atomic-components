@@ -39,9 +39,9 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ```Function to be executed when any option in dropdown is clicked upon.```
 
-* **initiallySelectedOption**: *PropTypes.object*
+* **initiallySelectedOption**: *PropTypes.number*
 
-```Option to be rendered selected when the dropdown is rendered.```
+```Index of option to be rendered selected when the dropdown is rendered.```
 
 * **width**: *PropTypes.string*
 
@@ -81,6 +81,8 @@ Dropdown Atomic Component renders a custom dropdown component with various props
     {title: 'Jack', subtitle: 'New York, US'},
     {title: 'Gabriel', subtitle: 'Barcelona, Spain'},
     {title: 'Tejas', subtitle: 'Karnataka, India'}]}
+  
+  initiallySelectedOption = {2}
   disabled={false} 
   width="30rem" 
   height="3.5rem" 

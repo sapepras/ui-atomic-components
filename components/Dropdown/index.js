@@ -49,7 +49,7 @@ class Dropdown extends Component {
         super(props);
         this.state = {
             dropdowncollapse: false,
-            selectedOption: this.props.initiallySelectedOption
+            selectedOption: this.props.initiallySelectedOption < this.props.DropdownOptions.length ? this.props.DropdownOptions[this.props.initiallySelectedOption] : { title: 'Select' }
         };
         this.onSelectWrapper = this.onSelectWrapper.bind(this);
         this.renderButtonContents = this.renderButtonContents.bind(this);
@@ -81,7 +81,7 @@ class Dropdown extends Component {
             DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled
         } = this.props;
         return (
-          <div className={`${DropdownStyle}`}>
+          <div className={`${DropdownStyle(this.props)}`}>
             <button type="button" className={`${btnStyle(this.props)} d-flex justify-content-between align-items-center`} disabled={disabled} onClick={() => this.setState({ dropdowncollapse: !this.state.dropdowncollapse })}>
               {this.renderButtonContents(this.state.selectedOption, titleClass, subtitleClass)}
               <span className={!this.state.dropdowncollapse ? 'academyicon icon-chevron-down' : 'academyicon icon-chevron-up'} />
@@ -114,7 +114,7 @@ Dropdown.propTypes = {
     multi: PropTypes.bool,
     subtitleClass: PropTypes.object,
     onSelectOption: PropTypes.func,
-    initiallySelectedOption: PropTypes.object,
+    initiallySelectedOption: PropTypes.number,
     disabled: PropTypes.bool
 };
 
