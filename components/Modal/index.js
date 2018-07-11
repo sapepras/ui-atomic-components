@@ -5,7 +5,6 @@ import { css } from 'react-emotion';
 import Overlay from './lib/Overlay';
 import ModalContent from './lib/ModalContent';
 const KEY_CODE_ESC = 27;
-let prevDiff = -1;
 
 const bodyOverrides = css`
   overflow: hidden;
@@ -18,26 +17,26 @@ class Modal extends React.Component {
       isOpen: this.props.isOpen
     };
     this.modalTarget = null;
-    this.handleTouchStart = this.handleTouchStart.bind(this);
-    this.handleTouchMove = this.handleTouchMove.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.storeContentTarget = this.storeContentTarget.bind(this);
     this.handleOverlayClick = this.handleOverlayClick.bind(this);
+    this.addBodyOverrides = this.addBodyOverrides.bind(this);
+    this.removeBodyOverrides = this.removeBodyOverrides.bind(this);
     this.el = document.createElement('div');
-    document.body.classList.remove(bodyOverrides);
+    this.removeBodyOverrides();
   }
 
   componentDidMount() {
     document.body.appendChild(this.el);
     this.el.focus();
-    document.body.classList.add(bodyOverrides);
-    this.el.addEventListener('touchstart', this.handleTouchStart);
-    this.el.addEventListener('touchmove', this.handleTouchMove);
+    this.addBodyOverrides();
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isOpen) {
-      document.body.classList.add(bodyOverrides);
+      this.addBodyOverrides();
+    } else {
+      this.removeBodyOverrides();
     }
     this.setState({
       isOpen: nextProps.isOpen
@@ -45,44 +44,20 @@ class Modal extends React.Component {
   }
 
   componentWillUnmount() {
-    document.body.classList.remove(bodyOverrides);
+    this.removeBodyOverrides();
     document.body.removeChild(this.el);
   }
 
-  /**
-   * This will be handled soon
-   * @param {event}
-   */
-  handleTouchStart(event) {
-    // event.preventDefault();
-    console.log(event.touches.length);
+  addBodyOverrides() {
+    document.body.classList.add(bodyOverrides);
   }
 
-  /**
-   * This will be handled soon
-   * @param {event}
-   */
-  handleTouchMove(event) {
-    if (event.touches.length === 2) {
-      const { touches } = event;
-      const curDiff = Math.abs(touches[0].clientX - touches[1].clientX);
-
-      if (prevDiff > 0) {
-        if (curDiff < prevDiff) {
-          // The distance between the two pointers has decreased
-          console.log(`pr${prevDiff} - cur${curDiff}`);
-          // this.setState({
-          //   isOpen: false
-          // });
-        }
-      }
-      // Cache the distance for the next move event
-      prevDiff = curDiff;
-    }
+  removeBodyOverrides() {
+    document.body.classList.remove(bodyOverrides);
   }
 
   handleClose() {
-    document.body.classList.remove(bodyOverrides);
+    this.removeBodyOverrides();
     this.setState({
       isOpen: false
     });
