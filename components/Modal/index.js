@@ -5,6 +5,7 @@ import { css } from 'react-emotion';
 import Overlay from './lib/Overlay';
 import ModalContent from './lib/ModalContent';
 const KEY_CODE_ESC = 27;
+const MIN_CLOSE_POINT = 0.4;
 
 const bodyOverrides = css`
   overflow: hidden;
@@ -17,6 +18,7 @@ class Modal extends React.Component {
       isOpen: this.props.isOpen
     };
     this.modalTarget = null;
+    this.handleTouchEnd = this.handleTouchEnd.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.storeContentTarget = this.storeContentTarget.bind(this);
     this.handleOverlayClick = this.handleOverlayClick.bind(this);
@@ -29,7 +31,11 @@ class Modal extends React.Component {
   componentDidMount() {
     document.body.appendChild(this.el);
     this.el.focus();
-    this.addBodyOverrides();
+    this.el.addEventListener('touchend', this.handleTouchEnd);
+    const { isOpen } = this.state;
+    if (isOpen) {
+      this.addBodyOverrides();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,6 +52,7 @@ class Modal extends React.Component {
   componentWillUnmount() {
     this.removeBodyOverrides();
     document.body.removeChild(this.el);
+    this.el.removeEventListener('touchend', this.handleTouchEnd);
   }
 
   addBodyOverrides() {
@@ -54,6 +61,13 @@ class Modal extends React.Component {
 
   removeBodyOverrides() {
     document.body.classList.remove(bodyOverrides);
+  }
+
+  handleTouchEnd(event) {
+    const { scale } = event;
+    if (scale < MIN_CLOSE_POINT) {
+      this.handleClose();
+    }
   }
 
   handleClose() {
