@@ -52,6 +52,7 @@ class Modal extends React.Component {
   componentWillUnmount() {
     this.removeBodyOverrides();
     document.body.removeChild(this.el);
+    this.el.removeEventListener('touchend', this.handleTouchEnd);
   }
 
   addBodyOverrides() {
