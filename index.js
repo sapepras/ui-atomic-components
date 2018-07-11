@@ -6,4 +6,5 @@ import PriceDetails from './components/PriceDetails';
 import Badge from './components/Badge';
 import PopoverStateless from './components/PopoverStateless';
 import InputField from './components/InputField';
-export { Button, Anchor, Drawer, ProductCard, PriceDetails, Badge, PopoverStateless, InputField };
+import Dropdown from './components/Dropdown';
+export { Button, Anchor, Drawer, ProductCard, PriceDetails, Badge, PopoverStateless, InputField, Dropdown };
