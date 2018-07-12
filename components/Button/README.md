@@ -43,7 +43,7 @@ Secondary Button - Disabled
 Primary Button - Image Icon
 
 ```jsx
-<Button auid="button-6" btntype="secondary" imgUrl="https://imageurl.jpg" imgHeight="20px" imgWidth="35px">
+<Button auid="button-6" btntype="primary" imgUrl="https://imageurl.jpg" imgHeight="20px" imgWidth="35px">
   Primary Button
 </Button>
 ```
