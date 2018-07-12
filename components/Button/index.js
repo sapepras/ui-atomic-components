@@ -104,16 +104,12 @@ const StyledButton = styled('button')`
 
 const Button = props => {
   const {
- type, onClick, disabled, auid, imgUrl, imgWidth, imgHeight, size
+ type, onClick, disabled, auid, imgUrl, imgWidth, imgHeight
 } = props;
-  const ImgH = imgUrl && !imgHeight ? '30px' : imgHeight;
-  let ImgW = (size === 'L') && !imgWidth ? '70px' : imgWidth;
-  ImgW = (size === 'M') && !imgWidth && !ImgW ? '60px' : ImgW;
-  ImgW = (size === 'S') && !imgWidth && !ImgW ? '50px' : ImgW;
-  ImgW = (size === 'XS') && !imgWidth && !ImgW ? '40px' : ImgW;
+  const ImgH = !imgHeight ? '30px' : imgHeight;
   return (
     <StyledButton data-auid={`btn${auid}`} type={type} disabled={disabled} onClick={onClick} {...props}>
-      {props.children } { imgUrl && <img alt="icon" width={ImgW} height={ImgH} src={imgUrl} />}
+      {props.children } { imgUrl && <img alt="icon" width={imgWidth} height={ImgH} src={imgUrl} />}
     </StyledButton>
   );
 };
