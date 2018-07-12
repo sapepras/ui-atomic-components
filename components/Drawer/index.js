@@ -6,6 +6,7 @@ const StyledDiv = styled('div')`
   background-color: #ffffff;
   min-height: 62px;
   font-size: 16px;
+  line-height:1.25rem;
   letter-spacing: 0.5;
   font-color: #585858;
   line-color: #e6e6e6;
@@ -15,7 +16,7 @@ const StyledDiv = styled('div')`
   border:0px;
   background-color:#fff;
   border-top:1px solid rgb(230, 230, 230);
-  padding: 0.8rem;
+  padding: 1rem;
   justify-content: space-between;
 
   & > p {
@@ -32,7 +33,7 @@ const DrawerWrapStyle = css`
 
 const DrawerContentStyle = css`
   min-height: 62px;
-  padding: 0.8rem;
+  padding: 1rem;
   border-top: 1px solid #f6f6f6;
 `;
 

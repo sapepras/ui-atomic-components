@@ -8,4 +8,6 @@ import PopoverStateless from './components/PopoverStateless';
 import InputField from './components/InputField';
 import Dropdown from './components/Dropdown';
 import Checkbox from './components/Checkbox';
-export { Button, Anchor, Drawer, ProductCard, PriceDetails, Badge, PopoverStateless, InputField, Dropdown, Checkbox };
+import Modal from './components/Modal';
+
+export { Button, Anchor, Drawer, ProductCard, PriceDetails, Badge, PopoverStateless, Modal, InputField, Dropdown, Checkbox };
