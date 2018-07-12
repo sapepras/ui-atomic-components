@@ -23,10 +23,10 @@ class Card extends Component {
     };
   }
 
-  createLogGA(PubSub, eventAction, productName) {
+  createLogGA(gtmDataLayer, eventAction, productName) {
     return () => {
-      if (PubSub && PubSub.publish) {
-        PubSub.publish('gtm:dataLayer', {
+      if (gtmDataLayer) {
+        gtmDataLayer.push({
           event: 'productCardClicks',
           eventCategory: 'Product Card Clicks',
           eventAction,
@@ -37,8 +37,8 @@ class Card extends Component {
   }
 
   render() {
-    const defaultLogGA = this.createLogGA(this.props.PubSub, 'Product Detail', this.props.description);
-    const defaultQuickViewLogGA = this.createLogGA(this.props.PubSub, 'Quickview', this.props.description);
+    const defaultLogGA = this.props.cardAnalytics;
+    const defaultQuickViewLogGA = this.createLogGA(this.props.gtmDataLayer, 'Quickview', this.props.description);
     const { auid, tabIndex, ctaLink, onClickLogGA = defaultLogGA, classes, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
     const thisOnClickGoTo = this.onClickGoTo(ctaLink, onClickLogGA);
     let clickAttributes = {};
@@ -71,10 +71,11 @@ Card.propTypes = {
   onClickLogGA: PropTypes.func,
   styleOverride: PropTypes.object,
   tabIndex: PropTypes.number,
-  PubSub: PropTypes.any.isRequired,
+  gtmDataLayer: PropTypes.any.isRequired,
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
-  onClickQuickViewLogGa: PropTypes.func
+  onClickQuickViewLogGa: PropTypes.func,
+  cardAnalytics: PropTypes.func
 };
 
 export default Card;
