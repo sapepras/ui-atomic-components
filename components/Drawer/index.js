@@ -88,7 +88,7 @@ class Drawer extends Component {
     return (
       <div className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
         <StyledDiv className={`${this.state.isOpen ? titleStyleOpen : null} ${titleStyle}`} onClick={this.toggleDrawer} tabIndex={tabIndex}>
-          <div className="w-100 d-flex">{title}{isCollapsible && <div className="align-self-center"><i className={classlist} /></div>}</div>
+          <div className="w-100 justify-content-between d-flex">{title}{isCollapsible && <div className="align-self-center"><i className={classlist} /></div>}</div>
         </StyledDiv>
         {this.state.isOpen && <div className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${bodyHeight ? SetMaxHeight(bodyHeight) : ''} ${SetBackground(this.props.backgroundColor)}`} ref={this.DrawerBody}>{this.props.children}</div>}
       </div>
