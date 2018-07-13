@@ -17,7 +17,7 @@ const DropdownStyle = props => css`
         font-weight: normal;
         cursor: pointer;
         &:hover {
-            color: #fff !important;
+            color: #fff;
             background: #0055a6;
         }
         &:first-child {
