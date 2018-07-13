@@ -35,7 +35,7 @@ const DropdownStyle = props => css`
 
 const btnStyle = props => css`
     display: flex;
-    padding: 0.2rem 0.5rem;
+    padding: 0.5rem 1rem;
     width: ${props.width ? props.width : '30rem'};
     height: ${props.height ? props.height : '3.5rem'};
     line-height: 1.25;
@@ -98,9 +98,9 @@ class Dropdown extends Component {
 
 const DropdownList = props => (
     !props.multi ?
-    props.options.map(item => <li key={item.title} data-value={item.title} role="presentation" onClick={() => props.onSelect(item)}><span className={props.titleClass}>{item.title}</span></li>)
+    props.options.map(item => <li key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item)}><span className={props.titleClass}>{item.title}</span></li>)
     :
-    props.options.map(item => <li key={item.title} data-value={item.title} role="presentation" onClick={() => props.onSelect(item)}><span className={`${props.titleClass} d-block`}>{item.title}</span><span className={`${props.subtitleClass} d-block`}>{item.subtitle}</span></li>)
+    props.options.map(item => <li key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item)}><span className={`${props.titleClass} d-block`}>{item.title}</span><span className={`${props.subtitleClass} d-block`}>{item.subtitle}</span></li>)
  );
 
 Dropdown.defaultProps = {
