@@ -70,7 +70,7 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ## Example Usage
 
-### Firstly, Import InputField from Atomic Components.
+### Firstly, Import Dropdown from Atomic Components.
 
 ### Then,
 
