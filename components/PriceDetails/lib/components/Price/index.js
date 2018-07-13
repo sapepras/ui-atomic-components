@@ -17,7 +17,7 @@ const colorMap = {
 };
 
 const Wrapper = styled('span')`
-  color: ${({ color }) => colorMap[color.trim().toLowerCase()] ? colorMap[color.trim().toLowerCase()] : colorMap.black};
+  color: ${({ colorCode }) => colorMap[colorCode.trim().toLowerCase()] ? colorMap[colorCode.trim().toLowerCase()] : colorMap.black};
   text-decoration: ${({ strikethrough }) => (strikethrough ? 'line-through' : 'none')};
   ${({ strikethrough }) => strikethrough ? 'font-family: MalloryCond-Medium;' : ''};
 `;
@@ -33,7 +33,7 @@ class Price extends PureComponent {
     }
 
     return (
-      <Wrapper className="c-price__sub" color={color} strikethrough={strikethrough}>
+      <Wrapper className="c-price__sub" colorCode={color} strikethrough={strikethrough}>
         <Super className="c-price__super" strikethrough={strikethrough}>$</Super>
         {/* eslint-disable-next-line react/jsx-indent */}
         <span>{num}</span>
