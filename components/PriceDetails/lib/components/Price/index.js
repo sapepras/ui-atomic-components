@@ -11,8 +11,7 @@ const Super = styled('sup')`
 
 const colorMap = {
   blue: '#005599',
-  gray: '#7f7f7f',
-  grey: '#7f7f7f',
+  gray: '#767676',
   black: '#333333',
   red: '#ee0000'
 };

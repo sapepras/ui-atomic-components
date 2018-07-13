@@ -18,7 +18,7 @@ const InCartPlusCompare = ({ listPrice }) => {
       <div className="c-price-in-cart" style={{ color: '#ee0000' }}>
         Our Price in Cart
       </div>
-      <div className="c-price-compare" style={{ color: '#7f7f7f' }}>
+      <div className="c-price-compare" style={{ color: '#767676' }}>
         Compare at {formattedListPrice}
       </div>
     </div>
