@@ -1,6 +1,5 @@
 const colorPrimary = '#0055a6';
 const colorHover = '#0255cc';
-const colorHoverSecondary = 'rgba(2, 85, 204, 0.1);';
 const colorMarineBlue = '#003366';
 const colorWhite = '#fff';
 const colorLightSteelBlue = '#b2cce4';
@@ -9,7 +8,6 @@ const getPrimaryColor = (props, bgDisabledBtnColor, bgActiveBtnColor) => (props.
  export {
      colorPrimary,
      colorHover,
-     colorHoverSecondary,
      colorMarineBlue,
      colorWhite,
      colorLightSteelBlue,

@@ -87,6 +87,22 @@ Secondary Button variant 2- Disabled
 ```
 Secondary Button variant 3
 
+```jsx
+<div style={{"background-color":"#4c4c4c","min-height":"120px", "padding-top":"50px", "padding-left": "10px"}}>
+<Button auid="button-6" btntype="secondary" btnvariant="tertiary">
+  Variant C
+</Button>
+</div>
+```
+Secondary Button variant 3 -disabled
+```jsx
+<div style={{"background-color":"#4c4c4c","min-height":"120px", "padding-top":"50px", "padding-left": "10px"}}>
+<Button auid="button-7" btntype="secondary" btnvariant="tertiary" disabled={true}>
+  disabled
+</Button>
+</div>
+```
+
 Primary Button - Image Icon
 
 ```jsx

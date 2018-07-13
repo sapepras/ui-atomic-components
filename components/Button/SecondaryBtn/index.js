@@ -3,7 +3,6 @@ import { css } from 'react-emotion';
 import {
     colorPrimary,
     colorHover,
-    colorHoverSecondary,
     colorWhite,
     colorLightSteelBlue,
     colorGrey,
@@ -12,19 +11,19 @@ import {
 
 export const secondaryBtnStyles = props => {
     let borderColor = colorPrimary;
-    let bgBtnColor = colorWhite;
+    const bgBtnColor = '#0000';
     let textColor = getPrimaryColor(props, colorLightSteelBlue, colorPrimary);
-    let bgDisabledBtnColor = colorWhite;
-    let bgHoverColor = colorHoverSecondary;
+    const bgDisabledBtnColor = '#0000';
+    let bgHoverColor = 'rgba(0, 0, 0, 0.1)';
     let hoverBorderColor = colorHover;
     let hoverTextColor = colorHover;
-    let bgFocusColor = colorWhite;
+    const bgFocusColor = '#0000';
     let borderFocusColor = colorPrimary;
     let textActiveColor = colorWhite;
     let bgActiveColor = colorPrimary;
     if (props.btnvariant === 'secondary') {
         borderColor = '#4a4a4a';
-        textColor = getPrimaryColor(props, colorGrey, '##585858');
+        textColor = getPrimaryColor(props, colorGrey, '#333333');
         bgHoverColor = '#f6f6f6';
         hoverBorderColor = '#9b9b9b';
         hoverTextColor = '#9b9b9b';
@@ -33,13 +32,9 @@ export const secondaryBtnStyles = props => {
         bgActiveColor = colorGrey;
     } else if (props.btnvariant === 'tertiary') {
         borderColor = colorWhite;
-        bgBtnColor = '#4c4c4c';
         textColor = colorWhite;
-        bgDisabledBtnColor = '#4c4c4c';
-        bgHoverColor = 'rgba(255, 255, 255, 0.1)';
         hoverBorderColor = colorWhite;
         hoverTextColor = colorWhite;
-        bgFocusColor = '#4c4c4c';
         borderFocusColor = colorWhite;
         textActiveColor = colorGrey;
         bgActiveColor = colorWhite;
