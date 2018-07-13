@@ -14,6 +14,9 @@ const baseConfig = () => ({
     PriceDetails: './components/PriceDetails',
     Badge: './components/Badge',
     PopoverStateless: './components/PopoverStateless',
+    InputField: './components/InputField',
+    Dropdown: './components/Dropdown',
+    Checkbox: './components/Checkbox',
     Modal: './components/Modal'
   },
   output: {

@@ -67,11 +67,12 @@ const StyledButton = styled('button')`
 
 const Button = props => {
   const {
- type, onClick, disabled, auid
+ type, onClick, disabled, auid, imgUrl, imgWidth, imgHeight
 } = props;
+  const ImgH = !imgHeight ? '30px' : imgHeight;
   return (
     <StyledButton data-auid={`btn${auid}`} type={type} disabled={disabled} onClick={onClick} {...props}>
-      {props.children}
+      {props.children } { imgUrl && <img alt="icon" width={imgWidth} height={ImgH} src={imgUrl} />}
     </StyledButton>
   );
 };
@@ -92,7 +93,13 @@ Button.propTypes = {
   /** Automated Test Id */
   auid: PropTypes.string.isRequired,
   /** Button label */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  /** Image Url */
+  imgUrl: PropTypes.string,
+  /** Image Width */
+  imgWidth: PropTypes.string,
+  /** Image Height */
+  imgHeight: PropTypes.string
 };
 
 Button.defaultProps = {
