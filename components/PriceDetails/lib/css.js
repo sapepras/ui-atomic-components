@@ -9,5 +9,5 @@ export const titleText = css`
 export const contentText = css`
   font-family: Mallory;
   font-size: 12px;
-  color: #585858;
+  color: #333333;
 `;
