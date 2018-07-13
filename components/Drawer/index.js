@@ -22,7 +22,6 @@ const StyledDiv = styled('div')`
   & > p {
     margin: 0px;
   }
-  z-index:10;
 `;
 
 const DrawerWrapStyle = css`
