@@ -38,8 +38,7 @@ ProductCard.propTypes = {
   badge: PropTypes.string,
   promoMessage: PropTypes.string,
   titleMaxCC: PropTypes.number,
-  descriptionMaxCC: PropTypes.number,
-  PubSub: PropTypes.any.isRequired
+  descriptionMaxCC: PropTypes.number
 };
 
 // ProductCard.failedOneJson = failedOneJson;
