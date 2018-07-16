@@ -17,5 +17,4 @@ describe('/radiobutton/', () => {
   it('always renders a radiobutton', () => {
     expect(ShallowBtn().find('radiobutton')).to.have.length(1);
   });
-
 });

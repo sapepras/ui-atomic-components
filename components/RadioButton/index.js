@@ -57,7 +57,7 @@ class RadioButton extends Component {
 
     render() {
         const {
-            formLabel, labelPosition, labelText, disabled, onChange, labelClass, top, marginLeft
+            formLabel, labelPosition, labelText, disabled, onChange, labelClass
         } = this.props;
         return (
             labelPosition === 'left' ?
@@ -81,9 +81,7 @@ RadioButton.defaultProps = {
     labelPosition: 'right',
     formLabel: 'radioButton',
     labelText: '',
-    disabled: false,
-    top: '-1px',
-    marginLeft: '14px'
+    disabled: false
 };
 
 RadioButton.propTypes = {
@@ -93,9 +91,7 @@ RadioButton.propTypes = {
     labelText: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
-    labelClass: PropTypes.object,
-    top: PropTypes.string,
-    marginLeft: PropTypes.string
+    labelClass: PropTypes.object
 };
 
 export default RadioButton;
