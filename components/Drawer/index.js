@@ -6,6 +6,7 @@ const StyledDiv = styled('div')`
   background-color: #ffffff;
   min-height: 62px;
   font-size: 16px;
+  line-height:1.25rem;
   letter-spacing: 0.5;
   font-color: #585858;
   line-color: #e6e6e6;
@@ -15,13 +16,12 @@ const StyledDiv = styled('div')`
   border:0px;
   background-color:#fff;
   border-top:1px solid rgb(230, 230, 230);
-  padding: 0.8rem;
+  padding: 1rem;
   justify-content: space-between;
 
   & > p {
     margin: 0px;
   }
-  z-index:10;
 `;
 
 const DrawerWrapStyle = css`
@@ -32,7 +32,7 @@ const DrawerWrapStyle = css`
 
 const DrawerContentStyle = css`
   min-height: 62px;
-  padding: 0.8rem;
+  padding: 1rem;
   border-top: 1px solid #f6f6f6;
 `;
 
@@ -87,7 +87,7 @@ class Drawer extends Component {
     return (
       <div className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
         <StyledDiv className={`${this.state.isOpen ? titleStyleOpen : null} ${titleStyle}`} onClick={this.toggleDrawer} tabIndex={tabIndex}>
-          <div className="w-100 d-flex">{title}{isCollapsible && <div className="align-self-center"><i className={classlist} /></div>}</div>
+          <div className="w-100 justify-content-between d-flex">{title}{isCollapsible && <div className="align-self-center"><i className={classlist} /></div>}</div>
         </StyledDiv>
         {this.state.isOpen && <div className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${bodyHeight ? SetMaxHeight(bodyHeight) : ''} ${SetBackground(this.props.backgroundColor)}`} ref={this.DrawerBody}>{this.props.children}</div>}
       </div>

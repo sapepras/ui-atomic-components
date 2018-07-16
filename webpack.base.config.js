@@ -16,7 +16,9 @@ const baseConfig = () => ({
     PopoverStateless: './components/PopoverStateless',
     InputField: './components/InputField',
     Dropdown: './components/Dropdown',
-    Tooltip: './components/Tooltip'
+    Tooltip: './components/Tooltip',
+    Checkbox: './components/Checkbox',
+    Modal: './components/Modal'
   },
   output: {
     // Compile into js/build.js
