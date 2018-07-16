@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 
-const RadioLabel = props => css`
+const RadioLabel = css`
     position: relative;
     span {
         display: inline-block;
-        margin-left: ${props.marginLeft};
+        margin-left: 14px;
         position: relative;
-        top: ${props.top};
+        top: -4px;
     }
 `;
 
@@ -61,13 +61,13 @@ class RadioButton extends Component {
         } = this.props;
         return (
             labelPosition === 'left' ?
-              <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? `${RadioLabel}` : `${RadioLabel} d-flex`}>
+              <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? `${RadioLabel}` : `${RadioLabel} d-flex align-items-center`}>
                 <span className={labelClass}>{labelText}</span>
                 <input disabled={disabled} checked={this.state.isChecked} className={`${RadioStyles}`} id={formLabel} type="radio" onChange={() => this.onChangeWrapper(onChange)} />
                 <strong></strong>
               </label>
            :
-              <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? `${RadioLabel}` : `${RadioLabel} d-flex`}>
+              <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? `${RadioLabel}` : `${RadioLabel} d-flex align-items-center`}>
                 <input disabled={disabled} checked={this.state.isChecked} className={`${RadioStyles}`} id={formLabel} type="radio" onChange={() => this.onChangeWrapper(onChange)} />
                 <strong></strong>
                 <span className={labelClass}>{labelText}</span>
