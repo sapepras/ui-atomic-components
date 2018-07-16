@@ -7,13 +7,14 @@ const DropdownStyle = props => css`
         margin: 0;
         padding: 0;
         list-style-type: none;
-        position: relative;
+        position: absolute;
         background: #fff;
         z-index: 1;
         border-radius: ${props.listBorderRadius ? props.listBorderRadius : '5px'};
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
         padding: 0.75rem 1rem;
+        min-height: 4.5rem;
         font-weight: normal;
         cursor: pointer;
         &:hover {
@@ -31,6 +32,7 @@ const DropdownStyle = props => css`
             }
         }
     }
+    ${props.className}
 `;
 
 const btnStyle = props => css`
@@ -42,6 +44,11 @@ const btnStyle = props => css`
     background-color: #fff;
     border: ${props.borderWidth ? props.borderWidth : '1px'} solid ${props.borderColor ? props.borderColor : '#ccc'};
     border-radius: ${props.borderRadius ? props.borderRadius : '4px'};
+    ${props.className}
+`;
+
+const listStyle = props => css`
+    width: ${props.width}
 `;
 
 class Dropdown extends Component {
@@ -55,9 +62,9 @@ class Dropdown extends Component {
         this.renderButtonContents = this.renderButtonContents.bind(this);
     }
 
-    onSelectWrapper(value, onSelect) {
+    onSelectWrapper(value, onSelect, index) {
         this.setState({ selectedOption: value, dropdowncollapse: false });
-        onSelect();
+        onSelect(index);
     }
 
     renderButtonContents(item, titleClass, subtitleClass) {
@@ -87,20 +94,21 @@ class Dropdown extends Component {
               <span className={!this.state.dropdowncollapse ? 'academyicon icon-chevron-down' : 'academyicon icon-chevron-up'} />
             </button>
             {this.state.dropdowncollapse && (
-            <ul className="body-14-regular w-100" role="presentation">
-              <DropdownList multi={multi} titleClass={titleClass} subtitleClass={subtitleClass} options={DropdownOptions} onSelect={value => this.onSelectWrapper(value, onSelectOption)} />
+            <ul className={`${listStyle(this.props)} align-items-center`} role="presentation">
+              <DropdownList multi={multi} titleClass={titleClass} subtitleClass={subtitleClass} options={DropdownOptions} onSelect={(value, index) => this.onSelectWrapper(value, onSelectOption, index)} />
             </ul>
             )}
           </div>
         );
     }
 }
-
 const DropdownList = props => (
     !props.multi ?
-    props.options.map(item => <li key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item)}><span className={props.titleClass}>{item.title}</span></li>)
+    props.options.map((item, index) => <li key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={props.titleClass}>{item.title}</span></li>)
     :
-    props.options.map(item => <li key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item)}><span className={`${props.titleClass} d-block`}>{item.title}</span><span className={`${props.subtitleClass} d-block`}>{item.subtitle}</span></li>)
+    props.options.map((item, index) => item.subtitle ? <li key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} d-block`}>{item.title}</span><span className={`${props.subtitleClass} d-block`}>{item.subtitle}</span></li>
+    :
+    <li key={item.title} className="d-flex align-items-center" data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} `}>{item.title}</span></li>)
  );
 
 Dropdown.defaultProps = {
