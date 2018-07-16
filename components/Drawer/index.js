@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
+import { ENTER_KEY_CODE } from '../../constants';
 
 const StyledDiv = styled('div')`
   background-color: #ffffff;
@@ -59,6 +60,13 @@ class Drawer extends Component {
       isOpen: this.props.isCollapsible ? this.props.isOpen : true
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
+    this.toggleDrawerKey = this.toggleDrawerKey.bind(this);
+  }
+
+  toggleDrawerKey(e) {
+    if (e.keyCode === ENTER_KEY_CODE) {
+      this.toggleDrawer();
+    }
   }
 
   toggleDrawer() {
@@ -86,7 +94,7 @@ class Drawer extends Component {
 
     return (
       <div className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
-        <StyledDiv className={`${this.state.isOpen ? titleStyleOpen : null} ${titleStyle}`} onClick={this.toggleDrawer} tabIndex={tabIndex}>
+        <StyledDiv role="button" onKeyDown={this.toggleDrawerKey} className={`${this.state.isOpen ? titleStyleOpen : null} ${titleStyle}`} onClick={this.toggleDrawer} tabIndex={tabIndex}>
           <div className="w-100 justify-content-between d-flex">{title}{isCollapsible && <div className="align-self-center"><i className={classlist} /></div>}</div>
         </StyledDiv>
         {this.state.isOpen && <div className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${bodyHeight ? SetMaxHeight(bodyHeight) : ''} ${SetBackground(this.props.backgroundColor)}`} ref={this.DrawerBody}>{this.props.children}</div>}
