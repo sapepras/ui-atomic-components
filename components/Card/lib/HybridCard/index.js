@@ -91,7 +91,7 @@ class HybridCard extends Component {
             {rating &&
               colorCount &&
               /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
-              parseInt(colorCount, 10) > 1 && <span className="">&nbsp;|&nbsp;</span>}
+              parseInt(colorCount, 10) > 1 && <span aria-hidden>&nbsp;|&nbsp;</span>}
             {colorCount &&
               /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
               parseInt(colorCount, 10) > 1 && <span className="c-product__colors-available">{colorCount} colors available</span>}
