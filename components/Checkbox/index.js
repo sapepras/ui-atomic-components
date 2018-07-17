@@ -8,7 +8,6 @@ const CheckboxStyles = css`
     padding: 0;
     margin-right: 10px;
     margin-top: 3px;
-    }
     &:before {
     content: '';
     margin-right: 10px;
@@ -67,18 +66,18 @@ class Checkbox extends Component {
 
     render() {
         const {
-            formLabel, labelPosition, labelText, disabled, onChange
+            formLabel, labelPosition, labelText, disabled, onChange, labelClass
         } = this.props;
         return (
            labelPosition === 'left' ?
              <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
-               <span>{labelText}</span>
+               <span className={labelClass}>{labelText}</span>
                <input disabled={disabled} checked={this.state.isChecked} className={`${CheckboxStyles}`} id={formLabel} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
              </label>
           :
              <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
                <input disabled={disabled} checked={this.state.isChecked} className={`${CheckboxStyles}`} id={formLabel} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
-               <span>{labelText}</span>
+               <span className={`${labelClass} d-flex align-items-center`}>{labelText}</span>
              </label>
         );
     }
@@ -98,7 +97,8 @@ Checkbox.propTypes = {
     labelPosition: PropTypes.string,
     labelText: PropTypes.string,
     disabled: PropTypes.bool,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    labelClass: PropTypes.object
 };
 
 export default Checkbox;
