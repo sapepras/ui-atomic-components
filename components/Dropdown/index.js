@@ -51,6 +51,16 @@ const listStyle = props => css`
     width: ${props.width}
 `;
 
+const titleClassWrapper = props => css`
+    ${props.titleClass};
+    color: #fff;
+`;
+
+const subtitleClassWrapper = props => css`
+    ${props.subtitleClass};
+    color: #fff;
+`;
+
 class Dropdown extends Component {
     constructor(props) {
         super(props);
@@ -71,10 +81,10 @@ class Dropdown extends Component {
         if (typeof item === 'object') {
             const content = (
               <div className="d-flex flex-column">
-                <div className={`d-flex justify-content-start ${titleClass} `}>
+                <div className={`d-flex justify-content-start ${titleClassWrapper(titleClass)} `}>
                   {item.title}
                 </div>
-                <div className={`d-flex justify-content-start ${subtitleClass} `}>
+                <div className={`d-flex justify-content-start ${subtitleClassWrapper(subtitleClass)} `}>
                   {item.subtitle}
                 </div>
               </div>);
