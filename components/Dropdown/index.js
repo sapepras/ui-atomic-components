@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 
 const DropdownStyle = props => css`
+    position: absolute;
     ul {
         margin: 0;
         padding: 0;
+        width: 100%;
         list-style-type: none;
-        position: absolute;
         background: #fff;
         z-index: 1;
         border-radius: ${props.listBorderRadius ? props.listBorderRadius : '5px'};
