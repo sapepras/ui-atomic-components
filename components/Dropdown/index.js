@@ -19,8 +19,10 @@ const DropdownStyle = props => css`
         font-weight: normal;
         cursor: pointer;
         &:hover {
-            color: #fff;
             background: #0055a6;
+            span {
+                color: #fff;
+            }
         }
         &:first-child {
             &:hover {
@@ -52,16 +54,6 @@ const listStyle = props => css`
     width: ${props.width}
 `;
 
-const titleClassWrapper = props => css`
-    ${props.titleClass};
-    color: #fff;
-`;
-
-const subtitleClassWrapper = props => css`
-    ${props.subtitleClass};
-    color: #fff;
-`;
-
 class Dropdown extends Component {
     constructor(props) {
         super(props);
@@ -78,14 +70,14 @@ class Dropdown extends Component {
         onSelect(index);
     }
 
-    renderButtonContents(item, titleClass, subtitleClass) {
+    renderButtonContents(item, titleClass = '', subtitleClass = '') {
         if (typeof item === 'object') {
             const content = (
               <div className="d-flex flex-column">
-                <div className={`d-flex justify-content-start ${titleClassWrapper(titleClass)} `}>
+                <div className={`d-flex justify-content-start ${titleClass} `}>
                   {item.title}
                 </div>
-                <div className={`d-flex justify-content-start ${subtitleClassWrapper(subtitleClass)} `}>
+                <div className={`d-flex justify-content-start ${subtitleClass} `}>
                   {item.subtitle}
                 </div>
               </div>);
