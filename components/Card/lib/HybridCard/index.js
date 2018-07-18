@@ -82,7 +82,7 @@ class HybridCard extends Component {
             </Button>
           )}
         </div>
-        <div className={cx({ 'col-7': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 pt-2 pb-2 pb-md-4')}>
+        <div className={cx({ 'col-7': horizontalMobile }, { 'col-12 px-1 px-md-2': !horizontalMobile }, 'col-md-12 pt-2 pb-2 pb-md-4')}>
           <div className="c-product__title mb-0 mb-md-half">{title}</div>
           <p className="c-product__description mb-0">{description}</p>
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
@@ -91,7 +91,7 @@ class HybridCard extends Component {
             {rating &&
               colorCount &&
               /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
-              parseInt(colorCount, 10) > 1 && <span className="">&nbsp;|&nbsp;</span>}
+              parseInt(colorCount, 10) > 1 && <span aria-hidden>&nbsp;|&nbsp;</span>}
             {colorCount &&
               /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
               parseInt(colorCount, 10) > 1 && <span className="c-product__colors-available">{colorCount} colors available</span>}
