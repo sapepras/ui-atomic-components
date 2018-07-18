@@ -18,7 +18,8 @@ const baseConfig = () => ({
     Dropdown: './components/Dropdown',
     Checkbox: './components/Checkbox',
     Modal: './components/Modal',
-    RadioButton: './components/RadioButton'
+    RadioButton: './components/RadioButton',
+    PasswordField: './components/PasswordField'
   },
   output: {
     // Compile into js/build.js
