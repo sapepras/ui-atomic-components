@@ -34,8 +34,14 @@ const quickViewPositioning = css`
   display: none;
 
   @media only screen and (min-width: 768px) {
-    div:hover > div > & {
-    display: block;
+    div:hover {
+      img {
+        opacity: 0.5;
+      }
+      > & {
+        display: block;
+      }
+    }
   }
 `;
 
