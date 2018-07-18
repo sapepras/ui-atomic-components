@@ -49,7 +49,6 @@ class HybridCard extends Component {
       onClickQuickViewLogGa = null,
       quickViewAuid
     } = this.props; // eslint-disable-line object-curly-newline
-
     return (
       <div
         className={cx(
@@ -69,7 +68,7 @@ class HybridCard extends Component {
             ) : (
               <Badge text={badge}>{badge}</Badge>
             ))}
-          {image && <img src={image} alt={imageAltText} className="w-100 pt-3 pt-md-1 px-1 px-md-2" />}
+          {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
           {!image && <div className="" />}
           {enableQuickView && (
             <Button

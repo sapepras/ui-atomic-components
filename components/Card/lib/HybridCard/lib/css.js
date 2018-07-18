@@ -34,13 +34,8 @@ const quickViewPositioning = css`
   display: none;
 
   @media only screen and (min-width: 768px) {
-    div:hover {
-      img {
-        opacity: 0.5;
-      }
-      > & {
-        display: block;
-      }
+    div:hover > & {
+      display: block;
     }
   }
 `;
@@ -59,5 +54,11 @@ styles.quickView = css`
   outline: none;
   cursor: pointer;
 `;
-
+styles.hoverImage = css`
+  @media only screen and (min-width: 768px) {
+    div:hover > & {
+      opacity: 0.5;
+    }
+  }
+`;
 export default styles;
