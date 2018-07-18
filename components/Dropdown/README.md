@@ -15,7 +15,8 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 ``` jsx
 {
   title: Title of option, first line to be displayed,
-  subtitle: Second line to be displayed in the option (optional)
+  subtitle: Second line to be displayed in the option (optional),
+  value: value of a component (optional)
 }
 ```
 
@@ -35,7 +36,7 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ```boolean value to render the dropdown enabled or disabled.```
 
-* **onSelect**: *PropTypes.func*
+* **onSelectOption**: *PropTypes.func*
 
 ```Function to be executed when any option in dropdown is clicked upon.```
 
@@ -70,7 +71,7 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ## Example Usage
 
-### Firstly, Import InputField from Atomic Components.
+### Firstly, Import Dropdown from Atomic Components.
 
 ### Then,
 
@@ -92,7 +93,15 @@ Dropdown Atomic Component renders a custom dropdown component with various props
   titleClass={titleStyleClass}
   subtitleClass={subtitleStyleClass}
   listBorderRadius="5px"
+  onSelectOption={someFunction} // in usage: onSelectOption = {index => someFunction(index)} i.e returns index of option selected. 
 />
 ```
 
 * Most of the props have some default values which get rendered if no value is provided. 
+
+### Recent Updates -
+
+* Added fix where clicking outside the dropdown wasn't closing It. 
+* Fixed ```onSelectOption``` to return index of selected element.
+* Added highlighting to previously selected option.
+* Fixed issues where the width of options was getting a lot more or less than the width of button
