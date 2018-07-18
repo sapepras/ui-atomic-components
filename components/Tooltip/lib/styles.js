@@ -110,7 +110,7 @@ const getTooltipModalWrapperDirectionStyles = (direction, align) => {
     case 'bottom':
       return tooltipModalWrapperBottom(align);
     default:
-      return tooltipModalWrapperLeft(align);
+      return tooltipModalWrapperTop(align);
   }
 };
 
@@ -286,7 +286,7 @@ const getTooltipDirectionStyles = (direction, align) => {
     case 'bottom':
       return tooltipBottom(align);
     default:
-      return tooltipLeft(align);
+      return tooltipTop(align);
   }
 };
 

@@ -26,7 +26,7 @@ Tooltip Atomic Component renders a custom tooltip component on hover with variou
 
 * **lineHeightFix**: *PropTypes.number*
 
-```the lineHeightFix property describes the line-heigth of the tooltip content.```
+```the lineHeightFix property describes the line-height of the tooltip content.```
 
 
 ## Example Usage
