@@ -20,10 +20,10 @@ const CommonStyles = props => css`
 
 const InputField = props => {
     const {
-        className, type, disabled, onChange, placeholder, value, width, height, fontSize, borderWidth, borderColor, borderRadius, activeBorderColor, activeBorderWidth, fontWeight
+        className, type, name, disabled, onChange, placeholder, value, width, height, fontSize, borderWidth, borderColor, borderRadius, activeBorderColor, activeBorderWidth, fontWeight, ...rest
     } = props;
     return (
-      <input className={`${CommonStyles(props)} ${className}`} disabled={disabled} type={type} onChange={onChange} placeholder={placeholder} value={value} width={width} height={height} fontSize={fontSize} borderColor={borderColor} borderWidth={borderWidth} borderRadius={borderRadius} activeBorderColor={activeBorderColor} activeBorderWidth={activeBorderWidth} fontWeight={fontWeight} />
+      <input {...rest} name={name} className={`${CommonStyles(props)} ${className}`} disabled={disabled} type={type} onChange={onChange} placeholder={placeholder} value={value} width={width} height={height} fontSize={fontSize} borderColor={borderColor} borderWidth={borderWidth} borderRadius={borderRadius} activeBorderColor={activeBorderColor} activeBorderWidth={activeBorderWidth} fontWeight={fontWeight} />
     );
   };
 
@@ -57,7 +57,8 @@ InputField.propTypes = {
     borderRadius: PropTypes.string,
     activeBorderColor: PropTypes.string,
     activeBorderWidth: PropTypes.string,
-    fontWeight: PropTypes.string
+    fontWeight: PropTypes.string,
+    name: PropTypes.string
 };
 
 export default InputField;
