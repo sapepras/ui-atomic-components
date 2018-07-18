@@ -36,7 +36,7 @@ Tooltip Atomic Component renders a custom tooltip component on hover with variou
 ### Then,
 
 ``` jsx
-<Tooltip auid="sample tooltip" direction={{mobile: 'top', desktop: 'right'}} align="R" className={'tooltipContent'} lineHeightFix={1.5}
+<Tooltip auid="sample tooltip" direction={{mobile: 'top', desktop: 'right'}} align="R" className='tooltipContent' lineHeightFix={1.5}
           content={
             <div style={{width: '200px', margin: '0px'}}>
           Use margins to increase white space between
@@ -50,7 +50,7 @@ Tooltip Atomic Component renders a custom tooltip component on hover with variou
 <hr/>
 <br/><br/><br/>
 
-<Tooltip auid="sample tooltip" direction="right" align="C" lineHeightFix={1.5} className={'tooltipContent'}
+<Tooltip auid="sample tooltip" direction="right" align="C" lineHeightFix={1.5} className='tooltipContent'
           content={
             <div style={{width: '200px', margin: '0px'}}>
           Use margins to increase white space between
