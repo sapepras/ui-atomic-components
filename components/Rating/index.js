@@ -31,8 +31,10 @@ const Rating = (props = {}) => {
   if (typeof value === 'string' && value.trim().length === 0) {
     value = 0;
   }
-  const rating = parseFloat(value) / 5 * 100; // eslint-disable-line
-
+  let rating = parseFloat(value) / 5 * 100; // eslint-disable-line
+  if (!hideEmptyStars && value <= 0) {
+    rating = 0;
+  }
   const starWidth = `${rating}%`;
   const starStyle = { color: starColor, width: starWidth, cursor: null };
   const starBackgroundStyle = { color: emptyStarColor, cursor: null };
@@ -52,7 +54,7 @@ const Rating = (props = {}) => {
 Rating.defaultProps = {
   starColor: '#f4ce42',
   emptyStarColor: '#6a6a6a',
-  hideEmptyStars: true
+  hideEmptyStars: false
 };
 
 Rating.propTypes = {

@@ -85,7 +85,7 @@ class HybridCard extends Component {
           <div className="c-product__title mb-0 mb-md-half">{title}</div>
           <p className="c-product__description mb-0">{description}</p>
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
-            {rating && <Rating value={rating} />}
+            <Rating value={rating} />
             <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />
             {rating &&
               colorCount &&
