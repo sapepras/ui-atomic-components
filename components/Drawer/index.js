@@ -80,7 +80,9 @@ class Drawer extends Component {
   }
 
   render() {
-    const { title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle } = this.props;
+    const {
+      title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
+    } = this.props;
     let classlist = '';
     if (this.state.isOpen) {
       classlist = `${this.props.openIcon}`;
@@ -111,7 +113,7 @@ class Drawer extends Component {
           <div
             className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${
               bodyHeight ? SetMaxHeight(bodyHeight) : ''
-            } ${SetBackground(this.props.backgroundColor)}`}
+              } ${SetBackground(this.props.backgroundColor)}`}
             ref={this.DrawerBody}
           >
             {this.props.children}
