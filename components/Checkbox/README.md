@@ -21,6 +21,10 @@ Checkbox Atomic Component renders a custom checkbox component with various props
 
 ```Provides the text to the label component of the checkbox. Default set to blank string.```
 
+* **labelClass**: *PropTypes.object*
+
+```Provides styling class to label of checkbox.```
+
 * **disabled**: *PropTypes.bool*
 
 ```boolean value to render the checkbox enabled or disabled.```
@@ -44,6 +48,7 @@ Checkbox Atomic Component renders a custom checkbox component with various props
   labelText="Some Checkbox Text"
   labelPosition="left" // either left or right
   onChange={this.functionToBeExecutedWhenCheckboxChanges}
+  labelClass={someStylingClass}
 />
 ```
 
