@@ -64,6 +64,10 @@ InputField Atomic Component renders a custom input field component with various 
 
 ```font weight of the text in field.```
 
+* **name**: *PropTypes.string*
+
+```name attribute of the field.```
+
 ## Example Usage
 
 ### Firstly, Import InputField from Atomic Components.
@@ -85,7 +89,13 @@ InputField Atomic Component renders a custom input field component with various 
   activeBorderColor="red" 
   activeBorderWidth="3px" 
   fontWeight="500" 
+  name="test"
 />
 ```
 
 * Most of the props have some default values which get rendered if no value is provided. 
+
+## Recent Updates
+
+* Added ```...rest``` to the input field to enable redux form.
+* Added ```name``` prop to identify individual fields. 
