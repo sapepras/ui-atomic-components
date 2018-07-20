@@ -92,7 +92,7 @@ class Dropdown extends Component {
     }
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            this.setState({ dropdowncollapse: !this.state.dropdowncollapse });
+            this.setState({ dropdowncollapse: false });
         }
     }
 

@@ -67,11 +67,11 @@ class PasswordField extends Component {
     }
     render() {
         const {
-            className, name, disabled, onChange, placeholder, value, width, height, fontSize, borderWidth, borderColor, borderRadius, activeBorderColor, activeBorderWidth, inlineButtonTextHide, inlineButtonTextShow, fontWeight, buttonTextColor, buttonTextFont, buttonTextWeight, ...rest
+            className, name, disabled, onChange, placeholder, value, width, height, fontSize, borderWidth, borderColor, borderRadius, activeBorderColor, activeBorderWidth, inlineButtonTextHide, inlineButtonTextShow, fontWeight, buttonTextColor, buttonTextFont, buttonTextWeight, maxLength, ...rest
         } = this.props;
         return (
           <div className={`${CommonStyles(this.props)} ${className} d-flex align-items-center`} width={width} height={height} fontSize={fontSize} borderColor={borderColor} borderWidth={borderWidth} borderRadius={borderRadius} activeBorderColor={activeBorderColor} activeBorderWidth={activeBorderWidth} fontWeight={fontWeight}>
-            <input {...rest} name={name} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
+            <input {...rest} name={name} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} maxLength={maxLength} />
             <div className={`${InlineButton(this.props)}`} onClick={this.changeVisibility} role="presentation">{this.state.showPassword ? inlineButtonTextHide : inlineButtonTextShow }</div>
           </div>
         );
@@ -94,7 +94,8 @@ PasswordField.defaultProps = {
   inlineButtonTextShow: 'Show',
   buttonTextColor: '#0055a6',
   buttonTextFont: '1rem',
-  buttonTextWeight: '300'
+  buttonTextWeight: '300',
+  onChange: () => {}
 };
 
 PasswordField.propTypes = {
@@ -117,8 +118,8 @@ PasswordField.propTypes = {
     inlineButtonTextShow: PropTypes.string,
     buttonTextColor: PropTypes.string,
     buttonTextFont: PropTypes.string,
-    buttonTextWeight: PropTypes.string
-
+    buttonTextWeight: PropTypes.string,
+    maxLength: PropTypes.string
 };
 
 export default PasswordField;
