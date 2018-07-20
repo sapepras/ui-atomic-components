@@ -38,12 +38,12 @@ const Rating = (props = {}) => {
   const starBackgroundStyle = { color: emptyStarColor, cursor: null };
 
   return hideEmptyStars && rating <= 0 ? null : (
-    <div role="link" tabIndex="0" className={container}>
+    <div aria-label={`${value} stars out of 5`} className={container}>
       <div className={relative}>
         <div className={stars} style={starStyle}>
           ★★★★★
         </div>
-        <div className={starsText} style={starBackgroundStyle}>★★★★★</div>
+        <div aria-hidden className={starsText} style={starBackgroundStyle}>★★★★★</div>
       </div>
     </div>
   );

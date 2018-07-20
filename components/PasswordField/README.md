@@ -1,16 +1,12 @@
-# InputField Component: (**_WIP_**)
+# PasswordField Component: (**_WIP_**)
 
-InputField Atomic Component renders a custom input field component with various props as mentioned below.
+PasswordField Atomic Component renders a custom password input field component with an inline button to show/hide password entered. It ignores spaced by default. PasswordField accepts various props as mentioned below.
 
 ## Available Props
 
 * **className**: *PropTypes.string* 
 
 ```Custom CSS Class can be passed which holds greater precedence over default styles.```
-
-* **type**: *PropTypes.string*
-
-```type describes the type of input field.```
 
 * **disabled**: *PropTypes.bool*
 
@@ -64,22 +60,38 @@ InputField Atomic Component renders a custom input field component with various 
 
 ```font weight of the text in field.```
 
-* **name**: *PropTypes.string*
+* **inlineButtonTextHide**: *PropTypes.string*
 
-```name attribute of the field.```
+  ```Text to display on inline button when the password is being displayed.```
+
+
+* **inlineButtonTextShow**: *PropTypes.string*
+
+  ```Text to display on inline button when the password is hidden.```
+
+* **buttonTextColor**: *PropTypes.string*
+
+  ```Color string for the text on inline button```
+
+* **buttonTextFont**: *PropTypes.string*
+
+  ```Font size for the text on inline button```
+
+* **buttonTextWeight**: *PropTypes.string*
+
+  ```Font weight for the text on inline button```
 
 ## Example Usage
 
-### Firstly, Import InputField from Atomic Components.
+### Firstly, Import PasswordField from Atomic Components.
 
 ### Then,
 
 ``` jsx
-<InputField 
-  type="text" 
+<PasswordField 
   disabled={false} 
   className={someStyleClass}
-  placeholder="Enter some text" 
+  placeholder="Enter Password" 
   width="30rem" 
   height="2.5rem" 
   fontSize="1.5rem" 
@@ -89,13 +101,12 @@ InputField Atomic Component renders a custom input field component with various 
   activeBorderColor="red" 
   activeBorderWidth="3px" 
   fontWeight="500" 
-  name="test"
+  inlineButtonTextHide="Hide"
+  inlineButtonTextShow="Show"
+  buttonTextColor="#0055a6"
+  buttonTextFont="1rem"
+  buttonTextWeight="300"
 />
 ```
 
 * Most of the props have some default values which get rendered if no value is provided. 
-
-## Recent Updates
-
-* Added ```...rest``` to the input field to enable redux form.
-* Added ```name``` prop to identify individual fields. 
