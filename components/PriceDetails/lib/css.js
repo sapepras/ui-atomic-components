@@ -7,7 +7,7 @@ export const titleText = css`
 `;
 
 export const contentText = css`
-  font-family: Mallory;
+  font-family: Mallory-Book;
   font-size: 12px;
   color: #333333;
 `;
