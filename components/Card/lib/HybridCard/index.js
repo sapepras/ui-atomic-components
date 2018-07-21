@@ -60,6 +60,8 @@ class HybridCard extends Component {
         )}
       >
         <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 flex-sm-grow position-relative')}>
+          {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
+          {!image && <div className="" />}
           {badge &&
             (horizontalMobile ? (
               <Badge className="c-product__badge" smallBadge text={badge}>
@@ -68,8 +70,6 @@ class HybridCard extends Component {
             ) : (
               <Badge text={badge}>{badge}</Badge>
             ))}
-          {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
-          {!image && <div className="" />}
           {enableQuickView && (
             <Button
               size="S"
