@@ -1,9 +1,9 @@
-import React from "react";
-import { expect } from "chai";
-import { mount } from "enzyme";
-import link from "../index";
+import React from 'react';
+import { expect } from 'chai';
+import { mount } from 'enzyme';
+import link from '../index';
 
-describe("/link/", () => {
+describe('/link/', () => {
   const props = {};
   let MountedBtn;
 
@@ -14,8 +14,7 @@ describe("/link/", () => {
     return MountedBtn;
   };
 
-  it("always renders a link", () => {
-    expect(ShallowBtn().find("link")).to.have.length(1);
+  it('always renders a link', () => {
+    expect(ShallowBtn().find('link')).to.have.length(1);
   });
-
 });
