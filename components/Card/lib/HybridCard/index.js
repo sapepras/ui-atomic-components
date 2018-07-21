@@ -66,7 +66,9 @@ class HybridCard extends Component {
                 {badge}
               </Badge>
             ) : (
-              <Badge text={badge}>{badge}</Badge>
+              <Badge className="c-product__badge" text={badge}>
+                {badge}
+              </Badge>
             ))}
           {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
           {!image && <div className="" />}
