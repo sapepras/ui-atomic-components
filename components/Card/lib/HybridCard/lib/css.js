@@ -34,7 +34,9 @@ const quickViewPositioning = css`
   display: none;
 
   @media only screen and (min-width: 768px) {
-    div:hover > & {
+    div:hover > &,
+    a:focus > div.product-card &,
+    a:focus-within > div.product-card & {
       display: block;
     }
   }
@@ -51,7 +53,6 @@ styles.quickView = css`
   font-weight: bold;
   text-transform: underline;
   padding: 0;
-  outline: none;
   cursor: pointer;
 `;
 styles.hoverImage = css`
