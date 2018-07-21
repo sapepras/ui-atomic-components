@@ -62,7 +62,7 @@ class HybridCard extends Component {
         <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 flex-sm-grow position-relative')}>
           {badge &&
             (horizontalMobile ? (
-              <Badge smallBadge text={badge}>
+              <Badge className="c-product__badge" smallBadge text={badge}>
                 {badge}
               </Badge>
             ) : (
