@@ -67,6 +67,7 @@ const StyledLink = styled('a')`
   ${props => (props.btntype === 'secondary' ? secondaryBtnStyles : primaryBtnStyle)};
   padding-top: 1.6rem;
   text-align: center;
+  text-decoration: none;
 `;
 
 const Link = props => {
