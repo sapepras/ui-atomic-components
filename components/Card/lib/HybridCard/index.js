@@ -68,7 +68,9 @@ class HybridCard extends Component {
                 {badge}
               </Badge>
             ) : (
-              <Badge text={badge}>{badge}</Badge>
+              <Badge className="c-product__badge" text={badge}>
+                {badge}
+              </Badge>
             ))}
           {enableQuickView && (
             <Button
