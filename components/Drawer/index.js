@@ -31,6 +31,14 @@ const DrawerWrapStyle = css`
   flex-direction: column;
 `;
 
+const DrawerTitleStyle = css`
+display:flex;
+justify-content:space-between;
+align-items:center;
+text-align:left;
+width:100%;
+`;
+
 const DrawerContentStyle = css`
   min-height: 62px;
   padding: 1rem;
@@ -100,12 +108,10 @@ class Drawer extends Component {
           onClick={this.toggleDrawer}
           tabIndex={tabIndex}
         >
-          <div className="w-100 justify-content-between d-flex">
+          <div className={DrawerTitleStyle}>
             {title}
             {isCollapsible && (
-              <div className="align-self-center">
-                <i className={classlist} />
-              </div>
+              <i className={classlist} />
             )}
           </div>
         </StyledButton>
