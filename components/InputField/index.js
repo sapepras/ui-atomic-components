@@ -43,7 +43,7 @@ InputField.defaultProps = {
 };
 
 InputField.propTypes = {
-    className: PropTypes.string,
+    className: PropTypes.oneOf(['object', 'string']),
     type: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,

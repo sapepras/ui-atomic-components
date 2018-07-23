@@ -98,7 +98,7 @@ Checkbox.propTypes = {
     labelText: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
-    labelClass: PropTypes.object
+    labelClass: PropTypes.oneOf(['string', 'object'])
 };
 
 export default Checkbox;
