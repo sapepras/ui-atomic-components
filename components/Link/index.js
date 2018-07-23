@@ -67,9 +67,11 @@ const StyledLink = styled('a')`
   ${props => (props.btntype === 'secondary' ? secondaryBtnStyles : primaryBtnStyle)};
   text-align: center;
   text-decoration: none;
+  display: block;
   &:hover {
     color: rgb(51, 51, 51);
     background: rgb(232, 232, 232);
+    text-decoration: none;
   }
 `;
 
