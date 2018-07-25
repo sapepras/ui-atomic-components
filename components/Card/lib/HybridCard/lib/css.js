@@ -57,7 +57,7 @@ styles.quickView = css`
 `;
 styles.hoverImage = css`
   @media only screen and (min-width: 768px) {
-    div:hover > & {
+    .c-product__has-quickview div:hover > & {
       opacity: 0.5;
     }
   }
