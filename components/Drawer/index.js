@@ -32,11 +32,11 @@ const DrawerWrapStyle = css`
 `;
 
 const DrawerTitleStyle = css`
-display:flex;
-justify-content:space-between;
-align-items:center;
-text-align:left;
-width:100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  width: 100%;
 `;
 
 const DrawerContentStyle = css`
@@ -77,6 +77,9 @@ class Drawer extends Component {
     }
   }
 
+  /**
+   * Open or close Drawer
+   */
   toggleDrawer() {
     if (this.props.isCollapsible) {
       this.setState(prevstate => ({ isOpen: !prevstate.isOpen }));
@@ -85,12 +88,26 @@ class Drawer extends Component {
         isOpen: true
       });
     }
+    this.updateAnalytics();
+  }
+
+  /**
+   * Update GA dataLayer
+   */
+  updateAnalytics() {
+    const { eventCategory, eventLabel, title } = this.props;
+    this.props.gtmDataLayer.push({
+      event: 'accordionLinks',
+      eventCategory: eventCategory || title.toString(),
+      eventAction: 'expand or collapse ',
+      eventLabel: eventLabel || title.toString()
+    });
   }
 
   render() {
     const {
-      title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
-    } = this.props;
+ title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
+} = this.props;
     let classlist = '';
     if (this.state.isOpen) {
       classlist = `${this.props.openIcon}`;
@@ -110,16 +127,14 @@ class Drawer extends Component {
         >
           <div className={DrawerTitleStyle}>
             {title}
-            {isCollapsible && (
-              <i className={classlist} />
-            )}
+            {isCollapsible && <i className={classlist} />}
           </div>
         </StyledButton>
         {this.state.isOpen && (
           <div
             className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${
               bodyHeight ? SetMaxHeight(bodyHeight) : ''
-              } ${SetBackground(this.props.backgroundColor)}`}
+            } ${SetBackground(this.props.backgroundColor)}`}
             ref={this.DrawerBody}
           >
             {this.props.children}
@@ -157,7 +172,10 @@ Drawer.propTypes = {
   bodyHeight: PropTypes.string,
   bodyStyle: PropTypes.object,
   titleStyle: PropTypes.object,
-  titleStyleOpen: PropTypes.object
+  titleStyleOpen: PropTypes.object,
+  gtmDataLayer: PropTypes.array,
+  eventCategory: PropTypes.string,
+  eventLabel: PropTypes.string
 };
 
 export default Drawer;
