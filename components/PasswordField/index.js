@@ -44,6 +44,7 @@ const InlineButton = props => css`
   cursor: pointer;
   color: ${props.buttonTextColor};
   font-size: ${props.fontSize};
+  ${props.InlineButtonClass};
 `;
 
 class PasswordField extends Component {
@@ -67,7 +68,7 @@ class PasswordField extends Component {
     }
     render() {
         const {
-            className, name, disabled, onChange, placeholder, value, width, height, fontSize, borderWidth, borderColor, borderRadius, activeBorderColor, activeBorderWidth, inlineButtonTextHide, inlineButtonTextShow, fontWeight, buttonTextColor, buttonTextFont, buttonTextWeight, maxLength, ...rest
+            className, name, disabled, onChange, placeholder, value, width, height, fontSize, borderWidth, borderColor, borderRadius, activeBorderColor, activeBorderWidth, inlineButtonTextHide, inlineButtonTextShow, fontWeight, buttonTextColor, buttonTextFont, buttonTextWeight, maxLength, InlineButtonClass, ...rest
         } = this.props;
         return (
           <div className={`${CommonStyles(this.props)} ${className} d-flex align-items-center`} width={width} height={height} fontSize={fontSize} borderColor={borderColor} borderWidth={borderWidth} borderRadius={borderRadius} activeBorderColor={activeBorderColor} activeBorderWidth={activeBorderWidth} fontWeight={fontWeight}>
@@ -119,7 +120,8 @@ PasswordField.propTypes = {
     buttonTextColor: PropTypes.string,
     buttonTextFont: PropTypes.string,
     buttonTextWeight: PropTypes.string,
-    maxLength: PropTypes.string
+    maxLength: PropTypes.string,
+    InlineButtonClass: PropTypes.oneOf(['object', 'string'])
 };
 
 export default PasswordField;
