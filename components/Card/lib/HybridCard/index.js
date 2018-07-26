@@ -56,7 +56,8 @@ class HybridCard extends Component {
           { horizontal: horizontalMobile },
           'product-card mb-quarter mb-md-4',
           css.productCard,
-          horizontalMobile ? css.horizontal : ''
+          horizontalMobile ? css.horizontal : '',
+          enableQuickView ? 'c-product__has-quickview' : ''
         )}
       >
         <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 flex-sm-grow position-relative')}>
