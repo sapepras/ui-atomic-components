@@ -89,7 +89,7 @@ class Dropdown extends Component {
 
     onSelectWrapper(value, onSelect, index) {
         this.setState({ selectedOption: value, dropdowncollapse: false, activeListItem: index });
-        onSelect(index);
+        onSelect(index, value.title);
     }
 
     setWrapperRef(node) {
@@ -118,14 +118,14 @@ class Dropdown extends Component {
 
     render() {
         const {
-            DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled, textValue
+            DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled
         } = this.props;
         const { selectedOption } = this.state;
         return (
           <div ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
             <button type="button" className={`${btnStyle(this.props)} d-flex justify-content-between align-items-center`} disabled={disabled} onClick={() => this.setState({ dropdowncollapse: !this.state.dropdowncollapse })}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
-              <input type="hidden" value={textValue} />
+              {/* <input type="hidden" value={this.renderButtonContents(selectedOption)} /> */}
               <span className={!this.state.dropdowncollapse ? 'academyicon icon-chevron-down' : 'academyicon icon-chevron-up'} />
             </button>
             {this.state.dropdowncollapse && (
@@ -158,8 +158,7 @@ Dropdown.propTypes = {
     subtitleClass: PropTypes.oneOf(['string', 'object']),
     onSelectOption: PropTypes.func,
     initiallySelectedOption: PropTypes.number,
-    disabled: PropTypes.bool,
-    textValue: PropTypes.string
+    disabled: PropTypes.bool
 };
 
 export default Dropdown;
