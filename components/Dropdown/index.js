@@ -9,7 +9,7 @@ const DropdownStyle = props => css`
         padding: 0;
         width: 100%;
         list-style-type: none;
-        max-height: 10rem;
+        max-height: ${props.maxHeight ? props.maxHeight : '10rem'};
         overflow-y:auto;
         overflow-x:hidden;
         position: absolute;
@@ -19,7 +19,7 @@ const DropdownStyle = props => css`
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
         padding: 0.75rem 1rem;
-        min-height: ${props.multi ? '4.5rem' : '3.5rem'};
+        min-height: ${props.multi ? '4.5rem' : '3rem'};
         font-weight: normal;
         cursor: pointer;
         &:hover {
@@ -77,6 +77,7 @@ class Dropdown extends Component {
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.setWrapperRef = this.setWrapperRef.bind(this);
     }
+    // TODO:- Remove document level listeners.
 
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
@@ -89,10 +90,6 @@ class Dropdown extends Component {
     onSelectWrapper(value, onSelect, index) {
         this.setState({ selectedOption: value, dropdowncollapse: false, activeListItem: index });
         onSelect(index);
-    }
-
-    onChangeTextField(event) {
-        console.log(event.target.value);
     }
 
     setWrapperRef(node) {
