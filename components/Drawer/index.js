@@ -95,12 +95,12 @@ class Drawer extends Component {
    * Update GA dataLayer
    */
   updateAnalytics() {
-    const { eventCategory, eventLabel } = this.props;
+    const { eventCategory, eventLabel, title } = this.props;
     this.props.gtmDataLayer.push({
       event: 'accordionLinks',
-      eventCategory,
+      eventCategory: eventCategory || title.toString(),
       eventAction: 'expand or collapse ',
-      eventLabel
+      eventLabel: eventLabel || title.toString()
     });
   }
 
