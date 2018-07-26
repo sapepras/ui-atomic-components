@@ -68,6 +68,9 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ```border radius value for the list options, defaults to 5px.```
 
+* **maxHeight**: *PropTypes.string*
+
+```max height of the dropdown list, default set to 10rem.```
 
 ## Example Usage
 
