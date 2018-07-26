@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import { productDetailChildPropTypes } from '../../PropTypes';
+import { TOOLTIP_TEXT } from './constants';
 // import * as css from '../../css';
 
 const InCartPlusCompare = ({ listPrice }) => {
@@ -17,6 +19,10 @@ const InCartPlusCompare = ({ listPrice }) => {
     <div>
       <div className="c-price-in-cart" style={{ color: '#ee0000' }}>
         Our Price in Cart
+        <span data-tip data-for="info" aria-label={TOOLTIP_TEXT} role="button" tabIndex="0" className="c-price__tooltip-icon academyicon icon-information" />
+        <ReactTooltip className="c-price__tooltip-text" id="info" place="top" type="light" effect="solid">
+          <span>{TOOLTIP_TEXT}</span>
+        </ReactTooltip>
       </div>
       <div className="c-price-compare" style={{ color: '#333333' }}>
         Compare at {formattedListPrice}

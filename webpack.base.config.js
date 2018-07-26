@@ -8,6 +8,7 @@ const baseConfig = () => ({
   entry: {
     Button: './components/Button',
     Anchor: './components/Anchor',
+    Link: './components/Link',
     ProductCard: './components/ProductCard',
     Drawer: './components/Drawer',
     Rating: './components/Rating',

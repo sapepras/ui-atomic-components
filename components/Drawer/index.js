@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { ENTER_KEY_CODE } from '../../constants';
 
-const StyledDiv = styled('div')`
+const StyledButton = styled('button')`
   background-color: #ffffff;
   min-height: 62px;
   font-size: 16px;
-  line-height:1.25rem;
+  line-height: 1.25rem;
   letter-spacing: 0.5;
   font-color: #585858;
   line-color: #e6e6e6;
   cursor: pointer;
   display: flex;
   align-items: center;
-  border:0px;
-  background-color:#fff;
-  border-top:1px solid rgb(230, 230, 230);
+  border: 0px;
+  background-color: #fff;
+  border-top: 1px solid rgb(230, 230, 230);
   padding: 1rem;
   justify-content: space-between;
 
@@ -29,6 +29,14 @@ const DrawerWrapStyle = css`
   positioin: relative;
   display: flex;
   flex-direction: column;
+`;
+
+const DrawerTitleStyle = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  width: 100%;
 `;
 
 const DrawerContentStyle = css`
@@ -69,22 +77,37 @@ class Drawer extends Component {
     }
   }
 
+  /**
+   * Open or close Drawer
+   */
   toggleDrawer() {
     if (this.props.isCollapsible) {
-      this.setState({
-        isOpen: !this.state.isOpen
-      });
+      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }));
     } else {
       this.setState({
         isOpen: true
       });
     }
+    this.updateAnalytics();
+  }
+
+  /**
+   * Update GA dataLayer
+   */
+  updateAnalytics() {
+    const { eventCategory, eventLabel, title } = this.props;
+    this.props.gtmDataLayer.push({
+      event: 'accordionLinks',
+      eventCategory: eventCategory || title.toString(),
+      eventAction: 'expand or collapse ',
+      eventLabel: eventLabel || title.toString()
+    });
   }
 
   render() {
     const {
-      title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
-    } = this.props;
+ title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
+} = this.props;
     let classlist = '';
     if (this.state.isOpen) {
       classlist = `${this.props.openIcon}`;
@@ -94,10 +117,29 @@ class Drawer extends Component {
 
     return (
       <div className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
-        <StyledDiv role="button" onKeyDown={this.toggleDrawerKey} className={`${this.state.isOpen ? titleStyleOpen : null} ${titleStyle}`} onClick={this.toggleDrawer} tabIndex={tabIndex}>
-          <div className="w-100 justify-content-between d-flex">{title}{isCollapsible && <div className="align-self-center"><i className={classlist} /></div>}</div>
-        </StyledDiv>
-        {this.state.isOpen && <div className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${bodyHeight ? SetMaxHeight(bodyHeight) : ''} ${SetBackground(this.props.backgroundColor)}`} ref={this.DrawerBody}>{this.props.children}</div>}
+        <StyledButton
+          aria-pressed={this.state.isOpen}
+          aria-label={title}
+          onKeyDown={this.toggleDrawerKey}
+          className={`${this.state.isOpen ? titleStyleOpen : null} ${titleStyle}`}
+          onClick={this.toggleDrawer}
+          tabIndex={tabIndex}
+        >
+          <div className={DrawerTitleStyle}>
+            {title}
+            {isCollapsible && <i className={classlist} />}
+          </div>
+        </StyledButton>
+        {this.state.isOpen && (
+          <div
+            className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${
+              bodyHeight ? SetMaxHeight(bodyHeight) : ''
+            } ${SetBackground(this.props.backgroundColor)}`}
+            ref={this.DrawerBody}
+          >
+            {this.props.children}
+          </div>
+        )}
       </div>
     );
   }
@@ -117,10 +159,7 @@ Drawer.defaultProps = {
 };
 
 Drawer.propTypes = {
-  title: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]).isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   children: PropTypes.element,
   isOpen: PropTypes.bool,
   openIcon: PropTypes.string,
@@ -133,7 +172,10 @@ Drawer.propTypes = {
   bodyHeight: PropTypes.string,
   bodyStyle: PropTypes.object,
   titleStyle: PropTypes.object,
-  titleStyleOpen: PropTypes.object
+  titleStyleOpen: PropTypes.object,
+  gtmDataLayer: PropTypes.array,
+  eventCategory: PropTypes.string,
+  eventLabel: PropTypes.string
 };
 
 export default Drawer;

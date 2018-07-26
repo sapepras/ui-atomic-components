@@ -49,7 +49,6 @@ class HybridCard extends Component {
       onClickQuickViewLogGa = null,
       quickViewAuid
     } = this.props; // eslint-disable-line object-curly-newline
-
     return (
       <div
         className={cx(
@@ -57,20 +56,23 @@ class HybridCard extends Component {
           { horizontal: horizontalMobile },
           'product-card mb-quarter mb-md-4',
           css.productCard,
-          horizontalMobile ? css.horizontal : ''
+          horizontalMobile ? css.horizontal : '',
+          enableQuickView ? 'c-product__has-quickview' : ''
         )}
       >
         <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 flex-sm-grow position-relative')}>
+          {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
+          {!image && <div className="" />}
           {badge &&
             (horizontalMobile ? (
-              <Badge smallBadge text={badge}>
+              <Badge className="c-product__badge" smallBadge text={badge}>
                 {badge}
               </Badge>
             ) : (
-              <Badge text={badge}>{badge}</Badge>
+              <Badge className="c-product__badge" text={badge}>
+                {badge}
+              </Badge>
             ))}
-          {image && <img src={image} alt={imageAltText} className="w-100 pt-3 pt-md-1 px-1 px-md-2" />}
-          {!image && <div className="" />}
           {enableQuickView && (
             <Button
               size="S"
@@ -86,7 +88,7 @@ class HybridCard extends Component {
           <div className="c-product__title mb-0 mb-md-half">{title}</div>
           <p className="c-product__description mb-0">{description}</p>
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
-            {rating && <Rating value={rating} />}
+            <Rating value={rating} />
             <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />
             {rating &&
               colorCount &&
