@@ -102,7 +102,31 @@ Secondary Button variant 3 -disabled
 </Button>
 </div>
 ```
+Tertiary Button
 
+```jsx
+<Button auid="button-15" btntype="tertiary">
+  Tertiary
+</Button>
+```
+```jsx
+<Button auid="button-15" btntype="tertiary" size="S">
+  Tertiary
+</Button>
+```
+```jsx
+<Button auid="button-15" btntype="tertiary" size="M">
+  Tertiary
+</Button>
+```
+Tertiary Button variant 2
+```jsx
+<div style={{"background-color":"#4c4c4c","min-height":"120px", "padding-top":"50px", "padding-left": "10px"}}>
+<Button auid="button-20" btntype="tertiary" btnvariant="secondary">
+  variant 2
+</Button>
+</div>
+```
 Primary Button - Image Icon
 
 ```jsx
