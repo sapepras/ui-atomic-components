@@ -17,6 +17,7 @@ const baseConfig = () => ({
     PopoverStateless: './components/PopoverStateless',
     InputField: './components/InputField',
     Dropdown: './components/Dropdown',
+    Tooltip: './components/Tooltip',
     Checkbox: './components/Checkbox',
     Modal: './components/Modal',
     RadioButton: './components/RadioButton',
