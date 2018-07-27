@@ -9,6 +9,9 @@ const DropdownStyle = props => css`
         padding: 0;
         width: 100%;
         list-style-type: none;
+        max-height: ${props.maxHeight ? props.maxHeight : '10rem'};
+        overflow-y:auto;
+        overflow-x:hidden;
         position: absolute;
         background: #fff;
         z-index: 1;
@@ -16,7 +19,7 @@ const DropdownStyle = props => css`
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
         padding: 0.75rem 1rem;
-        min-height: 4.5rem;
+        min-height: ${props.multi ? '4.5rem' : '3rem'};
         font-weight: normal;
         cursor: pointer;
         &:hover {
@@ -74,6 +77,7 @@ class Dropdown extends Component {
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.setWrapperRef = this.setWrapperRef.bind(this);
     }
+    // TODO:- Remove document level listeners.
 
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
@@ -85,8 +89,9 @@ class Dropdown extends Component {
 
     onSelectWrapper(value, onSelect, index) {
         this.setState({ selectedOption: value, dropdowncollapse: false, activeListItem: index });
-        onSelect(index);
+        onSelect(index, value.title);
     }
+
     setWrapperRef(node) {
         this.wrapperRef = node;
     }
@@ -95,7 +100,6 @@ class Dropdown extends Component {
             this.setState({ dropdowncollapse: false });
         }
     }
-
     renderButtonContents(item, titleClass = '', subtitleClass = '') {
         if (typeof item === 'object') {
             const content = (
@@ -116,10 +120,12 @@ class Dropdown extends Component {
         const {
             DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled
         } = this.props;
+        const { selectedOption } = this.state;
         return (
           <div ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
             <button type="button" className={`${btnStyle(this.props)} d-flex justify-content-between align-items-center`} disabled={disabled} onClick={() => this.setState({ dropdowncollapse: !this.state.dropdowncollapse })}>
-              {this.renderButtonContents(this.state.selectedOption, titleClass, subtitleClass)}
+              {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
+              {/* <input type="hidden" value={this.renderButtonContents(selectedOption)} /> */}
               <span className={!this.state.dropdowncollapse ? 'academyicon icon-chevron-down' : 'academyicon icon-chevron-up'} />
             </button>
             {this.state.dropdowncollapse && (
@@ -147,9 +153,9 @@ Dropdown.defaultProps = {
 
 Dropdown.propTypes = {
     DropdownOptions: PropTypes.array.isRequired,
-    titleClass: PropTypes.object,
+    titleClass: PropTypes.oneOf(['string', 'object']),
     multi: PropTypes.bool,
-    subtitleClass: PropTypes.object,
+    subtitleClass: PropTypes.oneOf(['string', 'object']),
     onSelectOption: PropTypes.func,
     initiallySelectedOption: PropTypes.number,
     disabled: PropTypes.bool
