@@ -28,7 +28,7 @@ styles.hrStyles = css`
 
 styles.imageContainer = css`
   @media only screen and (min-width: 768px) {
-    &:hover button {
+    &:hover .c-product__quickviewbtn {
       display: block;
     }
   }

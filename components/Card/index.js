@@ -12,7 +12,8 @@ const StyledAnchor = styled('a')`
   }
 
   @media only screen and (min-width: 768px) {
-    &:focus button, &:focus-within button {
+    &:focus .c-product__quickviewbtn,
+    &:focus-within .c-product__quickviewbtn {
       display: block;
     }
   }

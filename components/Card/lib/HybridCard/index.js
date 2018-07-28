@@ -77,7 +77,7 @@ class HybridCard extends Component {
             <Button
               size="S"
               auid={quickViewAuid}
-              className={css.quickView}
+              className={`c-product__quickviewbtn ${css.quickView}`}
               onClick={this.wrapClickViewClick(onClickQuickView, onClickQuickViewLogGa)}
             >
               Quick View
