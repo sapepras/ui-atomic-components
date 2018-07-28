@@ -10,6 +10,12 @@ const StyledAnchor = styled('a')`
     text-decoration: none;
     cursor: pointer;
   }
+
+  @media only screen and (min-width: 768px) {
+    &:focus button, &:focus-within button {
+      display: block;
+    }
+  }
 `;
 class Card extends Component {
   onClickGoTo(url, onClickLogGA) {
