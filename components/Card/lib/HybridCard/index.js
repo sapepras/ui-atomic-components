@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { cx } from 'emotion';
 import css from './lib/css';
 import { productDetailPropTypes } from '../../../PriceDetails/lib/PropTypes';
@@ -29,6 +29,37 @@ class HybridCard extends Component {
     const result = hideOnDesktop ? css.cardHideOnDesktop : css.card;
     return wcx(result, styleOverride.card);
   }
+  /**
+   * Renders the number of variants available on the card like color, flavor, teams etc.
+   * @param {*} props props passed to the Card to extract variant counts
+   */
+  renderVariantCount(props) {
+    const {
+      colorCount, patternCount, teamCount, flavorCount, rating
+    } = props;
+    let count = 0;
+    let countText = '';
+    if (colorCount) {
+      count = colorCount;
+      countText = 'colors';
+    } else if (patternCount) {
+      count = patternCount;
+      countText = 'patterns';
+    } else if (teamCount) {
+      count = teamCount;
+      countText = 'teams';
+    } else if (flavorCount) {
+      count = flavorCount;
+      countText = 'falvors';
+    }
+    if (/^[0-9]+$/.test(parseInt(count, 10)) && parseInt(count, 10) > 1) {
+      if (rating) {
+        return (<Fragment><span aria-hidden>&nbsp;|&nbsp;</span> <span className="c-product__colors-available testing">{colorCount} {countText} available</span></Fragment>);
+      }
+      return (<span className="c-product__colors-available testing">{colorCount} {countText} available</span>);
+    }
+    return null;
+  }
 
   render() {
     const {
@@ -40,7 +71,6 @@ class HybridCard extends Component {
       priceObject,
       badge,
       promoMessage,
-      colorCount,
       horizontalMobile,
       isGiftCard,
       partNumber,
@@ -72,7 +102,7 @@ class HybridCard extends Component {
               <Badge className="c-product__badge" text={badge}>
                 {badge}
               </Badge>
-            ))}
+              ))}
           {enableQuickView && (
             <Button
               size="S"
@@ -90,20 +120,14 @@ class HybridCard extends Component {
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
             <Rating value={rating} />
             <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />
-            {rating &&
-              colorCount &&
-              /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
-              parseInt(colorCount, 10) > 1 && <span aria-hidden>&nbsp;|&nbsp;</span>}
-            {colorCount &&
-              /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
-              parseInt(colorCount, 10) > 1 && <span className="c-product__colors-available">{colorCount} colors available</span>}
+            {this.renderVariantCount(this.props)}
           </div>
           {!isGiftCard && <hr className={`m-0 ${css.hrStyles}`} />}
           {!isGiftCard && (
             <section className="mt-half">
               {priceObject && <PriceDetails {...priceObject} />}
               {promoMessage && (
-                <div className="">
+                <div className="c-product_promomsg">
                   <div className="">
                     <div className="">{promoMessage}</div>
                   </div>

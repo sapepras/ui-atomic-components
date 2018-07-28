@@ -17,7 +17,7 @@ const InCartPlusCompare = ({ listPrice }) => {
   const formattedListPrice = dec && dec.length > 0 ? `$${num}.${dec}` : `$${num}.00`;
   return (
     <div>
-      <div className="c-price-in-cart" style={{ color: '#ee0000' }}>
+      <div className="c-price-in-cart mb-half" style={{ color: '#ee0000' }}>
         Our Price in Cart
         <span data-tip data-for="info" data-event="touchstart" aria-label={TOOLTIP_TEXT} role="button" tabIndex="0" className="d-inline d-md-none c-price__tooltip-icon academyicon icon-information" />
         <span data-tip data-for="info" aria-label={TOOLTIP_TEXT} role="button" tabIndex="0" className="d-none d-md-inline d-c-price__tooltip-icon academyicon icon-information" />
@@ -25,7 +25,7 @@ const InCartPlusCompare = ({ listPrice }) => {
           <span>{TOOLTIP_TEXT}</span>
         </ReactTooltip>
       </div>
-      <div className="c-price-compare" style={{ color: '#333333' }}>
+      <div className="c-price-compare mb-half" style={{ color: '#333333' }}>
         Compare at {formattedListPrice}
       </div>
     </div>
