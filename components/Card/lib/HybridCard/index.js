@@ -50,7 +50,7 @@ class HybridCard extends Component {
       countText = 'teams';
     } else if (flavourCount) {
       count = flavourCount;
-      countText = 'falvors';
+      countText = 'flavors';
     }
     if (/^[0-9]+$/.test(parseInt(count, 10)) && parseInt(count, 10) > 1) {
       if (rating) {
