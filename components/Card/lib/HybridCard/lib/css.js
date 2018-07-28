@@ -26,20 +26,20 @@ styles.hrStyles = css`
   border: 0.5px solid #cccccc;
 `;
 
+styles.imageContainer = css`
+  @media only screen and (min-width: 768px) {
+    &:hover .c-product__quickviewbtn {
+      display: block;
+    }
+  }
+`;
+
 const quickViewPositioning = css`
   position: absolute;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
   display: none;
-
-  @media only screen and (min-width: 768px) {
-    div:hover > &,
-    a:focus > div.product-card &,
-    a:focus-within > div.product-card & {
-      display: block;
-    }
-  }
 `;
 
 styles.quickView = css`

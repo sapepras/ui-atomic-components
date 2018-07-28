@@ -90,7 +90,7 @@ class HybridCard extends Component {
           enableQuickView ? 'c-product__has-quickview' : ''
         )}
       >
-        <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 flex-sm-grow position-relative')}>
+        <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, ` ${css.imageContainer} col-md-12 flex-sm-grow position-relative`)}>
           {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
           {!image && <div className="" />}
           {badge &&
@@ -107,7 +107,7 @@ class HybridCard extends Component {
             <Button
               size="S"
               auid={quickViewAuid}
-              className={css.quickView}
+              className={`c-product__quickviewbtn ${css.quickView}`}
               onClick={this.wrapClickViewClick(onClickQuickView, onClickQuickViewLogGa)}
             >
               Quick View

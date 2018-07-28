@@ -10,6 +10,13 @@ const StyledAnchor = styled('a')`
     text-decoration: none;
     cursor: pointer;
   }
+
+  @media only screen and (min-width: 768px) {
+    &:focus .c-product__quickviewbtn,
+    &:focus-within .c-product__quickviewbtn {
+      display: block;
+    }
+  }
 `;
 class Card extends Component {
   onClickGoTo(url, onClickLogGA) {
