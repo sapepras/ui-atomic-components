@@ -19,9 +19,8 @@ const InCartPlusCompare = ({ listPrice }) => {
     <div>
       <div className="c-price-in-cart" style={{ color: '#ee0000' }}>
         Our Price in Cart
-        <span data-tip data-for="info" data-event="touchstart" aria-label={TOOLTIP_TEXT} role="button" tabIndex="0" className="d-inline d-md-none c-price__tooltip-icon academyicon icon-information" />
-        <span data-tip data-for="info" aria-label={TOOLTIP_TEXT} role="button" tabIndex="0" className="d-none d-md-inline d-c-price__tooltip-icon academyicon icon-information" />
-        <ReactTooltip className="c-price__tooltip-text" id="info" place="top" type="light" effect="solid" isCapture={false}>
+        <span data-tip data-for="info" aria-label={TOOLTIP_TEXT} role="button" tabIndex="0" className="c-price__tooltip-icon academyicon icon-information" />
+        <ReactTooltip className="c-price__tooltip-text" id="info" place="top" type="light" effect="solid">
           <span>{TOOLTIP_TEXT}</span>
         </ReactTooltip>
       </div>
