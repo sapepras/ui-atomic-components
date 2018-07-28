@@ -35,7 +35,7 @@ class HybridCard extends Component {
    */
   renderVariantCount(props) {
     const {
-      colorCount, patternCount, teamCount, flavorCount, rating
+      colorCount, patternCount, teamCount, flavourCount, rating
     } = props;
     let count = 0;
     let countText = '';
@@ -48,8 +48,8 @@ class HybridCard extends Component {
     } else if (teamCount) {
       count = teamCount;
       countText = 'teams';
-    } else if (flavorCount) {
-      count = flavorCount;
+    } else if (flavourCount) {
+      count = flavourCount;
       countText = 'falvors';
     }
     if (/^[0-9]+$/.test(parseInt(count, 10)) && parseInt(count, 10) > 1) {
