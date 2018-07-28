@@ -4,6 +4,7 @@ import styled from 'react-emotion';
 import HybridCard from './lib/HybridCard';
 
 const StyledAnchor = styled('a')`
+  display: flex;
   color: #333333;
   &:hover {
     color: #333333;
@@ -57,7 +58,7 @@ class Card extends Component {
     }
     return (
       <div className={classes}>
-        <StyledAnchor href={ctaLink} data-auid={auid} {...clickAttributes} tabIndex={tabIndex}>
+        <StyledAnchor className="mb-quarter mb-md-4" href={ctaLink} data-auid={auid} {...clickAttributes} tabIndex={tabIndex}>
           <HybridCard {...remainingProps} onClickQuickViewLogGa={defaultQuickViewLogGA} quickViewAuid={`${auid}_quickview`} />
         </StyledAnchor>
       </div>

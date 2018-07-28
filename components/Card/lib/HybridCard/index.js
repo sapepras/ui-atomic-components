@@ -84,7 +84,7 @@ class HybridCard extends Component {
         className={cx(
           { vertical: !horizontalMobile },
           { horizontal: horizontalMobile },
-          'product-card mb-quarter mb-md-4',
+          'product-card',
           css.productCard,
           horizontalMobile ? css.horizontal : '',
           enableQuickView ? 'c-product__has-quickview' : ''
