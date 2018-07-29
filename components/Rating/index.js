@@ -32,14 +32,11 @@ const Rating = (props = {}) => {
     value = 0;
   }
   let rating = parseFloat(value) / 5 * 100; // eslint-disable-line
-  if (!hideEmptyStars && value <= 0) {
-    rating = 0;
-  }
   const starWidth = `${rating}%`;
   const starStyle = { color: starColor, width: starWidth, cursor: null };
   const starBackgroundStyle = { color: emptyStarColor, cursor: null };
 
-  return hideEmptyStars && rating <= 0 ? null : (
+  return hideEmptyStars || rating <= 0 ? null : (
     <div aria-label={`${value} stars out of 5`} className={container}>
       <div className={relative}>
         <div className={stars} style={starStyle}>
