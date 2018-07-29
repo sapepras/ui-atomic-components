@@ -54,9 +54,20 @@ class HybridCard extends Component {
     }
     if (/^[0-9]+$/.test(parseInt(count, 10)) && parseInt(count, 10) > 1) {
       if (rating) {
-        return (<Fragment><span aria-hidden>&nbsp;|&nbsp;</span> <span className="c-product__colors-available testing">{colorCount} {countText} available</span></Fragment>);
+        return (
+          <Fragment>
+            <span aria-hidden>&nbsp;|&nbsp;</span>{' '}
+            <span className="c-product__colors-available testing">
+              {count} {countText} available
+            </span>
+          </Fragment>
+        );
       }
-      return (<span className="c-product__colors-available testing">{colorCount} {countText} available</span>);
+      return (
+        <span className="c-product__colors-available testing">
+          {count} {countText} available
+        </span>
+      );
     }
     return null;
   }
@@ -90,7 +101,13 @@ class HybridCard extends Component {
           enableQuickView ? 'c-product__has-quickview' : ''
         )}
       >
-        <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, ` ${css.imageContainer} col-md-12 flex-sm-grow position-relative`)}>
+        <div
+          className={cx(
+            { 'col-5': horizontalMobile },
+            { 'col-12': !horizontalMobile },
+            ` ${css.imageContainer} col-md-12 flex-sm-grow position-relative`
+          )}
+        >
           {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2`} />}
           {!image && <div className="" />}
           {badge &&
@@ -102,7 +119,7 @@ class HybridCard extends Component {
               <Badge className="c-product__badge" text={badge}>
                 {badge}
               </Badge>
-              ))}
+            ))}
           {enableQuickView && (
             <Button
               size="S"
