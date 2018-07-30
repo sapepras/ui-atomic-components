@@ -136,7 +136,7 @@ class HybridCard extends Component {
           <p className="c-product__description mb-0">{description}</p>
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
             <Rating value={rating} />
-            {((typeof rating === 'string' && rating.trim().length === 0) || rating !== '0') && (
+            {((typeof rating === 'string' && rating.trim().length !== 0) && rating !== '0') && (
               <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />
               )}
             {this.renderVariantCount(this.props)}
