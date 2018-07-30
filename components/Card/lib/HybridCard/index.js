@@ -56,7 +56,7 @@ class HybridCard extends Component {
       if (rating) {
         return (
           <Fragment>
-            <span aria-hidden>&nbsp;|&nbsp;</span>{' '}
+            <span aria-hidden>&nbsp;|&nbsp;</span>
             <span className="c-product__colors-available testing">
               {count} {countText} available
             </span>
@@ -136,7 +136,9 @@ class HybridCard extends Component {
           <p className="c-product__description mb-0">{description}</p>
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
             <Rating value={rating} />
-            <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />
+            {((typeof rating === 'string' && rating.trim().length !== 0) && rating !== '0') && (
+              <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />
+              )}
             {this.renderVariantCount(this.props)}
           </div>
           {!isGiftCard && <hr className={`m-0 ${css.hrStyles}`} />}
