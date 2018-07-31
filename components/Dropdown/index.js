@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 
@@ -64,42 +64,76 @@ const listStyle = props => css`
     width: ${props.width}
 `;
 
-class Dropdown extends Component {
+class Dropdown extends React.PureComponent {
+    // static getDerivedStateFromProps(props, state) {
+    //     if (state.initiallySelectedOption !== props.initiallySelectedOption) {
+    //         return { selectedOption: props.initiallySelectedOption < props.DropdownOptions.length ? props.DropdownOptions[props.initiallySelectedOption] : props.DropdownOptions[0], activeListItem: props.initiallySelectedOption < props.DropdownOptions.length ? props.initiallySelectedOption : 0 }
+    //     }
+    //     return null;
+    // }
+
     constructor(props) {
         super(props);
         this.state = {
             dropdowncollapse: false,
             activeListItem: this.props.initiallySelectedOption < this.props.DropdownOptions.length ? this.props.initiallySelectedOption : 0,
-            selectedOption: this.props.initiallySelectedOption < this.props.DropdownOptions.length ? this.props.DropdownOptions[this.props.initiallySelectedOption] : { title: 'Select' }
+            selectedOption: this.props.initiallySelectedOption < this.props.DropdownOptions.length ? this.props.DropdownOptions[this.props.initiallySelectedOption] : this.props.DropdownOptions[0]
         };
         this.onSelectWrapper = this.onSelectWrapper.bind(this);
         this.renderButtonContents = this.renderButtonContents.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.setWrapperRef = this.setWrapperRef.bind(this);
     }
-    // TODO:- Remove document level listeners.
 
+    // TODO:- Remove document level listeners.
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    // TODO:- Use getDerivedStateFromProps instead of deprecated ComponentWillRecieveProps
+    componentWillReceiveProps(nextProps) {
+        if (this.props.initiallySelectedOption !== nextProps.initiallySelectedOption) {
+            this.setState({ selectedOption: nextProps.initiallySelectedOption < nextProps.DropdownOptions.length ? nextProps.DropdownOptions[nextProps.initiallySelectedOption] : nextProps.DropdownOptions[0], activeListItem: nextProps.initiallySelectedOption < nextProps.DropdownOptions.length ? nextProps.initiallySelectedOption : 0 });
+        }
     }
 
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
+    /**
+     *
+     * @param {object} value selected option from the list
+     * @param {func} onSelect function passed as prop to be executed when an option is selected
+     * @param {number} index index of option selected from DropdownOptions
+     */
     onSelectWrapper(value, onSelect, index) {
         this.setState({ selectedOption: value, dropdowncollapse: false, activeListItem: index });
         onSelect(index, value.title);
     }
-
+    /**
+     *
+     * @param {object} node - sets reference to the passed node.
+     */
     setWrapperRef(node) {
         this.wrapperRef = node;
     }
+
+    /**
+     *
+     * @param {object} event to be passed - handles clicks outside the dropdown and resets the state to close the dropdown.
+     */
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
             this.setState({ dropdowncollapse: false });
         }
     }
+    /**
+     *
+     * @param {object} item is the object to be rendered inside button.
+     * @param {object || string} titleClass is the custom style class for title of button text
+     * @param {object || string} subtitleClass is the custom style class for subtitle of button text
+     */
     renderButtonContents(item, titleClass = '', subtitleClass = '') {
         if (typeof item === 'object') {
             const content = (
@@ -125,7 +159,6 @@ class Dropdown extends Component {
           <div ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
             <button type="button" className={`${btnStyle(this.props)} d-flex justify-content-between align-items-center`} disabled={disabled} onClick={() => this.setState({ dropdowncollapse: !this.state.dropdowncollapse })}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
-              {/* <input type="hidden" value={this.renderButtonContents(selectedOption)} /> */}
               <span className={!this.state.dropdowncollapse ? 'academyicon icon-chevron-down' : 'academyicon icon-chevron-up'} />
             </button>
             {this.state.dropdowncollapse && (
@@ -137,6 +170,11 @@ class Dropdown extends Component {
         );
     }
 }
+
+/**
+ *
+ * @param {object} props to be passed to the list of dropdown.
+ */
 const DropdownList = props => (
     !props.multi ?
     props.options.map((item, index) => <li className={props.activeListItem === index ? 'active' : ''} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={props.titleClass}>{item.title}</span></li>)
@@ -147,7 +185,7 @@ const DropdownList = props => (
  );
 
 Dropdown.defaultProps = {
-    initiallySelectedOption: { title: 'Select' },
+    initiallySelectedOption: 0,
     disabled: false
 };
 
