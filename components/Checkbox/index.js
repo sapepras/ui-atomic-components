@@ -60,8 +60,7 @@ class Checkbox extends Component {
     }
 
     onChangeWrapper(onChange) {
-        this.setState({ isChecked: !this.state.isChecked });
-        onChange();
+        this.setState({ isChecked: !this.state.isChecked }, () => onChange(this.state.isChecked));
     }
 
     render() {
