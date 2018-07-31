@@ -26,20 +26,20 @@ styles.hrStyles = css`
   border: 0.5px solid #cccccc;
 `;
 
-styles.imageContainer = css`
-  @media only screen and (min-width: 768px) {
-    &:hover .c-product__quickviewbtn {
-      display: block;
-    }
-  }
-`;
-
 const quickViewPositioning = css`
   position: absolute;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
   display: none;
+
+  @media only screen and (min-width: 768px) {
+    div:hover > &,
+    a:focus > div.product-card &,
+    a:focus-within > div.product-card & {
+      display: block;
+    }
+  }
 `;
 
 styles.quickView = css`
@@ -48,8 +48,8 @@ styles.quickView = css`
   height: 50px;
   min-width: 150px;
   width: 150px;
-  font-family: Mallory-Bold;
-  font-size: 12px;
+  font-family: Mallory;
+  font-size: 14px;
   font-weight: bold;
   text-transform: underline;
   padding: 0;
@@ -61,5 +61,60 @@ styles.hoverImage = css`
       opacity: 0.5;
     }
   }
+`;
+styles.removeIcon = css`
+  display: none;
+  @media only screen and (min-width: 768px) {
+    display: block;
+    color: #0055a6;
+    font-size: 12px;
+    border: none;
+    width: auto;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    :focus {
+      outline: none;
+    }
+  }
+`;
+styles.removeCircleIcon = css`
+  display: block;
+  font-size: 16px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+styles.iconBtn = css`
+  border: none;
+  width: auto;
+  background: none;
+  color: #0055a6;
+  cursor: pointer;
+  :focus {
+    outline: none;
+  }
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+styles.removeText = css`
+  display: block;
+  font-size: 14px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+styles.moveToCartBtn = css`
+white-space: nowrap;
+@media only screen and (min-width: 768px) {
+  width: 100%;
+}
+`;
+styles.hrFullStyles = css`
+border: 0.5px solid #cccccc;
+@media only screen and (min-width: 768px) {
+  display: none;
+}
 `;
 export default styles;
