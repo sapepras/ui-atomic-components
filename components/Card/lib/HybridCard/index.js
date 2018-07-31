@@ -24,15 +24,6 @@ class HybridCard extends Component {
       }
     };
   }
-
-  isRemoveFunc() {
-    console.log('to do');
-  }
-
-  isMoveToCartFunc() {
-    console.log('to do');
-  }
-
   renderCardClassName(hideOnDesktop, styleOverride) {
     const result = hideOnDesktop ? css.cardHideOnDesktop : css.card;
     return wcx(result, styleOverride.card);
@@ -75,7 +66,7 @@ class HybridCard extends Component {
             <div className="d-flex flex-row">
               {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
               {!image && <div className="" />}
-              <button className={`${css.removeIcon} academyicon icon-close pt-0 pt-md-1 pl-0 pl-md-half`} onClick={() => this.props.isRemoveFunc()} />
+              <button className={`${css.removeIcon} academyicon icon-close pt-0 pt-md-1 pl-0 pl-md-half`} onClick={() => this.props.removeCardFunc()} />
             </div>
           ) : (
             <React.Fragment>
@@ -137,14 +128,13 @@ class HybridCard extends Component {
             {this.props.borderStyle && <hr className={`mb-1 mb-md-0 ${css.hrFullStyles}`} />}
             <div className="d-flex flex-row">
               <div className="d-flex align-items-center">
-                <button className={`${css.iconBtn} pl-1 pl-md-0 pr-half pr-md-0`} onClick={() => this.props.isRemoveFunc()}>
+                <button className={`${css.iconBtn} pl-1 pl-md-0 pr-half pr-md-0`} onClick={() => this.props.removeCardFunc()}>
                   <i className={`${css.removeCircleIcon} academyicon icon-x-circle `} />
                 </button>
                 <span className={`${css.removeText} pr-3 pr-md-0`}> Remove </span>
               </div>
-              <Button className={`${css.moveToCartBtn}`} size="S" onClick={() => this.props.isMoveToCartFunc()}>
-                {' '}
-                Move To Cart{' '}
+              <Button className={`${css.moveToCartBtn}`} size="S" onClick={this.props.moveToCartFunc}>
+                Move To Cart
               </Button>
             </div>
           </div>
@@ -172,8 +162,8 @@ HybridCard.propTypes = {
   isRemovable: PropTypes.bool,
   isMoveToCart: PropTypes.bool,
   borderStyle: PropTypes.bool,
-  isRemoveFunc: PropTypes.func,
-  isMoveToCartFunc: PropTypes.func,
+  removeCardFunc: PropTypes.func,
+  moveToCartFunc: PropTypes.func,
   onClickQuickView: PropTypes.func,
   onClickQuickViewLogGa: PropTypes.func,
   quickViewAuid: PropTypes.string
