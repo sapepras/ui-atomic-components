@@ -31,7 +31,7 @@ Checkbox Atomic Component renders a custom checkbox component with various props
 
 * **onChange**: *PropTypes.func*
 
-```Function to be executed when any option in dropdown is clicked upon.```
+```Function to be executed when any option in dropdown is clicked upon. Returns the state of checkbox```
 
 
 ## Example Usage

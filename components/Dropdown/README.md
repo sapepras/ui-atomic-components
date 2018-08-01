@@ -38,7 +38,7 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 * **onSelectOption**: *PropTypes.func*
 
-```Function to be executed when any option in dropdown is clicked upon.```
+```Function to be executed when any option in dropdown is clicked upon. Returns index and title value of option selected. ```
 
 * **initiallySelectedOption**: *PropTypes.number*
 
