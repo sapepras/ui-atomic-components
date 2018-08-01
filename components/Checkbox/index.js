@@ -52,9 +52,8 @@ const CheckboxStyles = css`
 class Checkbox extends Component {
     constructor(props) {
         super(props);
-        const { initialState } = this.props;
         this.state = {
-            isChecked: initialState
+            isChecked: props.checked
         };
         this.onChangeWrapper = this.onChangeWrapper.bind(this);
     }
@@ -65,17 +64,17 @@ class Checkbox extends Component {
 
     render() {
         const {
-            formLabel, labelPosition, labelText, disabled, onChange, labelClass
+            formLabel, labelPosition, labelText, disabled, onChange, labelClass, name, id
         } = this.props;
         return (
            labelPosition === 'left' ?
              <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
                <span className={labelClass}>{labelText}</span>
-               <input disabled={disabled} checked={this.state.isChecked} className={`${CheckboxStyles}`} id={formLabel} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
+               <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
              </label>
           :
              <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
-               <input disabled={disabled} checked={this.state.isChecked} className={`${CheckboxStyles}`} id={formLabel} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
+               <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
                <span className={`${labelClass} d-flex align-items-center`}>{labelText}</span>
              </label>
         );
@@ -83,7 +82,7 @@ class Checkbox extends Component {
 }
 
 Checkbox.defaultProps = {
-    initialState: false,
+    checked: false,
     labelPosition: 'right',
     formLabel: 'checkbox',
     labelText: '',
@@ -91,7 +90,9 @@ Checkbox.defaultProps = {
 };
 
 Checkbox.propTypes = {
-    initialState: PropTypes.bool,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    checked: PropTypes.bool,
     formLabel: PropTypes.string,
     labelPosition: PropTypes.string,
     labelText: PropTypes.string,
