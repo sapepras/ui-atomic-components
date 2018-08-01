@@ -65,7 +65,6 @@ class HybridCard extends Component {
           {isRemovable ? (
             <div className="d-flex flex-row">
               {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
-              {!image && <div className="" />}
               <button className={`${css.removeIcon} academyicon icon-close pt-0 pt-md-1 pl-0 pl-md-half`} onClick={() => this.props.removeCardFunc()} />
             </div>
           ) : (
