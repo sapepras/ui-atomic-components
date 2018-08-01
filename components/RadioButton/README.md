@@ -27,7 +27,7 @@ Radio Button Atomic Component renders a custom radio button component with vario
 
 * **onChange**: *PropTypes.func*
 
-```Function to be executed when any option in dropdown is clicked upon.```
+```Function to be executed when any option in dropdown is clicked upon.eturns the state of radio button```
 
 * **labelClass**: *PropTypes.object*
 
