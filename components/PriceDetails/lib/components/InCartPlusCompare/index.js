@@ -3,7 +3,7 @@ import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import { productDetailChildPropTypes } from '../../PropTypes';
 import { TOOLTIP_TEXT } from './constants';
-// import * as css from '../../css';
+import * as css from '../../css';
 
 const isMobile = () =>
   ExecutionEnvironment.canUseDOM
@@ -36,7 +36,7 @@ const InCartPlusCompare = ({ listPrice }) => {
           />
         )}
         {!isMobile() && (
-          <ReactTooltip className="c-price__tooltip-text" id="info" place="top" type="light" effect="solid">
+          <ReactTooltip className={`${css.toolTipStyles} c-price__tooltip-text`} id="info" place="top" type="light" effect="solid">
             <span>{TOOLTIP_TEXT}</span>
           </ReactTooltip>
         )}
