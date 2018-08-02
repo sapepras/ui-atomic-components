@@ -57,14 +57,14 @@ class HybridCard extends Component {
         return (
           <Fragment>
             <span aria-hidden>&nbsp;|&nbsp;</span>
-            <span className="c-product__colors-available testing">
+            <span className="c-product__colors-available ">
               {count} {countText} available
             </span>
           </Fragment>
         );
       }
       return (
-        <span className="c-product__colors-available testing">
+        <span className="c-product__colors-available m-noratings">
           {count} {countText} available
         </span>
       );
@@ -171,7 +171,7 @@ HybridCard.propTypes = {
   promoMessage: PropTypes.string,
   horizontalMobile: PropTypes.bool,
   colorCount: PropTypes.string,
-  isGiftCard: PropTypes.string,
+  isGiftCard: PropTypes.bool,
   badge: PropTypes.string,
   partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   enableQuickView: PropTypes.bool,

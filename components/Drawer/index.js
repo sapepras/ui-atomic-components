@@ -42,6 +42,7 @@ const DrawerTitleStyle = css`
 const DrawerContentStyle = css`
   min-height: 62px;
   padding: 1rem;
+  font-size:14px;
   border-top: 1px solid #f6f6f6;
 `;
 
