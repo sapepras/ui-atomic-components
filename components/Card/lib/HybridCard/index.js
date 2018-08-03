@@ -12,13 +12,10 @@ import PriceDetails from '../../../PriceDetails';
 const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
 
 class HybridCard extends Component {
-  wrapClickViewClick(onClickQuickView, onClickQuickViewLogGa) {
+  wrapClickViewClick(onClickQuickView) {
     return e => {
       e.preventDefault();
       e.stopPropagation();
-      if (onClickQuickViewLogGa) {
-        onClickQuickViewLogGa();
-      }
       if (onClickQuickView) {
         onClickQuickView();
       }
@@ -34,9 +31,7 @@ class HybridCard extends Component {
    * @param {*} props props passed to the Card to extract variant counts
    */
   renderVariantCount(props) {
-    const {
-      colorCount, patternCount, teamCount, flavourCount, rating
-    } = props;
+    const { colorCount, patternCount, teamCount, flavourCount, rating } = props;
     let count = 0;
     let countText = '';
     if (colorCount) {
@@ -87,7 +82,6 @@ class HybridCard extends Component {
       partNumber,
       enableQuickView,
       onClickQuickView = () => null,
-      onClickQuickViewLogGa = null,
       quickViewAuid
     } = this.props; // eslint-disable-line object-curly-newline
     return (
@@ -125,7 +119,7 @@ class HybridCard extends Component {
               size="S"
               auid={quickViewAuid}
               className={`c-product__quickviewbtn ${css.quickView}`}
-              onClick={this.wrapClickViewClick(onClickQuickView, onClickQuickViewLogGa)}
+              onClick={this.wrapClickViewClick(onClickQuickView)}
             >
               Quick View
             </Button>
@@ -136,9 +130,9 @@ class HybridCard extends Component {
           <p className="c-product__description mb-0">{description}</p>
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
             <Rating value={rating} />
-            {((typeof rating === 'string' && rating.trim().length !== 0) && rating !== '0') && (
-              <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />
-              )}
+            {typeof rating === 'string' &&
+              rating.trim().length !== 0 &&
+              rating !== '0' && <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />}
             {this.renderVariantCount(this.props)}
           </div>
           {!isGiftCard && <hr className={`m-0 ${css.hrStyles}`} />}
@@ -176,7 +170,6 @@ HybridCard.propTypes = {
   partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
-  onClickQuickViewLogGa: PropTypes.func,
   quickViewAuid: PropTypes.string
 };
 
