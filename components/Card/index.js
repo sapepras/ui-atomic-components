@@ -79,7 +79,7 @@ Card.propTypes = {
   onClickLogGA: PropTypes.func,
   styleOverride: PropTypes.object,
   tabIndex: PropTypes.number,
-  gtmDataLayer: PropTypes.any.isRequired,
+  gtmDataLayer: PropTypes.any,
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
   onClickQuickViewLogGa: PropTypes.func,
