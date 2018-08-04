@@ -31,7 +31,9 @@ class HybridCard extends Component {
    * @param {*} props props passed to the Card to extract variant counts
    */
   renderVariantCount(props) {
-    const { colorCount, patternCount, teamCount, flavourCount, rating } = props;
+    const {
+ colorCount, patternCount, teamCount, flavourCount, rating
+} = props;
     let count = 0;
     let countText = '';
     if (colorCount) {
