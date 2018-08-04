@@ -77,8 +77,8 @@ class Drawer extends Component {
    * @param {Object} newProps The modified/next props received
    */
   componentWillReceiveProps(newProps) {
-    if(newProps.isOpen !== this.props.isOpen) {
-      this.setState({isOpen: newProps.isOpen});
+    if (newProps.isOpen !== this.props.isOpen) {
+      this.setState({ isOpen: newProps.isOpen });
     }
   }
 
@@ -92,16 +92,15 @@ class Drawer extends Component {
    * Open or close Drawer
    */
   toggleDrawer() {
-    const { onToggle } = this.props;
     if (this.props.isCollapsible) {
       this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), () => {
-        onToggle && onToggle(this.state.isOpen);
+        this.props.onToggle(this.state.isOpen);
       });
     } else {
       this.setState({
         isOpen: true
       });
-      onToggle && onToggle(true);
+      this.props.onToggle(true);
     }
     if (this.props.gtmDataLayer) {
       this.updateAnalytics();
@@ -172,7 +171,8 @@ Drawer.defaultProps = {
   bodyHeight: null,
   bodyStyle: null,
   titleStyle: null,
-  titleStyleOpen: null
+  titleStyleOpen: null,
+  onToggle: () => {}
 };
 
 Drawer.propTypes = {
