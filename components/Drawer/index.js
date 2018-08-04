@@ -141,10 +141,10 @@ class Drawer extends Component {
           onClick={this.toggleDrawer}
           tabIndex={tabIndex}
         >
-          <div className={DrawerTitleStyle}>
+          <span className={DrawerTitleStyle}>
             {title}
             {isCollapsible && <i className={classlist} />}
-          </div>
+          </span>
         </StyledButton>
         {this.state.isOpen && (
           <div
