@@ -17,6 +17,7 @@ export const popoverAnchor = css`
 const popoverModalWrapperBase = css`
   position: absolute;
   z-index: 2;
+  min-width: 300px;
 `;
 
 const popoverModalWrapperLeft = css`
@@ -81,12 +82,11 @@ const popoverBase = css`
   position: relative;
   min-width: 100px;
   width: auto;
-  padding: 15px;
+  padding: 2rem;
   background: #fff;
   border-radius: 3px;
 
-  &,
-  &:before {
+  & {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   }
 
@@ -200,4 +200,6 @@ export const StyledPopover = styled('div')`
   @media only screen and (min-width: 768px) {
     ${({ direction = {} }) => getPopoverDirectionStyles(direction.desktop)};
   }
+
+  filter: drop-shadow(0 0 6px rgba(51, 51, 51, 0.4));
 `;
