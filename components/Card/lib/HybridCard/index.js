@@ -73,12 +73,12 @@ class HybridCard extends Component {
     if (isLazyLoad) {
       return (
         <Fragment>
-          <span className="c-product__lazyspinner" />
+          <span className="pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 c-product__lazyspinner" />
           <img
-            src=""
+            src="/assets/images/loader.svg"
             data-src={image}
             alt={imageAltText}
-            className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 h-lazyloadimg`}
+            className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 d-none h-lazyloadimg`}
           />
         </Fragment>
       );
