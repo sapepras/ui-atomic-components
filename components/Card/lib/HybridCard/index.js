@@ -32,8 +32,8 @@ class HybridCard extends Component {
    */
   renderVariantCount(props) {
     const {
- colorCount, patternCount, teamCount, flavourCount, rating
-} = props;
+      colorCount, patternCount, teamCount, flavourCount, rating
+    } = props;
     let count = 0;
     let countText = '';
     if (colorCount) {
@@ -69,6 +69,23 @@ class HybridCard extends Component {
     return null;
   }
 
+  renderImage(image, imageAltText, isLazyLoad) {
+    if (isLazyLoad) {
+      return (
+        <Fragment>
+          <span className="c-product__lazyspinner" />
+          <img
+            src=""
+            data-src={image}
+            alt={imageAltText}
+            className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 h-lazyloadimg`}
+          />
+        </Fragment>
+      );
+    }
+    return <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2`} />;
+  }
+
   render() {
     const {
       title,
@@ -84,7 +101,8 @@ class HybridCard extends Component {
       partNumber,
       enableQuickView,
       onClickQuickView = () => null,
-      quickViewAuid
+      quickViewAuid,
+      isLazyLoad
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div
@@ -104,7 +122,7 @@ class HybridCard extends Component {
             ` ${css.imageContainer} col-md-12 flex-sm-grow position-relative`
           )}
         >
-          {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2`} />}
+          {image && this.renderImage(image, imageAltText, isLazyLoad)}
           {!image && <div className="" />}
           {badge &&
             (horizontalMobile ? (
@@ -115,7 +133,7 @@ class HybridCard extends Component {
               <Badge className="c-product__badge" text={badge}>
                 {badge}
               </Badge>
-            ))}
+              ))}
           {enableQuickView && (
             <Button
               size="S"
@@ -172,7 +190,8 @@ HybridCard.propTypes = {
   partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
-  quickViewAuid: PropTypes.string
+  quickViewAuid: PropTypes.string,
+  isLazyLoad: PropTypes.bool
 };
 
 export default HybridCard;

@@ -24,6 +24,7 @@ export const getCardProps = (product = {}, props = {}) => {
     isGiftCard: product.isGiftCard === 'Y',
     partNumber: determinePartNumber(props, product),
     priceObject,
+    isLazyLoad: props.isLazyLoad,
     classes: props.classes
   };
 

@@ -33,6 +33,7 @@ ProductCard.propTypes = {
       priceRange: PropTypes.string
     })
   }),
+  isLazyLoad: PropTypes.bool,
   rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   price: PropTypes.string,
   badge: PropTypes.string,
