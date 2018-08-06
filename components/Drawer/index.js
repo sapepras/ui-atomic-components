@@ -88,7 +88,9 @@ class Drawer extends Component {
         isOpen: true
       });
     }
-    this.updateAnalytics();
+    if (this.props.gtmDataLayer) {
+      this.updateAnalytics();
+    }
   }
 
   /**

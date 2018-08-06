@@ -62,4 +62,59 @@ styles.hoverImage = css`
     }
   }
 `;
+styles.removeIcon = css`
+  display: none;
+  @media only screen and (min-width: 768px) {
+    display: block;
+    color: #0055a6;
+    font-size: 12px;
+    border: none;
+    width: auto;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    :focus {
+      outline: none;
+    }
+  }
+`;
+styles.removeCircleIcon = css`
+  display: block;
+  font-size: 16px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+styles.iconBtn = css`
+  border: none;
+  width: auto;
+  background: none;
+  color: #0055a6;
+  cursor: pointer;
+  :focus {
+    outline: none;
+  }
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+styles.removeText = css`
+  display: block;
+  font-size: 14px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+styles.moveToCartBtn = css`
+white-space: nowrap;
+@media only screen and (min-width: 768px) {
+  width: 100%;
+}
+`;
+styles.hrFullStyles = css`
+border: 0.5px solid #cccccc;
+@media only screen and (min-width: 768px) {
+  display: none;
+}
+`;
 export default styles;

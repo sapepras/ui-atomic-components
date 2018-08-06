@@ -24,7 +24,6 @@ class HybridCard extends Component {
       }
     };
   }
-
   renderCardClassName(hideOnDesktop, styleOverride) {
     const result = hideOnDesktop ? css.cardHideOnDesktop : css.card;
     return wcx(result, styleOverride.card);
@@ -45,9 +44,13 @@ class HybridCard extends Component {
       isGiftCard,
       partNumber,
       enableQuickView,
+      isRemovable,
+      isMoveToCart,
       onClickQuickView = () => null,
       onClickQuickViewLogGa = null,
-      quickViewAuid
+      quickViewAuid,
+      removeLabel,
+      moveToCartLabel
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div
@@ -61,8 +64,17 @@ class HybridCard extends Component {
         )}
       >
         <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 flex-sm-grow position-relative')}>
-          {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
-          {!image && <div className="" />}
+          {isRemovable ? (
+            <div className="d-flex flex-row">
+              {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
+              <button className={`${css.removeIcon} academyicon icon-close pt-0 pt-md-1 pl-0 pl-md-half`} onClick={() => this.props.removeCardFunc()} />
+            </div>
+          ) : (
+            <React.Fragment>
+              {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
+              {!image && <div className="" />}
+            </React.Fragment>
+          )}
           {badge &&
             (horizontalMobile ? (
               <Badge className="c-product__badge" smallBadge text={badge}>
@@ -98,7 +110,7 @@ class HybridCard extends Component {
               /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
               parseInt(colorCount, 10) > 1 && <span className="c-product__colors-available">{colorCount} colors available</span>}
           </div>
-          {!isGiftCard && <hr className={`m-0 ${css.hrStyles}`} />}
+          {!isGiftCard && <hr className={`m-0 ${!this.props.borderStyle ? css.hrStyles : `${css.hrStyles} d-none d-sm-block`}`} />}
           {!isGiftCard && (
             <section className="mt-half">
               {priceObject && <PriceDetails {...priceObject} />}
@@ -112,6 +124,22 @@ class HybridCard extends Component {
             </section>
           )}
         </div>
+        {isMoveToCart && (
+          <div className={cx({ 'col-12': horizontalMobile }, { 'col-12 px-1 px-md-2': !horizontalMobile }, 'col-md-12 pb-1 pb-md-3')}>
+            {this.props.borderStyle && <hr className={`mb-1 mb-md-0 ${css.hrFullStyles}`} />}
+            <div className="d-flex flex-row">
+              <div className="d-flex align-items-center">
+                <button className={`${css.iconBtn} pl-1 pl-md-0 pr-half pr-md-0`} onClick={() => this.props.removeCardFunc()}>
+                  <i className={`${css.removeCircleIcon} academyicon icon-x-circle `} />
+                </button>
+                <span className={`${css.removeText} pr-3 pr-md-0`}>{removeLabel}</span>
+              </div>
+              <Button className={`${css.moveToCartBtn}`} size="S" onClick={this.props.moveToCartFunc}>
+                {moveToCartLabel}
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -132,9 +160,16 @@ HybridCard.propTypes = {
   badge: PropTypes.string,
   partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   enableQuickView: PropTypes.bool,
+  isRemovable: PropTypes.bool,
+  isMoveToCart: PropTypes.bool,
+  borderStyle: PropTypes.bool,
+  removeCardFunc: PropTypes.func,
+  moveToCartFunc: PropTypes.func,
   onClickQuickView: PropTypes.func,
   onClickQuickViewLogGa: PropTypes.func,
-  quickViewAuid: PropTypes.string
+  quickViewAuid: PropTypes.string,
+  removeLabel: PropTypes.string,
+  moveToCartLabel: PropTypes.string
 };
 
 export default HybridCard;
