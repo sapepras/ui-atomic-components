@@ -91,12 +91,7 @@ class Dropdown extends React.PureComponent {
             this.setState({ selectedOption: nextProps.initiallySelectedOption < nextProps.DropdownOptions.length ? nextProps.DropdownOptions[nextProps.initiallySelectedOption] : nextProps.DropdownOptions[0], activeListItem: nextProps.initiallySelectedOption < nextProps.DropdownOptions.length ? nextProps.initiallySelectedOption : 0 });
         }
     }
-    // static getDerivedStateFromProps(props, state) {
-    //     if (state.initiallySelectedOption !== props.initiallySelectedOption) {
-    //         return { selectedOption: props.initiallySelectedOption < props.DropdownOptions.length ? props.DropdownOptions[props.initiallySelectedOption] : props.DropdownOptions[0], activeListItem: props.initiallySelectedOption < props.DropdownOptions.length ? props.initiallySelectedOption : 0 }
-    //     }
-    //     return null;
-    // }
+
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClickOutside);
     }
