@@ -33,7 +33,7 @@ class HybridCard extends Component {
   renderVariantCount(props) {
     const {
       colorCount, patternCount, teamCount, flavourCount, rating
-    } = props;
+} = props;
     let count = 0;
     let countText = '';
     if (colorCount) {
@@ -69,13 +69,13 @@ class HybridCard extends Component {
     return null;
   }
 
-  renderImage(image, imageAltText, isLazyLoad) {
+  renderImage(image, loaderImg, imageAltText, isLazyLoad) {
     if (isLazyLoad) {
       return (
         <Fragment>
-          <span className="pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 c-product__lazyspinner" />
+          <span className="w-100 my-4 c-product__lazyspinner" />
           <img
-            src="/assets/images/loader.svg"
+            src={loaderImg}
             data-src={image}
             alt={imageAltText}
             className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 d-none h-lazyloadimg`}
@@ -102,7 +102,8 @@ class HybridCard extends Component {
       enableQuickView,
       onClickQuickView = () => null,
       quickViewAuid,
-      isLazyLoad
+      isLazyLoad,
+      loaderImg
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div
@@ -122,7 +123,7 @@ class HybridCard extends Component {
             ` ${css.imageContainer} col-md-12 flex-sm-grow position-relative`
           )}
         >
-          {image && this.renderImage(image, imageAltText, isLazyLoad)}
+          {image && this.renderImage(image, loaderImg, imageAltText, isLazyLoad)}
           {!image && <div className="" />}
           {badge &&
             (horizontalMobile ? (
@@ -191,7 +192,8 @@ HybridCard.propTypes = {
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
   quickViewAuid: PropTypes.string,
-  isLazyLoad: PropTypes.bool
+  isLazyLoad: PropTypes.bool,
+  loaderImg: PropTypes.any
 };
 
 export default HybridCard;

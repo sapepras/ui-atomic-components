@@ -34,6 +34,7 @@ ProductCard.propTypes = {
     })
   }),
   isLazyLoad: PropTypes.bool,
+  loaderImg: PropTypes.any,
   rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   price: PropTypes.string,
   badge: PropTypes.string,
