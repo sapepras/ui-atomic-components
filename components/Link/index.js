@@ -68,10 +68,40 @@ const StyledLink = styled('a')`
   text-align: center;
   text-decoration: none;
   display: block;
+  &:focus{
+    :after {
+      content: '';
+      border: 1px dotted #fff;
+      border-radius: 35px;
+      display: block;
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      left: -4px;
+      bottom: -4px;
+    }
+    :before {
+      border: none !important
+    }
+  }
   &:hover {
     color: rgb(51, 51, 51);
     background: rgb(232, 232, 232);
     text-decoration: none;
+  }
+  &:before {
+    content: '';
+    display: inline-block !important;
+    height: 100%;
+    vertical-align: middle;    
+    margin-right: 0;
+    margin-top: 4px;
+    position: relative !important;
+  }
+  span {
+    display: inline;
+    vertical-align:middle;
+    line-height: inherit;
   }
 `;
 
@@ -85,7 +115,7 @@ const Link = props => {
       {type === 'anchor' &&
         linkstyle === 'button' && (
           <StyledLink data-auid={`btn${auid}`} href={href} disabled={disabled} onClick={onClick} {...props}>
-            {props.children} {imgUrl && <img alt="icon" width={imgWidth} height={ImgH} src={imgUrl} />}
+            <span>{props.children}</span> {imgUrl && <img alt="icon" width={imgWidth} height={ImgH} src={imgUrl} />}
           </StyledLink>
         )}
       {type === 'anchor' && linkstyle !== 'button' && <Anchor auid={auid} href={href} {...props} />}
