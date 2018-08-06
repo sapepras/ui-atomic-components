@@ -6,9 +6,8 @@ const RadioLabel = css`
     position: relative;
     span {
         display: inline-block;
-        margin-left: 14px;
         position: relative;
-        top: -2px;
+        top: 3px;
     }
 `;
 
@@ -18,7 +17,7 @@ const RadioStyles = css`
         content: '';
         position: absolute;
         left: 0;
-        top: 2px;
+        top: 6px;
         width: 14px;
         height: 14px;
         border: 1px solid #585858;
@@ -32,7 +31,7 @@ const RadioStyles = css`
         height: 8px;
         background: #585858;
         position: absolute;
-        top: 5px;
+        top: 9px;
         left: 3px;
         border-radius: 100%;
         -webkit-transition: all 0.2s ease;
