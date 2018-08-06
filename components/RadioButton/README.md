@@ -8,9 +8,9 @@ Radio Button Atomic Component renders a custom radio button component with vario
 
 ```Passes the initial state of the RadioButton as true or false. Determines whether the RadioButton has to be rendered checked or not```
 
-* **formLabel**: *PropTypes.string*
+* **formLabel**: *PropTypes.string* **required**
 
-```The value of 'htmlFor' attribute for the label for accessibility purposes. ```
+```The value of 'htmlFor' attribute for the label for accessibility purposes, also works as Id. ```
 
 
 * **labelPosition**: *PropTypes.string*

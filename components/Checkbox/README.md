@@ -8,9 +8,9 @@ Checkbox Atomic Component renders a custom checkbox component with various props
 
 ```Passes the initial state of the checkbox as true or false. Determines whether the checkbox has to be rendered checked or not```
 
-* **formLabel**: *PropTypes.string*
+* **formLabel**: *PropTypes.string* **required**
 
-```The value of 'htmlFor' attribute for the label for accessibility purposes. ```
+```The value of 'htmlFor' attribute for the label for accessibility purposes, also works as id.```
 
 
 * **labelPosition**: *PropTypes.string*

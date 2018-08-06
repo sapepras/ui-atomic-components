@@ -54,6 +54,8 @@ const btnStyle = props => css`
     width: ${props.width ? props.width : '100%'};
     height: ${props.height ? props.height : '3.5rem'};
     line-height: 1.25;
+    position: relative;
+    z-index: 1;
     background-color: #fff;
     border: ${props.borderWidth ? props.borderWidth : '1px'} solid ${props.borderColor ? props.borderColor : '#ccc'};
     border-radius: ${props.borderRadius ? props.borderRadius : '4px'};
@@ -65,13 +67,6 @@ const listStyle = props => css`
 `;
 
 class Dropdown extends React.PureComponent {
-    // static getDerivedStateFromProps(props, state) {
-    //     if (state.initiallySelectedOption !== props.initiallySelectedOption) {
-    //         return { selectedOption: props.initiallySelectedOption < props.DropdownOptions.length ? props.DropdownOptions[props.initiallySelectedOption] : props.DropdownOptions[0], activeListItem: props.initiallySelectedOption < props.DropdownOptions.length ? props.initiallySelectedOption : 0 }
-    //     }
-    //     return null;
-    // }
-
     constructor(props) {
         super(props);
         this.state = {
