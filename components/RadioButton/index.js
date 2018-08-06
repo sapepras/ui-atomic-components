@@ -46,24 +46,24 @@ class RadioButton extends Component {
         this.onChangeWrapper = this.onChangeWrapper.bind(this);
     }
 
-    onChangeWrapper(onChange, formLabel) {
-        onChange(formLabel);
+    onChangeWrapper(onChange, id) {
+        onChange(id);
     }
 
     render() {
         const {
-            formLabel, labelPosition, labelText, disabled, onChange, labelClass, name, inlineRadioCls, initialState
+            id, labelPosition, labelText, disabled, onChange, labelClass, name, inlineRadioCls, initialState
         } = this.props;
         return (
             labelPosition === 'left' ?
-              <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? `${RadioLabel}` : `${RadioLabel} ${inlineRadioCls}`}>
+              <label htmlFor={id} className={(labelText !== undefined && labelText === '') ? `${RadioLabel}` : `${RadioLabel} ${inlineRadioCls}`}>
                 <span className={labelClass}>{labelText}</span>
-                <input name={name} id={formLabel} disabled={disabled} checked={initialState === `${formLabel}`} className={`${RadioStyles}`} type="radio" onChange={() => this.onChangeWrapper(onChange, formLabel)} />
+                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} className={`${RadioStyles}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
                 <strong></strong>
               </label>
            :
-              <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? `${RadioLabel}` : `${RadioLabel} ${inlineRadioCls}`}>
-                <input name={name} id={formLabel} disabled={disabled} checked={initialState === `${formLabel}`} className={`${RadioStyles}`} type="radio" onChange={() => this.onChangeWrapper(onChange, formLabel)} />
+              <label htmlFor={id} className={(labelText !== undefined && labelText === '') ? `${RadioLabel}` : `${RadioLabel} ${inlineRadioCls}`}>
+                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} className={`${RadioStyles}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
                 <strong></strong>
                 <span className={labelClass}>{labelText}</span>
               </label>
@@ -79,7 +79,7 @@ RadioButton.defaultProps = {
 
 RadioButton.propTypes = {
     name: PropTypes.string.isRequired,
-    formLabel: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     labelPosition: PropTypes.string,
     labelText: PropTypes.string,
     disabled: PropTypes.bool,

@@ -64,17 +64,17 @@ class Checkbox extends Component {
 
     render() {
         const {
-            formLabel, labelPosition, labelText, disabled, onChange, labelClass, name
+            id, labelPosition, labelText, disabled, onChange, labelClass, name
         } = this.props;
         return (
            labelPosition === 'left' ?
-             <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
+             <label htmlFor={id} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
                <span className={labelClass}>{labelText}</span>
-               <input name={name} id={formLabel} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
+               <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
              </label>
           :
-             <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
-               <input name={name} id={formLabel} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
+             <label htmlFor={id} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
+               <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
                <span className={`${labelClass} d-flex align-items-center`}>{labelText}</span>
              </label>
         );
@@ -91,7 +91,7 @@ Checkbox.defaultProps = {
 Checkbox.propTypes = {
     name: PropTypes.string.isRequired,
     checked: PropTypes.bool,
-    formLabel: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     labelPosition: PropTypes.string,
     labelText: PropTypes.string,
     disabled: PropTypes.bool,
