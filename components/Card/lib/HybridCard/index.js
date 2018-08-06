@@ -84,7 +84,8 @@ class HybridCard extends Component {
       partNumber,
       enableQuickView,
       onClickQuickView = () => null,
-      quickViewAuid
+      quickViewAuid,
+      productIdx
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div
@@ -96,6 +97,7 @@ class HybridCard extends Component {
           horizontalMobile ? css.horizontal : '',
           enableQuickView ? 'c-product__has-quickview' : ''
         )}
+        data-productidx={productIdx}
       >
         <div
           className={cx(
@@ -172,7 +174,8 @@ HybridCard.propTypes = {
   partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
-  quickViewAuid: PropTypes.string
+  quickViewAuid: PropTypes.string,
+  productIdx: PropTypes.number
 };
 
 export default HybridCard;
