@@ -93,9 +93,8 @@ class Drawer extends Component {
    */
   toggleDrawer() {
     if (this.props.isCollapsible) {
-      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), () => {
+      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), this.updateAnalytics, () => {
         this.props.onToggle(this.state.isOpen);
-        this.updateAnalytics();
       });
     } else {
       this.setState({
