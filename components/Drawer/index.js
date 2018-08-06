@@ -82,14 +82,11 @@ class Drawer extends Component {
    */
   toggleDrawer() {
     if (this.props.isCollapsible) {
-      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }));
+      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), this.updateAnalytics);
     } else {
       this.setState({
         isOpen: true
-      });
-    }
-    if (this.props.gtmDataLayer) {
-      this.updateAnalytics();
+      }, this.updateAnalytics);
     }
   }
 
@@ -97,13 +94,15 @@ class Drawer extends Component {
    * Update GA dataLayer
    */
   updateAnalytics() {
-    const { eventCategory, eventLabel, title } = this.props;
-    this.props.gtmDataLayer.push({
-      event: 'accordionLinks',
-      eventCategory: eventCategory || title.toString(),
-      eventAction: this.state.isOpen ? 'expand' : 'collapse',
-      eventLabel: eventLabel || title.toString()
-    });
+    if (this.props.gtmDataLayer) {
+      const { eventCategory, eventLabel, title } = this.props;
+      this.props.gtmDataLayer.push({
+        event: 'accordionLinks',
+        eventCategory: eventCategory || title.toString(),
+        eventAction: this.state.isOpen ? 'expand' : 'collapse',
+        eventLabel: eventLabel || title.toString()
+      });
+    }
   }
 
   render() {
