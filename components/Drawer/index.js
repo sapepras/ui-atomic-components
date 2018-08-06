@@ -101,15 +101,15 @@ class Drawer extends Component {
     this.props.gtmDataLayer.push({
       event: 'accordionLinks',
       eventCategory: eventCategory || title.toString(),
-      eventAction: 'expand or collapse ',
+      eventAction: this.state.isOpen ? 'expand' : 'collapse',
       eventLabel: eventLabel || title.toString()
     });
   }
 
   render() {
     const {
- title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
-} = this.props;
+      title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
+    } = this.props;
     let classlist = '';
     if (this.state.isOpen) {
       classlist = `${this.props.openIcon}`;
