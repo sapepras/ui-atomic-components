@@ -42,6 +42,7 @@ const DrawerTitleStyle = css`
 const DrawerContentStyle = css`
   min-height: 62px;
   padding: 1rem;
+  font-size:14px;
   border-top: 1px solid #f6f6f6;
 `;
 
@@ -71,6 +72,16 @@ class Drawer extends Component {
     this.toggleDrawerKey = this.toggleDrawerKey.bind(this);
   }
 
+  /**
+   * This function is to toggle the open state for drawer
+   * @param {Object} newProps The modified/next props received
+   */
+  componentWillReceiveProps(newProps) {
+    if (newProps.isOpen !== this.props.isOpen) {
+      this.setState({ isOpen: newProps.isOpen });
+    }
+  }
+
   toggleDrawerKey(e) {
     if (e.keyCode === ENTER_KEY_CODE) {
       this.toggleDrawer();
@@ -82,11 +93,14 @@ class Drawer extends Component {
    */
   toggleDrawer() {
     if (this.props.isCollapsible) {
-      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }));
+      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), () => {
+        this.props.onToggle(this.state.isOpen);
+      });
     } else {
       this.setState({
         isOpen: true
       });
+      this.props.onToggle(true);
     }
     if (this.props.gtmDataLayer) {
       this.updateAnalytics();
@@ -127,10 +141,10 @@ class Drawer extends Component {
           onClick={this.toggleDrawer}
           tabIndex={tabIndex}
         >
-          <div className={DrawerTitleStyle}>
+          <span className={DrawerTitleStyle}>
             {title}
             {isCollapsible && <i className={classlist} />}
-          </div>
+          </span>
         </StyledButton>
         {this.state.isOpen && (
           <div
@@ -157,7 +171,8 @@ Drawer.defaultProps = {
   bodyHeight: null,
   bodyStyle: null,
   titleStyle: null,
-  titleStyleOpen: null
+  titleStyleOpen: null,
+  onToggle: () => {}
 };
 
 Drawer.propTypes = {
@@ -177,7 +192,8 @@ Drawer.propTypes = {
   titleStyleOpen: PropTypes.object,
   gtmDataLayer: PropTypes.array,
   eventCategory: PropTypes.string,
-  eventLabel: PropTypes.string
+  eventLabel: PropTypes.string,
+  onToggle: PropTypes.func
 };
 
 export default Drawer;

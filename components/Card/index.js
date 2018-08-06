@@ -31,22 +31,8 @@ class Card extends Component {
     };
   }
 
-  createLogGA(gtmDataLayer, eventAction, productName) {
-    return () => {
-      if (gtmDataLayer) {
-        gtmDataLayer.push({
-          event: 'productCardClicks',
-          eventCategory: 'Product Card Clicks',
-          eventAction,
-          eventLabel: productName
-        });
-      }
-    };
-  }
-
   render() {
     const defaultLogGA = this.props.cardAnalytics;
-    const defaultQuickViewLogGA = this.createLogGA(this.props.gtmDataLayer, 'Quickview', this.props.description);
     const { auid, tabIndex, ctaLink, onClickLogGA = defaultLogGA, classes, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
     const thisOnClickGoTo = this.onClickGoTo(ctaLink, onClickLogGA);
     let clickAttributes = {};
@@ -59,7 +45,7 @@ class Card extends Component {
     return (
       <div className={classes}>
         <StyledAnchor className="mb-quarter mb-md-4" href={ctaLink} data-auid={auid} {...clickAttributes} tabIndex={tabIndex}>
-          <HybridCard {...remainingProps} onClickQuickViewLogGa={defaultQuickViewLogGA} quickViewAuid={`${auid}_quickview`} />
+          <HybridCard {...remainingProps} quickViewAuid={`${auid}_quickview`} />
         </StyledAnchor>
       </div>
     );
@@ -79,10 +65,8 @@ Card.propTypes = {
   onClickLogGA: PropTypes.func,
   styleOverride: PropTypes.object,
   tabIndex: PropTypes.number,
-  gtmDataLayer: PropTypes.any.isRequired,
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
-  onClickQuickViewLogGa: PropTypes.func,
   cardAnalytics: PropTypes.func
 };
 

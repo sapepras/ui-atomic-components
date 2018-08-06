@@ -75,6 +75,7 @@ InputField Atomic Component renders a custom input field component with various 
 ### Then,
 
 ``` jsx
+{ var someStyleClass = '';}
 <InputField 
   type="text" 
   disabled={false} 

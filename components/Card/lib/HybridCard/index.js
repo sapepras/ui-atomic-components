@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { cx } from 'emotion';
 import css from './lib/css';
 import { productDetailPropTypes } from '../../../PriceDetails/lib/PropTypes';
@@ -12,13 +12,10 @@ import PriceDetails from '../../../PriceDetails';
 const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
 
 class HybridCard extends Component {
-  wrapClickViewClick(onClickQuickView, onClickQuickViewLogGa) {
+  wrapClickViewClick(onClickQuickView) {
     return e => {
       e.preventDefault();
       e.stopPropagation();
-      if (onClickQuickViewLogGa) {
-        onClickQuickViewLogGa();
-      }
       if (onClickQuickView) {
         onClickQuickView();
       }
@@ -27,6 +24,48 @@ class HybridCard extends Component {
   renderCardClassName(hideOnDesktop, styleOverride) {
     const result = hideOnDesktop ? css.cardHideOnDesktop : css.card;
     return wcx(result, styleOverride.card);
+  }
+  /**
+   * Renders the number of variants available on the card like color, flavor, teams etc.
+   * @param {*} props props passed to the Card to extract variant counts
+   */
+  renderVariantCount(props) {
+    const {
+ colorCount, patternCount, teamCount, flavourCount, rating
+} = props;
+    let count = 0;
+    let countText = '';
+    if (colorCount) {
+      count = colorCount;
+      countText = 'colors';
+    } else if (patternCount) {
+      count = patternCount;
+      countText = 'patterns';
+    } else if (teamCount) {
+      count = teamCount;
+      countText = 'teams';
+    } else if (flavourCount) {
+      count = flavourCount;
+      countText = 'flavors';
+    }
+    if (/^[0-9]+$/.test(parseInt(count, 10)) && parseInt(count, 10) > 1) {
+      if (rating) {
+        return (
+          <Fragment>
+            <span aria-hidden>&nbsp;|&nbsp;</span>
+            <span className="c-product__colors-available ">
+              {count} {countText} available
+            </span>
+          </Fragment>
+        );
+      }
+      return (
+        <span className="c-product__colors-available m-noratings">
+          {count} {countText} available
+        </span>
+      );
+    }
+    return null;
   }
 
   render() {
@@ -39,7 +78,6 @@ class HybridCard extends Component {
       priceObject,
       badge,
       promoMessage,
-      colorCount,
       horizontalMobile,
       isGiftCard,
       partNumber,
@@ -47,7 +85,6 @@ class HybridCard extends Component {
       isRemovable,
       isMoveToCart,
       onClickQuickView = () => null,
-      onClickQuickViewLogGa = null,
       quickViewAuid,
       removeLabel,
       moveToCartLabel
@@ -89,8 +126,8 @@ class HybridCard extends Component {
             <Button
               size="S"
               auid={quickViewAuid}
-              className={css.quickView}
-              onClick={this.wrapClickViewClick(onClickQuickView, onClickQuickViewLogGa)}
+              className={`c-product__quickviewbtn ${css.quickView}`}
+              onClick={this.wrapClickViewClick(onClickQuickView)}
             >
               Quick View
             </Button>
@@ -101,14 +138,10 @@ class HybridCard extends Component {
           <p className="c-product__description mb-0">{description}</p>
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
             <Rating value={rating} />
-            <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />
-            {rating &&
-              colorCount &&
-              /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
-              parseInt(colorCount, 10) > 1 && <span aria-hidden>&nbsp;|&nbsp;</span>}
-            {colorCount &&
-              /^[0-9]+$/.test(parseInt(colorCount, 10)) &&
-              parseInt(colorCount, 10) > 1 && <span className="c-product__colors-available">{colorCount} colors available</span>}
+            {typeof rating === 'string' &&
+              rating.trim().length !== 0 &&
+              rating !== '0' && <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />}
+            {this.renderVariantCount(this.props)}
           </div>
           {!isGiftCard && <hr className={`m-0 ${!this.props.borderStyle ? css.hrStyles : `${css.hrStyles} d-none d-sm-block`}`} />}
           {!isGiftCard && (
@@ -156,7 +189,7 @@ HybridCard.propTypes = {
   promoMessage: PropTypes.string,
   horizontalMobile: PropTypes.bool,
   colorCount: PropTypes.string,
-  isGiftCard: PropTypes.string,
+  isGiftCard: PropTypes.bool,
   badge: PropTypes.string,
   partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   enableQuickView: PropTypes.bool,
@@ -166,7 +199,6 @@ HybridCard.propTypes = {
   removeCardFunc: PropTypes.func,
   moveToCartFunc: PropTypes.func,
   onClickQuickView: PropTypes.func,
-  onClickQuickViewLogGa: PropTypes.func,
   quickViewAuid: PropTypes.string,
   removeLabel: PropTypes.string,
   moveToCartLabel: PropTypes.string
