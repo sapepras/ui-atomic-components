@@ -151,7 +151,7 @@ class HybridCard extends Component {
         <div className={cx({ 'col-7': horizontalMobile }, { 'col-12 px-1 px-md-2': !horizontalMobile }, 'col-md-12 pt-2 pb-2 pb-md-4')}>
           <div className="c-product__title mb-0 mb-md-half">{title}</div>
           <p className="c-product__description mb-0">{description}</p>
-          <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
+          <div className="c-product__ratings-reviews my-quarter d-flex align-items-center flex-wrap">
             <Rating value={rating} />
             {typeof rating === 'string' &&
               rating.trim().length !== 0 &&
