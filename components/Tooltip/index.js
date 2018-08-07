@@ -16,6 +16,7 @@ class Tooltip extends React.Component {
     this.onWindowBodyClick = this.onWindowBodyClick.bind(this);
     this.attachDomEvents = this.attachDomEvents.bind(this);
     this.removeDomEvents = this.removeDomEvents.bind(this);
+    this.wrapperRef = React.createRef();
   }
 
   componentDidMount() {
@@ -28,15 +29,17 @@ class Tooltip extends React.Component {
     this.removeDomEvents();
   }
 
-  onWindowBodyClick(e) {
-    if (!this.isTooltipElement(e.target) && this.state.visible) {
+  onWindowBodyClick() {
+    if (this.state.visible) {
       this.hide();
     }
   }
 
-  onClick() {
+  onClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
     const currentTimeStamp = new Date().getTime();
-    const allowToggle = !this.prevToggleTimeStamp || currentTimeStamp - this.prevToggleTimeStamp > 400;
+    const allowToggle = !this.prevToggleTimeStamp || currentTimeStamp - this.prevToggleTimeStamp > 300;
     if (allowToggle) {
       this.setVisibility(!this.state.visible);
       this.prevToggleTimeStamp = currentTimeStamp;
@@ -55,18 +58,6 @@ class Tooltip extends React.Component {
     this.setVisibility(false);
   }
 
-  isTooltipElement(el) {
-    if (!el || !el.getAttribute) {
-      return false;
-    }
-
-    if (el.getAttribute('data-is-tooltip')) {
-      return true;
-    }
-
-    return this.isTooltipElement(el.parentNode);
-  }
-
   /**
    * Native events - breaking with react convention for a number of reasons.
    * Given current site component structure, we are unable to close the popover with a page click using traditional react patterns.
@@ -74,6 +65,8 @@ class Tooltip extends React.Component {
    */
   attachDomEvents() {
     if (document) {
+      this.wrapperRef.current.addEventListener('click', this.onClick);
+      this.wrapperRef.current.addEventListener('touchstart', this.onClick);
       document.querySelector('body').addEventListener('click', this.onWindowBodyClick);
       document.querySelector('body').addEventListener('touchstart', this.onWindowBodyClick);
     }
@@ -81,6 +74,8 @@ class Tooltip extends React.Component {
 
   removeDomEvents() {
     if (document) {
+      this.wrapperRef.current.removeEventListener('click', this.onClick);
+      this.wrapperRef.current.removeEventListener('touchstart', this.onClick);
       document.querySelector('body').removeEventListener('click', this.onWindowBodyClick);
       document.querySelector('body').removeEventListener('touchstart', this.onWindowBodyClick);
     }
@@ -93,8 +88,7 @@ class Tooltip extends React.Component {
       'data-auid': `tooltip${this.props.auid}`,
       onMouseEnter: !showOnClick ? this.show : undefined,
       onMouseLeave: !showOnClick ? this.hide : undefined,
-      onClick: showOnClick ? this.onClick : undefined,
-      onTouchStart: showOnClick ? this.onClick : undefined
+      ref: this.wrapperRef
     };
     return (
       <div {...wrapperProps} data-is-tooltip="yes">

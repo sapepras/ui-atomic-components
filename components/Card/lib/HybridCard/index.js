@@ -32,8 +32,8 @@ class HybridCard extends Component {
    */
   renderVariantCount(props) {
     const {
-      colorCount, patternCount, teamCount, flavourCount, rating
-    } = props;
+ colorCount, patternCount, teamCount, flavourCount, rating
+} = props;
     let count = 0;
     let countText = '';
     if (colorCount) {
@@ -103,7 +103,8 @@ class HybridCard extends Component {
       partNumber,
       enableQuickView,
       onClickQuickView = () => null,
-      quickViewAuid
+      quickViewAuid,
+      productIdx
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div
@@ -115,6 +116,7 @@ class HybridCard extends Component {
           horizontalMobile ? css.horizontal : '',
           enableQuickView ? 'c-product__has-quickview' : ''
         )}
+        data-productidx={productIdx}
       >
         <div
           className={cx(
@@ -193,7 +195,8 @@ HybridCard.propTypes = {
   onClickQuickView: PropTypes.func,
   quickViewAuid: PropTypes.string,
   isLazyLoad: PropTypes.bool,
-  loaderImg: PropTypes.any
+  loaderImg: PropTypes.any,
+  productIdx: PropTypes.number
 };
 
 export default HybridCard;
