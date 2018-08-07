@@ -69,6 +69,7 @@ class Drawer extends Component {
       isOpen: this.props.isCollapsible ? this.props.isOpen : true
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
+    this.updateOnToggle = this.updateOnToggle.bind(this);
     this.toggleDrawerKey = this.toggleDrawerKey.bind(this);
   }
 
@@ -87,15 +88,21 @@ class Drawer extends Component {
       this.toggleDrawer();
     }
   }
-
+/**
+ * used to call  more than one function after state update in toggleDrawer function
+ *
+ * @memberof Drawer
+ */
+updateOnToggle() {
+    this.updateAnalytics();
+    this.props.onToggle(this.state.isOpen);
+  }
   /**
    * Open or close Drawer
    */
   toggleDrawer() {
     if (this.props.isCollapsible) {
-      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), this.updateAnalytics, () => {
-        this.props.onToggle(this.state.isOpen);
-      });
+      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), this.updateOnToggle);
     } else {
       this.setState({
         isOpen: true
