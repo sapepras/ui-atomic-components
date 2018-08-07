@@ -15,7 +15,7 @@ const DropdownStyle = props => css`
         position: absolute;
         background: #fff;
         z-index: 1;
-        border-radius: ${props.listBorderRadius ? props.listBorderRadius : '5px'};
+        border-radius: ${props.listborderradius ? props.listborderradius : '5px'};
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
         padding: 0.75rem 1rem;
@@ -36,12 +36,12 @@ const DropdownStyle = props => css`
         }
         &:first-child {
             &:hover {
-            border-radius: ${props.listBorderRadius ? props.listBorderRadius : '5px'} ${props.listBorderRadius ? props.listBorderRadius : '5px'} 0 0;
+            border-radius: ${props.listborderradius ? props.listborderradius : '5px'} ${props.listborderradius ? props.listborderradius : '5px'} 0 0;
             }
         }
         &:last-child {
             &:hover {
-            border-radius: 0 0 ${props.listBorderRadius ? props.listBorderRadius : '5px'} ${props.listBorderRadius ? props.listBorderRadius : '5px'};
+            border-radius: 0 0 ${props.listborderradius ? props.listborderradius : '5px'} ${props.listborderradius ? props.listborderradius : '5px'};
             }
         }
     }
@@ -57,8 +57,8 @@ const btnStyle = props => css`
     position: relative;
     z-index: 1;
     background-color: #fff;
-    border: ${props.borderWidth ? props.borderWidth : '1px'} solid ${props.borderColor ? props.borderColor : '#ccc'};
-    border-radius: ${props.borderRadius ? props.borderRadius : '4px'};
+    border: ${props.borderwidth ? props.borderwidth : '1px'} solid ${props.bordercolor ? props.bordercolor : '#ccc'};
+    border-radius: ${props.borderradius ? props.borderradius : '4px'};
     ${props.className}
 `;
 
