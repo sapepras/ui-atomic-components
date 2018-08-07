@@ -2,36 +2,30 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 
-const RadioLabel = css`
-    position: relative;
-    span {
-        display: inline-block;
-        position: relative;
-        top: 3px;
-    }
-`;
-
 const RadioStyles = css`
-    &[type="radio"]:checked + strong:before,
-    &[type="radio"]:not(:checked) + strong:before {
+    input[type="radio"] {
+        opacity: 0;
+    }
+    input[type="radio"]:checked + strong:before,
+    input[type="radio"]:not(:checked) + strong:before {
         content: '';
         position: absolute;
         left: 0;
-        top: 6px;
+        top: 2px;
         width: 14px;
         height: 14px;
         border: 1px solid #585858;
         border-radius: 100%;
         background: #fff;
     }
-    &[type="radio"]:checked + strong:after,
-    &[type="radio"]:not(:checked):after {
+    input[type="radio"]:checked + strong:after,
+    input[type="radio"]:not(:checked):after {
         content: '';
         width: 8px;
         height: 8px;
         background: #585858;
         position: absolute;
-        top: 9px;
+        top: 5px;
         left: 3px;
         border-radius: 100%;
         -webkit-transition: all 0.2s ease;
@@ -51,20 +45,20 @@ class RadioButton extends Component {
 
     render() {
         const {
-            id, labelPosition, labelText, disabled, onChange, labelClass, name, inlineRadioCls, initialState
+            id, labelPosition, labelText, disabled, onChange, labelClass, name, initialState
         } = this.props;
         return (
             labelPosition === 'left' ?
-              <label htmlFor={id} className={(labelText !== undefined && labelText === '') ? `${RadioLabel}` : `${RadioLabel} ${inlineRadioCls}`}>
-                <span className={labelClass}>{labelText}</span>
-                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} className={`${RadioStyles}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
+              <label htmlFor={id} className={`${labelClass} ${RadioStyles}`}>
+                <span>{labelText}</span>
+                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
                 <strong></strong>
               </label>
            :
-              <label htmlFor={id} className={(labelText !== undefined && labelText === '') ? `${RadioLabel}` : `${RadioLabel} ${inlineRadioCls}`}>
-                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} className={`${RadioStyles}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
+              <label htmlFor={id} className={`${labelClass} ${RadioStyles}`}>
+                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
                 <strong></strong>
-                <span className={labelClass}>{labelText}</span>
+                <span>{labelText}</span>
               </label>
          );
     }
@@ -77,15 +71,14 @@ RadioButton.defaultProps = {
 };
 
 RadioButton.propTypes = {
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     id: PropTypes.string.isRequired,
     labelPosition: PropTypes.string,
     labelText: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
     initialState: PropTypes.string,
-    inlineRadioCls: PropTypes.string,
-    labelClass: PropTypes.oneOf(['string', 'object'])
+    labelClass: PropTypes.string
 };
 
 export default RadioButton;
