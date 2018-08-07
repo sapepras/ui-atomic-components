@@ -28,6 +28,10 @@ Tooltip Atomic Component renders a custom tooltip component on hover with variou
 
 ```the lineHeightFix property describes the line-height of the tooltip content.```
 
+* **showOnClick**: *PropTypes.bool*
+
+```the showOnClick property can be to disable show on hover, and enable show on click / touchstart```
+
 
 ## Example Usage
 
@@ -58,6 +62,20 @@ Tooltip Atomic Component renders a custom tooltip component on hover with variou
             </div>
           }>
           <span>Same for mobile/desktop</span>
+</Tooltip>
+
+<br/><br/><br/>
+<hr/>
+<br/><br/><br/>
+
+<Tooltip showOnClick={true} auid="sample tooltip" direction="right" align="C" lineHeightFix={1.5} className='tooltipContent'
+          content={
+            <div style={{width: '200px', margin: '0px'}}>
+          Use margins to increase white space between
+          tooltip modal border and tooltip modal content and className prop to do font- styling..
+            </div>
+          }>
+          <span>Show on click</span>
 </Tooltip>
 
 <br/><br/><br/>

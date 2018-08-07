@@ -6,6 +6,11 @@ export const tooltipWrapper = css`
   line-height: 1.24rem;
 `;
 
+export const tooltipWrapperCursor = css`
+  ${tooltipWrapper};
+  cursor: pointer;
+`;
+
 export const LineHeightFix = styled('div')`
   line-height: ${({ lineHeightFix }) => lineHeightFix};
 `;
