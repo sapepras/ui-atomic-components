@@ -69,12 +69,31 @@ class HybridCard extends Component {
     return null;
   }
 
+  renderImage(props) {
+    const {
+      image, loaderImg, imageAltText, isLazyLoad
+    } = props;
+    if (isLazyLoad) {
+      return (
+        <Fragment>
+          <span className="w-100 my-4 c-product__lazyspinner" />
+          <img
+            src={loaderImg}
+            data-src={image}
+            alt={imageAltText}
+            className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 d-none h-lazyloadimg`}
+          />
+        </Fragment>
+      );
+    }
+    return <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2`} />;
+  }
+
   render() {
     const {
       title,
       description,
       image,
-      imageAltText,
       rating,
       priceObject,
       badge,
@@ -106,7 +125,7 @@ class HybridCard extends Component {
             ` ${css.imageContainer} col-md-12 flex-sm-grow position-relative`
           )}
         >
-          {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2`} />}
+          {image && this.renderImage(this.props)}
           {!image && <div className="" />}
           {badge &&
             (horizontalMobile ? (
@@ -117,7 +136,7 @@ class HybridCard extends Component {
               <Badge className="c-product__badge" text={badge}>
                 {badge}
               </Badge>
-            ))}
+              ))}
           {enableQuickView && (
             <Button
               size="S"
@@ -175,6 +194,8 @@ HybridCard.propTypes = {
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
   quickViewAuid: PropTypes.string,
+  isLazyLoad: PropTypes.bool,
+  loaderImg: PropTypes.any,
   productIdx: PropTypes.number
 };
 
