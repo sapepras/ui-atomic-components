@@ -33,7 +33,7 @@ class HybridCard extends Component {
   renderVariantCount(props) {
     const {
       colorCount, patternCount, teamCount, flavourCount, rating
-} = props;
+    } = props;
     let count = 0;
     let countText = '';
     if (colorCount) {
@@ -69,7 +69,10 @@ class HybridCard extends Component {
     return null;
   }
 
-  renderImage(image, loaderImg, imageAltText, isLazyLoad) {
+  renderImage(props) {
+    const {
+      image, loaderImg, imageAltText, isLazyLoad
+    } = props;
     if (isLazyLoad) {
       return (
         <Fragment>
@@ -91,7 +94,6 @@ class HybridCard extends Component {
       title,
       description,
       image,
-      imageAltText,
       rating,
       priceObject,
       badge,
@@ -101,9 +103,7 @@ class HybridCard extends Component {
       partNumber,
       enableQuickView,
       onClickQuickView = () => null,
-      quickViewAuid,
-      isLazyLoad,
-      loaderImg
+      quickViewAuid
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div
@@ -123,7 +123,7 @@ class HybridCard extends Component {
             ` ${css.imageContainer} col-md-12 flex-sm-grow position-relative`
           )}
         >
-          {image && this.renderImage(image, loaderImg, imageAltText, isLazyLoad)}
+          {image && this.renderImage(this.props)}
           {!image && <div className="" />}
           {badge &&
             (horizontalMobile ? (
