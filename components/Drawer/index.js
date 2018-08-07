@@ -69,6 +69,7 @@ class Drawer extends Component {
       isOpen: this.props.isCollapsible ? this.props.isOpen : true
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
+    this.updateOnToggle = this.updateOnToggle.bind(this);
     this.toggleDrawerKey = this.toggleDrawerKey.bind(this);
   }
 
@@ -87,23 +88,26 @@ class Drawer extends Component {
       this.toggleDrawer();
     }
   }
-
+/**
+ * used to call  more than one function after state update in toggleDrawer function
+ *
+ * @memberof Drawer
+ */
+updateOnToggle() {
+    this.updateAnalytics();
+    this.props.onToggle(this.state.isOpen);
+  }
   /**
    * Open or close Drawer
    */
   toggleDrawer() {
     if (this.props.isCollapsible) {
-      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), () => {
-        this.props.onToggle(this.state.isOpen);
-      });
+      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), this.updateOnToggle);
     } else {
       this.setState({
         isOpen: true
-      });
+      }, this.updateAnalytics);
       this.props.onToggle(true);
-    }
-    if (this.props.gtmDataLayer) {
-      this.updateAnalytics();
     }
   }
 
@@ -111,19 +115,21 @@ class Drawer extends Component {
    * Update GA dataLayer
    */
   updateAnalytics() {
-    const { eventCategory, eventLabel, title } = this.props;
-    this.props.gtmDataLayer.push({
-      event: 'accordionLinks',
-      eventCategory: eventCategory || title.toString(),
-      eventAction: 'expand or collapse ',
-      eventLabel: eventLabel || title.toString()
-    });
+    if (this.props.gtmDataLayer) {
+      const { eventCategory, eventLabel, title } = this.props;
+      this.props.gtmDataLayer.push({
+        event: 'accordionLinks',
+        eventCategory: eventCategory || title.toString(),
+        eventAction: this.state.isOpen ? 'expand' : 'collapse',
+        eventLabel: eventLabel || title.toString()
+      });
+    }
   }
 
   render() {
     const {
- title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
-} = this.props;
+      title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
+    } = this.props;
     let classlist = '';
     if (this.state.isOpen) {
       classlist = `${this.props.openIcon}`;
