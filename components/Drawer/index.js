@@ -127,9 +127,6 @@ class Drawer extends Component {
       }, this.updateAnalytics);
       this.props.onToggle(true);
     }
-    if (this.props.gtmDataLayer) {
-      this.updateAnalytics();
-    }
   }
 
   /**
