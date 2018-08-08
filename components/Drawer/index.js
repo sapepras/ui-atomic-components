@@ -131,9 +131,9 @@ Drawer.propTypes = {
   isCollapsible: PropTypes.bool,
   expandBelow: PropTypes.bool,
   bodyHeight: PropTypes.string,
-  bodyStyle: PropTypes.object,
-  titleStyle: PropTypes.object,
-  titleStyleOpen: PropTypes.object
+  bodyStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  titleStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  titleStyleOpen: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
 export default Drawer;
