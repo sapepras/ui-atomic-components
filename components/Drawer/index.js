@@ -78,6 +78,7 @@ class Drawer extends Component {
     super(props);
     this.state = { isOpen: this.props.isCollapsible ? this.props.isOpen : true, isClick: true, isFocus: false };
     this.toggleDrawer = this.toggleDrawer.bind(this);
+    this.updateOnToggle = this.updateOnToggle.bind(this);
     this.toggleDrawerKey = this.toggleDrawerKey.bind(this);
     this.addFocus = this.addFocus.bind(this);
   }
@@ -97,6 +98,15 @@ class Drawer extends Component {
       this.toggleDrawer();
     }
   }
+  /**
+ * used to call  more than one function after state update in toggleDrawer function
+ *
+ * @memberof Drawer
+ */
+  updateOnToggle() {
+      this.updateAnalytics();
+      this.props.onToggle(this.state.isOpen);
+  }
   addFocus() {
     this.setState({ isClick: false, isFocus: true });
   }
@@ -110,16 +120,11 @@ class Drawer extends Component {
       this.setState({ isClick: false, isFocus: true });
     }
     if (this.props.isCollapsible) {
-      this.setState(
-        prevstate => ({ isOpen: !prevstate.isOpen }),
-        () => {
-          this.props.onToggle(this.state.isOpen);
-        }
-      );
+      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), this.updateOnToggle);
     } else {
       this.setState({
         isOpen: true
-      });
+      }, this.updateAnalytics);
       this.props.onToggle(true);
     }
     if (this.props.gtmDataLayer) {
@@ -131,13 +136,15 @@ class Drawer extends Component {
    * Update GA dataLayer
    */
   updateAnalytics() {
-    const { eventCategory, eventLabel, title } = this.props;
-    this.props.gtmDataLayer.push({
-      event: 'accordionLinks',
-      eventCategory: eventCategory || title.toString(),
-      eventAction: 'expand or collapse ',
-      eventLabel: eventLabel || title.toString()
-    });
+    if (this.props.gtmDataLayer) {
+      const { eventCategory, eventLabel, title } = this.props;
+      this.props.gtmDataLayer.push({
+        event: 'accordionLinks',
+        eventCategory: eventCategory || title.toString(),
+        eventAction: this.state.isOpen ? 'expand' : 'collapse',
+        eventLabel: eventLabel || title.toString()
+      });
+    }
   }
 
   render() {
