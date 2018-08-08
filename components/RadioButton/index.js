@@ -51,12 +51,12 @@ class RadioButton extends Component {
             labelPosition === 'left' ?
               <label htmlFor={id} className={`${labelClass} ${RadioStyles}`}>
                 <span>{labelText}</span>
-                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
+                <input name={name} id={id} disabled={disabled} defaultChecked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
                 <strong></strong>
               </label>
            :
               <label htmlFor={id} className={`${labelClass} ${RadioStyles}`}>
-                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
+                <input name={name} id={id} disabled={disabled} defaultChecked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
                 <strong></strong>
                 <span>{labelText}</span>
               </label>

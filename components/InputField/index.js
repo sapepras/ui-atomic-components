@@ -1,7 +1,14 @@
+/**
+ * Atomic Input Field Component for all routine text fields. For email, password - try respective atomic components, available separately.
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 
+/**
+ * default styles to be applied to input field.
+ * @param {object} props  containing various attributes to style input field.
+ */
 const CommonStyles = props => css`
   padding: 0.2rem 0.5rem;
   width: ${props.width};
@@ -17,7 +24,7 @@ const CommonStyles = props => css`
   }
   ${props.classname};
 `;
-
+// dumb component to render input field.
 const InputField = props => {
     const {
         classname, type, name, disabled, onChange, placeholder, value, width, height, fontSize, bordercolor, borderradius, activebordercolor, activeborderwidth, fontWeight, ...rest

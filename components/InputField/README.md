@@ -1,6 +1,6 @@
 # InputField Component: (**_WIP_**)
 
-InputField Atomic Component renders a custom input field component with various props as mentioned below.
+InputField Atomic Component renders a custom input field component with various props as mentioned below. For ```email, password``` - try respective atomic components, available separately.
 
 ## Available Props
 

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
-
+/**
+ * default styles to be applied to password field.
+ * @param {object} props  containing various attributes to style password field.
+ */
 const CommonStyles = props => css`
   padding: 0.2rem 0.5rem;
   width: ${props.width};
@@ -39,7 +42,10 @@ const InputStyles = props => css`
     box-shadow: none;
   }
 `;
-
+/**
+ * deafult styles to be applied to inline button.
+ * @param {*} props to be passed to apply custom styles to inline button.
+ */
 const InlineButton = props => css`
   cursor: pointer;
   color: ${props.buttontextcolor};
@@ -58,12 +64,19 @@ class PasswordField extends Component {
         this.changeVisibility = this.changeVisibility.bind(this);
         this.onChangeWrapper = this.onChangeWrapper.bind(this);
     }
-
+    /**
+     * wrapper function around onChange function.
+     * @param {object} event triggered when password field value changes.
+     * @param {func} onChange function for the password field
+     */
     onChangeWrapper(event, onChange) {
-        this.setState({ password: event.target.value.trim() });
+        this.setState({ password: event.target.value.trim() }); // trim the password for spaces, expected behavior.
         onChange(event);
     }
-
+    /**
+     * function handling visibility of password text.
+     * @param {*} event triggered when show/hide inline button is clicked.
+     */
     changeVisibility(event) {
         this.setState({ showPassword: !this.state.showPassword });
         event.preventDefault();

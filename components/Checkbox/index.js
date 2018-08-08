@@ -1,7 +1,12 @@
+/**
+ * Atomic Checkbox Component for all checkbox involving requirements.
+ */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
-
+/**
+ * default styles for atomic checkbox component.
+ */
 const CheckboxStyles = css`
     position: relative;
     cursor: pointer;
@@ -57,7 +62,10 @@ class Checkbox extends Component {
         };
         this.onChangeWrapper = this.onChangeWrapper.bind(this);
     }
-
+    /**
+     * wrapper function around onChange function of checkbox.
+     * @param {func} onChange function is executed with status of checkbox as argument.
+     */
     onChangeWrapper(onChange) {
         this.setState({ isChecked: !this.state.isChecked }, () => onChange(this.state.isChecked));
     }
