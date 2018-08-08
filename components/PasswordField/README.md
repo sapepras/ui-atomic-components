@@ -4,7 +4,7 @@ PasswordField Atomic Component renders a custom password input field component w
 
 ## Available Props
 
-* **className**: *PropTypes.string* 
+* **classname**: *PropTypes.oneOfType([PropTypes.string, PropTypes.object])* 
 
 ```Custom CSS Class can be passed which holds greater precedence over default styles.```
 
@@ -36,23 +36,23 @@ PasswordField Atomic Component renders a custom password input field component w
 
 ```fontSize of the text in field.```
 
-* **borderColor**: *PropTypes.string*
+* **bordercolor**: *PropTypes.string*
 
 ```border color of the field.```
 
-* **borderWidth**: *PropTypes.string*
+* **borderwidth**: *PropTypes.string*
 
 ```width of the border of field in pixels.```
 
-* **borderRadius**: *PropTypes.string* 
+* **borderradius**: *PropTypes.string* 
 
 ```border radius of field in pixels.```
 
-* **activeBorderColor**: *PropTypes.string* 
+* **activebordercolor**: *PropTypes.string* 
 
 ```border color when field is in focus.```
 
-* **activeBorderWidth**: *PropTypes.string*
+* **activeborderwidth**: *PropTypes.string*
 
 ```border width of the field when in focus.```
 
@@ -60,26 +60,30 @@ PasswordField Atomic Component renders a custom password input field component w
 
 ```font weight of the text in field.```
 
-* **inlineButtonTextHide**: *PropTypes.string*
+* **inlinebuttontexthide**: *PropTypes.string*
 
   ```Text to display on inline button when the password is being displayed.```
 
 
-* **inlineButtonTextShow**: *PropTypes.string*
+* **inlinebuttontextshow**: *PropTypes.string*
 
   ```Text to display on inline button when the password is hidden.```
 
-* **buttonTextColor**: *PropTypes.string*
+* **buttontextcolor**: *PropTypes.string*
 
   ```Color string for the text on inline button```
 
-* **buttonTextFont**: *PropTypes.string*
+* **buttontextfont**: *PropTypes.string*
 
   ```Font size for the text on inline button```
 
-* **buttonTextWeight**: *PropTypes.string*
+* **buttontextweight**: *PropTypes.string*
 
   ```Font weight for the text on inline button```
+
+* **inlinebuttonclass**: *PropTypes.string*
+
+  ```style class for inline show/hide button```
 
 ## Example Usage
 
@@ -110,3 +114,53 @@ PasswordField Atomic Component renders a custom password input field component w
 ```
 
 * Most of the props have some default values which get rendered if no value is provided. 
+
+### In case of use with Redux Form
+
+**Example Redux Form Wrapper Component**
+
+``` jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+import Password from '@academysports/fusion-components/dist/PasswordField';
+import { labelStyle, formControl } from './../../style';
+
+const renderPasswordField = ({
+                       input,
+                       label,
+                       type,
+                       meta: { touched, error, warning }
+                     }) => (
+                       <div>
+                         <label className={`${labelStyle} o-copy__14bold p-quarter`}>{label}</label>
+                         <div>
+                           <Password
+                             {...input}
+                             width="36.3125rem"
+                             height="2.5rem"
+                             borderradius="4px"
+                             bordercolor="rgba(0, 0, 0, 0.3)"
+                             borderwidth="1px"
+                             classname={`${formControl} w-100`}
+                             placeholder={label}
+                             type={type}
+                           />
+                           {touched &&
+      ((error && <span className="body-12-regular text-danger">{error}</span>) ||
+        (warning && <span className="body-12-regular text-danger">{warning}</span>))}
+                         </div>
+                       </div>
+);
+renderPasswordField.propTypes = {
+  input: PropTypes.isRequired,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  meta: PropTypes.object
+};
+export default renderPasswordField;
+
+```
+### Recent Updates
+* Updated Prop names to avoid conflicts with default react props.
+
+##### For further details, clone ```ui-atomic-components``` from bitbucket and look under the hood. 

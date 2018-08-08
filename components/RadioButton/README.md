@@ -4,14 +4,13 @@ Radio Button Atomic Component renders a custom radio button component with vario
 
 ## Available Props
 
-* **initialState**: *PropTypes.bool* 
+* **initialState**: *PropTypes.string* 
 
-```Passes the initial state of the RadioButton as true or false. Determines whether the RadioButton has to be rendered checked or not```
+``` Pass the default value of radio button to be checked. ```
 
 * **formLabel**: *PropTypes.string* **required**
 
 ```The value of 'htmlFor' attribute for the label for accessibility purposes, also works as Id. ```
-
 
 * **labelPosition**: *PropTypes.string*
 
@@ -29,10 +28,17 @@ Radio Button Atomic Component renders a custom radio button component with vario
 
 ```Function to be executed when any option in dropdown is clicked upon.eturns the state of radio button```
 
-* **labelClass**: *PropTypes.object*
+* **labelClass**: *PropTypes.oneOfType([PropTypes.string, PropTypes.object])*
 
 ```Style class to applied to label text of the radio button```
 
+* **name**: *PropTypes.string* *Required*
+
+```name of the radio button.```
+
+* **id**: *PropTypes.string* *Required*
+
+```id of the radio button.```
 
 
 ## Example Usage
@@ -43,13 +49,17 @@ Radio Button Atomic Component renders a custom radio button component with vario
 
 ``` jsx
 <RadioButton 
-  initialState={true} // to render a checked RadioButton
+  initialState={true}
   disabled={false} 
   formLabel="testing-RadioButton"
   labelText="Some RadioButton Text"
   labelPosition="left" // either left or right
   onChange={this.functionToBeExecutedWhenRadioButtonChanges}
+  name="test-radio"
+  id="test-radio"
 />
 ```
 
 * Most of the props have some default values which get rendered if no value is provided. 
+
+##### For further details, clone ```ui-atomic-components``` from bitbucket and look under the hood. 

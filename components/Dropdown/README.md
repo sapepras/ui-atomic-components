@@ -8,7 +8,7 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ```Custom CSS Class can be passed which holds greater precedence over default styles.```
 
-* **DropdownOptions**: *PropTypes.array*
+* **DropdownOptions**: *PropTypes.array* **Required**
 
 ```Array of objects with each object being the option to be rendered in the Dropdown. The object must have a certain structure as follows - ```
 
@@ -24,11 +24,11 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ```Boolean value to represent the type of dropdown,i.e single level or multi level. Passing 'True' signifies a two level dropdown with each option having a title and subtitle```
 
-* **titleClass**: *PropTypes.object*
+* **titleClass**: *PropTypes.oneOfType([PropTypes.string, PropTypes.object])* 
 
 ```Custom CSS Class can be passed which holds greater precedence over default styles for title field of the options```
 
-* **subtitleClass**: *PropTypes.object*
+* **subtitleClass**: *PropTypes.oneOfType([PropTypes.string, PropTypes.object])*
 
 ```Custom CSS Class can be passed which holds greater precedence over default styles for subtitle field of the options```
 
@@ -52,19 +52,19 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ```height of the dropdown```
 
-* **borderColor**: *PropTypes.string*
+* **bordercolor**: *PropTypes.string*
 
 ```border color of the Dropdown.```
 
-* **borderWidth**: *PropTypes.string*
+* **borderwidth**: *PropTypes.string*
 
 ```width of the border of Dropdown.```
 
-* **borderRadius**: *PropTypes.string* 
+* **borderradius**: *PropTypes.string* 
 
 ```border radius of Dropdown.```
 
-* **listBorderRadius**: *PropTypes.string*
+* **listborderradius**: *PropTypes.string*
 
 ```border radius value for the list options, defaults to 5px.```
 
@@ -90,21 +90,64 @@ Dropdown Atomic Component renders a custom dropdown component with various props
   disabled={false} 
   width="30rem" 
   height="3.5rem" 
-  borderColor="#64FCAB" 
-  borderWidth="1px" 
-  borderRadius="4px" 
+  bordercolor="#64FCAB" 
+  borderwidth="1px" 
+  borderradius="4px" 
   titleClass={titleStyleClass}
   subtitleClass={subtitleStyleClass}
-  listBorderRadius="5px"
+  listborderradius="5px"
   onSelectOption={someFunction} // in usage: onSelectOption = {index => someFunction(index)} i.e returns index of option selected. 
 />
 ```
 
 * Most of the props have some default values which get rendered if no value is provided. 
 
-### Recent Updates -
+### In case of use with Redux Form
 
+**Example Redux Form Wrapper Component**
+
+```jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+import Dropdown from '@academysports/fusion-components/dist/Dropdown';
+import { labelStyle } from './../../style';
+
+class renderSelectField extends React.PureComponent {
+  render() {
+    const { input: { onChange, value }, label, initiallySelectedOption, DropdownOptions, meta: { touched, error }, ...rest } = this.props;
+    return (
+      <div>
+        <label className={`${labelStyle} o-copy__14bold p-quarter`}>{label}</label>
+        <div>
+          <Dropdown
+            value={value}
+            onSelectOption={(index, title) => onChange(title)}
+            {...rest}
+            DropdownOptions={DropdownOptions}
+            initiallySelectedOption={initiallySelectedOption}
+          />
+          {touched && error && <span className="text-danger">{error}</span>}
+        </div>
+      </div>
+    );
+  }
+}
+
+renderSelectField.propTypes = {
+  input: PropTypes.isRequired,
+  label: PropTypes.string,
+  meta: PropTypes.object,
+  children: PropTypes.isRequired,
+  DropdownOptions: PropTypes.array.isRequired,
+  initiallySelectedOption: PropTypes.number
+};
+export default renderSelectField; 
+```
+### Recent Updates -
+* Updated Prop names to avoid conflicts with default react props.
 * Added fix where clicking outside the dropdown wasn't closing It. 
-* Fixed ```onSelectOption``` to return index of selected element.
+* Fixed ```onSelectOption``` to return index, title of selected element.
 * Added highlighting to previously selected option.
-* Fixed issues where the width of options was getting a lot more or less than the width of button
+* Fixed issues where the width of options was getting a lot more or less than the width of button.
+
+##### For further details, clone ```ui-atomic-components``` from bitbucket and look under the hood. 

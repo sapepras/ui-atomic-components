@@ -71,14 +71,14 @@ RadioButton.defaultProps = {
 };
 
 RadioButton.propTypes = {
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     labelPosition: PropTypes.string,
     labelText: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
     initialState: PropTypes.string,
-    labelClass: PropTypes.string
+    labelClass: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
 export default RadioButton;

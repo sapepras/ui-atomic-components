@@ -7,7 +7,7 @@ const CommonStyles = props => css`
   width: ${props.width};
   height: ${props.height};
   border-radius: ${props.borderradius};
-  border: solid ${props.borderWidth} ${props.bordercolor};
+  border: solid ${props.borderwidth} ${props.bordercolor};
   line-height: 1.25;
   font-size: ${props.fontSize};
   font-weight: ${props.fontWeight};
@@ -43,7 +43,7 @@ InputField.defaultProps = {
 };
 
 InputField.propTypes = {
-    classname: PropTypes.string,
+    classname: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     type: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
