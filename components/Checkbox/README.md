@@ -8,11 +8,6 @@ Checkbox Atomic Component renders a custom checkbox component with various props
 
 ```Passes the initial state of the checkbox as true or false. Determines whether the checkbox has to be rendered checked or not```
 
-* **formLabel**: *PropTypes.string* **required**
-
-```The value of 'htmlFor' attribute for the label for accessibility purposes, also works as id.```
-
-
 * **labelPosition**: *PropTypes.string*
 
 ```A string containing position of label text to be either left or right of the checkbox, default set to right```
@@ -52,7 +47,6 @@ Checkbox Atomic Component renders a custom checkbox component with various props
 <Checkbox 
   initialState={true} // to render a checked checkbox
   disabled={false} 
-  formLabel="testing-checkbox"
   labelText="Some Checkbox Text"
   labelPosition="left" // either left or right
   onChange={this.functionToBeExecutedWhenCheckboxChanges}

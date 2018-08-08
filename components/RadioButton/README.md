@@ -8,10 +8,6 @@ Radio Button Atomic Component renders a custom radio button component with vario
 
 ``` Pass the default value of radio button to be checked. ```
 
-* **formLabel**: *PropTypes.string* **required**
-
-```The value of 'htmlFor' attribute for the label for accessibility purposes, also works as Id. ```
-
 * **labelPosition**: *PropTypes.string*
 
 ```A string containing position of label text to be either left or right of the RadioButton, default set to right```
@@ -51,7 +47,6 @@ Radio Button Atomic Component renders a custom radio button component with vario
 <RadioButton 
   initialState={true}
   disabled={false} 
-  formLabel="testing-RadioButton"
   labelText="Some RadioButton Text"
   labelPosition="left" // either left or right
   onChange={this.functionToBeExecutedWhenRadioButtonChanges}
@@ -63,3 +58,6 @@ Radio Button Atomic Component renders a custom radio button component with vario
 * Most of the props have some default values which get rendered if no value is provided. 
 
 ##### For further details, clone ```ui-atomic-components``` from bitbucket and look under the hood. 
+
+### To Do -
+* compatibility with Redux Form yet to be tested.
