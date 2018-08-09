@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 
 const RadioStyles = css`
+    position: relative;
     input[type="radio"] {
         opacity: 0;
     }
@@ -11,25 +12,35 @@ const RadioStyles = css`
         content: '';
         position: absolute;
         left: 0;
-        top: 2px;
-        width: 14px;
-        height: 14px;
+        top: 5px;
+        width: 11px;
+        height: 11px;
         border: 1px solid #585858;
         border-radius: 100%;
         background: #fff;
+        @media screen and (min-width: 992px) {
+            width: 14px;
+            height: 14px;
+            top: 2px;
+        }
     }
     input[type="radio"]:checked + strong:after,
     input[type="radio"]:not(:checked):after {
         content: '';
-        width: 8px;
-        height: 8px;
+        width: 5px;
+        height: 5px;
         background: #585858;
         position: absolute;
-        top: 5px;
+        top: 8px;
         left: 3px;
         border-radius: 100%;
         -webkit-transition: all 0.2s ease;
         transition: all 0.2s ease;
+        @media screen and (min-width: 992px) {
+            width: 8px;
+            height: 8px;
+            top: 5px;
+        }
     }
 `;
 
@@ -51,12 +62,12 @@ class RadioButton extends Component {
             labelPosition === 'left' ?
               <label htmlFor={id} className={`${labelClass} ${RadioStyles}`}>
                 <span>{labelText}</span>
-                <input name={name} id={id} disabled={disabled} defaultChecked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
+                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
                 <strong></strong>
               </label>
            :
               <label htmlFor={id} className={`${labelClass} ${RadioStyles}`}>
-                <input name={name} id={id} disabled={disabled} defaultChecked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
+                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
                 <strong></strong>
                 <span>{labelText}</span>
               </label>
