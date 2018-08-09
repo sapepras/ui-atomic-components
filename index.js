@@ -12,6 +12,7 @@ import Checkbox from './components/Checkbox';
 import RadioButton from './components/RadioButton';
 import Modal from './components/Modal';
 import PasswordField from './components/PasswordField';
+import Tooltip from './components/Tooltip';
 export {
   Button,
   Anchor,
@@ -26,5 +27,6 @@ export {
   Dropdown,
   Checkbox,
   RadioButton,
-  PasswordField
+  PasswordField,
+  Tooltip
 };
