@@ -65,50 +65,25 @@ const StyledLink = styled('a')`
   ${commonBtnStyle};
   ${sizeStyles};
   ${props => (props.btntype === 'secondary' ? secondaryBtnStyles : primaryBtnStyle)};
-  text-align: center;
   text-decoration: none;
-  display: block;
-  &:focus{
-    :after {
-      content: '';
-      border: 1px dotted #fff;
-      border-radius: 35px;
-      display: block;
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      left: -4px;
-      bottom: -4px;
-    }
-    :before {
-      border: none !important
-    }
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover {
-    color: rgb(51, 51, 51);
-    background: rgb(232, 232, 232);
     text-decoration: none;
-  }
-  &:before {
-    content: '';
-    display: inline-block !important;
-    height: 100%;
-    vertical-align: middle;    
-    margin-right: 0;
-    margin-top: 4px;
-    position: relative !important;
   }
   span {
     display: inline;
-    vertical-align:middle;
+    vertical-align: middle;
     line-height: inherit;
   }
+  
 `;
 
 const Link = props => {
   const {
- type, linkstyle, onClick, href, disabled, auid, imgUrl, imgWidth, imgHeight
-} = props;
+    type, linkstyle, onClick, href, disabled, auid, imgUrl, imgWidth, imgHeight
+  } = props;
   const ImgH = !imgHeight ? '30px' : imgHeight;
   return (
     <React.Fragment>
