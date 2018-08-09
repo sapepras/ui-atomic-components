@@ -32,7 +32,7 @@ const InCartPlusCompare = ({ listPrice }) => {
     <div>
       <div className="c-price-in-cart mb-half" style={{ color: '#ee0000' }}>
         Our Price in Cart
-        <Tooltip {...toolTipProps} showOnClick={isMobile}>
+        <Tooltip {...toolTipProps} showOnClick={isMobile()}>
           <span className="c-price__tooltip-icon academyicon icon-information" />
         </Tooltip>
       </div>
