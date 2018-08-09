@@ -72,27 +72,16 @@ class Checkbox extends Component {
 
     render() {
         const {
-            id, labelPosition, labelText, disabled, onChange, labelClass, name
+            id, disabled, onChange, name
         } = this.props;
         return (
-           labelPosition === 'left' ?
-             <label htmlFor={id} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
-               <span className={labelClass}>{labelText}</span>
                <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
-             </label>
-          :
-             <label htmlFor={id} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
-               <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
-               <span className={`${labelClass} d-flex align-items-center`}>{labelText}</span>
-             </label>
         );
     }
 }
 
 Checkbox.defaultProps = {
     checked: false,
-    labelPosition: 'right',
-    labelText: '',
     disabled: false
 };
 
@@ -100,11 +89,8 @@ Checkbox.propTypes = {
     name: PropTypes.string.isRequired,
     checked: PropTypes.bool,
     id: PropTypes.string.isRequired,
-    labelPosition: PropTypes.string,
-    labelText: PropTypes.string,
     disabled: PropTypes.bool,
-    onChange: PropTypes.func,
-    labelClass: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    onChange: PropTypes.func
 };
 
 export default Checkbox;
