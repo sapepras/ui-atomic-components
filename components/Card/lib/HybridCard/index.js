@@ -68,12 +68,31 @@ class HybridCard extends Component {
     return null;
   }
 
+  renderImage(props) {
+    const {
+      image, loaderImg, imageAltText, isLazyLoad
+    } = props;
+    if (isLazyLoad) {
+      return (
+        <Fragment>
+          <span className="w-100 my-4 c-product__lazyspinner" />
+          <img
+            src={loaderImg}
+            data-src={image}
+            alt={imageAltText}
+            className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 d-none h-lazyloadimg`}
+          />
+        </Fragment>
+      );
+    }
+    return <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2`} />;
+  }
+
   render() {
     const {
       title,
       description,
       image,
-      imageAltText,
       rating,
       priceObject,
       badge,
@@ -87,7 +106,8 @@ class HybridCard extends Component {
       onClickQuickView = () => null,
       quickViewAuid,
       removeLabel,
-      moveToCartLabel
+      moveToCartLabel,
+      productIdx
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div
@@ -99,16 +119,17 @@ class HybridCard extends Component {
           horizontalMobile ? css.horizontal : '',
           enableQuickView ? 'c-product__has-quickview' : ''
         )}
+        data-productidx={productIdx}
       >
         <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 flex-sm-grow position-relative')}>
           {isRemovable ? (
             <div className="d-flex flex-row">
-              {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
+              {image && this.renderImage(this.props)}
               <button className={`${css.removeIcon} academyicon icon-close pt-0 pt-md-1 pl-0 pl-md-half`} onClick={() => this.props.removeCardFunc()} />
             </div>
           ) : (
             <React.Fragment>
-              {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
+              {image && this.renderImage(this.props)}
               {!image && <div className="" />}
             </React.Fragment>
           )}
@@ -121,7 +142,7 @@ class HybridCard extends Component {
               <Badge className="c-product__badge" text={badge}>
                 {badge}
               </Badge>
-            ))}
+              ))}
           {enableQuickView && (
             <Button
               size="S"
@@ -136,7 +157,7 @@ class HybridCard extends Component {
         <div className={cx({ 'col-7': horizontalMobile }, { 'col-12 px-1 px-md-2': !horizontalMobile }, 'col-md-12 pt-2 pb-2 pb-md-4')}>
           <div className="c-product__title mb-0 mb-md-half">{title}</div>
           <p className="c-product__description mb-0">{description}</p>
-          <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
+          <div className="c-product__ratings-reviews my-quarter d-flex align-items-center flex-wrap">
             <Rating value={rating} />
             {typeof rating === 'string' &&
               rating.trim().length !== 0 &&
@@ -201,7 +222,10 @@ HybridCard.propTypes = {
   onClickQuickView: PropTypes.func,
   quickViewAuid: PropTypes.string,
   removeLabel: PropTypes.string,
-  moveToCartLabel: PropTypes.string
+  moveToCartLabel: PropTypes.string,
+  isLazyLoad: PropTypes.bool,
+  loaderImg: PropTypes.any,
+  productIdx: PropTypes.number
 };
 
 export default HybridCard;
