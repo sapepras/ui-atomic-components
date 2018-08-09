@@ -90,8 +90,5 @@
   },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "react-tooltip": "^3.6.1"
-  }
+  ]
 }
