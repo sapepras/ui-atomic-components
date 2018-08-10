@@ -53,14 +53,14 @@ class HybridCard extends Component {
       if (rating) {
         return (
           <Fragment>
-            <span className="c-product__colors-available ">
+            <span className="c-product__colors-available d-block mb-half pb-quarter">
               {count} {countText} available
             </span>
           </Fragment>
         );
       }
       return (
-        <span className="c-product__colors-available m-noratings">
+        <span className="c-product__colors-available m-noratings d-block mb-half pb-quarter">
           {count} {countText} available
         </span>
       );
