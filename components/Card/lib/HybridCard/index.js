@@ -53,15 +53,14 @@ class HybridCard extends Component {
       if (rating) {
         return (
           <Fragment>
-            <span aria-hidden>&nbsp;|&nbsp;</span>
-            <span className="c-product__colors-available ">
+            <span className="c-product__colors-available d-block mb-half pb-quarter">
               {count} {countText} available
             </span>
           </Fragment>
         );
       }
       return (
-        <span className="c-product__colors-available m-noratings">
+        <span className="c-product__colors-available m-noratings d-block mb-half pb-quarter">
           {count} {countText} available
         </span>
       );
@@ -156,8 +155,8 @@ class HybridCard extends Component {
             {typeof rating === 'string' &&
               rating.trim().length !== 0 &&
               rating !== '0' && <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />}
-            {this.renderVariantCount(this.props)}
           </div>
+          {this.renderVariantCount(this.props)}
           {!isGiftCard && <hr className={`m-0 ${css.hrStyles}`} />}
           {!isGiftCard && (
             <section className="mt-half">
