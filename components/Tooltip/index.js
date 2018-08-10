@@ -1,3 +1,4 @@
+import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { tooltipWrapper as stylesTooltipWrapper, tooltipWrapperCursor as stylesTooltipWrapperCursor } from './lib/styles';
@@ -64,7 +65,7 @@ class Tooltip extends React.Component {
    * This is driven by a number of issues: css z-index stacking context / react synthetic events vs native events.
    */
   attachDomEvents() {
-    if (document) {
+    if (ExecutionEnvironment.canUseDOM) {
       this.wrapperRef.current.addEventListener('click', this.onClick);
       this.wrapperRef.current.addEventListener('touchstart', this.onClick);
       document.querySelector('body').addEventListener('click', this.onWindowBodyClick);
@@ -73,7 +74,7 @@ class Tooltip extends React.Component {
   }
 
   removeDomEvents() {
-    if (document) {
+    if (ExecutionEnvironment.canUseDOM) {
       this.wrapperRef.current.removeEventListener('click', this.onClick);
       this.wrapperRef.current.removeEventListener('touchstart', this.onClick);
       document.querySelector('body').removeEventListener('click', this.onWindowBodyClick);
