@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { primaryBtnStyle } from '../Button/PrimaryBtn';
 import { secondaryBtnStyles } from '../Button/SecondaryBtn';
-import { Button } from '../Button';
-import { Anchor } from '../Anchor';
+import Button from '../Button';
+import Anchor from '../Anchor';
 
 const BTN_SIZE_SMALL = 'S';
 const BTN_SIZE_MEDIUM = 'M';
@@ -107,8 +107,8 @@ const StyledLink = styled('a')`
 
 const Link = props => {
   const {
- type, linkstyle, onClick, href, disabled, auid, imgUrl, imgWidth, imgHeight
-} = props;
+    type, linkstyle, onClick, href, disabled, auid, imgUrl, imgWidth, imgHeight
+  } = props;
   const ImgH = !imgHeight ? '30px' : imgHeight;
   return (
     <React.Fragment>
