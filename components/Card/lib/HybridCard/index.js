@@ -31,8 +31,8 @@ class HybridCard extends Component {
    */
   renderVariantCount(props) {
     const {
- colorCount, patternCount, teamCount, flavourCount, rating
-} = props;
+      colorCount, patternCount, teamCount, flavourCount, rating
+    } = props;
     let count = 0;
     let countText = '';
     if (colorCount) {
@@ -52,15 +52,14 @@ class HybridCard extends Component {
       if (rating) {
         return (
           <Fragment>
-            <span aria-hidden>&nbsp;|&nbsp;</span>
-            <span className="c-product__colors-available ">
+            <span className="c-product__colors-available d-block mb-half pb-quarter">
               {count} {countText} available
             </span>
           </Fragment>
         );
       }
       return (
-        <span className="c-product__colors-available m-noratings">
+        <span className="c-product__colors-available m-noratings d-block mb-half pb-quarter">
           {count} {countText} available
         </span>
       );
@@ -125,7 +124,10 @@ class HybridCard extends Component {
           {isRemovable ? (
             <div className="d-flex flex-row">
               {image && this.renderImage(this.props)}
-              <button className={`${css.removeIcon} academyicon icon-close pt-0 pt-md-1 pl-0 pl-md-half`} onClick={() => this.props.removeCardFunc()} />
+              <button
+                className={`${css.removeIcon} academyicon icon-close pt-0 pt-md-1 pl-0 pl-md-half`}
+                onClick={() => this.props.removeCardFunc()}
+              />
             </div>
           ) : (
             <React.Fragment>
@@ -142,7 +144,7 @@ class HybridCard extends Component {
               <Badge className="c-product__badge" text={badge}>
                 {badge}
               </Badge>
-              ))}
+            ))}
           {enableQuickView && (
             <Button
               size="S"
@@ -162,9 +164,9 @@ class HybridCard extends Component {
             {typeof rating === 'string' &&
               rating.trim().length !== 0 &&
               rating !== '0' && <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />}
-            {this.renderVariantCount(this.props)}
           </div>
-          {!isGiftCard && <hr className={`m-0 ${!this.props.borderStyle ? css.hrStyles : `${css.hrStyles} d-none d-sm-block`}`} />}
+          {this.renderVariantCount(this.props)}
+          {!isGiftCard && <hr className={`m-0 ${css.hrStyles}`} />}
           {!isGiftCard && (
             <section className="mt-half">
               {priceObject && <PriceDetails {...priceObject} />}

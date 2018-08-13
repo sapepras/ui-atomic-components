@@ -1,6 +1,6 @@
 {
   "name": "@academysports/fusion-components",
-  "version": "1.0.77",
+  "version": "1.0.83",
   "description": "A repository of the common atomic components used across the academy sites",
   "main": "index.js",
   "repository": {
@@ -81,7 +81,6 @@
     "react-emotion": "^9.2.3",
     "react-styleguidist": "^7.0.17",
     "react-test-renderer": "^16.3.2",
-    "react-responsive": "^4.1.0",
     "rimraf": "^2.6.2",
     "sinon-chai": "^3.0.0",
     "style-loader": "^0.21.0",
@@ -91,8 +90,5 @@
   },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "react-tooltip": "^3.6.1"
-  }
+  ]
 }

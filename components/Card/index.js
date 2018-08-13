@@ -6,6 +6,7 @@ import HybridCard from './lib/HybridCard';
 const StyledAnchor = styled('a')`
   display: flex;
   color: #333333;
+  width: 100%;
   &:hover {
     color: #333333;
     text-decoration: none;

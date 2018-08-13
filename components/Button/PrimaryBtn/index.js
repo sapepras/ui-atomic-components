@@ -35,6 +35,7 @@ export const primaryBtnStyle = props => {
     color: ${textColor};
     background-color: ${bgBtnColor};
     &:hover {
+      color: ${textColor};
       background-color: ${bgHoverColor};
     }
     &:focus {

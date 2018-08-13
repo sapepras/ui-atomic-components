@@ -25,6 +25,7 @@ export const secondaryBtnStyles = props => {
   } else if (props.btnvariant === 'tertiary') {
     borderColor = colorWhite;
     textColor = colorWhite;
+    bgHoverColor = 'rgba(255, 255, 255, 0.1)';
     hoverBorderColor = colorWhite;
     hoverTextColor = colorWhite;
     borderFocusColor = colorWhite;
