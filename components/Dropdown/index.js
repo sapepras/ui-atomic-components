@@ -186,9 +186,9 @@ Dropdown.defaultProps = {
 
 Dropdown.propTypes = {
     DropdownOptions: PropTypes.array.isRequired,
-    titleClass: PropTypes.oneOf(['string', 'object']),
+    titleClass: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     multi: PropTypes.bool,
-    subtitleClass: PropTypes.oneOf(['string', 'object']),
+    subtitleClass: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     onSelectOption: PropTypes.func,
     initiallySelectedOption: PropTypes.number,
     disabled: PropTypes.bool
