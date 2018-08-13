@@ -120,7 +120,12 @@ class Drawer extends Component {
       this.setState({ isClick: false, isFocus: true });
     }
     if (this.props.isCollapsible) {
-      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), this.updateOnToggle);
+      this.setState(
+        prevstate => ({ isOpen: !prevstate.isOpen }),
+        () => {
+          this.updateOnToggle();
+        }
+      );
     } else {
       this.setState({ isOpen: true }, this.updateAnalytics);
       this.props.onToggle(true);
@@ -144,8 +149,8 @@ class Drawer extends Component {
 
   render() {
     const {
-      title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
-    } = this.props;
+ title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle, domid
+} = this.props;
     let classlist = '';
     const { isClick, isFocus } = this.state;
     if (this.state.isOpen) {
@@ -155,7 +160,7 @@ class Drawer extends Component {
     }
 
     return (
-      <div className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
+      <div id={domid} className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
         <StyledButton
           aria-pressed={this.state.isOpen}
           aria-label={title}
@@ -223,7 +228,8 @@ Drawer.propTypes = {
   gtmDataLayer: PropTypes.array,
   eventCategory: PropTypes.string,
   eventLabel: PropTypes.string,
-  onToggle: PropTypes.func
+  onToggle: PropTypes.func,
+  domid: PropTypes.string
 };
 
 export default Drawer;
