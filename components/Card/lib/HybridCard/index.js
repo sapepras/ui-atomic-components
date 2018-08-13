@@ -65,7 +65,7 @@ class HybridCard extends Component {
         </span>
       );
     }
-    return null;
+    return <span className="c-product__colors-available d-block mb-md-half pb-md-quarter"></span>;
   }
 
   renderImage(props) {
