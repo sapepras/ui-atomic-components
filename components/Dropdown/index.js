@@ -52,7 +52,7 @@ const btnStyle = props => css`
     display: flex;
     padding: 0.5rem 1rem;
     width: ${props.width ? props.width : '100%'};
-    height: ${props.height ? props.height : '3.5rem'};
+    height: ${props.height ? props.height : '3.5rem auto'};
     line-height: 1.25;
     position: relative;
     z-index: 1;
@@ -60,6 +60,13 @@ const btnStyle = props => css`
     border: ${props.borderwidth ? props.borderwidth : '1px'} solid ${props.bordercolor ? props.bordercolor : '#ccc'};
     border-radius: ${props.borderradius ? props.borderradius : '4px'};
     ${props.className}
+`;
+
+const indicatorArrow = css`
+    @media screen and (min-width: 992px) {
+        font-size: 0.65rem;
+    }
+    font-size: 1rem;
 `;
 
 const listStyle = props => css`
@@ -154,7 +161,7 @@ class Dropdown extends React.PureComponent {
           <div ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
             <button type="button" className={`${btnStyle(this.props)} d-flex justify-content-between align-items-center`} disabled={disabled} onClick={() => this.setState({ dropdowncollapse: !this.state.dropdowncollapse })}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
-              <span className={!this.state.dropdowncollapse ? 'academyicon icon-chevron-down' : 'academyicon icon-chevron-up'} />
+              <span className={!this.state.dropdowncollapse ? `academyicon icon-chevron-down ${indicatorArrow}` : `academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
             {this.state.dropdowncollapse && (
             <ul className={`${listStyle(this.props)} align-items-center`} role="presentation" >

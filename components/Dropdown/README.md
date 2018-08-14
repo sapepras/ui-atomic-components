@@ -144,6 +144,7 @@ renderSelectField.propTypes = {
 export default renderSelectField; 
 ```
 ### Recent Updates -
+* Added auto height and responsive indicator icon.
 * Updated Prop names to avoid conflicts with default react props.
 * Added fix where clicking outside the dropdown wasn't closing It. 
 * Fixed ```onSelectOption``` to return index, title of selected element.
