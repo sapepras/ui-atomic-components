@@ -12,15 +12,20 @@ import PriceDetails from '../../../PriceDetails';
 const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
 
 class HybridCard extends Component {
-  wrapClickViewClick(onClickQuickView) {
+  wrapClickViewClick(onClickQuickView, focusCardOnQuickViewClose, anchorId) {
     return e => {
       e.preventDefault();
       e.stopPropagation();
       if (onClickQuickView) {
-        onClickQuickView();
+        if (focusCardOnQuickViewClose && anchorId) {
+          onClickQuickView();
+        } else {
+          onClickQuickView();
+        }
       }
     };
   }
+
   renderCardClassName(hideOnDesktop, styleOverride) {
     const result = hideOnDesktop ? css.cardHideOnDesktop : css.card;
     return wcx(result, styleOverride.card);
@@ -30,9 +35,7 @@ class HybridCard extends Component {
    * @param {*} props props passed to the Card to extract variant counts
    */
   renderVariantCount(props) {
-    const {
-      colorCount, patternCount, teamCount, flavourCount, rating
-    } = props;
+    const { colorCount, patternCount, teamCount, flavourCount, rating } = props; // eslint-disable-line object-curly-newline
     let count = 0;
     let countText = '';
     if (colorCount) {
@@ -64,13 +67,11 @@ class HybridCard extends Component {
         </span>
       );
     }
-    return null;
+    return <span className="c-product__colors-available d-block mb-md-half pb-md-quarter"></span>;
   }
 
   renderImage(props) {
-    const {
-      image, loaderImg, imageAltText, isLazyLoad
-    } = props;
+    const { image, loaderImg, imageAltText, isLazyLoad } = props; // eslint-disable-line object-curly-newline
     if (isLazyLoad) {
       return (
         <Fragment>
@@ -100,41 +101,33 @@ class HybridCard extends Component {
       isGiftCard,
       partNumber,
       enableQuickView,
-      isRemovable,
-      isMoveToCart,
       onClickQuickView = () => null,
+      focusCardOnQuickViewClose,
+      anchorId,
       quickViewAuid,
-      removeLabel,
-      moveToCartLabel,
       productIdx
-    } = this.props; // eslint-disable-line object-curly-newline
+    } = this.props;
     return (
       <div
         className={cx(
           { vertical: !horizontalMobile },
           { horizontal: horizontalMobile },
-          'product-card mb-quarter mb-md-4',
+          'product-card',
           css.productCard,
           horizontalMobile ? css.horizontal : '',
           enableQuickView ? 'c-product__has-quickview' : ''
         )}
         data-productidx={productIdx}
       >
-        <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 flex-sm-grow position-relative')}>
-          {isRemovable ? (
-            <div className="d-flex flex-row">
-              {image && this.renderImage(this.props)}
-              <button
-                className={`${css.removeIcon} academyicon icon-close pt-0 pt-md-1 pl-0 pl-md-half`}
-                onClick={() => this.props.removeCardFunc()}
-              />
-            </div>
-          ) : (
-            <React.Fragment>
-              {image && this.renderImage(this.props)}
-              {!image && <div className="" />}
-            </React.Fragment>
+        <div
+          className={cx(
+            { 'col-5': horizontalMobile },
+            { 'col-12': !horizontalMobile },
+            ` ${css.imageContainer} col-md-12 flex-sm-grow position-relative`
           )}
+        >
+          {image && this.renderImage(this.props)}
+          {!image && <div className="" />}
           {badge &&
             (horizontalMobile ? (
               <Badge className="c-product__badge" smallBadge text={badge}>
@@ -150,7 +143,7 @@ class HybridCard extends Component {
               size="S"
               auid={quickViewAuid}
               className={`c-product__quickviewbtn ${css.quickView}`}
-              onClick={this.wrapClickViewClick(onClickQuickView)}
+              onClick={this.wrapClickViewClick(onClickQuickView, focusCardOnQuickViewClose, anchorId)}
             >
               Quick View
             </Button>
@@ -171,7 +164,7 @@ class HybridCard extends Component {
             <section className="mt-half">
               {priceObject && <PriceDetails {...priceObject} />}
               {promoMessage && (
-                <div className="">
+                <div className="c-product_promomsg">
                   <div className="">
                     <div className="">{promoMessage}</div>
                   </div>
@@ -180,22 +173,6 @@ class HybridCard extends Component {
             </section>
           )}
         </div>
-        {isMoveToCart && (
-          <div className={cx({ 'col-12': horizontalMobile }, { 'col-12 px-1 px-md-2': !horizontalMobile }, 'col-md-12 pb-1 pb-md-3')}>
-            {this.props.borderStyle && <hr className={`mb-1 mb-md-0 ${css.hrFullStyles}`} />}
-            <div className="d-flex flex-row">
-              <div className="d-flex align-items-center">
-                <button className={`${css.iconBtn} pl-1 pl-md-0 pr-half pr-md-0`} onClick={() => this.props.removeCardFunc()}>
-                  <i className={`${css.removeCircleIcon} academyicon icon-x-circle `} />
-                </button>
-                <span className={`${css.removeText} pr-3 pr-md-0`}>{removeLabel}</span>
-              </div>
-              <Button className={`${css.moveToCartBtn}`} size="S" onClick={this.props.moveToCartFunc}>
-                {moveToCartLabel}
-              </Button>
-            </div>
-          </div>
-        )}
       </div>
     );
   }
@@ -216,18 +193,13 @@ HybridCard.propTypes = {
   badge: PropTypes.string,
   partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   enableQuickView: PropTypes.bool,
-  isRemovable: PropTypes.bool,
-  isMoveToCart: PropTypes.bool,
-  borderStyle: PropTypes.bool,
-  removeCardFunc: PropTypes.func,
-  moveToCartFunc: PropTypes.func,
   onClickQuickView: PropTypes.func,
   quickViewAuid: PropTypes.string,
-  removeLabel: PropTypes.string,
-  moveToCartLabel: PropTypes.string,
   isLazyLoad: PropTypes.bool,
   loaderImg: PropTypes.any,
-  productIdx: PropTypes.number
+  productIdx: PropTypes.number,
+  anchorId: PropTypes.string,
+  focusCardOnQuickViewClose: PropTypes.bool
 };
 
 export default HybridCard;
