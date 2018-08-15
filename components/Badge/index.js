@@ -4,10 +4,8 @@ import styled from 'react-emotion';
 import getBadgeColor from './lib/util';
 
 const StyledDiv = styled('div')`
-  position: ${({ disableAbsolutePositioning }) =>
-    disableAbsolutePositioning ? 'relative' : 'absolute'};
-  ${({ disableAbsolutePositioning }) =>
-    disableAbsolutePositioning ? 'display: inline-block;' : ''} top: 0px;
+  position: ${({ disableAbsolutePositioning }) => (disableAbsolutePositioning ? 'relative' : 'absolute')};
+  ${({ disableAbsolutePositioning }) => (disableAbsolutePositioning ? 'display: inline-block;' : '')} top: 0px;
   color: #fff;
   background-color: ${({ text }) => getBadgeColor(text)};
   left: 15px;
@@ -18,9 +16,14 @@ const StyledDiv = styled('div')`
   text-transform: uppercase;
   line-height: ${({ smallBadge }) => (smallBadge ? '14px' : '20px')};
   letter-spacing: normal;
+  white-space: nowrap;
 `;
 
-const Badge = props => <StyledDiv {...props} className="badge">{props.text}</StyledDiv>;
+const Badge = props => (
+  <StyledDiv {...props} className="badge">
+    {props.text}
+  </StyledDiv>
+);
 
 Badge.propTypes = {
   text: PropTypes.string.isRequired,
