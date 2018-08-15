@@ -12,12 +12,16 @@ import PriceDetails from '../../../PriceDetails';
 const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
 
 class HybridCard extends Component {
-  wrapClickViewClick(onClickQuickView) {
+  wrapClickViewClick(onClickQuickView, focusCardOnQuickViewClose, anchorId) {
     return e => {
       e.preventDefault();
       e.stopPropagation();
       if (onClickQuickView) {
-        onClickQuickView();
+        if (focusCardOnQuickViewClose && anchorId) {
+          onClickQuickView(anchorId);
+        } else {
+          onClickQuickView();
+        }
       }
     };
   }
@@ -31,9 +35,7 @@ class HybridCard extends Component {
    * @param {*} props props passed to the Card to extract variant counts
    */
   renderVariantCount(props) {
-    const {
- colorCount, patternCount, teamCount, flavourCount, rating
-} = props;
+    const { colorCount, patternCount, teamCount, flavourCount, rating } = props; // eslint-disable-line object-curly-newline
     let count = 0;
     let countText = '';
     if (colorCount) {
@@ -69,9 +71,7 @@ class HybridCard extends Component {
   }
 
   renderImage(props) {
-    const {
-      image, loaderImg, imageAltText, isLazyLoad
-    } = props;
+    const { image, loaderImg, imageAltText, isLazyLoad } = props; // eslint-disable-line object-curly-newline
     if (isLazyLoad) {
       return (
         <Fragment>
@@ -102,9 +102,11 @@ class HybridCard extends Component {
       partNumber,
       enableQuickView,
       onClickQuickView = () => null,
+      focusCardOnQuickViewClose,
+      anchorId,
       quickViewAuid,
       productIdx
-    } = this.props; // eslint-disable-line object-curly-newline
+    } = this.props;
     return (
       <div
         className={cx(
@@ -135,13 +137,13 @@ class HybridCard extends Component {
               <Badge className="c-product__badge" text={badge}>
                 {badge}
               </Badge>
-              ))}
+            ))}
           {enableQuickView && (
             <Button
               size="S"
               auid={quickViewAuid}
               className={`c-product__quickviewbtn ${css.quickView}`}
-              onClick={this.wrapClickViewClick(onClickQuickView)}
+              onClick={this.wrapClickViewClick(onClickQuickView, focusCardOnQuickViewClose, anchorId)}
             >
               Quick View
             </Button>
@@ -195,7 +197,9 @@ HybridCard.propTypes = {
   quickViewAuid: PropTypes.string,
   isLazyLoad: PropTypes.bool,
   loaderImg: PropTypes.any,
-  productIdx: PropTypes.number
+  productIdx: PropTypes.number,
+  anchorId: PropTypes.string,
+  focusCardOnQuickViewClose: PropTypes.bool
 };
 
 export default HybridCard;
