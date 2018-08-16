@@ -15,7 +15,7 @@ const DropdownStyle = props => css`
         position: absolute;
         background: #fff;
         z-index: 1;
-        border-radius: ${props.listBorderRadius ? props.listBorderRadius : '5px'};
+        border-radius: ${props.listborderradius ? props.listborderradius : '5px'};
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
         padding: 0.75rem 1rem;
@@ -36,12 +36,12 @@ const DropdownStyle = props => css`
         }
         &:first-child {
             &:hover {
-            border-radius: ${props.listBorderRadius ? props.listBorderRadius : '5px'} ${props.listBorderRadius ? props.listBorderRadius : '5px'} 0 0;
+            border-radius: ${props.listborderradius ? props.listborderradius : '5px'} ${props.listborderradius ? props.listborderradius : '5px'} 0 0;
             }
         }
         &:last-child {
             &:hover {
-            border-radius: 0 0 ${props.listBorderRadius ? props.listBorderRadius : '5px'} ${props.listBorderRadius ? props.listBorderRadius : '5px'};
+            border-radius: 0 0 ${props.listborderradius ? props.listborderradius : '5px'} ${props.listborderradius ? props.listborderradius : '5px'};
             }
         }
     }
@@ -54,9 +54,11 @@ const btnStyle = props => css`
     width: ${props.width ? props.width : '100%'};
     height: ${props.height ? props.height : '3.5rem'};
     line-height: 1.25;
+    position: relative;
+    z-index: 1;
     background-color: #fff;
-    border: ${props.borderWidth ? props.borderWidth : '1px'} solid ${props.borderColor ? props.borderColor : '#ccc'};
-    border-radius: ${props.borderRadius ? props.borderRadius : '4px'};
+    border: ${props.borderwidth ? props.borderwidth : '1px'} solid ${props.bordercolor ? props.bordercolor : '#ccc'};
+    border-radius: ${props.borderradius ? props.borderradius : '4px'};
     ${props.className}
 `;
 
@@ -65,13 +67,6 @@ const listStyle = props => css`
 `;
 
 class Dropdown extends React.PureComponent {
-    // static getDerivedStateFromProps(props, state) {
-    //     if (state.initiallySelectedOption !== props.initiallySelectedOption) {
-    //         return { selectedOption: props.initiallySelectedOption < props.DropdownOptions.length ? props.DropdownOptions[props.initiallySelectedOption] : props.DropdownOptions[0], activeListItem: props.initiallySelectedOption < props.DropdownOptions.length ? props.initiallySelectedOption : 0 }
-    //     }
-    //     return null;
-    // }
-
     constructor(props) {
         super(props);
         this.state = {
@@ -191,9 +186,9 @@ Dropdown.defaultProps = {
 
 Dropdown.propTypes = {
     DropdownOptions: PropTypes.array.isRequired,
-    titleClass: PropTypes.oneOf(['string', 'object']),
+    titleClass: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     multi: PropTypes.bool,
-    subtitleClass: PropTypes.oneOf(['string', 'object']),
+    subtitleClass: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     onSelectOption: PropTypes.func,
     initiallySelectedOption: PropTypes.number,
     disabled: PropTypes.bool
