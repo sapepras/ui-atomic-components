@@ -9,7 +9,8 @@ const isMobile = () =>
   ExecutionEnvironment.canUseDOM &&
   window.navigator.userAgent.toLowerCase().match(/android|blackberry|tablet|mobile|iphone|ipad|ipod|opera mini|iemobile/i) !== null;
 
-const InCartPlusCompare = ({ listPrice }) => {
+const InCartPlusCompare = props => {
+  const { listPrice, priceMessage } = props;
   if (!listPrice) {
     return null;
   }
@@ -39,6 +40,8 @@ const InCartPlusCompare = ({ listPrice }) => {
       <div className="c-price-compare mb-half" style={{ color: '#333333' }}>
         Compare at {formattedListPrice}
       </div>
+      {priceMessage &&
+        priceMessage.indexOf('clearanceStylesAvailable') > -1 && <div className={css.clearanceMsgStyle}>Clearance Styles Available</div>}
     </div>
   );
 };

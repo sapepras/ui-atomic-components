@@ -18,7 +18,7 @@ class HybridCard extends Component {
       e.stopPropagation();
       if (onClickQuickView) {
         if (focusCardOnQuickViewClose && anchorId) {
-          onClickQuickView();
+          onClickQuickView(anchorId);
         } else {
           onClickQuickView();
         }

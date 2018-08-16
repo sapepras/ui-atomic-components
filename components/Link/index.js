@@ -72,12 +72,6 @@ const StyledLink = styled('a')`
   &:hover {
     text-decoration: none;
   }
-  span {
-    display: inline;
-    vertical-align: middle;
-    line-height: inherit;
-  }
-  
 `;
 
 const Link = props => {
@@ -90,7 +84,8 @@ const Link = props => {
       {type === 'anchor' &&
         linkstyle === 'button' && (
           <StyledLink data-auid={`btn${auid}`} href={href} disabled={disabled} onClick={onClick} {...props}>
-            <span>{props.children}</span> {imgUrl && <img alt="icon" width={imgWidth} height={ImgH} src={imgUrl} />}
+            {props.children}
+            {imgUrl && <img alt="icon" width={imgWidth} height={ImgH} src={imgUrl} />}
           </StyledLink>
         )}
       {type === 'anchor' && linkstyle !== 'button' && <Anchor auid={auid} href={href} {...props} />}

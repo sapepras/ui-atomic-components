@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, cx } from 'react-emotion';
-import { ENTER_KEY_CODE } from '../../constants';
+import { ENTER_KEY_CODE, EVENT_CLICK_TYPE } from '../../constants';
 
 const StyledButton = styled('button')`
   background-color: #ffffff;
@@ -99,13 +99,13 @@ class Drawer extends Component {
     }
   }
   /**
- * used to call  more than one function after state update in toggleDrawer function
- *
- * @memberof Drawer
- */
+   * used to call  more than one function after state update in toggleDrawer function
+   *
+   * @memberof Drawer
+   */
   updateOnToggle() {
-      this.updateAnalytics();
-      this.props.onToggle(this.state.isOpen);
+    this.updateAnalytics();
+    this.props.onToggle(this.state.isOpen);
   }
   addFocus() {
     this.setState({ isClick: false, isFocus: true });
@@ -114,17 +114,20 @@ class Drawer extends Component {
    * Open or close Drawer
    */
   toggleDrawer(e) {
-    if (e.type === 'click') {
+    if (e.type === EVENT_CLICK_TYPE) {
       this.setState({ isFocus: false, isClick: true });
     } else {
       this.setState({ isClick: false, isFocus: true });
     }
     if (this.props.isCollapsible) {
-      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), this.updateOnToggle);
+      this.setState(
+        prevstate => ({ isOpen: !prevstate.isOpen }),
+        () => {
+          this.updateOnToggle();
+        }
+      );
     } else {
-      this.setState({
-        isOpen: true
-      }, this.updateAnalytics);
+      this.setState({ isOpen: true }, this.updateAnalytics);
       this.props.onToggle(true);
     }
   }
@@ -146,8 +149,8 @@ class Drawer extends Component {
 
   render() {
     const {
-      title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
-    } = this.props;
+ title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle, domid
+} = this.props;
     let classlist = '';
     const { isClick, isFocus } = this.state;
     if (this.state.isOpen) {
@@ -157,15 +160,18 @@ class Drawer extends Component {
     }
 
     return (
-      <div className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
+      <div id={domid} className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
         <StyledButton
           aria-pressed={this.state.isOpen}
           aria-label={title}
-          onKeyDown={this.toggleDrawerKey}
           // className={`${this.state.isOpen ? titleStyleOpen : null} ${this.state.isClick ? removeFocus : null} ${titleStyle}`}
           className={cx({
-            [titleStyleOpen]: this.state.isOpen, [removeFocus]: isClick, [giveFocus]: isFocus, [titleStyle]: true
+            [titleStyleOpen]: this.state.isOpen,
+            [removeFocus]: isClick,
+            [giveFocus]: isFocus,
+            [titleStyle]: true
           })}
+          type="button"
           onClick={this.toggleDrawer}
           onFocus={this.addFocus}
           tabIndex={tabIndex}
@@ -179,7 +185,7 @@ class Drawer extends Component {
           <div
             className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${
               bodyHeight ? SetMaxHeight(bodyHeight) : ''
-            } ${SetBackground(this.props.backgroundColor)}`}
+              } ${SetBackground(this.props.backgroundColor)}`}
             ref={this.DrawerBody}
           >
             {this.props.children}
@@ -201,7 +207,7 @@ Drawer.defaultProps = {
   bodyStyle: null,
   titleStyle: null,
   titleStyleOpen: null,
-  onToggle: () => {}
+  onToggle: () => { }
 };
 
 Drawer.propTypes = {
@@ -222,7 +228,8 @@ Drawer.propTypes = {
   gtmDataLayer: PropTypes.array,
   eventCategory: PropTypes.string,
   eventLabel: PropTypes.string,
-  onToggle: PropTypes.func
+  onToggle: PropTypes.func,
+  domid: PropTypes.string
 };
 
 export default Drawer;
