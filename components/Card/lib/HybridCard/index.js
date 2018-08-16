@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import { cx } from 'emotion';
 import css from './lib/css';
 import { productDetailPropTypes } from '../../../PriceDetails/lib/PropTypes';
-
+import { SHIPPING_MESSAGE, COUNT_TEXT } from '../../../../constants';
 import Badge from '../../../Badge';
 import Button from '../../../Button';
 import Rating from '../../../Rating';
@@ -36,38 +36,36 @@ class HybridCard extends Component {
    */
   renderVariantCount(props) {
     const { colorCount, patternCount, teamCount, flavourCount, rating, shippingPrice } = props; // eslint-disable-line object-curly-newline
-    let countLabel = '';
     let count = 0;
     let countText = '';
     if (colorCount) {
       count = colorCount;
-      countText = 'colors';
+      [countText] = COUNT_TEXT;
     } else if (patternCount) {
       count = patternCount;
-      countText = 'patterns';
+      [, countText] = COUNT_TEXT;
     } else if (teamCount) {
       count = teamCount;
-      countText = 'teams';
+      [, , countText] = COUNT_TEXT;
     } else if (flavourCount) {
       count = flavourCount;
-      countText = 'flavors';
+      [, , , countText] = COUNT_TEXT;
     } else if (shippingPrice) {
       count = 2; // adding count to pass the condition
-      countLabel = 'Ships for';
     }
     if (/^[0-9]+$/.test(parseInt(count, 10)) && parseInt(count, 10) > 1) {
       if (rating) {
         return (
           <Fragment>
             <span className="c-product__colors-available d-block mb-half pb-quarter">
-              {countLabel} {shippingPrice || `${count} ${countText} available`}
+              {SHIPPING_MESSAGE} {shippingPrice || `${count} ${countText} available`}
             </span>
           </Fragment>
         );
       }
       return (
         <span className="c-product__colors-available m-noratings d-block mb-half pb-quarter">
-          {countLabel} {shippingPrice || `${count} ${countText} available`}
+          {SHIPPING_MESSAGE} {shippingPrice || `${count} ${countText} available`}
         </span>
       );
     }
