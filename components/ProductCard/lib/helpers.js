@@ -17,6 +17,7 @@ export const getCardProps = (product = {}, props = {}) => {
     rating: determineRating(props, product),
     badge: determineBadge(props, product, priceObject.priceType),
     colorCount: determineColorCount(props, product),
+    shippingPrice: determineShippingPrice(props, product),
     patternCount: determinePatternCount(props, product),
     flavourCount: determineFlavourCount(props, product),
     teamCount: determineTeamCount(props, product),
@@ -64,3 +65,4 @@ const determinePatternCount = (props, product) => getFirstDefined([props.pattern
 const determineTeamCount = (props, product) => getFirstDefined([props.teamCount, product.teamCount]);
 const determineFlavourCount = (props, product) => getFirstDefined([props.flavourCount, product.flavourCount]);
 const determineCtaLink = (props, product) => getFirstDefined([props.ctaLink, product.seoURL]);
+const determineShippingPrice = (props, product) => getFirstDefined([props['shipping_price'], product['shipping_price']]); // eslint-disable-line
