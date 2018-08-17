@@ -133,14 +133,14 @@ PasswordField.propTypes = {
     activebordercolor: PropTypes.string,
     activeborderwidth: PropTypes.string,
     fontWeight: PropTypes.string,
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     inlinebuttontexthide: PropTypes.string,
     inlinebuttontextshow: PropTypes.string,
     buttontextcolor: PropTypes.string,
     buttontextfont: PropTypes.string,
     buttontextweight: PropTypes.string,
-    maxLength: PropTypes.string,
-    Inlinebuttonclass: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    inlinebuttonclass: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
 export default PasswordField;
