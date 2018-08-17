@@ -28,7 +28,7 @@ function focusable(element, isTabIndexNotNaN) {
 }
 
 function tabbable(element) {
-  return focusable(element, true);
+  return focusable(element, false);
 }
 
 export function findTabbableDescendants(element) {
