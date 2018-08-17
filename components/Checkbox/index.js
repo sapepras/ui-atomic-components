@@ -74,7 +74,9 @@ class Checkbox extends Component {
         const {
             id, disabled, onChange, name
         } = this.props;
-        return (<input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />);
+        return (
+          <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
+        );
     }
 }
 

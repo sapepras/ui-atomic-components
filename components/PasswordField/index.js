@@ -51,6 +51,10 @@ const InlineButton = props => css`
   color: ${props.buttontextcolor};
   font-size: ${props.fontSize};
   border: none;
+  background-color: ${props.buttonBg ? props.buttonBg : 'transparent'};
+  &:focus {
+    outline:0;
+  }
   ${props.inlinebuttonclass};
 `;
 
@@ -83,11 +87,11 @@ class PasswordField extends Component {
     }
     render() {
         const {
-            classname, name, disabled, onChange, placeholder, value, width, height, fontSize, fontWeight, inlinebuttontexthide, inlinebuttontextshow, maxLength, ...rest
+            classname, name, disabled, onChange, placeholder, value, width, height, fontSize, fontWeight, inlinebuttontexthide, inlinebuttontextshow, ...rest
         } = this.props;
         return (
           <div className={`${CommonStyles(this.props)} ${classname} d-flex align-items-center`} width={width} height={height} fontSize={fontSize} fontWeight={fontWeight}>
-            <input {...rest} name={name} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} maxLength={maxLength} />
+            <input {...rest} name={name} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
             <button className={`${InlineButton(this.props)}`} onClick={event => this.changeVisibility(event)}>{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
           </div>
         );

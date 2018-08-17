@@ -144,6 +144,7 @@ renderSelectField.propTypes = {
 export default renderSelectField; 
 ```
 ### Recent Updates -
+* Synthetic Accessibility features like traversing using keyboard keys, searching using first letter and more have been addressed.
 * Added auto height and responsive indicator icon.
 * Updated Prop names to avoid conflicts with default react props.
 * Added fix where clicking outside the dropdown wasn't closing It. 
