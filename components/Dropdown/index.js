@@ -108,6 +108,11 @@ class Dropdown extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeyboardEvents);
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
     /**
      *
      * @param {object} value selected option from the list
