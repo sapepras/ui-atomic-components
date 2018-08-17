@@ -64,9 +64,14 @@ InputField Atomic Component renders a custom input field component with various 
 
 ```font weight of the text in field.```
 
-* **name**: *PropTypes.string*
+* **name**: *PropTypes.string.isRequired*
 
 ```name attribute of the field.```
+
+* **id**: *PropTypes.string.isRequired*
+
+```id attribute of the field.```
+
 
 ## Example Usage
 

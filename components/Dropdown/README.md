@@ -72,6 +72,14 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ```max height of the dropdown list, default set to 10rem.```
 
+* **name**: *PropTypes.string.isRequired*
+
+```name attribute of the field.```
+
+* **id**: *PropTypes.string.isRequired*
+
+```id attribute of the field.```
+
 ## Example Usage
 
 ### Firstly, Import Dropdown from Atomic Components.
@@ -87,6 +95,8 @@ Dropdown Atomic Component renders a custom dropdown component with various props
     {title: 'Tejas', subtitle: 'Karnataka, India'}]}
   
   initiallySelectedOption = {2}
+  id="id"
+  name="name"
   disabled={false} 
   width="30rem" 
   height="3.5rem" 

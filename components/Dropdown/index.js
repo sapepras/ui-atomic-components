@@ -221,12 +221,12 @@ class Dropdown extends React.Component {
 
     render() {
         const {
-            DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled
+            DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled, name, id
         } = this.props;
         const { selectedOption } = this.state;
         this.manageActiveListeners();
         return (
-          <div ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
+          <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
             <button type="button" className={`${btnStyle(this.props)} d-flex justify-content-between align-items-center`} disabled={disabled} onClick={() => this.toggleDropdownState()}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
               <span className={!this.state.isDropdownOpen ? `academyicon icon-chevron-down ${indicatorArrow}` : `academyicon icon-chevron-up ${indicatorArrow}`} />
@@ -283,7 +283,9 @@ Dropdown.propTypes = {
     subtitleClass: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     onSelectOption: PropTypes.func,
     initiallySelectedOption: PropTypes.number,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
 };
 
 export default Dropdown;
