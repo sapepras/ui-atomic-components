@@ -84,6 +84,10 @@ PasswordField Atomic Component renders a custom password input field component w
 * **inlinebuttonclass**: *PropTypes.string*
 
   ```style class for inline show/hide button```
+  
+* **buttonBg**: *PropTypes.string*
+
+  ```background color of inline button, transparent by default.```
 
 ## Example Usage
 
