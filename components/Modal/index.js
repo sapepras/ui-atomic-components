@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 import Overlay from './lib/Overlay';
 import ModalContent from './lib/ModalContent';
+import { findTabbableDescendants } from './tabbable';
 const KEY_CODE_ESC = 27;
+const KEY_CODE_TAB = 9;
 const MIN_CLOSE_POINT = 0.4;
 
 const bodyOverrides = css`
@@ -18,12 +20,14 @@ class Modal extends React.Component {
       isOpen: this.props.isOpen
     };
     this.modalTarget = null;
+    this.tabbableDescentants = null;
     this.handleTouchEnd = this.handleTouchEnd.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.storeContentTarget = this.storeContentTarget.bind(this);
     this.handleOverlayClick = this.handleOverlayClick.bind(this);
     this.addBodyOverrides = this.addBodyOverrides.bind(this);
     this.removeBodyOverrides = this.removeBodyOverrides.bind(this);
+    this.handleTabbableEvent = this.handleTabbableEvent.bind(this);
     this.el = document.createElement('div');
     this.removeBodyOverrides();
   }
@@ -81,7 +85,23 @@ class Modal extends React.Component {
     }
   }
 
+  /**
+   * Method to circulate tab events within the modal
+   * @param {object} event
+   */
+  handleTabbableEvent(event) {
+    if (this.tabbableDescentants && event.keyCode === KEY_CODE_TAB) {
+      const tabbableLength = this.tabbableDescentants.length;
+      if (this.tabbableDescentants[tabbableLength - 1] === event.target) {
+        this.modalTarget.focus();
+        event.stopPropagation();
+      }
+    }
+  }
+
   handleOverlayClick(event) {
+    this.handleTabbableEvent(event);
+
     if ((!this.modalTarget.contains(event.target) && event.target !== this.modalTarget) || event.keyCode === KEY_CODE_ESC) {
       this.handleClose();
     }
@@ -89,6 +109,7 @@ class Modal extends React.Component {
 
   storeContentTarget(modalTarget) {
     this.modalTarget = modalTarget;
+    this.tabbableDescentants = findTabbableDescendants(modalTarget);
   }
 
   render() {
