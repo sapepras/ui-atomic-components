@@ -38,6 +38,7 @@ class HybridCard extends Component {
     const { colorCount, patternCount, teamCount, flavourCount, rating, shippingPrice } = props; // eslint-disable-line object-curly-newline
     let count = 0;
     let countText = '';
+    let shippingMessage = '';
     if (colorCount) {
       count = colorCount;
       [countText] = COUNT_TEXT;
@@ -52,20 +53,21 @@ class HybridCard extends Component {
       [, , , countText] = COUNT_TEXT;
     } else if (shippingPrice) {
       count = 2; // adding count to pass the condition
+      shippingMessage = `${SHIPPING_MESSAGE}${shippingPrice}`;
     }
     if (/^[0-9]+$/.test(parseInt(count, 10)) && parseInt(count, 10) > 1) {
       if (rating) {
         return (
           <Fragment>
             <span className="c-product__colors-available d-block mb-half pb-quarter">
-              {SHIPPING_MESSAGE} {shippingPrice || `${count} ${countText} available`}
+              {shippingMessage || `${count} ${countText} available`}
             </span>
           </Fragment>
         );
       }
       return (
         <span className="c-product__colors-available m-noratings d-block mb-half pb-quarter">
-          {SHIPPING_MESSAGE} {shippingPrice || `${count} ${countText} available`}
+          {shippingMessage || `${count} ${countText} available`}
         </span>
       );
     }
