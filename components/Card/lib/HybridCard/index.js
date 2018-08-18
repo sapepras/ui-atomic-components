@@ -53,7 +53,7 @@ class HybridCard extends Component {
       [, , , countText] = COUNT_TEXT;
     } else if (shippingPrice) {
       count = 2; // adding count to pass the condition
-      shippingMessage = `${SHIPPING_MESSAGE}${shippingPrice}`;
+      shippingMessage = `${SHIPPING_MESSAGE} ${shippingPrice}`;
     }
     if (/^[0-9]+$/.test(parseInt(count, 10)) && parseInt(count, 10) > 1) {
       if (rating) {
