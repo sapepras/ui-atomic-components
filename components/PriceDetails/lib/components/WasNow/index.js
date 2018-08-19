@@ -11,7 +11,7 @@ const droppedPrice = css`
 
 const WasNow = props => {
   const {
-    salePrice, listPrice, savings, priceMessage
+    salePrice, listPrice, savings, firstPriceMessageText
    } = props;
   return (
     <div>
@@ -26,8 +26,7 @@ const WasNow = props => {
           <span className={style.contentText}>Save {savings}</span>
         </span>
       )}
-      {priceMessage &&
-        priceMessage.indexOf('clearanceStylesAvailable') > -1 && <div className={style.clearanceMsgStyle}>Clearance Styles Available</div>}
+      {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>}
     </div>
   );
 };
