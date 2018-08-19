@@ -26,7 +26,7 @@ const WasNow = props => {
           <span className={style.contentText}>Save {savings}</span>
         </span>
       )}
-      {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>}
+      {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={style.clearanceMsgStyle}>{firstPriceMessageText}</div>}
     </div>
   );
 };
