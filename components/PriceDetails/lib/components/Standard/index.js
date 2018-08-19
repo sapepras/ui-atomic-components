@@ -5,15 +5,14 @@ import * as css from '../../css';
 
 const Standard = props => {
   const {
- salePrice, listPrice, priceMessage, ...remainingProps
+ salePrice, listPrice, firstPriceMessageText, ...remainingProps
 } = props;
   const price = salePrice || listPrice;
   if (price) {
     return (
       <Fragment>
         <Price price={price} {...remainingProps} />
-        {priceMessage &&
-          priceMessage.indexOf('clearanceStylesAvailable') > -1 && <div className={css.clearanceMsgStyle}>Clearance Styles Available</div>}
+        {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>}
       </Fragment>
     );
   }
