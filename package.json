@@ -91,13 +91,9 @@
   },
   "files": [
     "dist"
-<<<<<<< HEAD
   ],
   "dependencies": {
     "react-responsive": "^5.0.0",
     "react-tooltip": "^3.6.1"
   }
-=======
-  ]
->>>>>>> f5b7d20e2c2f94ef9eb86ee52f4b2c01152c131d
 }
