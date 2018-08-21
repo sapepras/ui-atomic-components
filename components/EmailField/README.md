@@ -12,6 +12,10 @@ EmailField Atomic Component renders a custom email field component with domain s
 
 ```boolean value to render the field enabled or disabled.```
 
+* **domainsList**: *PropTypes.array.isRequired*
+
+```array of domain strings to be suggested by email field.```
+
 * **onChange**: *PropTypes.func*
 
 ```function to be executed when any change in field occurs.```

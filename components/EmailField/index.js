@@ -108,7 +108,7 @@ EmailField.defaultProps = {
 };
 
 EmailField.propTypes = {
-    domainsList: PropTypes.array,
+    domainsList: PropTypes.array.isRequired,
     classname: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
