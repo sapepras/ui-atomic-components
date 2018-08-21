@@ -12,6 +12,11 @@ export const contentText = css`
   color: #333333;
 `;
 
+export const clearanceMsgStyle = css`
+  ${contentText};
+  color: #ee0000;
+`;
+
 export const toolTipStyles = css`
   width: 200px;
   background-color: #ffffff;

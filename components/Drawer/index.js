@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'react-emotion';
-import { ENTER_KEY_CODE } from '../../constants';
+import styled, { css, cx } from 'react-emotion';
+import { ENTER_KEY_CODE, EVENT_CLICK_TYPE } from '../../constants';
 
 const StyledButton = styled('button')`
   background-color: #ffffff;
@@ -26,7 +26,7 @@ const StyledButton = styled('button')`
 `;
 
 const DrawerWrapStyle = css`
-  positioin: relative;
+  position: relative;
   display: flex;
   flex-direction: column;
 `;
@@ -42,7 +42,7 @@ const DrawerTitleStyle = css`
 const DrawerContentStyle = css`
   min-height: 62px;
   padding: 1rem;
-  font-size:14px;
+  font-size: 14px;
   border-top: 1px solid #f6f6f6;
 `;
 
@@ -61,16 +61,26 @@ const SetMaxHeight = bodyHeight => css`
 const ExpandUpward = bodyHeight => css`
   margin-top: -${bodyHeight};
 `;
+const removeFocus = css`
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+`;
+const giveFocus = css`
+  &:focus {
+    outline: 1px solid webkit-focus-ring-color;
+  }
+`;
 
 class Drawer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isOpen: this.props.isCollapsible ? this.props.isOpen : true
-    };
+    this.state = { isOpen: this.props.isCollapsible ? this.props.isOpen : true, isClick: true, isFocus: false };
     this.toggleDrawer = this.toggleDrawer.bind(this);
     this.updateOnToggle = this.updateOnToggle.bind(this);
     this.toggleDrawerKey = this.toggleDrawerKey.bind(this);
+    this.addFocus = this.addFocus.bind(this);
   }
 
   /**
@@ -88,25 +98,36 @@ class Drawer extends Component {
       this.toggleDrawer();
     }
   }
-/**
- * used to call  more than one function after state update in toggleDrawer function
- *
- * @memberof Drawer
- */
-updateOnToggle() {
+  /**
+   * used to call  more than one function after state update in toggleDrawer function
+   *
+   * @memberof Drawer
+   */
+  updateOnToggle() {
     this.updateAnalytics();
     this.props.onToggle(this.state.isOpen);
+  }
+  addFocus() {
+    this.setState({ isClick: false, isFocus: true });
   }
   /**
    * Open or close Drawer
    */
-  toggleDrawer() {
-    if (this.props.isCollapsible) {
-      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), this.updateOnToggle);
+  toggleDrawer(e) {
+    if (e.type === EVENT_CLICK_TYPE) {
+      this.setState({ isFocus: false, isClick: true });
     } else {
-      this.setState({
-        isOpen: true
-      }, this.updateAnalytics);
+      this.setState({ isClick: false, isFocus: true });
+    }
+    if (this.props.isCollapsible) {
+      this.setState(
+        prevstate => ({ isOpen: !prevstate.isOpen }),
+        () => {
+          this.updateOnToggle();
+        }
+      );
+    } else {
+      this.setState({ isOpen: true }, this.updateAnalytics);
       this.props.onToggle(true);
     }
   }
@@ -128,9 +149,10 @@ updateOnToggle() {
 
   render() {
     const {
-      title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle
-    } = this.props;
+ title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle, domid
+} = this.props;
     let classlist = '';
+    const { isClick, isFocus } = this.state;
     if (this.state.isOpen) {
       classlist = `${this.props.openIcon}`;
     } else {
@@ -138,13 +160,20 @@ updateOnToggle() {
     }
 
     return (
-      <div className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
+      <div id={domid} className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
         <StyledButton
           aria-pressed={this.state.isOpen}
           aria-label={title}
-          onKeyDown={this.toggleDrawerKey}
-          className={`${this.state.isOpen ? titleStyleOpen : null} ${titleStyle}`}
+          // className={`${this.state.isOpen ? titleStyleOpen : null} ${this.state.isClick ? removeFocus : null} ${titleStyle}`}
+          className={cx({
+            [titleStyleOpen]: this.state.isOpen,
+            [removeFocus]: isClick,
+            [giveFocus]: isFocus,
+            [titleStyle]: true
+          })}
+          type="button"
           onClick={this.toggleDrawer}
+          onFocus={this.addFocus}
           tabIndex={tabIndex}
         >
           <span className={DrawerTitleStyle}>
@@ -156,7 +185,7 @@ updateOnToggle() {
           <div
             className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${
               bodyHeight ? SetMaxHeight(bodyHeight) : ''
-            } ${SetBackground(this.props.backgroundColor)}`}
+              } ${SetBackground(this.props.backgroundColor)}`}
             ref={this.DrawerBody}
           >
             {this.props.children}
@@ -178,7 +207,7 @@ Drawer.defaultProps = {
   bodyStyle: null,
   titleStyle: null,
   titleStyleOpen: null,
-  onToggle: () => {}
+  onToggle: () => { }
 };
 
 Drawer.propTypes = {
@@ -199,7 +228,8 @@ Drawer.propTypes = {
   gtmDataLayer: PropTypes.array,
   eventCategory: PropTypes.string,
   eventLabel: PropTypes.string,
-  onToggle: PropTypes.func
+  onToggle: PropTypes.func,
+  domid: PropTypes.string
 };
 
 export default Drawer;
