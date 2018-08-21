@@ -1,5 +1,6 @@
 import Button from './components/Button';
 import Anchor from './components/Anchor';
+import Link from './components/Link';
 import Drawer from './components/Drawer';
 import ProductCard from './components/ProductCard';
 import PriceDetails from './components/PriceDetails';
@@ -11,5 +12,23 @@ import Checkbox from './components/Checkbox';
 import RadioButton from './components/RadioButton';
 import Modal from './components/Modal';
 import PasswordField from './components/PasswordField';
+import Tooltip from './components/Tooltip';
 import EmailField from './components/EmailField';
-export { Button, Anchor, Drawer, ProductCard, PriceDetails, Badge, PopoverStateless, Modal, InputField, Dropdown, Checkbox, RadioButton, PasswordField, EmailField };
+export {
+  Button,
+  Anchor,
+  Link,
+  Drawer,
+  ProductCard,
+  PriceDetails,
+  Badge,
+  PopoverStateless,
+  Modal,
+  InputField,
+  Dropdown,
+  Checkbox,
+  RadioButton,
+  PasswordField,
+  Tooltip,
+  EmailField
+};

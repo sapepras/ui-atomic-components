@@ -8,6 +8,7 @@ const baseConfig = () => ({
   entry: {
     Button: './components/Button',
     Anchor: './components/Anchor',
+    Link: './components/Link',
     ProductCard: './components/ProductCard',
     Drawer: './components/Drawer',
     Rating: './components/Rating',
@@ -16,6 +17,7 @@ const baseConfig = () => ({
     PopoverStateless: './components/PopoverStateless',
     InputField: './components/InputField',
     Dropdown: './components/Dropdown',
+    Tooltip: './components/Tooltip',
     Checkbox: './components/Checkbox',
     Modal: './components/Modal',
     RadioButton: './components/RadioButton',

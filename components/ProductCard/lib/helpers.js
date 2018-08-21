@@ -17,10 +17,14 @@ export const getCardProps = (product = {}, props = {}) => {
     rating: determineRating(props, product),
     badge: determineBadge(props, product, priceObject.priceType),
     colorCount: determineColorCount(props, product),
+    patternCount: determinePatternCount(props, product),
+    flavourCount: determineFlavourCount(props, product),
+    teamCount: determineTeamCount(props, product),
     ctaLink: determineCtaLink(props, product),
     isGiftCard: product.isGiftCard === 'Y',
     partNumber: determinePartNumber(props, product),
     priceObject,
+    isLazyLoad: props.isLazyLoad,
     classes: props.classes
   };
 
@@ -56,5 +60,7 @@ const determineBadge = (props, product, priceType) => {
 };
 
 const determineColorCount = (props, product) => getFirstDefined([props.colorCount, product.colorCount]);
-
+const determinePatternCount = (props, product) => getFirstDefined([props.patternCount, product.patternCount]);
+const determineTeamCount = (props, product) => getFirstDefined([props.teamCount, product.teamCount]);
+const determineFlavourCount = (props, product) => getFirstDefined([props.flavourCount, product.flavourCount]);
 const determineCtaLink = (props, product) => getFirstDefined([props.ctaLink, product.seoURL]);

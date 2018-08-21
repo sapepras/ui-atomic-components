@@ -31,13 +31,12 @@ const Rating = (props = {}) => {
   if (typeof value === 'string' && value.trim().length === 0) {
     value = 0;
   }
-  const rating = parseFloat(value) / 5 * 100; // eslint-disable-line
-
+  let rating = parseFloat(value) / 5 * 100; // eslint-disable-line
   const starWidth = `${rating}%`;
   const starStyle = { color: starColor, width: starWidth, cursor: null };
   const starBackgroundStyle = { color: emptyStarColor, cursor: null };
 
-  return hideEmptyStars && rating <= 0 ? null : (
+  return hideEmptyStars || rating <= 0 ? null : (
     <div aria-label={`${value} stars out of 5`} className={container}>
       <div className={relative}>
         <div className={stars} style={starStyle}>
@@ -52,7 +51,7 @@ const Rating = (props = {}) => {
 Rating.defaultProps = {
   starColor: '#f4ce42',
   emptyStarColor: '#6a6a6a',
-  hideEmptyStars: true
+  hideEmptyStars: false
 };
 
 Rating.propTypes = {

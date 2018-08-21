@@ -4,11 +4,19 @@ import styled from 'react-emotion';
 import HybridCard from './lib/HybridCard';
 
 const StyledAnchor = styled('a')`
+  display: flex;
   color: #333333;
   &:hover {
     color: #333333;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  @media only screen and (min-width: 768px) {
+    &:focus .c-product__quickviewbtn,
+    &:focus-within .c-product__quickviewbtn {
+      display: block;
+    }
   }
 `;
 class Card extends Component {
@@ -23,22 +31,8 @@ class Card extends Component {
     };
   }
 
-  createLogGA(gtmDataLayer, eventAction, productName) {
-    return () => {
-      if (gtmDataLayer) {
-        gtmDataLayer.push({
-          event: 'productCardClicks',
-          eventCategory: 'Product Card Clicks',
-          eventAction,
-          eventLabel: productName
-        });
-      }
-    };
-  }
-
   render() {
     const defaultLogGA = this.props.cardAnalytics;
-    const defaultQuickViewLogGA = this.createLogGA(this.props.gtmDataLayer, 'Quickview', this.props.description);
     const { auid, tabIndex, ctaLink, onClickLogGA = defaultLogGA, classes, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
     const thisOnClickGoTo = this.onClickGoTo(ctaLink, onClickLogGA);
     let clickAttributes = {};
@@ -50,8 +44,8 @@ class Card extends Component {
     }
     return (
       <div className={classes}>
-        <StyledAnchor href={ctaLink} data-auid={auid} {...clickAttributes} tabIndex={tabIndex}>
-          <HybridCard {...remainingProps} onClickQuickViewLogGa={defaultQuickViewLogGA} quickViewAuid={`${auid}_quickview`} />
+        <StyledAnchor className="mb-quarter mb-md-4" href={ctaLink} data-auid={auid} {...clickAttributes} tabIndex={tabIndex}>
+          <HybridCard {...remainingProps} quickViewAuid={`${auid}_quickview`} />
         </StyledAnchor>
       </div>
     );
@@ -71,10 +65,8 @@ Card.propTypes = {
   onClickLogGA: PropTypes.func,
   styleOverride: PropTypes.object,
   tabIndex: PropTypes.number,
-  gtmDataLayer: PropTypes.any.isRequired,
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
-  onClickQuickViewLogGa: PropTypes.func,
   cardAnalytics: PropTypes.func
 };
 

@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { ENTER_KEY_CODE } from '../../constants';
 
-const StyledDiv = styled('div')`
+const StyledButton = styled('button')`
   background-color: #ffffff;
   min-height: 62px;
   font-size: 16px;
-  line-height:1.25rem;
+  line-height: 1.25rem;
   letter-spacing: 0.5;
   font-color: #585858;
   line-color: #e6e6e6;
   cursor: pointer;
   display: flex;
   align-items: center;
-  border:0px;
-  background-color:#fff;
-  border-top:1px solid rgb(230, 230, 230);
+  border: 0px;
+  background-color: #fff;
+  border-top: 1px solid rgb(230, 230, 230);
   padding: 1rem;
   justify-content: space-between;
 
@@ -31,9 +31,18 @@ const DrawerWrapStyle = css`
   flex-direction: column;
 `;
 
+const DrawerTitleStyle = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+`;
+
 const DrawerContentStyle = css`
   min-height: 62px;
   padding: 1rem;
+  font-size:14px;
   border-top: 1px solid #f6f6f6;
 `;
 
@@ -60,7 +69,18 @@ class Drawer extends Component {
       isOpen: this.props.isCollapsible ? this.props.isOpen : true
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
+    this.updateOnToggle = this.updateOnToggle.bind(this);
     this.toggleDrawerKey = this.toggleDrawerKey.bind(this);
+  }
+
+  /**
+   * This function is to toggle the open state for drawer
+   * @param {Object} newProps The modified/next props received
+   */
+  componentWillReceiveProps(newProps) {
+    if (newProps.isOpen !== this.props.isOpen) {
+      this.setState({ isOpen: newProps.isOpen });
+    }
   }
 
   toggleDrawerKey(e) {
@@ -68,15 +88,40 @@ class Drawer extends Component {
       this.toggleDrawer();
     }
   }
-
+/**
+ * used to call  more than one function after state update in toggleDrawer function
+ *
+ * @memberof Drawer
+ */
+updateOnToggle() {
+    this.updateAnalytics();
+    this.props.onToggle(this.state.isOpen);
+  }
+  /**
+   * Open or close Drawer
+   */
   toggleDrawer() {
     if (this.props.isCollapsible) {
-      this.setState({
-        isOpen: !this.state.isOpen
-      });
+      this.setState(prevstate => ({ isOpen: !prevstate.isOpen }), this.updateOnToggle);
     } else {
       this.setState({
         isOpen: true
+      }, this.updateAnalytics);
+      this.props.onToggle(true);
+    }
+  }
+
+  /**
+   * Update GA dataLayer
+   */
+  updateAnalytics() {
+    if (this.props.gtmDataLayer) {
+      const { eventCategory, eventLabel, title } = this.props;
+      this.props.gtmDataLayer.push({
+        event: 'accordionLinks',
+        eventCategory: eventCategory || title.toString(),
+        eventAction: this.state.isOpen ? 'expand' : 'collapse',
+        eventLabel: eventLabel || title.toString()
       });
     }
   }
@@ -94,10 +139,29 @@ class Drawer extends Component {
 
     return (
       <div className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
-        <StyledDiv role="button" onKeyDown={this.toggleDrawerKey} className={`${this.state.isOpen ? titleStyleOpen : null} ${titleStyle}`} onClick={this.toggleDrawer} tabIndex={tabIndex}>
-          <div className="w-100 justify-content-between d-flex">{title}{isCollapsible && <div className="align-self-center"><i className={classlist} /></div>}</div>
-        </StyledDiv>
-        {this.state.isOpen && <div className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${bodyHeight ? SetMaxHeight(bodyHeight) : ''} ${SetBackground(this.props.backgroundColor)}`} ref={this.DrawerBody}>{this.props.children}</div>}
+        <StyledButton
+          aria-pressed={this.state.isOpen}
+          aria-label={title}
+          onKeyDown={this.toggleDrawerKey}
+          className={`${this.state.isOpen ? titleStyleOpen : null} ${titleStyle}`}
+          onClick={this.toggleDrawer}
+          tabIndex={tabIndex}
+        >
+          <span className={DrawerTitleStyle}>
+            {title}
+            {isCollapsible && <i className={classlist} />}
+          </span>
+        </StyledButton>
+        {this.state.isOpen && (
+          <div
+            className={`${DrawerContentStyle} ${isCollapsible && bodyHeight ? MakeScrollable : null} ${bodyStyle} ${
+              bodyHeight ? SetMaxHeight(bodyHeight) : ''
+            } ${SetBackground(this.props.backgroundColor)}`}
+            ref={this.DrawerBody}
+          >
+            {this.props.children}
+          </div>
+        )}
       </div>
     );
   }
@@ -113,14 +177,12 @@ Drawer.defaultProps = {
   bodyHeight: null,
   bodyStyle: null,
   titleStyle: null,
-  titleStyleOpen: null
+  titleStyleOpen: null,
+  onToggle: () => {}
 };
 
 Drawer.propTypes = {
-  title: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]).isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   children: PropTypes.element,
   isOpen: PropTypes.bool,
   openIcon: PropTypes.string,
@@ -133,7 +195,11 @@ Drawer.propTypes = {
   bodyHeight: PropTypes.string,
   bodyStyle: PropTypes.object,
   titleStyle: PropTypes.object,
-  titleStyleOpen: PropTypes.object
+  titleStyleOpen: PropTypes.object,
+  gtmDataLayer: PropTypes.array,
+  eventCategory: PropTypes.string,
+  eventLabel: PropTypes.string,
+  onToggle: PropTypes.func
 };
 
 export default Drawer;

@@ -32,6 +32,7 @@ Checkbox Atomic Component renders a custom checkbox component with various props
 ### Then,
 
 ``` jsx
+{ var someStylingClass = '';}
 <Checkbox 
   initialState={true} // to render a checked checkbox
   disabled={false} 

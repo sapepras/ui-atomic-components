@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { primaryBtnStyle } from './PrimaryBtn';
 import { secondaryBtnStyles } from './SecondaryBtn';
+import { tertiaryBtnStyles } from './TertiaryBtn';
 
 const BTN_SIZE_SMALL = 'S';
 const BTN_SIZE_MEDIUM = 'M';
@@ -29,25 +30,25 @@ const sizeStyles = props => {
   let fontSize = '1rem';
   let letterSpacing = '0.5px';
   let lineHeight = '1.375rem';
-  let minHeight = '4.375rem';
-  let padding = (props.btntype === 'primary') ? '1rem 2rem' : '0.75rem 2rem';
+  let minHeight = props.btntype === 'tertiary' ? 'auto' : '4.375rem';
+  let padding = props.btntype === 'primary' ? '1rem 2rem' : '0.75rem 2rem';
   if (props.size === BTN_SIZE_MEDIUM) {
     minWidth = '150px';
-    minHeight = '3.75rem';
+    minHeight = props.btntype === 'tertiary' ? 'auto' : '3.75rem';
   } else if (props.size === BTN_SIZE_SMALL) {
     minWidth = '120px';
     fontSize = '0.875rem';
     letterSpacing = '0.4px';
     lineHeight = '1.125rem';
-    minHeight = '3.125rem';
-    padding = (props.btntype === 'primary') ? '1rem 1.5rem' : '0.75rem 1.5rem';
+    minHeight = props.btntype === 'tertiary' ? 'auto' : '3.125rem';
+    padding = props.btntype === 'primary' ? '1rem 1.5rem' : '0.75rem 1.5rem';
   } else if (props.size === BTN_SIZE_XSMALL) {
     minWidth = '120px';
     fontSize = '0.75rem';
     letterSpacing = '0.3px';
     lineHeight = '1rem';
-    minHeight = '2.5rem';
-    padding = (props.btntype === 'primary') ? '1rem 1.5rem' : '0.75rem 1.5rem';
+    minHeight = props.btntype === 'tertiary' ? 'auto' : '2.5rem';
+    padding = props.btntype === 'primary' ? '1rem 1.5rem' : '0.75rem 1.5rem';
   }
   return css`
     min-width: ${minWidth};
@@ -62,17 +63,24 @@ const sizeStyles = props => {
 const StyledButton = styled('button')`
   ${commonBtnStyle};
   ${sizeStyles};
-  ${props => (props.btntype === 'secondary' ? secondaryBtnStyles : primaryBtnStyle)};
+  ${props => {
+    if (props.btntype === 'secondary') {
+      return secondaryBtnStyles;
+    } else if (props.btntype === 'tertiary') {
+      return tertiaryBtnStyles;
+    }
+    return primaryBtnStyle;
+  }};
 `;
 
 const Button = props => {
   const {
- type, onClick, disabled, auid, imgUrl, imgWidth, imgHeight
-} = props;
+    type, onClick, disabled, auid, imgUrl, imgWidth, imgHeight
+  } = props;
   const ImgH = !imgHeight ? '30px' : imgHeight;
   return (
     <StyledButton data-auid={`btn${auid}`} type={type} disabled={disabled} onClick={onClick} {...props}>
-      {props.children } { imgUrl && <img alt="icon" width={imgWidth} height={ImgH} src={imgUrl} />}
+      {props.children} {imgUrl && <img alt="icon" width={imgWidth} height={ImgH} src={imgUrl} />}
     </StyledButton>
   );
 };
@@ -85,7 +93,7 @@ Button.propTypes = {
   /** Btn Size variant */
   size: PropTypes.oneOf([BTN_SIZE_LARGE, BTN_SIZE_MEDIUM, BTN_SIZE_SMALL]),
   /** Button type variant */
-  btntype: PropTypes.oneOf(['primary', 'secondary']),
+  btntype: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   /** Button variety type */
   btnvariant: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   /** Gets called when the user clicks on the button */

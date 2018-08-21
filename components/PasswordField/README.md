@@ -104,6 +104,7 @@ PasswordField Atomic Component renders a custom password input field component w
 ### Then,
 
 ``` jsx
+{ var someStyleClass = '';}
 <PasswordField 
   disabled={false} 
   className={someStyleClass}

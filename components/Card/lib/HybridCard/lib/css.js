@@ -26,17 +26,20 @@ styles.hrStyles = css`
   border: 0.5px solid #cccccc;
 `;
 
+styles.imageContainer = css`
+  @media only screen and (min-width: 768px) {
+    &:hover .c-product__quickviewbtn {
+      display: block;
+    }
+  }
+`;
+
 const quickViewPositioning = css`
   position: absolute;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
   display: none;
-
-  @media only screen and (min-width: 768px) {
-    div:hover > div > & {
-    display: block;
-  }
 `;
 
 styles.quickView = css`
@@ -45,13 +48,18 @@ styles.quickView = css`
   height: 50px;
   min-width: 150px;
   width: 150px;
-  font-family: Mallory;
-  font-size: 14px;
+  font-family: Mallory-Bold;
+  font-size: 12px;
   font-weight: bold;
   text-transform: underline;
   padding: 0;
-  outline: none;
   cursor: pointer;
 `;
-
+styles.hoverImage = css`
+  @media only screen and (min-width: 768px) {
+    .c-product__has-quickview div:hover > & {
+      opacity: 0.5;
+    }
+  }
+`;
 export default styles;
