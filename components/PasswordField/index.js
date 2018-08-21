@@ -6,7 +6,7 @@ import { css } from 'react-emotion';
  * @param {object} props  containing various attributes to style password field.
  */
 const CommonStyles = props => css`
-  padding: 0.2rem 0.5rem;
+  padding: ${props.padding};
   width: ${props.width};
   height: ${props.height};
   border-radius: ${props.borderradius};
@@ -51,6 +51,10 @@ const InlineButton = props => css`
   color: ${props.buttontextcolor};
   font-size: ${props.fontSize};
   border: none;
+  background-color: ${props.buttonBg ? props.buttonBg : 'transparent'};
+  &:focus {
+    outline:0;
+  }
   ${props.inlinebuttonclass};
 `;
 
@@ -83,11 +87,11 @@ class PasswordField extends Component {
     }
     render() {
         const {
-            classname, name, disabled, onChange, placeholder, value, width, height, fontSize, fontWeight, inlinebuttontexthide, inlinebuttontextshow, maxLength, ...rest
+            classname, name, disabled, onChange, placeholder, value, width, height, fontSize, fontWeight, inlinebuttontexthide, inlinebuttontextshow, ...rest
         } = this.props;
         return (
           <div className={`${CommonStyles(this.props)} ${classname} d-flex align-items-center`} width={width} height={height} fontSize={fontSize} fontWeight={fontWeight}>
-            <input {...rest} name={name} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} maxLength={maxLength} />
+            <input {...rest} name={name} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
             <button className={`${InlineButton(this.props)}`} onClick={event => this.changeVisibility(event)}>{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
           </div>
         );
@@ -111,7 +115,8 @@ PasswordField.defaultProps = {
   buttontextcolor: '#0055a6',
   buttontextfont: '1rem',
   buttontextweight: '300',
-  onChange: () => {}
+  onChange: () => {},
+  padding: '0.2rem 0.5rem'
 };
 
 PasswordField.propTypes = {
@@ -129,14 +134,15 @@ PasswordField.propTypes = {
     activebordercolor: PropTypes.string,
     activeborderwidth: PropTypes.string,
     fontWeight: PropTypes.string,
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     inlinebuttontexthide: PropTypes.string,
     inlinebuttontextshow: PropTypes.string,
     buttontextcolor: PropTypes.string,
     buttontextfont: PropTypes.string,
     buttontextweight: PropTypes.string,
-    maxLength: PropTypes.string,
-    Inlinebuttonclass: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    inlinebuttonclass: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    padding: PropTypes.string
 };
 
 export default PasswordField;

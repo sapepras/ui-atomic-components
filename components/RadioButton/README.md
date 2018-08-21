@@ -8,14 +8,6 @@ Radio Button Atomic Component renders a custom radio button component with vario
 
 ``` Pass the default value of radio button to be checked. ```
 
-* **labelPosition**: *PropTypes.string*
-
-```A string containing position of label text to be either left or right of the RadioButton, default set to right```
-
-* **labelText**: *PropTypes.object*
-
-```Provides the text to the label component of the RadioButton. Default set to blank string.```
-
 * **disabled**: *PropTypes.bool*
 
 ```boolean value to render the RadioButton enabled or disabled.```
@@ -23,10 +15,6 @@ Radio Button Atomic Component renders a custom radio button component with vario
 * **onChange**: *PropTypes.func*
 
 ```Function to be executed when any option in dropdown is clicked upon.eturns the state of radio button```
-
-* **labelClass**: *PropTypes.oneOfType([PropTypes.string, PropTypes.object])*
-
-```Style class to applied to label text of the radio button```
 
 * **name**: *PropTypes.string* *Required*
 
@@ -47,8 +35,6 @@ Radio Button Atomic Component renders a custom radio button component with vario
 <RadioButton 
   initialState={true}
   disabled={false} 
-  labelText="Some RadioButton Text"
-  labelPosition="left" // either left or right
   onChange={this.functionToBeExecutedWhenRadioButtonChanges}
   name="test-radio"
   id="test-radio"

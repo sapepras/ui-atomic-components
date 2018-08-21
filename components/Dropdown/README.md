@@ -72,6 +72,14 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ```max height of the dropdown list, default set to 10rem.```
 
+* **name**: *PropTypes.string.isRequired*
+
+```name attribute of the field.```
+
+* **id**: *PropTypes.string.isRequired*
+
+```id attribute of the field.```
+
 ## Example Usage
 
 ### Firstly, Import Dropdown from Atomic Components.
@@ -87,6 +95,8 @@ Dropdown Atomic Component renders a custom dropdown component with various props
     {title: 'Tejas', subtitle: 'Karnataka, India'}]}
   
   initiallySelectedOption = {2}
+  id="id"
+  name="name"
   disabled={false} 
   width="30rem" 
   height="3.5rem" 
@@ -144,6 +154,8 @@ renderSelectField.propTypes = {
 export default renderSelectField; 
 ```
 ### Recent Updates -
+* Synthetic Accessibility features like traversing using keyboard keys, searching using first letter and more have been addressed.
+* Added auto height and responsive indicator icon.
 * Updated Prop names to avoid conflicts with default react props.
 * Added fix where clicking outside the dropdown wasn't closing It. 
 * Fixed ```onSelectOption``` to return index, title of selected element.

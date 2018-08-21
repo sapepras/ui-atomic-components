@@ -56,40 +56,27 @@ class RadioButton extends Component {
 
     render() {
         const {
-            id, labelPosition, labelText, disabled, onChange, labelClass, name, initialState
+            id, disabled, onChange, name, initialState
         } = this.props;
         return (
-            labelPosition === 'left' ?
-              <label htmlFor={id} className={`${labelClass} ${RadioStyles}`}>
-                <span>{labelText}</span>
-                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
-                <strong></strong>
-              </label>
-           :
-              <label htmlFor={id} className={`${labelClass} ${RadioStyles}`}>
-                <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
-                <strong></strong>
-                <span>{labelText}</span>
-              </label>
-         );
+          <span className={`${RadioStyles}`}>
+            <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
+            <strong></strong>
+          </span>
+        );
     }
 }
 
 RadioButton.defaultProps = {
-    labelPosition: 'right',
-    labelText: '',
     disabled: false
 };
 
 RadioButton.propTypes = {
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    labelPosition: PropTypes.string,
-    labelText: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
-    initialState: PropTypes.string,
-    labelClass: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    initialState: PropTypes.string
 };
 
 export default RadioButton;

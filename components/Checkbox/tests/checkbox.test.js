@@ -1,20 +1,11 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import checkbox from '../index';
+import Checkbox from '../index';
 
-describe('/checkbox/', () => {
-  const props = {};
-  let MountedBtn;
-
-  const ShallowBtn = () => {
-    if (!MountedBtn) {
-      MountedBtn = mount(<checkbox {...props} />);
-    }
-    return MountedBtn;
-  };
-
-  it('always renders a checkbox', () => {
-    expect(ShallowBtn().find('checkbox')).to.have.length(1);
+describe('Atomic Checkbox Component', () => {
+  it('renders a checkbox', () => {
+    const wrapper = mount(<Checkbox name="test-checkbox" id="test-check" onChange={() => {}} />);
+    expect(wrapper.find('input')).to.have.length(1);
   });
 });

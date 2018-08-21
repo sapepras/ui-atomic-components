@@ -1,6 +1,6 @@
-# InputField Component: (**_WIP_**)
+# EmailField Component: (**_WIP_**)
 
-InputField Atomic Component renders a custom input field component with various props as mentioned below. For ```email, password``` - try respective atomic components, available separately.
+EmailField Atomic Component renders a custom email field component with domain suggestions and various props as mentioned below. For ```input, password``` - try respective atomic components, available separately.
 
 ## Available Props
 
@@ -8,13 +8,13 @@ InputField Atomic Component renders a custom input field component with various 
 
 ```Custom CSS Class can be passed which holds greater precedence over default styles.```
 
-* **type**: *PropTypes.string*
-
-```type describes the type of input field.```
-
 * **disabled**: *PropTypes.bool*
 
 ```boolean value to render the field enabled or disabled.```
+
+* **domainsList**: *PropTypes.array.isRequired*
+
+```array of domain strings to be suggested by email field.```
 
 * **onChange**: *PropTypes.func*
 
@@ -75,17 +75,15 @@ InputField Atomic Component renders a custom input field component with various 
 
 ## Example Usage
 
-### Firstly, Import InputField from Atomic Components.
+### Firstly, Import EmailField from Atomic Components.
 
 ### Then,
 
 ``` jsx
-{ var someStyleClass = '';}
-<InputField 
-  type="text" 
+<EmailField 
   disabled={false} 
   classname={someStyleClass}
-  placeholder="Enter some text" 
+  placeholder="Enter some email" 
   width="30rem" 
   height="2.5rem" 
   fontSize="1.5rem" 
@@ -96,6 +94,7 @@ InputField Atomic Component renders a custom input field component with various 
   activeborderwidth="3px" 
   fontWeight="500" 
   name="test"
+  id="test"
 />
 ```
 
@@ -108,8 +107,8 @@ InputField Atomic Component renders a custom input field component with various 
 ``` jsx
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input from '@academysports/fusion-components/dist/InputField';
-import { labelStyle, formControl } from './../../style';
+import Email from '@academysports/fusion-components/dist/EmailField';
+import { labelStyle } from './../../style';
 
 const renderField = ({
                        input,
@@ -120,14 +119,14 @@ const renderField = ({
                        <div>
                          <label className={`${labelStyle} o-copy__14bold p-quarter`}>{label}</label>
                          <div>
-                           <Input
+                           <Email
                              {...input}
                              width="36.3125rem"
                              height="2.5rem"
                              borderradius="4px"
                              bordercolor="rgba(0, 0, 0, 0.3)"
                              borderwidth="1px"
-                             classname={`${formControl} w-100`}
+                             classname="w-100"
                              placeholder={label}
                              type={type}
                            />
