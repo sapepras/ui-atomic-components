@@ -146,6 +146,7 @@ export default renderField;
 
 ```
 ### Recent Updates
+* Addition of padding props.
 * Updated Prop names to avoid conflicts with default react props.
 * Added ```...rest``` to the input field to enable redux form.
 * Added ```name``` prop to identify individual fields. 

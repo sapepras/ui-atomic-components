@@ -10,7 +10,7 @@ const DropdownStyle = props => css`
         width: 100%;
         list-style-type: none;
         max-height: ${props.maxHeight ? props.maxHeight : '10rem'};
-        overflow-y:hidden;
+        overflow-y:auto;
         overflow-x:hidden;
         position: absolute;
         background: #fff;
@@ -59,7 +59,7 @@ const DropdownStyle = props => css`
 
 const btnStyle = props => css`
     display: flex;
-    padding: 1rem 0.5rem;
+    padding: 0.5rem;
     width: ${props.width ? props.width : '100%'};
     height: ${props.height ? props.height : '3.5rem auto'};
     line-height: 1.25;
@@ -111,7 +111,7 @@ class Dropdown extends React.Component {
             this.setState({ selectedOption: nextProps.initiallySelectedOption < nextProps.DropdownOptions.length ? nextProps.DropdownOptions[nextProps.initiallySelectedOption] : nextProps.DropdownOptions[0], activeListItem: nextProps.initiallySelectedOption < nextProps.DropdownOptions.length ? nextProps.initiallySelectedOption : 0 });
         }
     }
-    // remove those listeners anyway, when the component unmounts.
+
     componentWillUnmount() {
         document.removeEventListener('keydown', this.handleKeyboardEvents);
         document.removeEventListener('mousedown', this.handleClickOutside);
@@ -136,9 +136,7 @@ class Dropdown extends React.Component {
             this.toggleDropdownState();
         }
     }
-    /**
-     * toggles state of dropdown to be open or closed.
-     */
+
     toggleDropdownState() {
         if (this.state.isDropdownOpen) {
             this.setState(Object.assign({}, this.state, { isDropdownOpen: false }));
@@ -212,7 +210,7 @@ class Dropdown extends React.Component {
     renderButtonContents(item, titleClass = '', subtitleClass = '') {
         if (typeof item === 'object') {
             const content = (
-              <div>
+              <div className="">
                 <div className={`d-flex justify-content-start ${titleClass} `}>
                   {item.title}
                 </div>
@@ -233,9 +231,9 @@ class Dropdown extends React.Component {
         this.manageActiveListeners();
         return (
           <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
-            <button type="button" className={`${btnStyle(this.props)} d-flex justify-content-between align-items-center`} disabled={disabled} onClick={() => this.toggleDropdownState()}>
+            <button type="button" className={`${btnStyle(this.props)} align-items-center`} disabled={disabled} onClick={() => this.toggleDropdownState()}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
-              <span className={!this.state.isDropdownOpen ? `ml-quarter academyicon icon-chevron-down ${indicatorArrow}` : `ml-quarter academyicon icon-chevron-up ${indicatorArrow}`} />
+              <span className={!this.state.isDropdownOpen ? `ml-half academyicon icon-chevron-down ${indicatorArrow}` : `ml-quarter academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
             {this.state.isDropdownOpen && (
             <ul className={`${listStyle(this.props)} align-items-center`} role="presentation">
@@ -295,3 +293,4 @@ Dropdown.propTypes = {
 };
 
 export default Dropdown;
+

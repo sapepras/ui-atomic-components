@@ -11,4 +11,5 @@ import Checkbox from './components/Checkbox';
 import RadioButton from './components/RadioButton';
 import Modal from './components/Modal';
 import PasswordField from './components/PasswordField';
-export { Button, Anchor, Drawer, ProductCard, PriceDetails, Badge, PopoverStateless, Modal, InputField, Dropdown, Checkbox, RadioButton, PasswordField };
+import EmailField from './components/EmailField';
+export { Button, Anchor, Drawer, ProductCard, PriceDetails, Badge, PopoverStateless, Modal, InputField, Dropdown, Checkbox, RadioButton, PasswordField, EmailField };

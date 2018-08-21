@@ -1,6 +1,6 @@
-# PasswordField Component: (**_WIP_**)
+# EmailField Component: (**_WIP_**)
 
-PasswordField Atomic Component renders a custom password input field component with an inline button to show/hide password entered. It ignores spaced by default. PasswordField accepts various props as mentioned below.
+EmailField Atomic Component renders a custom email field component with domain suggestions and various props as mentioned below. For ```input, password``` - try respective atomic components, available separately.
 
 ## Available Props
 
@@ -60,35 +60,6 @@ PasswordField Atomic Component renders a custom password input field component w
 
 ```font weight of the text in field.```
 
-* **inlinebuttontexthide**: *PropTypes.string*
-
-  ```Text to display on inline button when the password is being displayed.```
-
-
-* **inlinebuttontextshow**: *PropTypes.string*
-
-  ```Text to display on inline button when the password is hidden.```
-
-* **buttontextcolor**: *PropTypes.string*
-
-  ```Color string for the text on inline button```
-
-* **buttontextfont**: *PropTypes.string*
-
-  ```Font size for the text on inline button```
-
-* **buttontextweight**: *PropTypes.string*
-
-  ```Font weight for the text on inline button```
-
-* **inlinebuttonclass**: *PropTypes.string*
-
-  ```style class for inline show/hide button```
-  
-* **buttonBg**: *PropTypes.string*
-
-  ```background color of inline button, transparent by default.```
-
 * **name**: *PropTypes.string.isRequired*
 
 ```name attribute of the field.```
@@ -97,17 +68,18 @@ PasswordField Atomic Component renders a custom password input field component w
 
 ```id attribute of the field.```
 
+
 ## Example Usage
 
-### Firstly, Import PasswordField from Atomic Components.
+### Firstly, Import EmailField from Atomic Components.
 
 ### Then,
 
 ``` jsx
-<PasswordField 
+<EmailField 
   disabled={false} 
-  className={someStyleClass}
-  placeholder="Enter Password" 
+  classname={someStyleClass}
+  placeholder="Enter some email" 
   width="30rem" 
   height="2.5rem" 
   fontSize="1.5rem" 
@@ -117,12 +89,8 @@ PasswordField Atomic Component renders a custom password input field component w
   activebordercolor="red" 
   activeborderwidth="3px" 
   fontWeight="500" 
-  inlinebuttontexthide="Hide"
-  inlinebuttontextshow="Show"
-  buttontextcolor="#0055a6"
-  buttontextfont="1rem"
-  buttontextweight="300"
-  inlinebuttonclass={someStyleClass}
+  name="test"
+  id="test"
 />
 ```
 
@@ -135,10 +103,10 @@ PasswordField Atomic Component renders a custom password input field component w
 ``` jsx
 import React from 'react';
 import PropTypes from 'prop-types';
-import Password from '@academysports/fusion-components/dist/PasswordField';
-import { labelStyle, formControl } from './../../style';
+import Email from '@academysports/fusion-components/dist/EmailField';
+import { labelStyle } from './../../style';
 
-const renderPasswordField = ({
+const renderField = ({
                        input,
                        label,
                        type,
@@ -147,18 +115,16 @@ const renderPasswordField = ({
                        <div>
                          <label className={`${labelStyle} o-copy__14bold p-quarter`}>{label}</label>
                          <div>
-                           <Password
+                           <Email
                              {...input}
                              width="36.3125rem"
                              height="2.5rem"
                              borderradius="4px"
                              bordercolor="rgba(0, 0, 0, 0.3)"
                              borderwidth="1px"
-                             classname={`${formControl} w-100`}
+                             classname="w-100"
                              placeholder={label}
                              type={type}
-                             name={name}
-                             id={id}
                            />
                            {touched &&
       ((error && <span className="body-12-regular text-danger">{error}</span>) ||
@@ -166,19 +132,19 @@ const renderPasswordField = ({
                          </div>
                        </div>
 );
-renderPasswordField.propTypes = {
+renderField.propTypes = {
   input: PropTypes.isRequired,
   label: PropTypes.string,
   type: PropTypes.string,
-  meta: PropTypes.object,
-  name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired
+  meta: PropTypes.object
 };
-export default renderPasswordField;
+export default renderField;
 
 ```
 ### Recent Updates
 * Addition of padding props.
 * Updated Prop names to avoid conflicts with default react props.
+* Added ```...rest``` to the input field to enable redux form.
+* Added ```name``` prop to identify individual fields. 
 
 ##### For further details, clone ```ui-atomic-components``` from bitbucket and look under the hood. 
