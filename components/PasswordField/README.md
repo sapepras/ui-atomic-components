@@ -179,6 +179,7 @@ export default renderPasswordField;
 
 ```
 ### Recent Updates
+* Addition of padding props.
 * Updated Prop names to avoid conflicts with default react props.
 
 ##### For further details, clone ```ui-atomic-components``` from bitbucket and look under the hood. 

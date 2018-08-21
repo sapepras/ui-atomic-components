@@ -6,7 +6,7 @@ import { css } from 'react-emotion';
  * @param {object} props  containing various attributes to style password field.
  */
 const CommonStyles = props => css`
-  padding: 0.2rem 0.5rem;
+  padding: ${props.padding};
   width: ${props.width};
   height: ${props.height};
   border-radius: ${props.borderradius};
@@ -115,7 +115,8 @@ PasswordField.defaultProps = {
   buttontextcolor: '#0055a6',
   buttontextfont: '1rem',
   buttontextweight: '300',
-  onChange: () => {}
+  onChange: () => {},
+  padding: '0.2rem 0.5rem'
 };
 
 PasswordField.propTypes = {
@@ -140,7 +141,8 @@ PasswordField.propTypes = {
     buttontextcolor: PropTypes.string,
     buttontextfont: PropTypes.string,
     buttontextweight: PropTypes.string,
-    inlinebuttonclass: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    inlinebuttonclass: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    padding: PropTypes.string
 };
 
 export default PasswordField;
