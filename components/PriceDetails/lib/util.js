@@ -1,6 +1,6 @@
 import { determinePriceType } from './PredictivePriceTypes';
 import { DuplicatePriceTypeMapToPriceType, getPriceTypeKeyByValue } from './PriceTypes';
-import MessageTypes from './MessageTypes';
+import MessageTypes, { getFirstMessageTypeText } from './MessageTypes';
 import AdBugTypes from './AdBugTypes';
 
 export const determinePriceObjectFromProductInfo = (props = {}, product = {}) => {
@@ -9,6 +9,7 @@ export const determinePriceObjectFromProductInfo = (props = {}, product = {}) =>
   const adBug = arrAdBug.length > 0 ? arrAdBug[0] : null;
   const adBugKeys = getAdBugKeys(arrAdBug);
   const messageKeys = getMessageTypeKeys(defaultSkuPrice.priceMessage);
+  const firstPriceMessageText = getFirstMessageTypeText(defaultSkuPrice.priceMessage);
   const priceTypeKeys = getPriceTypeKeys(defaultSkuPrice.priceMessage);
   let updatedDefaultSkuPricesInObject = { ...defaultSkuPrice, ...{ listPrice: cleanPrice(defaultSkuPrice.listPrice) } };
   if (defaultSkuPrice.salePrice && defaultSkuPrice.salePrice.length) {
@@ -18,6 +19,7 @@ export const determinePriceObjectFromProductInfo = (props = {}, product = {}) =>
     adBug,
     adBugKeys,
     messageKeys,
+    firstPriceMessageText,
     priceTypeKeys,
     ...updatedDefaultSkuPricesInObject,
     priceObject
@@ -41,6 +43,7 @@ export const determinePriceObjectFromProduct = (props = {}, product = {}) => {
 
   const defaultSkuPrice = getDefaultSkuPriceFromSkus(product);
   const messageKeys = getMessageTypeKeys(defaultSkuPrice.priceMessage);
+  const firstPriceMessageText = getFirstMessageTypeText(defaultSkuPrice.priceMessage);
   const priceTypeKeys = getPriceTypeKeys(defaultSkuPrice.priceMessage);
   let updatedDefaultSkuPricesInObject = { ...defaultSkuPrice, ...{ listPrice: cleanPrice(defaultSkuPrice.listPrice) } };
   if (defaultSkuPrice.salePrice && defaultSkuPrice.salePrice.length) {
@@ -50,6 +53,7 @@ export const determinePriceObjectFromProduct = (props = {}, product = {}) => {
     adBug,
     adBugKeys,
     messageKeys,
+    firstPriceMessageText,
     priceTypeKeys,
     ...updatedDefaultSkuPricesInObject,
     ...priceObject
@@ -109,8 +113,8 @@ export const cleanPrice = val => {
   }
 
   // assume val is number || string
-  let result = (typeof val === 'number') ? val.toString() : val;
-  let floatResult = parseFloat(result.replace(/[^\d\.]/gi, ''), 10);// eslint-disable-line no-useless-escape
+  let result = typeof val === 'number' ? val.toString() : val;
+  let floatResult = parseFloat(result.replace(/[^\d\.]/gi, ''), 10); // eslint-disable-line no-useless-escape
   floatResult = floatResult.toFixed(2);
   result = floatResult.toString();
   return result;
