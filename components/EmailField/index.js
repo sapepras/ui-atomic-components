@@ -61,7 +61,7 @@ export default class EmailField extends Component {
             }
         }
         this.setState({ suggestedEmail });
-        onChange();
+        onChange(event);
     }
 
     UseSuggestionKeyHandler(event) {
