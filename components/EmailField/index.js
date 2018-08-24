@@ -43,7 +43,6 @@ export default class EmailField extends Component {
             value: '',
             suggestedEmail: ''
         };
-
         this.onChangeInput = this.onChangeInput.bind(this);
         this.UseSuggestionKeyHandler = this.UseSuggestionKeyHandler.bind(this);
     }
@@ -60,13 +59,12 @@ export default class EmailField extends Component {
                 suggestedEmail = `${value}${this.findMatchingEmailDomain(splitValues[1])}`;
             }
         }
-        this.setState({ suggestedEmail });
-        onChange(this.state.value);
+        this.setState({ suggestedEmail }, () => onChange(this.state.value));
     }
 
-    UseSuggestionKeyHandler(event) {
+    UseSuggestionKeyHandler(event, onChange) {
         if ((event.keyCode === 9 || event.keyCode === 13 || event.keyCode === 39) && (this.state.suggestedEmail && (this.state.suggestedEmail !== this.state.value))) {
-            this.setState({ value: this.state.suggestedEmail });
+            this.setState({ value: this.state.suggestedEmail }, () => onChange(this.state.value));
             event.preventDefault();
         }
     }
@@ -84,7 +82,7 @@ export default class EmailField extends Component {
     } = this.props;
     return (
       <div className={`${styledInput(this.props)}`}>
-        <input disabled={disabled} name={name} id={id} type="email" placeholder={placeholder} value={this.state.value} onChange={event => this.onChangeInput(event, onChange)} onKeyDown={this.UseSuggestionKeyHandler} {...rest} />
+        <input disabled={disabled} name={name} id={id} type="email" placeholder={placeholder} value={this.state.value} onChange={event => this.onChangeInput(event, onChange)} onKeyDown={event => this.UseSuggestionKeyHandler(event, onChange)} {...rest} />
         <div className="suggestion">{this.state.suggestedEmail}</div>
       </div>
     );
