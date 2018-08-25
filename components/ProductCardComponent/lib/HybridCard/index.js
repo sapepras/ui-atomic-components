@@ -103,7 +103,7 @@ class HybridCard extends Component {
         <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 flex-sm-grow position-relative')}>
           {isRemovable ? (
             <div className="d-flex flex-row">
-              {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pt-md-1 px-1 px-md-2`} />}
+              {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 h-100 pt-3 pt-md-1 px-1 px-md-2`} />}
               <button className={`${css.removeIcon} academyicon icon-close pt-0 pt-md-1 pl-0 pl-md-half`} onClick={() => this.props.removeCardFunc()} />
             </div>
           ) : (
