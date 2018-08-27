@@ -93,6 +93,7 @@
     "dist"
   ],
   "dependencies": {
+    "react-responsive": "^5.0.0",
     "react-tooltip": "^3.6.1"
   }
 }
