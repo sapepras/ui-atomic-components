@@ -1,7 +1,12 @@
+/**
+ * Atomic Checkbox Component for all checkbox involving requirements.
+ */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
-
+/**
+ * default styles for atomic checkbox component.
+ */
 const CheckboxStyles = css`
     position: relative;
     cursor: pointer;
@@ -57,48 +62,35 @@ class Checkbox extends Component {
         };
         this.onChangeWrapper = this.onChangeWrapper.bind(this);
     }
-
+    /**
+     * wrapper function around onChange function of checkbox.
+     * @param {func} onChange function is executed with status of checkbox as argument.
+     */
     onChangeWrapper(onChange) {
         this.setState({ isChecked: !this.state.isChecked }, () => onChange(this.state.isChecked));
     }
 
     render() {
         const {
-            formLabel, labelPosition, labelText, disabled, onChange, labelClass, name, id
+            id, disabled, onChange, name
         } = this.props;
         return (
-           labelPosition === 'left' ?
-             <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
-               <span className={labelClass}>{labelText}</span>
-               <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
-             </label>
-          :
-             <label htmlFor={formLabel} className={(labelText !== undefined && labelText === '') ? '' : 'd-flex'}>
-               <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
-               <span className={`${labelClass} d-flex align-items-center`}>{labelText}</span>
-             </label>
+          <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
         );
     }
 }
 
 Checkbox.defaultProps = {
     checked: false,
-    labelPosition: 'right',
-    formLabel: 'checkbox',
-    labelText: '',
     disabled: false
 };
 
 Checkbox.propTypes = {
     name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
     checked: PropTypes.bool,
-    formLabel: PropTypes.string,
-    labelPosition: PropTypes.string,
-    labelText: PropTypes.string,
+    id: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
-    onChange: PropTypes.func,
-    labelClass: PropTypes.oneOf(['string', 'object'])
+    onChange: PropTypes.func
 };
 
 export default Checkbox;

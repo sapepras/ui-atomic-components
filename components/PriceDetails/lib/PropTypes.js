@@ -4,7 +4,8 @@ export const productDetailChildPropTypes = {
   priceMessage: PropTypes.string,
   salePrice: PropTypes.string,
   listPrice: PropTypes.string,
-  priceRange: PropTypes.string
+  priceRange: PropTypes.string,
+  firstPriceMessageText: PropTypes.string
 };
 
 export const productDetailPropTypes = {

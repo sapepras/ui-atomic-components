@@ -1,11 +1,16 @@
+import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
 import React from 'react';
-import Responsive from 'react-responsive';
 import { productDetailChildPropTypes } from '../../PropTypes';
 import { TOOLTIP_TEXT } from './constants';
 import Tooltip from '../../../../Tooltip';
 import * as css from '../../css';
 
-const InCartPlusCompare = ({ listPrice }) => {
+const isMobile = () =>
+  ExecutionEnvironment.canUseDOM &&
+  window.navigator.userAgent.toLowerCase().match(/android|blackberry|tablet|mobile|iphone|ipad|ipod|opera mini|iemobile/i) !== null;
+
+const InCartPlusCompare = props => {
+  const { listPrice, firstPriceMessageText } = props;
   if (!listPrice) {
     return null;
   }
@@ -28,20 +33,14 @@ const InCartPlusCompare = ({ listPrice }) => {
     <div>
       <div className="c-price-in-cart mb-half" style={{ color: '#ee0000' }}>
         Our Price in Cart
-        <Responsive maxWidth={767}>
-          <Tooltip {...toolTipProps} showOnClick>
-            <span className="c-price__tooltip-icon academyicon icon-information" />
-          </Tooltip>
-        </Responsive>
-        <Responsive minWidth={768}>
-          <Tooltip {...toolTipProps}>
-            <span className="c-price__tooltip-icon academyicon icon-information" />
-          </Tooltip>
-        </Responsive>
+        <Tooltip {...toolTipProps} showOnClick={isMobile()}>
+          <span className="c-price__tooltip-icon academyicon icon-information" />
+        </Tooltip>
       </div>
       <div className="c-price-compare mb-half" style={{ color: '#333333' }}>
         Compare at {formattedListPrice}
       </div>
+      {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>}
     </div>
   );
 };

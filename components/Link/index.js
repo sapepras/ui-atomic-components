@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { primaryBtnStyle } from '../Button/PrimaryBtn';
 import { secondaryBtnStyles } from '../Button/SecondaryBtn';
-import { Button } from '../Button';
-import { Anchor } from '../Anchor';
+import Button from '../Button';
+import Anchor from '../Anchor';
 
 const BTN_SIZE_SMALL = 'S';
 const BTN_SIZE_MEDIUM = 'M';
@@ -65,57 +65,27 @@ const StyledLink = styled('a')`
   ${commonBtnStyle};
   ${sizeStyles};
   ${props => (props.btntype === 'secondary' ? secondaryBtnStyles : primaryBtnStyle)};
-  text-align: center;
   text-decoration: none;
-  display: block;
-  &:focus{
-    :after {
-      content: '';
-      border: 1px dotted #fff;
-      border-radius: 35px;
-      display: block;
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      left: -4px;
-      bottom: -4px;
-    }
-    :before {
-      border: none !important
-    }
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover {
-    color: rgb(51, 51, 51);
-    background: rgb(232, 232, 232);
     text-decoration: none;
-  }
-  &:before {
-    content: '';
-    display: inline-block !important;
-    height: 100%;
-    vertical-align: middle;    
-    margin-right: 0;
-    margin-top: 4px;
-    position: relative !important;
-  }
-  span {
-    display: inline;
-    vertical-align:middle;
-    line-height: inherit;
   }
 `;
 
 const Link = props => {
   const {
- type, linkstyle, onClick, href, disabled, auid, imgUrl, imgWidth, imgHeight
-} = props;
+    type, linkstyle, onClick, href, disabled, auid, imgUrl, imgWidth, imgHeight
+  } = props;
   const ImgH = !imgHeight ? '30px' : imgHeight;
   return (
     <React.Fragment>
       {type === 'anchor' &&
         linkstyle === 'button' && (
           <StyledLink data-auid={`btn${auid}`} href={href} disabled={disabled} onClick={onClick} {...props}>
-            <span>{props.children}</span> {imgUrl && <img alt="icon" width={imgWidth} height={ImgH} src={imgUrl} />}
+            {props.children}
+            {imgUrl && <img alt="icon" width={imgWidth} height={ImgH} src={imgUrl} />}
           </StyledLink>
         )}
       {type === 'anchor' && linkstyle !== 'button' && <Anchor auid={auid} href={href} {...props} />}

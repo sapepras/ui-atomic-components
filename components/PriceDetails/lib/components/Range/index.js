@@ -1,9 +1,10 @@
 import React from 'react';
 import { productDetailChildPropTypes } from '../../PropTypes';
 import Price from '../Price';
+import * as css from '../../css';
 
 const Range = props => {
-  const { priceRange = '' } = props; // eslint-disable-line object-curly-newline
+  const { priceRange = '', firstPriceMessageText } = props; // eslint-disable-line object-curly-newline
   const [minPrice, maxPrice] = priceRange.replace(/[^\d\.-]/g, '').split('-'); // eslint-disable-line no-useless-escape
 
   if (!maxPrice || !minPrice) {
@@ -15,6 +16,7 @@ const Range = props => {
       <Price price={minPrice} />
       &nbsp;<span>-</span>&nbsp;
       <Price price={maxPrice} />
+      {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>}
     </div>
   );
 };

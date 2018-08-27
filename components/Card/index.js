@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import styled from 'react-emotion';
+import React, { PureComponent } from 'react';
+import { css, cx } from 'react-emotion';
 import HybridCard from './lib/HybridCard';
 
-const StyledAnchor = styled('a')`
+const anchorStyles = css`
   display: flex;
   color: #333333;
+  width: 100%;
   &:hover {
     color: #333333;
     text-decoration: none;
@@ -19,7 +20,13 @@ const StyledAnchor = styled('a')`
     }
   }
 `;
-class Card extends Component {
+class Card extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.anchorId = `card-${Math.floor(Math.random() * 1e16)}`;
+  }
+
   onClickGoTo(url, onClickLogGA) {
     return () => {
       if (onClickLogGA) {
@@ -44,9 +51,16 @@ class Card extends Component {
     }
     return (
       <div className={classes}>
-        <StyledAnchor className="mb-quarter mb-md-4" href={ctaLink} data-auid={auid} {...clickAttributes} tabIndex={tabIndex}>
-          <HybridCard {...remainingProps} quickViewAuid={`${auid}_quickview`} />
-        </StyledAnchor>
+        <a
+          className={cx(anchorStyles, 'mb-quarter mb-md-4')}
+          href={ctaLink}
+          data-auid={auid}
+          {...clickAttributes}
+          tabIndex={tabIndex}
+          id={this.anchorId}
+        >
+          <HybridCard {...remainingProps} quickViewAuid={`${auid}_quickview`} fncFocusCard={this.focus} anchorId={this.anchorId} />
+        </a>
       </div>
     );
   }
@@ -67,7 +81,12 @@ Card.propTypes = {
   tabIndex: PropTypes.number,
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
+  focusCardOnQuickViewClose: PropTypes.bool,
   cardAnalytics: PropTypes.func
+};
+
+Card.defaultProps = {
+  focusCardOnQuickViewClose: true
 };
 
 export default Card;

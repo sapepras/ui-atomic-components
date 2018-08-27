@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import { cx } from 'emotion';
 import css from './lib/css';
 import { productDetailPropTypes } from '../../../PriceDetails/lib/PropTypes';
-
+import { SHIPPING_MESSAGE, COUNT_TEXT } from '../../../../constants';
 import Badge from '../../../Badge';
 import Button from '../../../Button';
 import Rating from '../../../Rating';
@@ -12,12 +12,16 @@ import PriceDetails from '../../../PriceDetails';
 const wcx = (style, styleOverride) => (styleOverride ? cx(style, styleOverride) : style);
 
 class HybridCard extends Component {
-  wrapClickViewClick(onClickQuickView) {
+  wrapClickViewClick(onClickQuickView, focusCardOnQuickViewClose, anchorId) {
     return e => {
       e.preventDefault();
       e.stopPropagation();
       if (onClickQuickView) {
-        onClickQuickView();
+        if (focusCardOnQuickViewClose && anchorId) {
+          onClickQuickView(anchorId);
+        } else {
+          onClickQuickView();
+        }
       }
     };
   }
@@ -31,48 +35,47 @@ class HybridCard extends Component {
    * @param {*} props props passed to the Card to extract variant counts
    */
   renderVariantCount(props) {
-    const {
- colorCount, patternCount, teamCount, flavourCount, rating
-} = props;
+    const { colorCount, patternCount, teamCount, flavourCount, rating, shippingPrice } = props; // eslint-disable-line object-curly-newline
     let count = 0;
     let countText = '';
+    let shippingMessage = '';
     if (colorCount) {
       count = colorCount;
-      countText = 'colors';
+      [countText] = COUNT_TEXT;
     } else if (patternCount) {
       count = patternCount;
-      countText = 'patterns';
+      [, countText] = COUNT_TEXT;
     } else if (teamCount) {
       count = teamCount;
-      countText = 'teams';
+      [, , countText] = COUNT_TEXT;
     } else if (flavourCount) {
       count = flavourCount;
-      countText = 'flavors';
+      [, , , countText] = COUNT_TEXT;
+    } else if (shippingPrice) {
+      count = 2; // adding count to pass the condition
+      shippingMessage = `${SHIPPING_MESSAGE} ${shippingPrice}`;
     }
     if (/^[0-9]+$/.test(parseInt(count, 10)) && parseInt(count, 10) > 1) {
       if (rating) {
         return (
           <Fragment>
-            <span aria-hidden>&nbsp;|&nbsp;</span>
-            <span className="c-product__colors-available ">
-              {count} {countText} available
+            <span className="c-product__colors-available d-block mb-half pb-quarter">
+              {shippingMessage || `${count} ${countText} available`}
             </span>
           </Fragment>
         );
       }
       return (
-        <span className="c-product__colors-available m-noratings">
-          {count} {countText} available
+        <span className="c-product__colors-available m-noratings d-block mb-half pb-quarter">
+          {shippingMessage || `${count} ${countText} available`}
         </span>
       );
     }
-    return null;
+    return <span className="c-product__colors-available d-block mb-md-half pb-md-quarter"></span>;
   }
 
   renderImage(props) {
-    const {
-      image, loaderImg, imageAltText, isLazyLoad
-    } = props;
+    const { image, loaderImg, imageAltText, isLazyLoad } = props; // eslint-disable-line object-curly-newline
     if (isLazyLoad) {
       return (
         <Fragment>
@@ -103,9 +106,11 @@ class HybridCard extends Component {
       partNumber,
       enableQuickView,
       onClickQuickView = () => null,
+      focusCardOnQuickViewClose,
+      anchorId,
       quickViewAuid,
       productIdx
-    } = this.props; // eslint-disable-line object-curly-newline
+    } = this.props;
     return (
       <div
         className={cx(
@@ -136,13 +141,13 @@ class HybridCard extends Component {
               <Badge className="c-product__badge" text={badge}>
                 {badge}
               </Badge>
-              ))}
+            ))}
           {enableQuickView && (
             <Button
               size="S"
               auid={quickViewAuid}
               className={`c-product__quickviewbtn ${css.quickView}`}
-              onClick={this.wrapClickViewClick(onClickQuickView)}
+              onClick={this.wrapClickViewClick(onClickQuickView, focusCardOnQuickViewClose, anchorId)}
             >
               Quick View
             </Button>
@@ -156,8 +161,8 @@ class HybridCard extends Component {
             {typeof rating === 'string' &&
               rating.trim().length !== 0 &&
               rating !== '0' && <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />}
-            {this.renderVariantCount(this.props)}
           </div>
+          {this.renderVariantCount(this.props)}
           {!isGiftCard && <hr className={`m-0 ${css.hrStyles}`} />}
           {!isGiftCard && (
             <section className="mt-half">
@@ -196,7 +201,9 @@ HybridCard.propTypes = {
   quickViewAuid: PropTypes.string,
   isLazyLoad: PropTypes.bool,
   loaderImg: PropTypes.any,
-  productIdx: PropTypes.number
+  productIdx: PropTypes.number,
+  anchorId: PropTypes.string,
+  focusCardOnQuickViewClose: PropTypes.bool
 };
 
 export default HybridCard;

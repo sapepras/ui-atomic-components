@@ -41,6 +41,12 @@ const DropdownStyle = props => css`
                 color: #fff;
             }
         }
+        &.keySelected {
+            background: #0055a6;
+            span {
+                color: #fff;
+            }
+        }
         &.active {
             background: #0055a6;
             span {
