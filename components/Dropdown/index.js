@@ -152,7 +152,9 @@ class Dropdown extends React.Component {
         onSelect(index, value.title);
     }
 
-    placeholderOption = () => this.props.placeholderOption ? this.props.placeholderOption : this.props.DropdownOptions[0];
+    placeholderOption() {
+        return this.props.placeholderOption ? this.props.placeholderOption : this.props.DropdownOptions[0];
+    }
 
     /**
      *
