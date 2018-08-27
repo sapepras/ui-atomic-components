@@ -72,6 +72,10 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ```max height of the dropdown list, default set to 10rem.```
 
+* **placeholderOption**: *PropTypes.object*
+``` placeholder option for the dropdown, defaults to the first dropdown option.``
+
+
 ## Example Usage
 
 ### Firstly, Import Dropdown from Atomic Components.
@@ -90,9 +94,9 @@ Dropdown Atomic Component renders a custom dropdown component with various props
   disabled={false} 
   width="30rem" 
   height="3.5rem" 
-  borderColor="#64FCAB" 
-  borderWidth="1px" 
-  borderRadius="4px" 
+  bordercolor="#64FCAB" 
+  borderwidth="1px" 
+  borderradius="4px" 
   titleClass={titleStyleClass}
   subtitleClass={subtitleStyleClass}
   listBorderRadius="5px"
@@ -103,7 +107,9 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 * Most of the props have some default values which get rendered if no value is provided. 
 
 ### Recent Updates -
-
+* Addressed styling issues where indicator arrow was going out of button. 
+* Added ```padding``` for button and ```listItemPadding``` as prop to dropdown.
+* Added a feature where if your dropdown implementation doesn't require 'select' to be the first    option, you can remove it from dropdown options using new ```placeholderOption``` object prop containing title/subtitle. 
 * Added fix where clicking outside the dropdown wasn't closing It. 
 * Fixed ```onSelectOption``` to return index of selected element.
 * Added highlighting to previously selected option.
