@@ -14,6 +14,7 @@ import Modal from './components/Modal';
 import PasswordField from './components/PasswordField';
 import Tooltip from './components/Tooltip';
 import EmailField from './components/EmailField';
+import ProductCardComponent from './components/ProductCardComponent';
 export {
   Button,
   Anchor,
@@ -30,5 +31,6 @@ export {
   RadioButton,
   PasswordField,
   Tooltip,
-  EmailField
+  EmailField,
+  ProductCardComponent
 };

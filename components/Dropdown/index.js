@@ -18,7 +18,11 @@ const DropdownStyle = props => css`
         border-radius: ${props.listborderradius ? props.listborderradius : '5px'};
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
-        padding: 0.75rem 1rem;
+        @media screen and (min-width: 768px) {
+            font-size: 0.875rem;
+        }
+        font-size: 0.8rem;   
+        padding: ${props.listItemPadding ? props.listItemPadding : '0.75rem 1rem'};
         min-height: ${props.multi ? '4.5rem' : '3rem'};
         height: auto;
         overflow: hidden;
@@ -26,7 +30,13 @@ const DropdownStyle = props => css`
         font-weight: normal;
         cursor: pointer;
         &:hover {
-            background: #0055a6;
+            background: #2291F2;
+            span {
+                color: #fff;
+            }
+        }
+        &.keySelected {
+            background: #2291F2;
             span {
                 color: #fff;
             }
@@ -59,7 +69,14 @@ const DropdownStyle = props => css`
 
 const btnStyle = props => css`
     display: flex;
-    padding: 0.5rem;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding: ${props.padding};
+    @media screen and (min-width: 768px) {
+        font-size: 0.875rem;
+    }
+    font-size: 0.8rem;
     width: ${props.width ? props.width : '100%'};
     height: ${props.height ? props.height : '3.5rem auto'};
     line-height: 1.25;
@@ -74,14 +91,21 @@ const btnStyle = props => css`
 `;
 
 const indicatorArrow = css`
-    @media screen and (min-width: 992px) {
-        font-size: 0.65rem;
+    @media screen and (min-width: 768px) {
+        font-size: 0.85rem;
     }
-    font-size: 1rem;
+    font-size: 0.45rem;
 `;
 
 const listStyle = props => css`
     width: ${props.width}
+`;
+
+const buttonContentStyle = css`
+    max-width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `;
 
 class Dropdown extends React.Component {
@@ -89,8 +113,8 @@ class Dropdown extends React.Component {
         super(props);
         this.state = {
             isDropdownOpen: false,
-            activeListItem: this.props.initiallySelectedOption < this.props.DropdownOptions.length ? this.props.initiallySelectedOption : 0,
-            selectedOption: this.props.initiallySelectedOption < this.props.DropdownOptions.length ? this.props.DropdownOptions[this.props.initiallySelectedOption] : this.props.DropdownOptions[0],
+            activeListItem: this.props.initiallySelectedOption && this.props.initiallySelectedOption < this.props.DropdownOptions.length ? this.props.initiallySelectedOption : 0,
+            selectedOption: this.props.initiallySelectedOption && this.props.initiallySelectedOption < this.props.DropdownOptions.length ? this.props.DropdownOptions[this.props.initiallySelectedOption] : this.placeholderOption(),
             hoveredListItem: -1,
             keyPressed: ' ',
             matchingOptions: []
@@ -127,6 +151,11 @@ class Dropdown extends React.Component {
         this.setState({ selectedOption: value, activeListItem: index }, () => this.toggleDropdownState());
         onSelect(index, value.title);
     }
+
+    placeholderOption() {
+        return this.props.placeholderOption ? this.props.placeholderOption : this.props.DropdownOptions[0];
+    }
+
     /**
      *
      * @param {object} event to be passed - handles clicks outside the dropdown and resets the state to close the dropdown.
@@ -210,11 +239,11 @@ class Dropdown extends React.Component {
     renderButtonContents(item, titleClass = '', subtitleClass = '') {
         if (typeof item === 'object') {
             const content = (
-              <div className="">
-                <div className={`d-flex justify-content-start ${titleClass} `}>
+              <div className={`${buttonContentStyle}`}>
+                <div className={`${titleClass} `}>
                   {item.title}
                 </div>
-                <div className={`d-flex justify-content-start ${subtitleClass} `}>
+                <div className={`${subtitleClass} `}>
                   {item.subtitle}
                 </div>
               </div>);
@@ -231,9 +260,9 @@ class Dropdown extends React.Component {
         this.manageActiveListeners();
         return (
           <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
-            <button type="button" className={`${btnStyle(this.props)} align-items-center`} disabled={disabled} onClick={() => this.toggleDropdownState()}>
+            <button type="button" className={`${btnStyle(this.props)}`} disabled={disabled} onClick={() => this.toggleDropdownState()}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
-              <span className={!this.state.isDropdownOpen ? `ml-half academyicon icon-chevron-down ${indicatorArrow}` : `ml-quarter academyicon icon-chevron-up ${indicatorArrow}`} />
+              <span className={!this.state.isDropdownOpen ? `justify-content-end academyicon icon-chevron-down ${indicatorArrow}` : `d-flex justify-content-end academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
             {this.state.isDropdownOpen && (
             <ul className={`${listStyle(this.props)} align-items-center`} role="presentation">
@@ -276,7 +305,6 @@ const deriveClassNameForListItem = (props, index, classname = '') => {
 };
 
 Dropdown.defaultProps = {
-    initiallySelectedOption: 0,
     disabled: false
 };
 
@@ -289,7 +317,8 @@ Dropdown.propTypes = {
     initiallySelectedOption: PropTypes.number,
     disabled: PropTypes.bool,
     name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    placeholderOption: PropTypes.object
 };
 
 export default Dropdown;
