@@ -7,25 +7,24 @@ import Price from '../Price';
 const droppedPrice = css`
   font-size: 0.75em;
   display: inline-block;
+  margin-left: 0.5rem;
+  @media only screen and (min-width: 768px) {
+    margin-left: 0;
+  }
+  @media only screen and (min-width: 1349px) {
+    margin-left: 0.5rem;
+  }
 `;
 
 const WasNow = props => {
-  const {
-    salePrice, listPrice, savings, firstPriceMessageText
-   } = props;
+  const { salePrice, listPrice, savings, firstPriceMessageText } = props;
   return (
     <div>
       <Price price={salePrice} color="red" />
-      &nbsp;&nbsp;&nbsp;
       <span className={cx('list-price', droppedPrice)}>
         <Price price={listPrice} color="gray" strikethrough />
       </span>
-      {!!savings && (
-        <span>
-          &nbsp;&nbsp;&nbsp;
-          <span className={style.contentText}>Save {savings}</span>
-        </span>
-      )}
+      {!!savings && <span className={style.contentText}>Save {savings}</span>}
       {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={style.clearanceMsgStyle}>{firstPriceMessageText}</div>}
     </div>
   );
