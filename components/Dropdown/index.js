@@ -235,7 +235,7 @@ class Dropdown extends React.Component {
         this.manageActiveListeners();
         return (
           <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
-            <button type="button" className={`${btnStyle(this.props)} align-items-center`} disabled={disabled} onClick={(event) => this.toggleDropdownState(event)}>
+            <button type="button" className={`${btnStyle(this.props)} align-items-center`} disabled={disabled} onClick={event => this.toggleDropdownState(event)}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
               <span className={!this.state.isDropdownOpen ? `ml-half academyicon icon-chevron-down ${indicatorArrow}` : `ml-quarter academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
