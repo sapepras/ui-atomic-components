@@ -137,7 +137,8 @@ class Dropdown extends React.Component {
         }
     }
 
-    toggleDropdownState() {
+    toggleDropdownState(event = {}) {
+        event.preventDefault();
         if (this.state.isDropdownOpen) {
             this.setState(Object.assign({}, this.state, { isDropdownOpen: false }));
         } else {
@@ -147,12 +148,14 @@ class Dropdown extends React.Component {
 
     // TODO :- remove querySelectors if possible.
     handleKeyboardEvents(event) {
-        event.preventDefault();
-        if (event.key === 'ArrowDown' && (this.state.hoveredListItem < this.props.DropdownOptions.length - 1)) {
+        if ((event.key === 'ArrowDown' || event.key === 'Tab') && (this.state.hoveredListItem < this.props.DropdownOptions.length - 1)) {
+            event.preventDefault();
             this.setState(Object.assign({}, this.state, { hoveredListItem: this.state.hoveredListItem + 1, keyPressed: event.key }), this.scrollToOffset);
         } else if (event.key === 'ArrowUp' && (this.state.hoveredListItem >= 1)) {
+            event.preventDefault();
             this.setState(Object.assign({}, this.state, { hoveredListItem: this.state.hoveredListItem - 1, keyPressed: event.key }), this.scrollToOffset);
         } else if (event.key === 'Enter') {
+            event.preventDefault();
             if (this.state.isDropdownOpen) {
                 this.onSelectWrapper(this.state.hoveredListItem >= 0 ? this.props.DropdownOptions[this.state.hoveredListItem] : this.props.DropdownOptions[this.state.activeListItem], this.props.onSelectOption, this.state.hoveredListItem);
                 this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: event.key }));
@@ -160,6 +163,7 @@ class Dropdown extends React.Component {
                 this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: event.key }), () => this.toggleDropdownState());
             }
         } else if (event.key === ' ') {
+            event.preventDefault();
             this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: event.key }), () => this.toggleDropdownState());
         } else if (this.state.hoveredListItem >= -1) {
             this.lexicalSearch(event.key, this.props.DropdownOptions);
@@ -231,7 +235,7 @@ class Dropdown extends React.Component {
         this.manageActiveListeners();
         return (
           <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
-            <button type="button" className={`${btnStyle(this.props)} align-items-center`} disabled={disabled} onClick={() => this.toggleDropdownState()}>
+            <button type="button" className={`${btnStyle(this.props)} align-items-center`} disabled={disabled} onClick={(event) => this.toggleDropdownState(event)}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
               <span className={!this.state.isDropdownOpen ? `ml-half academyicon icon-chevron-down ${indicatorArrow}` : `ml-quarter academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
