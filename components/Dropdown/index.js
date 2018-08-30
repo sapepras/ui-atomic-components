@@ -14,7 +14,7 @@ const DropdownStyle = props => css`
         overflow-x:hidden;
         position: absolute;
         background: #fff;
-        z-index: 1;
+        z-index: 2;
         border-radius: ${props.listborderradius ? props.listborderradius : '5px'};
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
