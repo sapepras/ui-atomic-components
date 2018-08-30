@@ -19,7 +19,7 @@ const DropdownStyle = props => css`
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
         @media screen and (min-width: 768px) {
-            font-size: 0.875rem;
+            font-size: 1rem;
         }
         font-size: 0.8rem;   
         padding: ${props.listItemPadding ? props.listItemPadding : '0.75rem 1rem'};
@@ -74,7 +74,7 @@ const btnStyle = props => css`
     align-items: center;
     padding: ${props.padding};
     @media screen and (min-width: 768px) {
-        font-size: 0.875rem;
+        font-size: 1rem;
     }
     font-size: 0.8rem;
     width: ${props.width ? props.width : '100%'};
