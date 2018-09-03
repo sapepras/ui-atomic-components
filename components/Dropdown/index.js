@@ -30,19 +30,13 @@ const DropdownStyle = props => css`
         font-weight: normal;
         cursor: pointer;
         &:hover {
-            background: #2291F2;
-            span {
-                color: #fff;
-            }
-        }
-        &.keySelected {
-            background: #2291F2;
-            span {
-                color: #fff;
-            }
-        }
-        &.keySelected {
             background: #0055a6;
+            span {
+                color: #fff;
+            }
+        }
+        &.keySelected {
+            background: rgba(2, 85, 204, 0.2);
             span {
                 color: #fff;
             }
@@ -166,7 +160,7 @@ class Dropdown extends React.Component {
         }
     }
 
-    toggleDropdownState(event = {}) {
+    toggleDropdownState(event = { preventDefault: () => {} }) {
         event.preventDefault();
         if (this.state.isDropdownOpen) {
             this.setState(Object.assign({}, this.state, { isDropdownOpen: false }));
@@ -264,7 +258,7 @@ class Dropdown extends React.Component {
         this.manageActiveListeners();
         return (
           <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
-            <button type="button" className={`${btnStyle(this.props)} align-items-center`} disabled={disabled} onClick={event => this.toggleDropdownState(event)} onFocus={this.toggleDropdownState}>
+            <button type="button" className={`${btnStyle(this.props)} align-items-center`} disabled={disabled} onClick={event => this.toggleDropdownState(event)} onFocus={event => this.toggleDropdownState(event)}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
               <span className={!this.state.isDropdownOpen ? `justify-content-end academyicon icon-chevron-down ${indicatorArrow}` : `d-flex justify-content-end academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
