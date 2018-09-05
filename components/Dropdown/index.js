@@ -14,12 +14,12 @@ const DropdownStyle = props => css`
         overflow-x:hidden;
         position: absolute;
         background: #fff;
-        z-index: 1;
+        z-index: 2;
         border-radius: ${props.listborderradius ? props.listborderradius : '5px'};
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
         @media screen and (min-width: 768px) {
-            font-size: 0.875rem;
+            font-size: 1rem;
         }
         font-size: 0.8rem;   
         padding: ${props.listItemPadding ? props.listItemPadding : '0.75rem 1rem'};
@@ -30,21 +30,46 @@ const DropdownStyle = props => css`
         font-weight: normal;
         cursor: pointer;
         &:hover {
-            background: #2291F2;
-            span {
-                color: #fff;
-            }
-        }
-        &.keySelected {
-            background: #2291F2;
-            span {
-                color: #fff;
-            }
-        }
-        &.keySelected {
             background: #0055a6;
             span {
                 color: #fff;
+            }
+            &.disabled {
+                background: #CDCFD1;
+                span {
+                    color: #fff;
+                }
+            }
+        }
+
+        &.disabled {
+            background: #CDCFD1;
+            span {
+                color: #fff;
+            }
+            &:hover {
+                background: #7E7F80;
+                span {
+                    color: #fff;
+                }
+            }
+        }
+        &.disabledKeySelected {
+             background: #7E7F80;
+             span {
+                color: #fff;
+             }
+        }
+        &.keySelected {
+            background: #9EC9F3;
+            span {
+                color: #fff;
+            }
+            &:hover {
+                background: #0055a6;
+                span {
+                    color: #fff;
+                }
             }
         }
         &.active {
@@ -74,7 +99,7 @@ const btnStyle = props => css`
     align-items: center;
     padding: ${props.padding};
     @media screen and (min-width: 768px) {
-        font-size: 0.875rem;
+        font-size: 1rem;
     }
     font-size: 0.8rem;
     width: ${props.width ? props.width : '100%'};
@@ -148,8 +173,10 @@ class Dropdown extends React.Component {
      * @param {number} index index of option selected from DropdownOptions
      */
     onSelectWrapper(value, onSelect, index) {
-        this.setState({ selectedOption: value, activeListItem: index }, () => this.toggleDropdownState());
-        onSelect(index, value.title);
+        if (!value.disabled) {
+            this.setState({ selectedOption: value, activeListItem: index }, () => this.toggleDropdownState());
+        }
+        onSelect(index, value.title, value.disabled);
     }
 
     placeholderOption() {
@@ -166,7 +193,8 @@ class Dropdown extends React.Component {
         }
     }
 
-    toggleDropdownState() {
+    toggleDropdownState(event = { preventDefault: () => {} }) {
+        event.preventDefault();
         if (this.state.isDropdownOpen) {
             this.setState(Object.assign({}, this.state, { isDropdownOpen: false }));
         } else {
@@ -176,12 +204,14 @@ class Dropdown extends React.Component {
 
     // TODO :- remove querySelectors if possible.
     handleKeyboardEvents(event) {
-        event.preventDefault();
-        if (event.key === 'ArrowDown' && (this.state.hoveredListItem < this.props.DropdownOptions.length - 1)) {
+        if ((event.key === 'ArrowDown' || event.key === 'Tab') && (this.state.hoveredListItem < this.props.DropdownOptions.length - 1)) {
+            event.preventDefault();
             this.setState(Object.assign({}, this.state, { hoveredListItem: this.state.hoveredListItem + 1, keyPressed: event.key }), this.scrollToOffset);
         } else if (event.key === 'ArrowUp' && (this.state.hoveredListItem >= 1)) {
+            event.preventDefault();
             this.setState(Object.assign({}, this.state, { hoveredListItem: this.state.hoveredListItem - 1, keyPressed: event.key }), this.scrollToOffset);
         } else if (event.key === 'Enter') {
+            event.preventDefault();
             if (this.state.isDropdownOpen) {
                 this.onSelectWrapper(this.state.hoveredListItem >= 0 ? this.props.DropdownOptions[this.state.hoveredListItem] : this.props.DropdownOptions[this.state.activeListItem], this.props.onSelectOption, this.state.hoveredListItem);
                 this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: event.key }));
@@ -189,6 +219,7 @@ class Dropdown extends React.Component {
                 this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: event.key }), () => this.toggleDropdownState());
             }
         } else if (event.key === ' ') {
+            event.preventDefault();
             this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: event.key }), () => this.toggleDropdownState());
         } else if (this.state.hoveredListItem >= -1) {
             this.lexicalSearch(event.key, this.props.DropdownOptions);
@@ -212,10 +243,17 @@ class Dropdown extends React.Component {
     // manages scrolling when user uses keyboard.
     scrollToOffset(identifier = '.keySelected') {
         if (this.state.hoveredListItem > -1) {
-            document.querySelector(identifier).scrollIntoView({
-                behavior: 'instant',
-                block: 'center'
-            });
+            if (document.querySelector(identifier)) {
+                document.querySelector(identifier).scrollIntoView({
+                    behavior: 'instant',
+                    block: 'center'
+                });
+            } else if (document.querySelector('.disabledKeySelected')) {
+                document.querySelector('.disabledKeySelected').scrollIntoView({
+                    behavior: 'instant',
+                    block: 'center'
+                });
+            }
         }
     }
 
@@ -260,7 +298,7 @@ class Dropdown extends React.Component {
         this.manageActiveListeners();
         return (
           <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
-            <button type="button" className={`${btnStyle(this.props)}`} disabled={disabled} onClick={() => this.toggleDropdownState()}>
+            <button type="button" className={`${btnStyle(this.props)} align-items-center`} disabled={disabled} onClick={event => this.toggleDropdownState(event)} onFocus={event => this.toggleDropdownState(event)}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
               <span className={!this.state.isDropdownOpen ? `justify-content-end academyicon icon-chevron-down ${indicatorArrow}` : `d-flex justify-content-end academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
@@ -280,11 +318,11 @@ class Dropdown extends React.Component {
  */
 const DropdownList = props => (
     !props.multi ?
-    props.options.map((item, index) => <li className={deriveClassNameForListItem(props, index)} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={props.titleClass}>{item.title}</span></li>)
+    props.options.map((item, index) => <li className={`${deriveClassNameForListItem(props, index, item)}`} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={props.titleClass}>{item.title}</span></li>)     /* eslint-disable-line */
     :
-    props.options.map((item, index) => item.subtitle ? <li className={deriveClassNameForListItem(props, index)} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} d-block`}>{item.title}</span><span className={`${props.subtitleClass} d-block`}>{item.subtitle}</span></li>
+    props.options.map((item, index) => item.subtitle ? <li className={deriveClassNameForListItem(props, index, item)} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} d-block`}>{item.title}</span><span className={`${props.subtitleClass} d-block`}>{item.subtitle}</span></li>
     :
-    <li className={deriveClassNameForListItem(props, index, 'd-flex align-items-center')} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} `}>{item.title}</span></li>)
+    <li className={deriveClassNameForListItem(props, index, item, 'd-flex align-items-center')} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} `}>{item.title}</span></li>)
 );
 
 /**
@@ -293,12 +331,18 @@ const DropdownList = props => (
  * @param {*} index index of element
  * @param {*} classname className to be applied to elemeent
  */
-const deriveClassNameForListItem = (props, index, classname = '') => {
+const deriveClassNameForListItem = (props, index, item, classname = '') => {
     let finalStyleClass = classname;
-    if (props.activeListItem === index) {
+    if (item.disabled) {
+        finalStyleClass = `${finalStyleClass} disabled`;
+        if (props.hoveredListItem === index) {
+            finalStyleClass = `${classname} disabledKeySelected`;
+        }
+    }
+    if (!item.disabled && props.activeListItem === index) {
         finalStyleClass = `${finalStyleClass} active`;
     }
-    if (props.hoveredListItem === index) {
+    if (!item.disabled && props.hoveredListItem === index) {
         finalStyleClass = `${finalStyleClass} keySelected`;
     }
     return finalStyleClass;
