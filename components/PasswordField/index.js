@@ -52,9 +52,6 @@ const InlineButton = props => css`
   font-size: ${props.fontSize};
   border: none;
   background-color: ${props.buttonBg ? props.buttonBg : 'transparent'};
-  &:focus {
-    outline:0;
-  }
 `;
 
 class PasswordField extends Component {
