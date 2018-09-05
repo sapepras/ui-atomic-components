@@ -32,6 +32,8 @@ const styledInput = props => css`
     height: ${props.height};
     line-height: ${props.height};
     padding: ${props.padding};
+    font-size: ${props.fontSize};
+    font-weight: ${props.fontWeight};
   }
   
 `;
