@@ -53,9 +53,8 @@ const InlineButton = props => css`
   border: none;
   background-color: ${props.buttonBg ? props.buttonBg : 'transparent'};
   &:focus {
-    
+    outline:0;
   }
-  ${props.inlinebuttonclass};
 `;
 
 class PasswordField extends Component {
@@ -85,15 +84,14 @@ class PasswordField extends Component {
         this.setState({ showPassword: !this.state.showPassword });
         event.preventDefault();
     }
-
     render() {
         const {
-            classname, name, disabled, onChange, placeholder, value, width, height, fontSize, fontWeight, inlinebuttontexthide, inlinebuttontextshow, ...rest
+            classname, name, disabled, onChange, placeholder, value, width, height, fontSize, fontWeight, inlinebuttontexthide, inlinebuttontextshow, inlinebuttonclass, ...rest
         } = this.props;
         return (
           <div className={`${CommonStyles(this.props)} ${classname} d-flex align-items-center`} width={width} height={height} fontSize={fontSize} fontWeight={fontWeight}>
             <input {...rest} name={name} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
-            <button type="button" className={`${InlineButton(this.props)}`} onClick={event => this.changeVisibility(event)} >{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
+            <button className={`${InlineButton(this.props)} ${inlinebuttonclass}`} onClick={event => this.changeVisibility(event)}>{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
           </div>
         );
     }
@@ -113,11 +111,11 @@ PasswordField.defaultProps = {
   activebordercolor: '#E0E0E0',
   inlinebuttontexthide: 'Hide',
   inlinebuttontextshow: 'Show',
-  buttontextcolor: '#0055a6',
   buttontextfont: '1rem',
   buttontextweight: '300',
   onChange: () => {},
-  padding: '0.2rem 0.5rem'
+  padding: '0.2rem 0.5rem',
+  inlinebuttonclass: 'body-12-bold'
 };
 
 PasswordField.propTypes = {
