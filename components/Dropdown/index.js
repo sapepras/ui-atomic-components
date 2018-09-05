@@ -34,11 +34,42 @@ const DropdownStyle = props => css`
             span {
                 color: #fff;
             }
+            &.disabled {
+                background: #CDCFD1;
+                span {
+                    color: #fff;
+                }
+            }
         }
-        &.keySelected {
-            background: rgba(2, 85, 204, 0.2);
+
+        &.disabled {
+            background: #CDCFD1;
             span {
                 color: #fff;
+            }
+            &:hover {
+                background: #7E7F80;
+                span {
+                    color: #fff;
+                }
+            }
+        }
+        &.disabledKeySelected {
+             background: #7E7F80;
+             span {
+                color: #fff;
+             }
+        }
+        &.keySelected {
+            background: #9EC9F3;
+            span {
+                color: #fff;
+            }
+            &:hover {
+                background: #0055a6;
+                span {
+                    color: #fff;
+                }
             }
         }
         &.active {
@@ -142,8 +173,10 @@ class Dropdown extends React.Component {
      * @param {number} index index of option selected from DropdownOptions
      */
     onSelectWrapper(value, onSelect, index) {
-        this.setState({ selectedOption: value, activeListItem: index }, () => this.toggleDropdownState());
-        onSelect(index, value.title);
+        if (!value.disabled) {
+            this.setState({ selectedOption: value, activeListItem: index }, () => this.toggleDropdownState());
+        }
+        onSelect(index, value.title, value.disabled);
     }
 
     placeholderOption() {
@@ -210,10 +243,17 @@ class Dropdown extends React.Component {
     // manages scrolling when user uses keyboard.
     scrollToOffset(identifier = '.keySelected') {
         if (this.state.hoveredListItem > -1) {
-            document.querySelector(identifier).scrollIntoView({
-                behavior: 'instant',
-                block: 'center'
-            });
+            if (document.querySelector(identifier)) {
+                document.querySelector(identifier).scrollIntoView({
+                    behavior: 'instant',
+                    block: 'center'
+                });
+            } else if (document.querySelector('.disabledKeySelected')) {
+                document.querySelector('.disabledKeySelected').scrollIntoView({
+                    behavior: 'instant',
+                    block: 'center'
+                });
+            }
         }
     }
 
@@ -278,11 +318,11 @@ class Dropdown extends React.Component {
  */
 const DropdownList = props => (
     !props.multi ?
-    props.options.map((item, index) => <li className={deriveClassNameForListItem(props, index)} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={props.titleClass}>{item.title}</span></li>)
+    props.options.map((item, index) => <li className={`${deriveClassNameForListItem(props, index, item)}`} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={props.titleClass}>{item.title}</span></li>)     /* eslint-disable-line */
     :
-    props.options.map((item, index) => item.subtitle ? <li className={deriveClassNameForListItem(props, index)} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} d-block`}>{item.title}</span><span className={`${props.subtitleClass} d-block`}>{item.subtitle}</span></li>
+    props.options.map((item, index) => item.subtitle ? <li className={deriveClassNameForListItem(props, index, item)} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} d-block`}>{item.title}</span><span className={`${props.subtitleClass} d-block`}>{item.subtitle}</span></li>
     :
-    <li className={deriveClassNameForListItem(props, index, 'd-flex align-items-center')} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} `}>{item.title}</span></li>)
+    <li className={deriveClassNameForListItem(props, index, item, 'd-flex align-items-center')} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} `}>{item.title}</span></li>)
 );
 
 /**
@@ -291,12 +331,18 @@ const DropdownList = props => (
  * @param {*} index index of element
  * @param {*} classname className to be applied to elemeent
  */
-const deriveClassNameForListItem = (props, index, classname = '') => {
+const deriveClassNameForListItem = (props, index, item, classname = '') => {
     let finalStyleClass = classname;
-    if (props.activeListItem === index) {
+    if (item.disabled) {
+        finalStyleClass = `${finalStyleClass} disabled`;
+        if (props.hoveredListItem === index) {
+            finalStyleClass = `${classname} disabledKeySelected`;
+        }
+    }
+    if (!item.disabled && props.activeListItem === index) {
         finalStyleClass = `${finalStyleClass} active`;
     }
-    if (props.hoveredListItem === index) {
+    if (!item.disabled && props.hoveredListItem === index) {
         finalStyleClass = `${finalStyleClass} keySelected`;
     }
     return finalStyleClass;
