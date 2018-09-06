@@ -42,6 +42,12 @@ const RadioStyles = css`
             top: 5px;
         }
     }
+    &:focus {
+        outline: 1px solid webkit-focus-ring-color;
+    }
+    >input :focus {
+        outline: 1px solid webkit-focus-ring-color;
+    }
 `;
 
 class RadioButton extends Component {
@@ -59,7 +65,10 @@ class RadioButton extends Component {
             id, disabled, onChange, name, initialState
         } = this.props;
         return (
-          <span className={`${RadioStyles}`}>
+          <span
+            className={`${RadioStyles}`}
+            tabIndex={0} // eslint-disable-line
+          >
             <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
             <strong></strong>
           </span>

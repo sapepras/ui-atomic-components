@@ -14,9 +14,8 @@ const CommonStyles = props => css`
   line-height: 1.25;
   font-size: ${props.fontSize};
   font-weight: ${props.fontWeight};
-  opacity: ${props.disabled ? '0.5' : '1'}
-  &:focus {
-    border: solid ${props.activeborderwidth} ${props.activebordercolor};
+  :focus {
+    outline: -webkit-focus-ring-color auto 5px;
   }
   :focus-within {
     border: solid ${props.activeborderwidth} ${props.activebordercolor};
@@ -30,16 +29,8 @@ const InputStyles = props => css`
   width: 95%;
   font-size: ${props.fontSize};
   font-weight: ${props.fontWeight};
-  opacity: ${props.disabled ? '0.5' : '1'}
-  &:focus {
-    outline: none;
-    border: 0;
-    box-shadow: none;
-  }
-  :focus-within {
-    outline: none;
-    border: 0;
-    box-shadow: none;
+  :focus {
+    outline: -webkit-focus-ring-color auto 5px;
   }
 `;
 /**
@@ -90,9 +81,10 @@ class PasswordField extends Component {
         const {
             classname, name, disabled, onChange, placeholder, value, width, height, fontSize, fontWeight, inlinebuttontexthide, inlinebuttontextshow, ...rest
         } = this.props;
+        console.log('Styles in Password atomic', CommonStyles);
         return (
           <div className={`${CommonStyles(this.props)} ${classname} d-flex align-items-center`} width={width} height={height} fontSize={fontSize} fontWeight={fontWeight}>
-            <input {...rest} name={name} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
+            <input {...rest} name={name} tabIndex={0} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
             <button type="button" className={`${InlineButton(this.props)}`} onClick={event => this.changeVisibility(event)} >{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
           </div>
         );
