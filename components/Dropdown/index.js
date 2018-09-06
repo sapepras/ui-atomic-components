@@ -198,8 +198,7 @@ class Dropdown extends React.Component {
         if (this.state.isDropdownOpen) {
             this.setState(Object.assign({}, this.state, { isDropdownOpen: false }));
         } else {
-            // this.setState(Object.assign({}, this.state, { isDropdownOpen: true, hoveredListItem: this.state.activeListItem }), () => this.scrollToOffset('.active'));
-            this.setState(Object.assign({}, this.state, { isDropdownOpen: true, hoveredListItem: this.state.activeListItem }));
+            this.setState(Object.assign({}, this.state, { isDropdownOpen: true, hoveredListItem: this.state.activeListItem }), () => this.scrollToOffset('.active'));
         }
     }
 
