@@ -14,6 +14,7 @@ const CommonStyles = props => css`
   line-height: 1.25;
   font-size: ${props.fontSize};
   font-weight: ${props.fontWeight};
+  opacity: ${props.disabled ? '0.5' : '1'}
   :focus {
     outline: -webkit-focus-ring-color auto 5px;
   }
@@ -29,6 +30,7 @@ const InputStyles = props => css`
   width: 95%;
   font-size: ${props.fontSize};
   font-weight: ${props.fontWeight};
+  opacity: ${props.disabled ? '0.5' : '1'}
   :focus {
     outline: -webkit-focus-ring-color auto 5px;
   }
