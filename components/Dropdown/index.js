@@ -97,7 +97,7 @@ const btnStyle = props => css`
     flex-grow: 1;
     justify-content: space-between;
     align-items: center;
-    padding: ${props.padding};
+    padding: ${props.padding ? props.padding : '8px 16px 8px 12px'};
     @media screen and (min-width: 768px) {
         font-size: 1rem;
     }
@@ -244,15 +244,13 @@ class Dropdown extends React.Component {
     scrollToOffset(identifier = '.keySelected') {
         if (this.state.hoveredListItem > -1) {
             if (document.querySelector(identifier)) {
-                document.querySelector(identifier).scrollIntoView({
-                    behavior: 'instant',
-                    block: 'center'
-                });
+                const elem = document.querySelector(identifier);
+                const topPos = elem.offsetTop;
+                document.getElementById('customDropdownList').scrollTop = topPos;
             } else if (document.querySelector('.disabledKeySelected')) {
-                document.querySelector('.disabledKeySelected').scrollIntoView({
-                    behavior: 'instant',
-                    block: 'center'
-                });
+                const elem = document.querySelector(identifier);
+                const topPos = elem.offsetTop;
+                document.getElementById('customDropdownList').scrollTop = topPos;
             }
         }
     }
@@ -298,12 +296,12 @@ class Dropdown extends React.Component {
         this.manageActiveListeners();
         return (
           <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
-            <button type="button" className={`${btnStyle(this.props)}`} disabled={disabled} onClick={() => this.toggleDropdownState()} onFocus={() => this.setState({ isDropdownOpen: true })}>
+            <button type="button" className={`${btnStyle(this.props)}`} disabled={disabled} onFocus={() => this.toggleDropdownState()}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
               <span className={!this.state.isDropdownOpen ? `justify-content-end academyicon icon-chevron-down ${indicatorArrow}` : `d-flex justify-content-end academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
             {this.state.isDropdownOpen && (
-            <ul className={`${listStyle(this.props)} align-items-center`} role="presentation">
+            <ul id="customDropdownList" className={`${listStyle(this.props)} align-items-center`} role="presentation">
               <DropdownList multi={multi} titleClass={titleClass} subtitleClass={subtitleClass} options={DropdownOptions} onSelect={(value, index) => this.onSelectWrapper(value, onSelectOption, index)} activeListItem={this.state.activeListItem} hoveredListItem={this.state.hoveredListItem} />
             </ul>
             )}
