@@ -15,8 +15,8 @@ const CommonStyles = props => css`
   font-size: ${props.fontSize};
   font-weight: ${props.fontWeight};
   opacity: ${props.disabled ? '0.5' : '1'}
-  &:focus {
-    border: solid ${props.activeborderwidth} ${props.activebordercolor};
+  :focus {
+    outline: -webkit-focus-ring-color auto 5px;
   }
   :focus-within {
     border: solid ${props.activeborderwidth} ${props.activebordercolor};
@@ -31,15 +31,8 @@ const InputStyles = props => css`
   font-size: ${props.fontSize};
   font-weight: ${props.fontWeight};
   opacity: ${props.disabled ? '0.5' : '1'}
-  &:focus {
-    outline: none;
-    border: 0;
-    box-shadow: none;
-  }
-  :focus-within {
-    outline: none;
-    border: 0;
-    box-shadow: none;
+  :focus {
+    outline: -webkit-focus-ring-color auto 5px;
   }
 `;
 /**
