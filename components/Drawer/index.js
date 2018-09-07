@@ -29,6 +29,9 @@ const DrawerWrapStyle = css`
   position: relative;
   display: flex;
   flex-direction: column;
+  &:focus {
+    outline: -webkit-focus-ring-color auto 5px;
+  }
 `;
 
 const DrawerTitleStyle = css`
