@@ -14,7 +14,7 @@ const DropdownStyle = props => css`
         overflow-x:hidden;
         position: absolute;
         background: #fff;
-        z-index: 1;
+        z-index: ${props.zIndex ? props.zIndex : '4'};
         border-radius: ${props.listborderradius ? props.listborderradius : '5px'};
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
@@ -258,7 +258,7 @@ class Dropdown extends React.Component {
         this.manageActiveListeners();
         return (
           <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
-            <button type="button" className={`${btnStyle(this.props)}`} disabled={disabled} onClick={() => this.toggleDropdownState()}>
+            <button type="button" className={`${btnStyle(this.props)}`} disabled={disabled} onClick={() => this.toggleDropdownState()} onFocus={() => this.setState({ isDropdownOpen: true })}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
               <span className={!this.state.isDropdownOpen ? `justify-content-end academyicon icon-chevron-down ${indicatorArrow}` : `d-flex justify-content-end academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
