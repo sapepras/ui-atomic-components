@@ -14,11 +14,7 @@ const DropdownStyle = props => css`
         overflow-x:hidden;
         position: absolute;
         background: #fff;
-<<<<<<< HEAD
         z-index: ${props.zIndex ? props.zIndex : '4'};
-=======
-        z-index: 2;
->>>>>>> bd5c5fba1415654b1bdaf34b145d08e5aefe945d
         border-radius: ${props.listborderradius ? props.listborderradius : '5px'};
         box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         li {
