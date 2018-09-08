@@ -178,13 +178,14 @@ class Dropdown extends React.Component {
         }
         onSelect(index, value.title, value.disabled);
     }
-
+    /**
+     * helper function to generate placeholder option for dropdown.
+     */
     placeholderOption() {
         return this.props.placeholderOption ? this.props.placeholderOption : this.props.DropdownOptions[0];
     }
 
     /**
-     *
      * @param {object} event to be passed - handles clicks outside the dropdown and resets the state to close the dropdown.
      */
     handleClickOutside(event) {
@@ -192,7 +193,10 @@ class Dropdown extends React.Component {
             this.toggleDropdownState();
         }
     }
-
+    /**
+     * toggles dropdown as closed and open.
+     * @param {object} event - event generated.
+     */
     toggleDropdownState(event = { preventDefault: () => {} }) {
         event.preventDefault();
         if (this.state.isDropdownOpen) {
@@ -203,6 +207,10 @@ class Dropdown extends React.Component {
     }
 
     // TODO :- remove querySelectors if possible.
+    /**
+     * handles keyboard events and performs appropriate actions.
+     * @param {object} event - the event generated via keyboard.
+     */
     handleKeyboardEvents(event) {
         if ((event.key === 'ArrowDown' || event.key === 'Tab') && (this.state.hoveredListItem < this.props.DropdownOptions.length - 1)) {
             event.preventDefault();
@@ -226,7 +234,10 @@ class Dropdown extends React.Component {
         }
     }
 
-    // helper function for filtering and returning index of matching elements.
+    /** helper function for filtering and returning index of matching elements.
+     * @param {string} key - the key pressed by user on keyboard.
+     * @param {array} options - array of options in dropdown.
+     */
     lexicalSearch(key, options) {
         const { matchingOptions } = this.state;
         if (this.state.keyPressed === key && matchingOptions.length > 0) {
@@ -240,7 +251,9 @@ class Dropdown extends React.Component {
         }
     }
 
-    // manages scrolling when user uses keyboard.
+    /**
+     * manages scrolling when user uses keyboard.
+     */
     scrollToOffset(identifier = '.keySelected') {
         if (this.state.hoveredListItem > -1) {
             if (document.querySelector(identifier)) {
@@ -257,7 +270,7 @@ class Dropdown extends React.Component {
         }
     }
 
-    // adds and removes keyboard listeners on dropdown collapse.
+    /* adds and removes keyboard listeners on dropdown collapse. */
     manageActiveListeners() {
         if (this.state.isDropdownOpen) {
             document.addEventListener('keydown', this.handleKeyboardEvents);
@@ -303,7 +316,7 @@ class Dropdown extends React.Component {
               <span className={!this.state.isDropdownOpen ? `justify-content-end academyicon icon-chevron-down ${indicatorArrow}` : `d-flex justify-content-end academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
             {this.state.isDropdownOpen && (
-            <ul data-auid={`${auid}_dropdownList`}className={`${listStyle(this.props)} align-items-center`} role="presentation">
+            <ul data-auid={`${auid}_dropdownList`} className={`${listStyle(this.props)} align-items-center`} role="presentation">
               <DropdownList multi={multi} titleClass={titleClass} subtitleClass={subtitleClass} options={DropdownOptions} onSelect={(value, index) => this.onSelectWrapper(value, onSelectOption, index)} activeListItem={this.state.activeListItem} hoveredListItem={this.state.hoveredListItem} />
             </ul>
             )}
