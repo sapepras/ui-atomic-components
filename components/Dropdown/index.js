@@ -292,18 +292,18 @@ class Dropdown extends React.Component {
 
     render() {
         const {
-            DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled, name, id
+            DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled, name, id, auid
         } = this.props;
         const { selectedOption } = this.state;
         this.manageActiveListeners();
         return (
           <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
-            <button type="button" className={`${btnStyle(this.props)}`} disabled={disabled} onClick={() => this.toggleDropdownState()} onFocus={() => this.setState({ isDropdownOpen: true })}>
+            <button data-auid={auid} type="button" className={`${btnStyle(this.props)}`} disabled={disabled} onClick={() => this.toggleDropdownState()} onFocus={() => this.setState({ isDropdownOpen: true })}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
               <span className={!this.state.isDropdownOpen ? `justify-content-end academyicon icon-chevron-down ${indicatorArrow}` : `d-flex justify-content-end academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
             {this.state.isDropdownOpen && (
-            <ul className={`${listStyle(this.props)} align-items-center`} role="presentation">
+            <ul data-auid={`${auid}_dropdownList`}className={`${listStyle(this.props)} align-items-center`} role="presentation">
               <DropdownList multi={multi} titleClass={titleClass} subtitleClass={subtitleClass} options={DropdownOptions} onSelect={(value, index) => this.onSelectWrapper(value, onSelectOption, index)} activeListItem={this.state.activeListItem} hoveredListItem={this.state.hoveredListItem} />
             </ul>
             )}
@@ -318,11 +318,11 @@ class Dropdown extends React.Component {
  */
 const DropdownList = props => (
     !props.multi ?
-    props.options.map((item, index) => <li className={`${deriveClassNameForListItem(props, index, item)}`} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={props.titleClass}>{item.title}</span></li>)     /* eslint-disable-line */
+    props.options.map((item, index) => <li data-auid={`${props.auid}_listOption_${index}`} className={`${deriveClassNameForListItem(props, index, item)}`} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={props.titleClass}>{item.title}</span></li>)     /* eslint-disable-line */
     :
-    props.options.map((item, index) => item.subtitle ? <li className={deriveClassNameForListItem(props, index, item)} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} d-block`}>{item.title}</span><span className={`${props.subtitleClass} d-block`}>{item.subtitle}</span></li>
+    props.options.map((item, index) => item.subtitle ? <li data-auid={`${props.auid}_listOption_${index}`} className={deriveClassNameForListItem(props, index, item)} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} d-block`}>{item.title}</span><span className={`${props.subtitleClass} d-block`}>{item.subtitle}</span></li>
     :
-    <li className={deriveClassNameForListItem(props, index, item, 'd-flex align-items-center')} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} `}>{item.title}</span></li>)
+    <li data-auid={`${props.auid}_listOption_${index}`} className={deriveClassNameForListItem(props, index, item, 'd-flex align-items-center')} key={item.title} data-value={item.value} role="presentation" onClick={() => props.onSelect(item, index)}><span className={`${props.titleClass} `}>{item.title}</span></li>)
 );
 
 /**
@@ -362,7 +362,8 @@ Dropdown.propTypes = {
     disabled: PropTypes.bool,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    placeholderOption: PropTypes.object
+    placeholderOption: PropTypes.object,
+    auid: PropTypes.string
 };
 
 export default Dropdown;
