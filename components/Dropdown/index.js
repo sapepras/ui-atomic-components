@@ -149,6 +149,7 @@ class Dropdown extends React.Component {
         this.renderButtonContents = this.renderButtonContents.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.handleKeyboardEvents = this.handleKeyboardEvents.bind(this);
+        this.toggleDropdownState = this.toggleDropdownState.bind(this);
 
         this.setWrapperRef = React.createRef();
         this.listRef = React.createRef();
