@@ -9,7 +9,6 @@ const StyledAnchor = styled('a')`
   &:hover {
     color: #333333;
     text-decoration: none;
-    cursor: pointer;
   }
 
   @media only screen and (min-width: 768px) {

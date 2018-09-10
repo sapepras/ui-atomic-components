@@ -76,12 +76,12 @@ class PasswordField extends Component {
     }
     render() {
         const {
-            classname, name, disabled, onChange, placeholder, value, width, height, fontSize, fontWeight, inlinebuttontexthide, inlinebuttontextshow, inlinebuttonclass, ...rest
+            classname, name, disabled, onChange, placeholder, value, width, height, fontSize, fontWeight, inlinebuttontexthide, inlinebuttontextshow, inlinebuttonclass, auid, ...rest
         } = this.props;
         return (
           <div className={`${CommonStyles(this.props)} ${classname} d-flex align-items-center`} width={width} height={height} fontSize={fontSize} fontWeight={fontWeight}>
-            <input {...rest} name={name} tabIndex={0} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
-            <button type="button" className={`${InlineButton(this.props)} ${inlinebuttonclass}`} onClick={event => this.changeVisibility(event)}>{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
+            <input data-auid={auid} {...rest} name={name} tabIndex={0} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
+            <button type="button" data-auid={`${auid}_inline_button`} className={`${InlineButton(this.props)} ${inlinebuttonclass}`} onClick={event => this.changeVisibility(event)}>{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
           </div>
         );
     }
@@ -131,7 +131,8 @@ PasswordField.propTypes = {
     buttontextfont: PropTypes.string,
     buttontextweight: PropTypes.string,
     inlinebuttonclass: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    padding: PropTypes.string
+    padding: PropTypes.string,
+    auid: PropTypes.string
 };
 
 export default PasswordField;
