@@ -81,7 +81,7 @@ class PasswordField extends Component {
         return (
           <div className={`${CommonStyles(this.props)} ${classname} d-flex align-items-center`} width={width} height={height} fontSize={fontSize} fontWeight={fontWeight}>
             <input data-auid={auid} {...rest} name={name} tabIndex={0} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
-            <button data-auid={`${auid}_inline_button`} className={`${InlineButton(this.props)} ${inlinebuttonclass}`} onClick={event => this.changeVisibility(event)}>{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
+            <button type="button" data-auid={`${auid}_inline_button`} className={`${InlineButton(this.props)} ${inlinebuttonclass}`} onClick={event => this.changeVisibility(event)}>{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
           </div>
         );
     }
