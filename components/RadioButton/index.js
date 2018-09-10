@@ -62,14 +62,14 @@ class RadioButton extends Component {
 
     render() {
         const {
-            id, disabled, onChange, name, initialState
+            id, disabled, onChange, name, auid, initialState, ...rest
         } = this.props;
         return (
           <span
             className={`${RadioStyles}`}
             tabIndex={0} // eslint-disable-line
           >
-            <input name={name} id={id} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} />
+            <input name={name} id={id} data-auid={auid} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} {...rest} />
             <strong></strong>
           </span>
         );
@@ -85,7 +85,8 @@ RadioButton.propTypes = {
     id: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
-    initialState: PropTypes.string
+    initialState: PropTypes.string,
+    auid: PropTypes.string
 };
 
 export default RadioButton;
