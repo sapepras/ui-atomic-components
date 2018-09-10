@@ -72,10 +72,10 @@ class Checkbox extends Component {
 
     render() {
         const {
-            id, disabled, onChange, name
+            id, disabled, onChange, auid, name, ...rest
         } = this.props;
         return (
-          <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
+          <input name={name} data-auid={auid} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} {...rest} />
         );
     }
 }
@@ -90,7 +90,8 @@ Checkbox.propTypes = {
     checked: PropTypes.bool,
     id: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    auid: PropTypes.string
 };
 
 export default Checkbox;

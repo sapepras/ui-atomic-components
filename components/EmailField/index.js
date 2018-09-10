@@ -80,12 +80,12 @@ export default class EmailField extends Component {
 
     render() {
     const {
-        classname, name, id, disabled, placeholder, onChange, value, initialValue, ...rest
+        classname, name, id, disabled, placeholder, onChange, value, auid, initialValue, ...rest
     } = this.props;
     return (
       <div className={`${styledInput(this.props)}`}>
-        <input disabled={disabled} name={name} id={id} type="email" placeholder={placeholder} value={this.state.value} onChange={event => this.onChangeInput(event, onChange)} onKeyDown={event => this.UseSuggestionKeyHandler(event, onChange)} {...rest} />
-        <div className="suggestion">{this.state.suggestedEmail}</div>
+        <input data-auid={auid} disabled={disabled} name={name} id={id} type="email" placeholder={placeholder} value={this.state.value} onChange={event => this.onChangeInput(event, onChange)} onKeyDown={event => this.UseSuggestionKeyHandler(event, onChange)} {...rest} />
+        <div data-auid={`${auid}_suggestion`} className="suggestion">{this.state.suggestedEmail}</div>
       </div>
     );
   }
@@ -127,5 +127,6 @@ EmailField.propTypes = {
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     onChange: PropTypes.func,
-    initialValue: PropTypes.string
+    initialValue: PropTypes.string,
+    auid: PropTypes.string
 };
