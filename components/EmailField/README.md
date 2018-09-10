@@ -72,6 +72,9 @@ EmailField Atomic Component renders a custom email field component with domain s
 
 ```id attribute of the field.```
 
+* **initialValue**: *PropTypes.string*
+
+```initial value to be provided to email field.```
 
 ## Example Usage
 
@@ -146,6 +149,7 @@ export default renderField;
 
 ```
 ### Recent Updates
+* Addition of ```initialValue``` Prop, for setting initialValue to email field.
 * Addition of padding props.
 * Updated Prop names to avoid conflicts with default react props.
 * Added ```...rest``` to the input field to enable redux form.
