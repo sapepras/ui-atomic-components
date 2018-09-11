@@ -42,7 +42,7 @@ export default class EmailField extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            value: props.initialValue ? props.initialValue : '',
             suggestedEmail: ''
         };
         this.onChangeInput = this.onChangeInput.bind(this);
@@ -80,12 +80,12 @@ export default class EmailField extends Component {
 
     render() {
     const {
-        classname, name, id, disabled, placeholder, onChange, value, ...rest
+        classname, name, id, disabled, placeholder, onChange, value, auid, initialValue, ...rest
     } = this.props;
     return (
       <div className={`${styledInput(this.props)}`}>
-        <input disabled={disabled} name={name} id={id} type="email" placeholder={placeholder} value={this.state.value} onChange={event => this.onChangeInput(event, onChange)} onKeyDown={event => this.UseSuggestionKeyHandler(event, onChange)} {...rest} />
-        <div className="suggestion">{this.state.suggestedEmail}</div>
+        <input data-auid={auid} disabled={disabled} name={name} id={id} type="email" placeholder={placeholder} value={this.state.value} onChange={event => this.onChangeInput(event, onChange)} onKeyDown={event => this.UseSuggestionKeyHandler(event, onChange)} {...rest} />
+        <div data-auid={`${auid}_suggestion`} className="suggestion">{this.state.suggestedEmail}</div>
       </div>
     );
   }
@@ -104,7 +104,8 @@ EmailField.defaultProps = {
     activeborderwidth: '1px',
     activebordercolor: '#585858',
     padding: '0.2rem 0.5rem',
-    onChange: () => {}
+    onChange: () => {},
+    initialValue: ''
 };
 
 EmailField.propTypes = {
@@ -125,5 +126,7 @@ EmailField.propTypes = {
     padding: PropTypes.string,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    initialValue: PropTypes.string,
+    auid: PropTypes.string
 };

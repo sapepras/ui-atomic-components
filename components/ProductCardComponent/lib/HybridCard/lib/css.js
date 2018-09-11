@@ -66,6 +66,8 @@ styles.removeIcon = css`
   display: none;
   @media only screen and (min-width: 768px) {
     display: block;
+    position: absolute;
+    right: 0px;
     color: #0055a6;
     font-size: 12px;
     border: none;
