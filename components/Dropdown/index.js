@@ -128,9 +128,9 @@ const listStyle = props => css`
 
 const buttonContentStyle = css`
     max-width: 90%;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: left;
 `;
 
 class Dropdown extends React.Component {
@@ -291,10 +291,10 @@ class Dropdown extends React.Component {
             const content = (
               <div className={`${buttonContentStyle}`}>
                 <div className={`${titleClass} `}>
-                  {item.title}
+                  <p className="m-0">{item.title}</p>
                 </div>
                 <div className={`${subtitleClass} `}>
-                  {item.subtitle}
+                  <p className="mt-quarter mb-0">{item.subtitle}</p>
                 </div>
               </div>);
             return content;
@@ -310,7 +310,7 @@ class Dropdown extends React.Component {
         this.manageActiveListeners();
         return (
           <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
-            <button type="button" data-auid={auid} className={`${btnStyle(this.props)}`} disabled={disabled} onFocus={event => this.toggleDropdownState(event)}>
+            <button type="button" data-auid={auid} className={`${btnStyle(this.props)}`} disabled={disabled} onClick={event => this.toggleDropdownState(event)}>
               {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
               <span className={!this.state.isDropdownOpen ? `justify-content-end academyicon icon-chevron-down ${indicatorArrow}` : `d-flex justify-content-end academyicon icon-chevron-up ${indicatorArrow}`} />
             </button>
