@@ -6,7 +6,7 @@ import { css } from 'react-emotion';
  * @param {object} props  containing various attributes to style password field.
  */
 const CommonStyles = props => css`
-  padding: ${props.padding};
+  padding-left: ${props.padding};
   width: ${props.width};
   height: ${props.height};
   border-radius: ${props.borderradius};
@@ -14,24 +14,19 @@ const CommonStyles = props => css`
   line-height: 1.25;
   font-size: ${props.fontSize};
   font-weight: ${props.fontWeight};
-  opacity: ${props.disabled ? '0.5' : '1'}
-  :focus {
-    outline: -webkit-focus-ring-color auto 5px;
-  }
-  :focus-within {
-    border: solid ${props.activeborderwidth} ${props.activebordercolor};
-  }
   ${props.classname};
 `;
 
 const InputStyles = props => css`
   border: 0px solid #fff;
   height: 100%;
-  width: 95%;
+  width: 100%;
+  border-radius: ${props.borderradius};
+  padding-left: 1%;
   font-size: ${props.fontSize};
   font-weight: ${props.fontWeight};
   opacity: ${props.disabled ? '0.5' : '1'}
-  :focus {
+  &:focus {
     outline: -webkit-focus-ring-color auto 5px;
   }
 `;
@@ -41,10 +36,15 @@ const InputStyles = props => css`
  */
 const InlineButton = props => css`
   cursor: pointer;
+  position: absolute;
+  right: 4%;
   color: ${props.buttontextcolor};
   font-size: ${props.fontSize};
   border: none;
   background-color: ${props.buttonBg ? props.buttonBg : 'transparent'};
+  &:focus {
+    outline: -webkit-focus-ring-color auto 5px;
+  }
 `;
 
 class PasswordField extends Component {
@@ -79,9 +79,15 @@ class PasswordField extends Component {
             classname, name, disabled, onChange, placeholder, value, width, height, fontSize, fontWeight, inlinebuttontexthide, inlinebuttontextshow, inlinebuttonclass, auid, ...rest
         } = this.props;
         return (
-          <div className={`${CommonStyles(this.props)} ${classname} d-flex align-items-center`} width={width} height={height} fontSize={fontSize} fontWeight={fontWeight}>
-            <input data-auid={auid} {...rest} name={name} tabIndex={0} className={`${InputStyles(this.props)}`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
-            <button type="button" data-auid={`${auid}_inline_button`} className={`${InlineButton(this.props)} ${inlinebuttonclass}`} onClick={event => this.changeVisibility(event)}>{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
+          <div
+            className={`${CommonStyles(this.props)} ${classname} d-flex align-items-center`}
+            width={width}
+            height={height}
+            fontSize={fontSize}
+            fontWeight={fontWeight}
+          >
+            <input data-auid={auid} {...rest} name={name} className={`${InputStyles(this.props)} pr-6`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
+            <button type="button" data-auid={`${auid}_inline_button`} tabIndex={0} className={`${InlineButton(this.props)} ${inlinebuttonclass}`} onClick={event => this.changeVisibility(event)}>{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
           </div>
         );
     }
