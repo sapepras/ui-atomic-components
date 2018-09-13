@@ -67,7 +67,6 @@ class RadioButton extends Component {
         return (
           <span
             className={`${RadioStyles}`}
-            tabIndex={0} // eslint-disable-line
           >
             <input name={name} id={id} data-auid={auid} disabled={disabled} checked={initialState === `${id}`} type="radio" onChange={() => this.onChangeWrapper(onChange, id)} {...rest} />
             <strong></strong>
