@@ -84,6 +84,18 @@ PasswordField Atomic Component renders a custom password input field component w
 * **inlinebuttonclass**: *PropTypes.string*
 
   ```style class for inline show/hide button```
+  
+* **buttonBg**: *PropTypes.string*
+
+  ```background color of inline button, transparent by default.```
+
+* **name**: *PropTypes.string.isRequired*
+
+```name attribute of the field.```
+
+* **id**: *PropTypes.string.isRequired*
+
+```id attribute of the field.```
 
 ## Example Usage
 
@@ -100,17 +112,18 @@ PasswordField Atomic Component renders a custom password input field component w
   width="30rem" 
   height="2.5rem" 
   fontSize="1.5rem" 
-  borderColor="#64FCAB" 
-  borderWidth="0.5rem" 
-  borderRadius="6px" 
-  activeBorderColor="red" 
-  activeBorderWidth="3px" 
+  bordercolor="#64FCAB" 
+  borderwidth="0.5rem" 
+  borderradius="6px" 
+  activebordercolor="red" 
+  activeborderwidth="3px" 
   fontWeight="500" 
-  inlineButtonTextHide="Hide"
-  inlineButtonTextShow="Show"
-  buttonTextColor="#0055a6"
-  buttonTextFont="1rem"
-  buttonTextWeight="300"
+  inlinebuttontexthide="Hide"
+  inlinebuttontextshow="Show"
+  buttontextcolor="#0055a6"
+  buttontextfont="1rem"
+  buttontextweight="300"
+  inlinebuttonclass={someStyleClass}
 />
 ```
 
@@ -145,6 +158,8 @@ const renderPasswordField = ({
                              classname={`${formControl} w-100`}
                              placeholder={label}
                              type={type}
+                             name={name}
+                             id={id}
                            />
                            {touched &&
       ((error && <span className="body-12-regular text-danger">{error}</span>) ||
@@ -156,12 +171,15 @@ renderPasswordField.propTypes = {
   input: PropTypes.isRequired,
   label: PropTypes.string,
   type: PropTypes.string,
-  meta: PropTypes.object
+  meta: PropTypes.object,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired
 };
 export default renderPasswordField;
 
 ```
 ### Recent Updates
+* Addition of padding props.
 * Updated Prop names to avoid conflicts with default react props.
 
 ##### For further details, clone ```ui-atomic-components``` from bitbucket and look under the hood. 

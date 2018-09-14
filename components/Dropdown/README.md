@@ -72,6 +72,17 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ```max height of the dropdown list, default set to 10rem.```
 
+* **placeholderOption**: *PropTypes.object*
+``` placeholder option for the dropdown, defaults to the first dropdown option.``
+
+* **name**: *PropTypes.string.isRequired*
+
+```name attribute of the field.```
+
+* **id**: *PropTypes.string.isRequired*
+
+```id attribute of the field.```
+
 ## Example Usage
 
 ### Firstly, Import Dropdown from Atomic Components.
@@ -87,6 +98,8 @@ Dropdown Atomic Component renders a custom dropdown component with various props
     {title: 'Tejas', subtitle: 'Karnataka, India'}]}
   
   initiallySelectedOption = {2}
+  id="id"
+  name="name"
   disabled={false} 
   width="30rem" 
   height="3.5rem" 
@@ -102,49 +115,14 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 * Most of the props have some default values which get rendered if no value is provided. 
 
-### In case of use with Redux Form
-
-**Example Redux Form Wrapper Component**
-
-```jsx
-import React from 'react';
-import PropTypes from 'prop-types';
-import Dropdown from '@academysports/fusion-components/dist/Dropdown';
-import { labelStyle } from './../../style';
-
-class renderSelectField extends React.PureComponent {
-  render() {
-    const { input: { onChange, value }, label, initiallySelectedOption, DropdownOptions, meta: { touched, error }, ...rest } = this.props;
-    return (
-      <div>
-        <label className={`${labelStyle} o-copy__14bold p-quarter`}>{label}</label>
-        <div>
-          <Dropdown
-            value={value}
-            onSelectOption={(index, title) => onChange(title)}
-            {...rest}
-            DropdownOptions={DropdownOptions}
-            initiallySelectedOption={initiallySelectedOption}
-          />
-          {touched && error && <span className="text-danger">{error}</span>}
-        </div>
-      </div>
-    );
-  }
-}
-
-renderSelectField.propTypes = {
-  input: PropTypes.isRequired,
-  label: PropTypes.string,
-  meta: PropTypes.object,
-  children: PropTypes.isRequired,
-  DropdownOptions: PropTypes.array.isRequired,
-  initiallySelectedOption: PropTypes.number
-};
-export default renderSelectField; 
-```
 ### Recent Updates -
+* Now Dropdown Opens onFocus.
+* Synthetic Accessibility features like traversing using keyboard keys, searching using first letter and more have been addressed.
+* Added auto height and responsive indicator icon.
 * Updated Prop names to avoid conflicts with default react props.
+* Addressed styling issues where indicator arrow was going out of button. 
+* Added ```padding``` for button and ```listItemPadding``` as prop to dropdown.
+* Added a feature where if your dropdown implementation doesn't require 'select' to be the first    option, you can remove it from dropdown options using new ```placeholderOption``` object prop containing title/subtitle. 
 * Added fix where clicking outside the dropdown wasn't closing It. 
 * Fixed ```onSelectOption``` to return index, title of selected element.
 * Added highlighting to previously selected option.

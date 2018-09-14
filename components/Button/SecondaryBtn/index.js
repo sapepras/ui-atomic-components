@@ -6,7 +6,7 @@ export const secondaryBtnStyles = props => {
   const bgBtnColor = '#0000';
   let textColor = getPrimaryColor(props, colorLightSteelBlue, colorPrimary);
   const bgDisabledBtnColor = '#0000';
-  let bgHoverColor = 'rgba(0, 0, 0, 0.1)';
+  let bgHoverColor = 'rgba(2, 85, 204, 0.1)';
   let hoverBorderColor = colorHover;
   let hoverTextColor = colorHover;
   const bgFocusColor = '#0000';

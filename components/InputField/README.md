@@ -64,9 +64,14 @@ InputField Atomic Component renders a custom input field component with various 
 
 ```font weight of the text in field.```
 
-* **name**: *PropTypes.string*
+* **name**: *PropTypes.string.isRequired*
 
 ```name attribute of the field.```
+
+* **id**: *PropTypes.string.isRequired*
+
+```id attribute of the field.```
+
 
 ## Example Usage
 
@@ -142,6 +147,7 @@ export default renderField;
 
 ```
 ### Recent Updates
+* Addition of padding props.
 * Updated Prop names to avoid conflicts with default react props.
 * Added ```...rest``` to the input field to enable redux form.
 * Added ```name``` prop to identify individual fields. 

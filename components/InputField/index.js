@@ -10,7 +10,7 @@ import { css } from 'react-emotion';
  * @param {object} props  containing various attributes to style input field.
  */
 const CommonStyles = props => css`
-  padding: 0.2rem 0.5rem;
+  padding: ${props.padding};
   width: ${props.width};
   height: ${props.height};
   border-radius: ${props.borderradius};
@@ -22,15 +22,14 @@ const CommonStyles = props => css`
   &:focus {
     border: solid ${props.activeborderwidth} ${props.activebordercolor};
   }
-  ${props.classname};
 `;
 // dumb component to render input field.
 const InputField = props => {
     const {
-        classname, type, name, disabled, onChange, placeholder, value, width, height, fontSize, bordercolor, borderradius, activebordercolor, activeborderwidth, fontWeight, ...rest
+        classname, type, name, id, disabled, onChange, placeholder, value, auid, ...rest
     } = props;
     return (
-      <input {...rest} name={name} className={`${CommonStyles(props)} ${classname}`} disabled={disabled} type={type} onChange={onChange} placeholder={placeholder} value={value} width={width} height={height} />
+      <input data-auid={auid} {...rest} name={name} id={id} className={`${CommonStyles(props)} ${classname}`} disabled={disabled} type={type} onChange={onChange} placeholder={placeholder} value={value} />
     );
   };
 
@@ -46,7 +45,8 @@ InputField.defaultProps = {
   fontSize: '1rem',
   fontWeight: '300',
   activeborderwidth: '1px',
-  activebordercolor: '#585858'
+  activebordercolor: '#585858',
+  padding: '0.2rem 0.5rem'
 };
 
 InputField.propTypes = {
@@ -65,7 +65,10 @@ InputField.propTypes = {
     activebordercolor: PropTypes.string,
     activeborderwidth: PropTypes.string,
     fontWeight: PropTypes.string,
-    name: PropTypes.string
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    padding: PropTypes.string,
+    auid: PropTypes.string
 };
 
 export default InputField;
