@@ -17,7 +17,7 @@ export const LineHeightFix = styled('div')`
 
 const tooltipModalWrapperBase = props => css`
   position: absolute;
-  z-index: 2;
+  z-index: 7;
   box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.1), 0 6px 12px 0 rgba(0, 0, 0, 0.04), 0 2px 5px 0 rgba(0, 0, 0, 0.08);
   ${props.className};
 `;
