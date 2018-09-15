@@ -39,7 +39,7 @@ const InlineButton = props => css`
   position: absolute;
   right: 4%;
   color: ${props.buttontextcolor};
-  font-size: ${props.fontSize};
+  font-size: ${props.buttontextfont};
   border: none;
   background-color: ${props.buttonBg ? props.buttonBg : 'transparent'};
   &:focus {
