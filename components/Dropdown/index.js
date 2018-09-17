@@ -1,6 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
+import {
+    HOVER_BACKGROUND_COLOR,
+    HOVER_FOREGROUND_COLOR,
+    DISABLED_HOVER_BACKGROUND_COLOR,
+    DISABLED_HOVER_FOREGROUND_COLOR,
+    KEYBOARD_SELECTED_BACKGROUND_COLOR,
+    KEYBOARD_SELECTED_FOREGROUND_COLOR,
+    DISABLED_CURSOR,
+    ENABLED_CURSOR
+} from './constants';
 
 const DropdownStyle = props => css`
     position: relative;
@@ -28,49 +38,49 @@ const DropdownStyle = props => css`
         overflow: hidden;
         text-overflow: ellipsis;
         font-weight: normal;
-        cursor: pointer;
+        cursor: ${ENABLED_CURSOR};
         &:hover {
-            background: #0055a6;
+            background: ${HOVER_BACKGROUND_COLOR};
             span {
-                color: #fff;
+                color: ${HOVER_FOREGROUND_COLOR};
             }
             &.disabled {
-                background: #F6F6F6;
+                background: ${DISABLED_HOVER_BACKGROUND_COLOR};
                 span {
-                    color: #333333;
+                    color: ${DISABLED_HOVER_FOREGROUND_COLOR};
                 }
-                cursor: default;
+                cursor: ${DISABLED_CURSOR};
             }
         }
 
         &.disabled {
-            background: #F6F6F6;
-            color: #333333;
-            cursor: default;
+            background: ${DISABLED_HOVER_BACKGROUND_COLOR};
+            color: ${DISABLED_HOVER_FOREGROUND_COLOR};
+            cursor: ${DISABLED_CURSOR};
         }
         &.disabledKeySelected {
-             background: #F6F6F6;
+             background: ${DISABLED_HOVER_BACKGROUND_COLOR};
              span {
-                color: #333333;
+                color: ${DISABLED_HOVER_FOREGROUND_COLOR};
              }
-             cursor: default;
+             cursor: ${DISABLED_CURSOR};
         }
         &.keySelected {
-            background: #9EC9F3;
+            background: ${KEYBOARD_SELECTED_BACKGROUND_COLOR};
             span {
-                color: #fff;
+                color: ${KEYBOARD_SELECTED_FOREGROUND_COLOR};
             }
             &:hover {
-                background: #0055a6;
+                background: ${HOVER_BACKGROUND_COLOR};
                 span {
-                    color: #fff;
+                    color: ${HOVER_FOREGROUND_COLOR};
                 }
             }
         }
         &.active {
-            background: #0055a6;
+            background: ${HOVER_BACKGROUND_COLOR};
             span {
-                color: #fff;
+                color: ${HOVER_FOREGROUND_COLOR};
             }
         }
         &:first-child {
