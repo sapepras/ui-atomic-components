@@ -1,6 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
+import {
+    HOVER_BACKGROUND_COLOR,
+    HOVER_FOREGROUND_COLOR,
+    DISABLED_HOVER_BACKGROUND_COLOR,
+    DISABLED_HOVER_FOREGROUND_COLOR,
+    KEYBOARD_SELECTED_BACKGROUND_COLOR,
+    KEYBOARD_SELECTED_FOREGROUND_COLOR,
+    DISABLED_CURSOR,
+    ENABLED_CURSOR
+} from './constants';
 
 const DropdownStyle = props => css`
     position: relative;
@@ -28,54 +38,49 @@ const DropdownStyle = props => css`
         overflow: hidden;
         text-overflow: ellipsis;
         font-weight: normal;
-        cursor: pointer;
+        cursor: ${ENABLED_CURSOR};
         &:hover {
-            background: #0055a6;
+            background: ${HOVER_BACKGROUND_COLOR};
             span {
-                color: #fff;
+                color: ${HOVER_FOREGROUND_COLOR};
             }
             &.disabled {
-                background: #CDCFD1;
+                background: ${DISABLED_HOVER_BACKGROUND_COLOR};
                 span {
-                    color: #fff;
+                    color: ${DISABLED_HOVER_FOREGROUND_COLOR};
                 }
+                cursor: ${DISABLED_CURSOR};
             }
         }
 
         &.disabled {
-            background: #CDCFD1;
-            span {
-                color: #fff;
-            }
-            &:hover {
-                background: #7E7F80;
-                span {
-                    color: #fff;
-                }
-            }
+            background: ${DISABLED_HOVER_BACKGROUND_COLOR};
+            color: ${DISABLED_HOVER_FOREGROUND_COLOR};
+            cursor: ${DISABLED_CURSOR};
         }
         &.disabledKeySelected {
-             background: #7E7F80;
+             background: ${DISABLED_HOVER_BACKGROUND_COLOR};
              span {
-                color: #fff;
+                color: ${DISABLED_HOVER_FOREGROUND_COLOR};
              }
+             cursor: ${DISABLED_CURSOR};
         }
         &.keySelected {
-            background: #9EC9F3;
+            background: ${KEYBOARD_SELECTED_BACKGROUND_COLOR};
             span {
-                color: #fff;
+                color: ${KEYBOARD_SELECTED_FOREGROUND_COLOR};
             }
             &:hover {
-                background: #0055a6;
+                background: ${HOVER_BACKGROUND_COLOR};
                 span {
-                    color: #fff;
+                    color: ${HOVER_FOREGROUND_COLOR};
                 }
             }
         }
         &.active {
-            background: #0055a6;
+            background: ${HOVER_BACKGROUND_COLOR};
             span {
-                color: #fff;
+                color: ${HOVER_FOREGROUND_COLOR};
             }
         }
         &:first-child {
@@ -176,8 +181,8 @@ class Dropdown extends React.Component {
     onSelectWrapper(value, onSelect, index) {
         if (!value.disabled) {
             this.setState({ selectedOption: value, activeListItem: index }, () => this.toggleDropdownState());
+            onSelect(index, value.title); // only execute callback when the option is not disabled.
         }
-        onSelect(index, value.title, value.disabled);
     }
     /**
      * helper function to generate placeholder option for dropdown.
@@ -262,7 +267,7 @@ class Dropdown extends React.Component {
                 const topPos = elem.offsetTop;
                 document.getElementById('customDropdownList').scrollTop = topPos;
             } else if (document.querySelector('.disabledKeySelected')) {
-                const elem = document.querySelector(identifier);
+                const elem = document.querySelector('.disabledKeySelected');
                 const topPos = elem.offsetTop;
                 document.getElementById('customDropdownList').scrollTop = topPos;
             }
