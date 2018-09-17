@@ -35,30 +35,25 @@ const DropdownStyle = props => css`
                 color: #fff;
             }
             &.disabled {
-                background: #CDCFD1;
+                background: #F6F6F6;
                 span {
-                    color: #fff;
+                    color: #333333;
                 }
+                cursor: default;
             }
         }
 
         &.disabled {
-            background: #CDCFD1;
-            span {
-                color: #fff;
-            }
-            &:hover {
-                background: #7E7F80;
-                span {
-                    color: #fff;
-                }
-            }
+            background: #F6F6F6;
+            color: #333333;
+            cursor: default;
         }
         &.disabledKeySelected {
-             background: #7E7F80;
+             background: #F6F6F6;
              span {
-                color: #fff;
+                color: #333333;
              }
+             cursor: default;
         }
         &.keySelected {
             background: #9EC9F3;
@@ -176,8 +171,8 @@ class Dropdown extends React.Component {
     onSelectWrapper(value, onSelect, index) {
         if (!value.disabled) {
             this.setState({ selectedOption: value, activeListItem: index }, () => this.toggleDropdownState());
+            onSelect(index, value.title); // only execute callback when the option is not disabled.
         }
-        onSelect(index, value.title, value.disabled);
     }
     /**
      * helper function to generate placeholder option for dropdown.
@@ -262,7 +257,7 @@ class Dropdown extends React.Component {
                 const topPos = elem.offsetTop;
                 document.getElementById('customDropdownList').scrollTop = topPos;
             } else if (document.querySelector('.disabledKeySelected')) {
-                const elem = document.querySelector(identifier);
+                const elem = document.querySelector('.disabledKeySelected');
                 const topPos = elem.offsetTop;
                 document.getElementById('customDropdownList').scrollTop = topPos;
             }
