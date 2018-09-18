@@ -86,7 +86,7 @@ class RadioButton extends Component {
           value={value}
           data-auid={auid}
           disabled={disabled}
-          checked={initialState === `${id}`}
+          checked={initialState === `${value}`}
           type="radio"
           onChange={() => this.onChangeWrapper(onChange, value)}
           {...rest}
