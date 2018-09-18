@@ -52,4 +52,8 @@ TooltipModal.propTypes = {
   auid: PropTypes.string
 };
 
+Tooltip.defaultProps = {
+  closeBtn: false
+};
+
 export default TooltipModal;
