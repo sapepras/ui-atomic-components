@@ -4,6 +4,9 @@ import { css } from 'react-emotion';
 
 const RadioStyles = css`
   position: relative;
+  [type="radio"] + label {
+    margin: 0;
+  }
   [type="radio"]:checked,
   [type="radio"]:not(:checked) {
     position: absolute;
@@ -86,7 +89,7 @@ class RadioButton extends Component {
           value={value}
           data-auid={auid}
           disabled={disabled}
-          checked={initialState === `${id}`}
+          checked={initialState === `${value}`}
           type="radio"
           onChange={() => this.onChangeWrapper(onChange, value)}
           {...rest}
