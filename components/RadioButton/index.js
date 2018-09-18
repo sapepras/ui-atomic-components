@@ -4,6 +4,9 @@ import { css } from 'react-emotion';
 
 const RadioStyles = css`
   position: relative;
+  [type="radio"] + label {
+    margin: 0;
+  }
   [type="radio"]:checked,
   [type="radio"]:not(:checked) {
     position: absolute;
