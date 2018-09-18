@@ -90,12 +90,16 @@ class Modal extends React.Component {
    * @param {object} event
    */
   handleTabbableEvent(event) {
-    if (this.tabbableDescentants && event.keyCode === KEY_CODE_TAB) {
-      const tabbableLength = this.tabbableDescentants.length;
+    const tabbableLength = this.tabbableDescentants.length;
+    if (this.tabbableDescentants && event.keyCode === KEY_CODE_TAB && !event.shiftKey) {
       if (this.tabbableDescentants[tabbableLength - 1] === event.target) {
         this.modalTarget.focus();
         event.stopPropagation();
       }
+    }
+    if (this.tabbableDescentants && event.shiftKey && event.keyCode === KEY_CODE_TAB && this.tabbableDescentants[0] === event.target) {
+      event.preventDefault();
+      this.tabbableDescentants[tabbableLength - 1].focus();
     }
   }
 
