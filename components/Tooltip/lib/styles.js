@@ -303,3 +303,18 @@ export const Tooltip = styled('div')`
     ${({ direction = {}, align = '' }) => getTooltipDirectionStyles(direction.desktop, align)};
   }
 `;
+
+export const closeBtn = css`
+  position: absolute;
+  top: 0.2rem;
+  right: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+  background-color: #ffffff;
+  border: 0;
+`;
+
+export const closeIcon = css`
+  color: #585858;
+  font-size: 0.75rem;
+`;

@@ -32,6 +32,10 @@ Tooltip Atomic Component renders a custom tooltip component on hover with variou
 
 ```the showOnClick property can be to disable show on hover, and enable show on click / touchstart```
 
+* **closeBtn**: *PropTypes.bool*
+
+```Displays a close button on top right of tooltip, default is false```
+
 
 ## Example Usage
 
