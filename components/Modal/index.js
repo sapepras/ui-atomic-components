@@ -44,7 +44,7 @@ class Modal extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isOpen) {
-      setTimeout(function() {
+      setTimeout(() => {
         const modalContent = document.getElementById('atomic-modal-content');
         modalContent.focus();
       }, 0);
