@@ -306,8 +306,9 @@ export const Tooltip = styled('div')`
 
 export const closeBtn = css`
   position: absolute;
+  padding: 0;
   top: 0.2rem;
-  right: 0.5rem;
+  right: 0.2rem;
   height: 1rem;
   width: 1rem;
   background-color: #ffffff;
