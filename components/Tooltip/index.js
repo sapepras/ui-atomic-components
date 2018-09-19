@@ -89,6 +89,8 @@ class Tooltip extends React.Component {
       'data-auid': `tooltip${auid}`,
       onMouseEnter: !showOnClick ? this.show : undefined,
       onMouseLeave: !showOnClick ? this.hide : undefined,
+      onFocus: !showOnClick ? this.show : undefined,
+      onBlur: !showOnClick ? this.hide : undefined,
       ref: this.wrapperRef
     };
     return (
