@@ -44,6 +44,10 @@ class Modal extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isOpen) {
+      setTimeout(function() {
+        const modalContent = document.getElementById('atomic-modal-content');
+        modalContent.focus();
+      }, 0);
       this.addBodyOverrides();
     } else {
       this.removeBodyOverrides();
@@ -105,7 +109,6 @@ class Modal extends React.Component {
 
   handleOverlayClick(event) {
     this.handleTabbableEvent(event);
-
     if ((!this.modalTarget.contains(event.target) && event.target !== this.modalTarget) || event.keyCode === KEY_CODE_ESC) {
       this.handleClose();
     }

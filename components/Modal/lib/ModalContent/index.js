@@ -113,9 +113,7 @@ class ModalContent extends React.Component {
   }
 
   render() {
-    const {
- children, modalContentClassName, handleClose, isOpen, closeIcon
-} = this.props;
+    const { children, modalContentClassName, handleClose, isOpen, closeIcon } = this.props;
     return (
       <div ref={this.modalContent} className={cx(modalContentStyle, isOpen ? zoomIn : '', modalContentClassName)} aria-modal="true" tabIndex="-1">
         {typeof closeIcon === 'boolean' &&
@@ -124,6 +122,7 @@ class ModalContent extends React.Component {
               <CloseButton onClick={() => handleClose()}>X</CloseButton>
             </CloseButtonWrapper>
           )}
+        <div id="atomic-modal-content" tabIndex="-1" />
         {typeof closeIcon !== 'boolean' && closeIcon && <CloseButtonWrapper>{closeIcon}</CloseButtonWrapper>}
         {children}
       </div>
