@@ -25,8 +25,7 @@ const RadioStyles = css`
     content: '';
     position: absolute;
     left: 0;
-    top: 50%;
-    -webkit-transform: translateY(-50%);-ms-transform: translateY(-50%);transform: translateY(-50%);
+    top: 4px;
     width: 11px;
     height: 11px;
     border: 1px solid #585858;
@@ -44,8 +43,7 @@ const RadioStyles = css`
     height: 5px;
     background: #585858;
     position: absolute;
-     top: 50%;
-    -webkit-transform: translateY(-50%);-ms-transform: translateY(-50%);transform: translateY(-50%);
+     top: 7px;
     left: 3px;
     border-radius: 100%;
     -webkit-transition: all 0.2s ease;
