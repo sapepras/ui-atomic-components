@@ -125,6 +125,8 @@ const indicatorArrow = css`
         font-size: 0.85rem;
     }
     font-size: 0.45rem;
+    margin-left: auto;
+    padding-left: 0.2rem;
 `;
 
 const listStyle = props => css`
