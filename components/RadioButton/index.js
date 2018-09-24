@@ -61,6 +61,9 @@ const RadioStyles = css`
       opacity: 1;
       
   }
+  [type="radio"]:disabled + label{
+    opacity: 0.5;
+  }
 `;
 
 class RadioButton extends Component {
