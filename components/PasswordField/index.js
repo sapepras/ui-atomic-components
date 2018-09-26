@@ -42,55 +42,90 @@ const InlineButton = props => css`
   font-size: ${props.buttontextfont};
   border: none;
   background-color: ${props.buttonBg ? props.buttonBg : 'transparent'};
+  &:hover {
+    text-decoration: underline;
+  }
   &:focus {
     outline: -webkit-focus-ring-color auto 5px;
   }
 `;
 
 class PasswordField extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showPassword: false,
-            password: ''
-        };
-        this.changeVisibility = this.changeVisibility.bind(this);
-        this.onChangeWrapper = this.onChangeWrapper.bind(this);
-    }
-    /**
-     * wrapper function around onChange function.
-     * @param {object} event triggered when password field value changes.
-     * @param {func} onChange function for the password field
-     */
-    onChangeWrapper(event, onChange) {
-        this.setState({ password: event.target.value.trim() }); // trim the password for spaces, expected behavior.
-        onChange(event);
-    }
-    /**
-     * function handling visibility of password text.
-     * @param {*} event triggered when show/hide inline button is clicked.
-     */
-    changeVisibility(event) {
-        this.setState({ showPassword: !this.state.showPassword });
-        event.preventDefault();
-    }
-    render() {
-        const {
-            classname, name, disabled, onChange, placeholder, value, width, height, fontSize, fontWeight, inlinebuttontexthide, inlinebuttontextshow, inlinebuttonclass, auid, ...rest
-        } = this.props;
-        return (
-          <div
-            className={`${CommonStyles(this.props)} ${classname} d-flex align-items-center`}
-            width={width}
-            height={height}
-            fontSize={fontSize}
-            fontWeight={fontWeight}
-          >
-            <input data-auid={auid} {...rest} name={name} className={`${InputStyles(this.props)} pr-6`} disabled={disabled} type={!this.state.showPassword ? 'password' : 'text'} onChange={event => this.onChangeWrapper(event, onChange)} placeholder={placeholder} value={this.state.password} />
-            <button type="button" data-auid={`${auid}_inline_button`} tabIndex={0} className={`${InlineButton(this.props)} ${inlinebuttonclass}`} onClick={event => this.changeVisibility(event)}>{this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow }</button>
-          </div>
-        );
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPassword: false,
+      password: ''
+    };
+    this.changeVisibility = this.changeVisibility.bind(this);
+    this.onChangeWrapper = this.onChangeWrapper.bind(this);
+  }
+  /**
+   * wrapper function around onChange function.
+   * @param {object} event triggered when password field value changes.
+   * @param {func} onChange function for the password field
+   */
+  onChangeWrapper(event, onChange) {
+    this.setState({ password: event.target.value.trim() }); // trim the password for spaces, expected behavior.
+    onChange(event);
+  }
+  /**
+   * function handling visibility of password text.
+   * @param {*} event triggered when show/hide inline button is clicked.
+   */
+  changeVisibility(event) {
+    this.setState({ showPassword: !this.state.showPassword });
+    event.preventDefault();
+  }
+  render() {
+    const {
+      classname,
+      name,
+      disabled,
+      onChange,
+      placeholder,
+      value,
+      width,
+      height,
+      fontSize,
+      fontWeight,
+      inlinebuttontexthide,
+      inlinebuttontextshow,
+      inlinebuttonclass,
+      auid,
+      ...rest
+    } = this.props;
+    return (
+      <div
+        className={`${CommonStyles(this.props)} ${classname} d-flex align-items-center`}
+        width={width}
+        height={height}
+        fontSize={fontSize}
+        fontWeight={fontWeight}
+      >
+        <input
+          data-auid={auid}
+          {...rest}
+          name={name}
+          className={`${InputStyles(this.props)} pr-6`}
+          disabled={disabled}
+          type={!this.state.showPassword ? 'password' : 'text'}
+          onChange={event => this.onChangeWrapper(event, onChange)}
+          placeholder={placeholder}
+          value={this.state.password}
+        />
+        <button
+          type="button"
+          data-auid={`${auid}_inline_button`}
+          tabIndex={0}
+          className={`${InlineButton(this.props)} ${inlinebuttonclass}`}
+          onClick={event => this.changeVisibility(event)}
+        >
+          {this.state.showPassword ? inlinebuttontexthide : inlinebuttontextshow}
+        </button>
+      </div>
+    );
+  }
 }
 
 PasswordField.defaultProps = {
@@ -115,30 +150,30 @@ PasswordField.defaultProps = {
 };
 
 PasswordField.propTypes = {
-    classname: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    disabled: PropTypes.bool,
-    onChange: PropTypes.func,
-    placeholder: PropTypes.string,
-    value: PropTypes.string,
-    width: PropTypes.string,
-    height: PropTypes.string,
-    fontSize: PropTypes.string,
-    bordercolor: PropTypes.string,
-    borderwidth: PropTypes.string,
-    borderradius: PropTypes.string,
-    activebordercolor: PropTypes.string,
-    activeborderwidth: PropTypes.string,
-    fontWeight: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    inlinebuttontexthide: PropTypes.string,
-    inlinebuttontextshow: PropTypes.string,
-    buttontextcolor: PropTypes.string,
-    buttontextfont: PropTypes.string,
-    buttontextweight: PropTypes.string,
-    inlinebuttonclass: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    padding: PropTypes.string,
-    auid: PropTypes.string
+  classname: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
+  fontSize: PropTypes.string,
+  bordercolor: PropTypes.string,
+  borderwidth: PropTypes.string,
+  borderradius: PropTypes.string,
+  activebordercolor: PropTypes.string,
+  activeborderwidth: PropTypes.string,
+  fontWeight: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  inlinebuttontexthide: PropTypes.string,
+  inlinebuttontextshow: PropTypes.string,
+  buttontextcolor: PropTypes.string,
+  buttontextfont: PropTypes.string,
+  buttontextweight: PropTypes.string,
+  inlinebuttonclass: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  padding: PropTypes.string,
+  auid: PropTypes.string
 };
 
 export default PasswordField;
