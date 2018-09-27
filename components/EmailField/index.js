@@ -20,9 +20,9 @@ const styledInput = props => css`
     position: relative;
     background: transparent;
     z-index: 1;
+    word-break: break-word;
     ${props.classname};
   }
-
   .suggestion {
     position: absolute;
     top: -3px;
