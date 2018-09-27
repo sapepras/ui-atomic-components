@@ -24,6 +24,7 @@ const CheckboxStyles = css`
     border: 2px solid #585858;
     border-radius: 2px;
     top: -2px;
+    left: -2px;
     position: absolute;
     }
     &:hover:after {
@@ -44,7 +45,7 @@ const CheckboxStyles = css`
     display: block;
     position: absolute;
     top: 0;
-    left: 6px;
+    left: 4px;
     width: 6px;
     height: 11px;
     border: solid #fff;
