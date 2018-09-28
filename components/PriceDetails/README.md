@@ -1,9 +1,9 @@
 ```jsx
+<PriceDetails listPrice="12.29" salePrice="5.99" priceMessage=""/>
+<hr/>
 <PriceDetails listPrice="12.29"/>
 <hr/>
-<PriceDetails listPrice="12.29" salePrice="5.99" priceMessage="wasNowPrice"/>
-<hr/>
-<PriceDetails listPrice="12.29" salePrice="5.99" savings="21%"/>
+<PriceDetails listPrice="12.29" salePrice="5.99" savings="21%" priceMessage="wasNowPrice" />
 <hr/>
 <PriceDetails priceRange="13.50-45.99"/>
 <hr/>
