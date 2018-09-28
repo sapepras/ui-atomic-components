@@ -13,3 +13,5 @@
 <hr/>
 <PriceDetails priceTypeKeys={'specialprice'}/>
 ```
+##For EndPoint: /api/productinfo?productIds={p1,p2,p3}
+<PriceDetails productSchema="productInfo" product={productItem} />
