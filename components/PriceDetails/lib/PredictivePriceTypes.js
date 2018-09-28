@@ -20,7 +20,7 @@ const isEmpty = val => isNotDefined(val) || (typeof val === 'string' && val.trim
 
 const isEmptyPrice = val => isNotDefined(val) || (typeof val === 'string' && val.replace(/[^\d\.]/g, '') === ''); // eslint-disable-line no-useless-escape
 
-const priceToFloat = price => (isEmptyPrice(price) ? null : parseFloat(price.replace(/[^\d\.]/g, ''))); // eslint-disable-line no-useless-escape
+// const priceToFloat = price => (isEmptyPrice(price) ? null : parseFloat(price.replace(/[^\d\.]/g, ''))); // eslint-disable-line no-useless-escape
 
 const messageContains = (message = '', value = '') =>
   message
@@ -83,10 +83,10 @@ const isHotDeal = priceObject => {
   return null;
 };
 
-// If ( priceMessage IS EMPTY &&  (listPrice != null && salePrice< listPrice ) )--- >Show Was now pricing
+// Show both salePrice/listPrice if we have price message==='wasnowprice', if not return only salePrice/ListPrice
 const isWasNow = priceObject => {
-  const { listPrice, salePrice } = priceObject;
-  if (!isEmptyPrice(listPrice) && !isEmptyPrice(salePrice) && priceToFloat(salePrice) < priceToFloat(listPrice)) {
+  const { listPrice, salePrice, priceMessage = '' } = priceObject;
+  if (!isEmptyPrice(listPrice) && !isEmptyPrice(salePrice) && messageContains(priceMessage, PriceTypes.wasNow)) {
     return PriceTypes.wasNow;
   }
   return null;
