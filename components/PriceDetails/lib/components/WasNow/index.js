@@ -6,23 +6,22 @@ import Price from '../Price';
 
 const droppedPrice = css`
   font-size: 0.75em;
+  margin-left:8px;
   display: inline-block;
 `;
 
 const WasNow = props => {
   const {
-    salePrice, listPrice, savings, firstPriceMessageText
-   } = props;
+    salePrice, listPrice, savings, firstPriceMessageText, ...remainingProps
+  } = props;
   return (
     <div>
       <Price price={salePrice} color="red" />
-      &nbsp;&nbsp;&nbsp;
       <span className={cx('list-price', droppedPrice)}>
-        <Price price={listPrice} color="gray" strikethrough />
+        <Price price={listPrice} color="gray" strikethrough {...remainingProps} />
       </span>
       {!!savings && (
         <span>
-          &nbsp;&nbsp;&nbsp;
           <span className={style.contentText}>Save {savings}</span>
         </span>
       )}
