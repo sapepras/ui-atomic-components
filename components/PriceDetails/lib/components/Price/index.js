@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { cleanPrice } from '../../util';
@@ -15,6 +15,7 @@ const ppuStyles = css`
   color: gray;
   margin: 0 12px;
   line-height: 1rem;
+  line-through: none;
 `;
 
 const colorMap = {
@@ -50,9 +51,7 @@ const PricePerUnit = props => {
 };
 class Price extends PureComponent {
   render() {
-    const {
-      price, color = 'black', strikethrough = false, hasPPU, ppuMessage, ppuMsg, pricePerUnit
-    } = this.props;
+    const { price, color = 'black', strikethrough = false, hasPPU, ppuMessage, ppuMsg, pricePerUnit } = this.props;
     // eslint-disable-next-line no-useless-escape
     const [num, dec] = cleanPrice(price).split('.');
 
@@ -61,18 +60,20 @@ class Price extends PureComponent {
     }
 
     return (
-      <Wrapper className="c-price__sub" colorCode={color} strikethrough={strikethrough}>
-        <Super className="c-price__super" strikethrough={strikethrough}>
-          $
-        </Super>
-        {/* eslint-disable-next-line react/jsx-indent */}
-        <span>{num}</span>
-        {/* eslint-disable-next-line react/jsx-indent */}
-        <Super className="c-price__super" strikethrough={strikethrough}>
-          {dec.substr(0, 2)}
-        </Super>
+      <Fragment>
+        <Wrapper className="c-price__sub" colorCode={color} strikethrough={strikethrough}>
+          <Super className="c-price__super" strikethrough={strikethrough}>
+            $
+          </Super>
+          {/* eslint-disable-next-line react/jsx-indent */}
+          <span>{num}</span>
+          {/* eslint-disable-next-line react/jsx-indent */}
+          <Super className="c-price__super" strikethrough={strikethrough}>
+            {dec.substr(0, 2)}
+          </Super>
+        </Wrapper>
         {hasPPU && <PricePerUnit pricePerUnit2={ppuMsg} pricePerUnit={pricePerUnit} ppuMessage={ppuMessage} />}
-      </Wrapper>
+      </Fragment>
     );
   }
 }
