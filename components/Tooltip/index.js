@@ -83,18 +83,20 @@ class Tooltip extends React.Component {
   }
 
   render() {
-    const { showOnClick } = this.props;
+    const { showOnClick, ariaLabel, auid } = this.props;
     const wrapperProps = {
       className: !showOnClick ? stylesTooltipWrapper : stylesTooltipWrapperCursor,
-      'data-auid': `tooltip${this.props.auid}`,
+      'data-auid': `tooltip${auid}`,
       onMouseEnter: !showOnClick ? this.show : undefined,
       onMouseLeave: !showOnClick ? this.hide : undefined,
+      onFocus: !showOnClick ? this.show : undefined,
+      onBlur: !showOnClick ? this.hide : undefined,
       ref: this.wrapperRef
     };
     return (
-      <div {...wrapperProps} data-is-tooltip="yes">
+      <div {...wrapperProps} data-is-tooltip="yes" aria-label={ariaLabel}>
         {this.props.children}
-        {this.state.visible && <Modal {...this.props} />}
+        {this.state.visible && <Modal auid={auid} hide={this.hide} {...this.props} />}
       </div>
     );
   }
@@ -103,7 +105,8 @@ class Tooltip extends React.Component {
 Tooltip.propTypes = {
   auid: PropTypes.string,
   children: PropTypes.any.isRequired,
-  showOnClick: PropTypes.bool
+  showOnClick: PropTypes.bool,
+  ariaLabel: PropTypes.string
 };
 
 Tooltip.defaultProps = {

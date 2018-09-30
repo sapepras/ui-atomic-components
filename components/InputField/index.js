@@ -26,10 +26,10 @@ const CommonStyles = props => css`
 // dumb component to render input field.
 const InputField = props => {
     const {
-        classname, type, name, id, disabled, onChange, placeholder, value, ...rest
+        classname, type, name, id, disabled, onChange, placeholder, value, auid, ...rest
     } = props;
     return (
-      <input {...rest} name={name} id={id} className={`${CommonStyles(props)} ${classname}`} disabled={disabled} type={type} onChange={onChange} placeholder={placeholder} value={value} />
+      <input data-auid={auid} {...rest} name={name} id={id} className={`${CommonStyles(props)} ${classname}`} disabled={disabled} type={type} onChange={onChange} placeholder={placeholder} value={value} />
     );
   };
 
@@ -67,7 +67,8 @@ InputField.propTypes = {
     fontWeight: PropTypes.string,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    padding: PropTypes.string
+    padding: PropTypes.string,
+    auid: PropTypes.string
 };
 
 export default InputField;

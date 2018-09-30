@@ -124,6 +124,7 @@ class ModalContent extends React.Component {
               <CloseButton onClick={() => handleClose()}>X</CloseButton>
             </CloseButtonWrapper>
           )}
+        <div id="atomic-modal-content" tabIndex="-1" />
         {typeof closeIcon !== 'boolean' && closeIcon && <CloseButtonWrapper>{closeIcon}</CloseButtonWrapper>}
         {children}
       </div>

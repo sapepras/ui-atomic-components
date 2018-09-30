@@ -116,6 +116,10 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 * Most of the props have some default values which get rendered if no value is provided. 
 
 ### Recent Updates -
+* Now Dropdown Opens onFocus.
+* Synthetic Accessibility features like traversing using keyboard keys, searching using first letter and more have been addressed.
+* Added auto height and responsive indicator icon.
+* Updated Prop names to avoid conflicts with default react props.
 * Addressed styling issues where indicator arrow was going out of button. 
 * Added ```padding``` for button and ```listItemPadding``` as prop to dropdown.
 * Added a feature where if your dropdown implementation doesn't require 'select' to be the first    option, you can remove it from dropdown options using new ```placeholderOption``` object prop containing title/subtitle. 

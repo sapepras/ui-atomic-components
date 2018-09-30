@@ -15,6 +15,8 @@ import PasswordField from './components/PasswordField';
 import Tooltip from './components/Tooltip';
 import EmailField from './components/EmailField';
 import ProductCardComponent from './components/ProductCardComponent';
+import Spinner from './components/Spinner';
+
 export {
   Button,
   Anchor,
@@ -32,5 +34,6 @@ export {
   PasswordField,
   Tooltip,
   EmailField,
-  ProductCardComponent
+  ProductCardComponent,
+  Spinner
 };

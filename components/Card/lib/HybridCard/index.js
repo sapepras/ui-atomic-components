@@ -170,7 +170,7 @@ class HybridCard extends Component {
               {promoMessage && (
                 <div className="c-product_promomsg">
                   <div className="">
-                    <div className="">{promoMessage}</div>
+                    <div dangerouslySetInnerHTML={{ __html: promoMessage }} />
                   </div>
                 </div>
               )}

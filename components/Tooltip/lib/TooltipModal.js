@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TooltipModalWrapper, Tooltip } from './styles';
+import { TooltipModalWrapper, Tooltip, closeBtn, closeIcon } from './styles';
 
 const parseDirection = direction => {
   let result = { mobile: 'top', desktop: 'top' };
@@ -21,7 +21,13 @@ const parseDirection = direction => {
 const TooltipModal = props =>
   (
     <TooltipModalWrapper direction={parseDirection(props.direction)} align={props.align} lineHeightFix={props.lineHeightFix}>
-      <Tooltip className={props.className} direction={parseDirection(props.direction)} align={props.align}>{props.content}</Tooltip>
+      <Tooltip className={props.className} direction={parseDirection(props.direction)} align={props.align}>
+        {props.closeBtn &&
+          <button onClick={props.hide} className={closeBtn} data-auid={`tooltip-close-${props.auid}`}>
+            <span className={`${closeIcon} academyicon icon-close`}></span>
+          </button>}
+        {props.content}
+      </Tooltip>
     </TooltipModalWrapper>
   );
 
@@ -40,7 +46,14 @@ TooltipModal.propTypes = {
   className: PropTypes.string,
   direction: PropTypes.oneOfType([directionString, directionObject]),
   align: PropTypes.oneOfType([positionString]),
-  lineHeightFix: PropTypes.number
+  lineHeightFix: PropTypes.number,
+  closeBtn: PropTypes.bool,
+  hide: PropTypes.func,
+  auid: PropTypes.string
+};
+
+Tooltip.defaultProps = {
+  closeBtn: false
 };
 
 export default TooltipModal;

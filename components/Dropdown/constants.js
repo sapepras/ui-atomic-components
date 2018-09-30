@@ -1,0 +1,12 @@
+export const HOVER_BACKGROUND_COLOR = '#0055a6';
+export const HOVER_FOREGROUND_COLOR = '#FFF';
+export const DISABLED_HOVER_BACKGROUND_COLOR = '#F6F6F6';
+export const DISABLED_HOVER_FOREGROUND_COLOR = '#333333';
+export const KEYBOARD_SELECTED_BACKGROUND_COLOR = '#9EC9F3';
+export const KEYBOARD_SELECTED_FOREGROUND_COLOR = '#FFF';
+export const DISABLED_CURSOR = 'default';
+export const ENABLED_CURSOR = 'pointer';
+export const FONT_SIZE = '1rem';
+export const MOBILE_FONT_SIZE = '0.8rem';
+export const INDICATOR_FONT_SIZE = '0.85rem';
+export const INDICATOR_MOBILE_FONT_SIZE = '0.45rem';

@@ -24,6 +24,7 @@ const CheckboxStyles = css`
     border: 2px solid #585858;
     border-radius: 2px;
     top: -2px;
+    left: -2px;
     position: absolute;
     }
     &:hover:after {
@@ -44,7 +45,7 @@ const CheckboxStyles = css`
     display: block;
     position: absolute;
     top: 0;
-    left: 6px;
+    left: 4px;
     width: 6px;
     height: 11px;
     border: solid #fff;
@@ -72,10 +73,10 @@ class Checkbox extends Component {
 
     render() {
         const {
-            id, disabled, onChange, name
+            id, disabled, onChange, auid, name, ...rest
         } = this.props;
         return (
-          <input name={name} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} />
+          <input name={name} data-auid={auid} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} {...rest} />
         );
     }
 }
@@ -90,7 +91,8 @@ Checkbox.propTypes = {
     checked: PropTypes.bool,
     id: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    auid: PropTypes.string
 };
 
 export default Checkbox;

@@ -17,7 +17,7 @@ export const LineHeightFix = styled('div')`
 
 const tooltipModalWrapperBase = props => css`
   position: absolute;
-  z-index: 2;
+  z-index: 7;
   box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.1), 0 6px 12px 0 rgba(0, 0, 0, 0.04), 0 2px 5px 0 rgba(0, 0, 0, 0.08);
   ${props.className};
 `;
@@ -302,4 +302,20 @@ export const Tooltip = styled('div')`
   @media only screen and (min-width: 768px) {
     ${({ direction = {}, align = '' }) => getTooltipDirectionStyles(direction.desktop, align)};
   }
+`;
+
+export const closeBtn = css`
+  position: absolute;
+  padding: 0;
+  top: 0.2rem;
+  right: 0.2rem;
+  height: 1rem;
+  width: 1rem;
+  background-color: #ffffff;
+  border: 0;
+`;
+
+export const closeIcon = css`
+  color: #585858;
+  font-size: 0.75rem;
 `;
