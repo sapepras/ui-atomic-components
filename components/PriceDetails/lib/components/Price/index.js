@@ -26,7 +26,7 @@ const colorMap = {
 
 const Wrapper = styled('span')`
   color: ${({ colorCode }) => (colorMap[colorCode.trim().toLowerCase()] ? colorMap[colorCode.trim().toLowerCase()] : colorMap.black)};
-  text-decoration: ${({ strikethrough }) => (strikethrough ? 'line-througsh' : 'none')};
+  text-decoration: ${({ strikethrough }) => (strikethrough ? 'line-through' : 'none')};
   ${({ strikethrough }) => (strikethrough ? 'font-family: MalloryCond-Medium;' : '')};
 `;
 
