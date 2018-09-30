@@ -10,12 +10,11 @@ export const contentText = css`
   font-family: Mallory-Book;
   font-size: 12px;
   color: #333333;
-  margin-left: 0.5rem;
   @media only screen and (min-width: 768px) {
     margin-left: 0;
   }
   @media only screen and (min-width: 1349px) {
-    margin-left: 0.5rem;
+    margin-left: 0;
   }
 `;
 
