@@ -47,6 +47,11 @@ export default class EmailField extends Component {
     };
     this.onChangeInput = this.onChangeInput.bind(this);
     this.UseSuggestionKeyHandler = this.UseSuggestionKeyHandler.bind(this);
+    this.onBlurHandler = this.onBlurHandler.bind(this);
+  }
+
+  onBlurHandler() {
+    this.setState({ value: this.state.suggestedEmail }, () => this.props.onChange(this.state.value));
   }
 
   onChangeInput(event, onChange) {
@@ -66,7 +71,7 @@ export default class EmailField extends Component {
 
   UseSuggestionKeyHandler(event, onChange) {
     if (
-      (event.keyCode === 9 || event.keyCode === 13 || event.keyCode === 39 || (event.type && event.type === 'blur')) &&
+      (event.keyCode === 9 || event.keyCode === 13 || event.keyCode === 39) &&
       (this.state.suggestedEmail && this.state.suggestedEmail !== this.state.value)
     ) {
       this.setState({ value: this.state.suggestedEmail }, () => onChange(this.state.value));
@@ -84,7 +89,7 @@ export default class EmailField extends Component {
   render() {
     const { classname, name, id, disabled, placeholder, onChange, value, auid, initialValue, ...rest } = this.props;
     return (
-      <div className={`${styledInput(this.props)}`}>
+      <div className={`${styledInput(this.props)}`} onBlur={this.onBlurHandler}>
         <input
           data-auid={auid}
           disabled={disabled}
@@ -94,11 +99,11 @@ export default class EmailField extends Component {
           placeholder={placeholder}
           value={this.state.value}
           onChange={event => this.onChangeInput(event, onChange)}
-          onBlur={e => this.UseSuggestionKeyHandler(e, onChange)}
           onKeyDown={event => this.UseSuggestionKeyHandler(event, onChange)}
+          data-suggested={this.state.suggestedEmail}
           {...rest}
         />
-        <div data-auid={`${auid}_suggestion`} className="suggestion">
+        <div data-auid={`${auid || 'email'}_suggestion`} className="suggestion">
           {this.state.suggestedEmail}
         </div>
       </div>
