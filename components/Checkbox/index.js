@@ -4,58 +4,43 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
+// import classNames from 'classnames';
 /**
  * default styles for atomic checkbox component.
  */
 const CheckboxStyles = css`
-    position: relative;
-    cursor: pointer;
-    padding: 0;
-    margin-right: 10px;
-    margin-top: 3px;
-    &:before {
-    content: '';
-    margin-right: 10px;
-    display: inline-block;
-    vertical-align: text-top;
-    width: 18px;
-    height: 18px;
-    background: #fff;
-    border: 2px solid #585858;
-    border-radius: 2px;
-    top: -2px;
-    left: -2px;
-    position: absolute;
-    }
-    &:hover:after {
-    color: #fff;
-    }
-    &:checked:before {
-    background: #585858;
-    }
-    &:disabled {
-    color: #b8b8b8;
-    cursor: auto;
-    }
-    &:disabled:before {
-    background: #ddd;
-    }
-    &:checked:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 4px;
-    width: 6px;
-    height: 11px;
-    border: solid #fff;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(35deg);
-            transform: rotate(35deg);
-    }
-    &:focus {
-        outline: rgb(59,153,252) auto 5px;
-    }
+opacity: 0;
+width: 20px;
+height: 20px;
+position: absolute;
+& + label::after {
+  content: none;
+}
+&:checked + label::after {
+  content: '';
+}
+&:focus + label::before {
+    outline: 5px auto -webkit-focus-ring-color;
+}
+`;
+
+const labelStyle = css`
+position: relative;
+display: inline-block;
+font-size: 18px;
+span {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+&.icon-checkbox-inactive:before {
+    opacity: 1;
+  }
+`;
+
+const disabledCss = css`
+&.icon-checkbox-inactive:before {
+  opacity: 0.5;
+}
 `;
 
 class Checkbox extends Component {
@@ -76,17 +61,27 @@ class Checkbox extends Component {
 
     render() {
         const {
-            id, disabled, onChange, auid, name, ...rest
+            id, disabled, onChange, auid, children, name, ...rest
         } = this.props;
+        const { isChecked } = this.state;
         return (
-          <input name={name} data-auid={auid} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} {...rest} />
+          <div>
+            <input name={name} data-auid={auid} id={id} disabled={disabled} className={`${CheckboxStyles}`} defaultChecked={this.state.isChecked} type="checkbox" onChange={() => this.onChangeWrapper(onChange)} {...rest} />
+            <label
+              className={`${labelStyle} ${isChecked ? 'academyicon icon-checkbox-active' : 'academyicon icon-checkbox-inactive'} ${disabled ? disabledCss : null} d-flex align-items-start`}
+              htmlFor={id}
+            >
+              {children}
+            </label>
+          </div>
         );
     }
 }
 
 Checkbox.defaultProps = {
     checked: false,
-    disabled: false
+    disabled: false,
+    children: null
 };
 
 Checkbox.propTypes = {
@@ -95,7 +90,8 @@ Checkbox.propTypes = {
     id: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
-    auid: PropTypes.string
+    auid: PropTypes.string,
+    children: PropTypes.element
 };
 
 export default Checkbox;
