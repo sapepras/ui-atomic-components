@@ -1,7 +1,7 @@
 import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { tooltipWrapper as stylesTooltipWrapper, tooltipWrapperCursor as stylesTooltipWrapperCursor } from './lib/styles';
+import { tooltipWrapper as stylesTooltipWrapper } from './lib/styles';
 import Modal from './lib/TooltipModal';
 
 class Tooltip extends React.Component {
@@ -10,7 +10,6 @@ class Tooltip extends React.Component {
     this.state = {
       visible: false
     };
-    this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
     this.setVisibility = this.setVisibility.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -21,9 +20,7 @@ class Tooltip extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.showOnClick) {
-      this.attachDomEvents();
-    }
+    this.attachDomEvents();
   }
 
   componentWillUnmount() {
@@ -49,10 +46,6 @@ class Tooltip extends React.Component {
 
   setVisibility(visible) {
     this.setState(Object.assign({}, this.state, { visible }));
-  }
-
-  show() {
-    this.setVisibility(true);
   }
 
   hide() {
@@ -83,14 +76,10 @@ class Tooltip extends React.Component {
   }
 
   render() {
-    const { showOnClick, ariaLabel, auid } = this.props;
+    const { ariaLabel, auid } = this.props;
     const wrapperProps = {
-      className: !showOnClick ? stylesTooltipWrapper : stylesTooltipWrapperCursor,
+      className: stylesTooltipWrapper,
       'data-auid': `tooltip${auid}`,
-      onMouseEnter: !showOnClick ? this.show : undefined,
-      onMouseLeave: !showOnClick ? this.hide : undefined,
-      onFocus: !showOnClick ? this.show : undefined,
-      onBlur: !showOnClick ? this.hide : undefined,
       ref: this.wrapperRef
     };
     return (
@@ -105,12 +94,7 @@ class Tooltip extends React.Component {
 Tooltip.propTypes = {
   auid: PropTypes.string,
   children: PropTypes.any.isRequired,
-  showOnClick: PropTypes.bool,
   ariaLabel: PropTypes.string
-};
-
-Tooltip.defaultProps = {
-  showOnClick: false
 };
 
 export default Tooltip;

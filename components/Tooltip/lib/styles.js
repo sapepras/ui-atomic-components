@@ -4,10 +4,6 @@ export const tooltipWrapper = css`
   position: relative;
   display: inline-block;
   line-height: 1.24rem;
-`;
-
-export const tooltipWrapperCursor = css`
-  ${tooltipWrapper};
   cursor: pointer;
 `;
 
