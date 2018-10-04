@@ -29,11 +29,6 @@ Tooltip Atomic Component renders a custom tooltip component on hover with variou
 ```the lineHeightFix property describes the line-height of the tooltip content.```
 
 
-* **closeBtn**: *PropTypes.bool*
-
-```Displays a close button on top right of tooltip, default is false```
-
-
 ## Example Usage
 
 ### Firstly, Import Tooltip from Atomic Components.
