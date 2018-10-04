@@ -23,7 +23,8 @@ const baseConfig = () => ({
     RadioButton: './components/RadioButton',
     PasswordField: './components/PasswordField',
     EmailField: './components/EmailField',
-    ProductCardComponent: './components/ProductCardComponent'
+    ProductCardComponent: './components/ProductCardComponent',
+    Spinner: './components/Spinner'
   },
   output: {
     // Compile into js/build.js

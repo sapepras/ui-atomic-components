@@ -4,10 +4,6 @@ export const tooltipWrapper = css`
   position: relative;
   display: inline-block;
   line-height: 1.24rem;
-`;
-
-export const tooltipWrapperCursor = css`
-  ${tooltipWrapper};
   cursor: pointer;
 `;
 
@@ -313,6 +309,7 @@ export const closeBtn = css`
   width: 1rem;
   background-color: #ffffff;
   border: 0;
+  cursor: pointer;
 `;
 
 export const closeIcon = css`

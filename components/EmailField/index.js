@@ -63,7 +63,12 @@ export default class EmailField extends Component {
     if (value.indexOf('@') !== -1) {
       splitValues = value.split('@');
       if (splitValues[1] !== '') {
-        suggestedEmail = `${value}${this.findMatchingEmailDomain(splitValues[1])}`;
+        const rcvdDomain = this.findMatchingEmailDomain(splitValues[1]);
+        if (rcvdDomain !== '') {
+            suggestedEmail = `${value}${rcvdDomain}`;
+        } else {
+            suggestedEmail = '';
+        }
       }
     }
     this.setState({ suggestedEmail }, () => onChange(this.state.value));
