@@ -53,6 +53,9 @@ const CheckboxStyles = css`
     -webkit-transform: rotate(35deg);
             transform: rotate(35deg);
     }
+    &:focus {
+        outline: rgb(59,153,252) auto 5px;
+    }
 `;
 
 class Checkbox extends Component {
