@@ -13,7 +13,8 @@ const styledInput = props => css`
     line-height: 1.25;
     font-size: ${props.fontSize};
     font-weight: ${props.fontWeight};
-    opacity: ${props.disabled ? '0.5' : '1'}
+    opacity: ${props.disabled ? '0.5' : '1'};
+    background-clip: padding-box;
     &:focus {
       border: solid ${props.activeborderwidth} ${props.activebordercolor};
     }
