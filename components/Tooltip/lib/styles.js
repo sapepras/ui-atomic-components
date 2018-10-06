@@ -310,6 +310,7 @@ export const closeBtn = css`
   background-color: #ffffff;
   border: 0;
   cursor: pointer;
+  line-height: 0 !important;
 `;
 
 export const closeIcon = css`
