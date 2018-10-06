@@ -300,6 +300,12 @@ export const Tooltip = styled('div')`
   }
 `;
 
+/* this is to protect close button styling from external styles */
+const protectCloseButton = css`
+  line-height: 0 !important;
+  padding: 0 !important;
+`;
+
 export const closeBtn = css`
   position: absolute;
   padding: 0;
@@ -310,10 +316,19 @@ export const closeBtn = css`
   background-color: #ffffff;
   border: 0;
   cursor: pointer;
-  line-height: 0 !important;
+  ${protectCloseButton};
+`;
+
+/* this is to protect close icon styling from external styles */
+const protectCloseIcon = css`
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
 `;
 
 export const closeIcon = css`
   color: #585858;
   font-size: 0.75rem;
+  ${protectCloseIcon};
 `;
