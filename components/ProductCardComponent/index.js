@@ -32,7 +32,7 @@ class ProductCardComponent extends Component {
 
   render() {
     const defaultLogGA = this.props.cardAnalytics;
-    const { auid, tabIndex, ctaLink, onClickLogGA = defaultLogGA, classes, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
+    const { auid, tabIndex, ctaLink, onClickLogGA = defaultLogGA, classes, isOOS, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
     const thisOnClickGoTo = this.onClickGoTo(ctaLink, onClickLogGA);
     let clickAttributes = {};
     if (ctaLink) {
@@ -44,7 +44,7 @@ class ProductCardComponent extends Component {
     return (
       <div className={classes}>
         <StyledAnchor className="mb-quarter mb-md-4" href={ctaLink} data-auid={auid} {...clickAttributes} tabIndex={tabIndex}>
-          <HybridCard {...remainingProps} quickViewAuid={`${auid}_quickview`} />
+          <HybridCard {...remainingProps} quickViewAuid={`${auid}_quickview`} showOOS={isOOS} />
         </StyledAnchor>
       </div>
     );
@@ -52,7 +52,8 @@ class ProductCardComponent extends Component {
 }
 
 ProductCardComponent.dafultProps = {
-  tabindex: 0
+  tabindex: 0,
+  isOOS: false
 };
 
 ProductCardComponent.propTypes = {
@@ -66,7 +67,8 @@ ProductCardComponent.propTypes = {
   tabIndex: PropTypes.number,
   enableQuickView: PropTypes.bool,
   onClickQuickView: PropTypes.func,
-  cardAnalytics: PropTypes.func
+  cardAnalytics: PropTypes.func,
+  isOOS: PropTypes.bool
 };
 
 export default ProductCardComponent;

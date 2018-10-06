@@ -5,7 +5,11 @@
 import { css } from 'emotion';
 import { bp } from '../../../../../util/style';
 
-const styles = {};
+const styles = {
+  outOfStock: css`
+    color: #ee0000;
+  `
+};
 
 styles.productCard = css`
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 0 rgba(0, 0, 0, 0.04), 0 0 2px 0 rgba(0, 0, 0, 0.1);
@@ -108,15 +112,15 @@ styles.removeText = css`
   }
 `;
 styles.moveToCartBtn = css`
-white-space: nowrap;
-@media only screen and (min-width: 768px) {
-  width: 100%;
-}
+  white-space: nowrap;
+  @media only screen and (min-width: 768px) {
+    width: 100%;
+  }
 `;
 styles.hrFullStyles = css`
-border: 0.5px solid #cccccc;
-@media only screen and (min-width: 768px) {
-  display: none;
-}
+  border: 0.5px solid #cccccc;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 export default styles;
