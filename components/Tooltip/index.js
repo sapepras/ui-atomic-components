@@ -14,9 +14,12 @@ class Tooltip extends React.Component {
     this.setVisibility = this.setVisibility.bind(this);
     this.onClick = this.onClick.bind(this);
     this.onWindowBodyClick = this.onWindowBodyClick.bind(this);
+    this.attachTooltipIdToEvent = this.attachTooltipIdToEvent.bind(this);
     this.attachDomEvents = this.attachDomEvents.bind(this);
     this.removeDomEvents = this.removeDomEvents.bind(this);
     this.wrapperRef = React.createRef();
+
+    this.tooltipId = `tooltip-${Math.floor(Math.random() * 1e16)}`;
   }
 
   componentDidMount() {
@@ -27,15 +30,15 @@ class Tooltip extends React.Component {
     this.removeDomEvents();
   }
 
-  onWindowBodyClick() {
-    if (this.state.visible) {
-      this.hide();
+  onWindowBodyClick(e) {
+    if (e.tooltipId !== this.tooltipId) {
+      if (this.state.visible) {
+        this.hide();
+      }
     }
   }
 
-  onClick(e) {
-    e.preventDefault();
-    e.stopPropagation();
+  onClick() {
     const currentTimeStamp = new Date().getTime();
     const allowToggle = !this.prevToggleTimeStamp || currentTimeStamp - this.prevToggleTimeStamp > 300;
     if (allowToggle) {
@@ -63,6 +66,11 @@ class Tooltip extends React.Component {
       this.wrapperRef.current.addEventListener('touchstart', this.onClick);
       document.querySelector('body').addEventListener('click', this.onWindowBodyClick);
       document.querySelector('body').addEventListener('touchstart', this.onWindowBodyClick);
+
+      if (this.wrapperRef.current) {
+        this.wrapperRef.current.addEventListener('click', this.attachTooltipIdToEvent);
+        this.wrapperRef.current.addEventListener('touchstart', this.attachTooltipIdToEvent);
+      }
     }
   }
 
@@ -72,7 +80,16 @@ class Tooltip extends React.Component {
       this.wrapperRef.current.removeEventListener('touchstart', this.onClick);
       document.querySelector('body').removeEventListener('click', this.onWindowBodyClick);
       document.querySelector('body').removeEventListener('touchstart', this.onWindowBodyClick);
+
+      if (this.wrapperRef.current) {
+        this.wrapperRef.current.removeEventListener('click', this.attachTooltipIdToEvent);
+        this.wrapperRef.current.removeEventListener('touchstart', this.attachTooltipIdToEvent);
+      }
     }
+  }
+
+  attachTooltipIdToEvent(e) {
+    e.tooltipId = this.tooltipId;
   }
 
   render() {
