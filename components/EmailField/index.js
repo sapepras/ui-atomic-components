@@ -53,6 +53,8 @@ export default class EmailField extends Component {
   onBlurHandler() {
     if (this.state.suggestedEmail) {
       this.setState({ value: this.state.suggestedEmail }, () => this.props.onChange(this.state.value));
+    } else {
+      this.props.onChange(this.state.value);
     }
   }
 
