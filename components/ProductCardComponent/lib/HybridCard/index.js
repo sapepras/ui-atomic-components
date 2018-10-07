@@ -85,7 +85,8 @@ class HybridCard extends Component {
       onClickQuickView = () => null,
       quickViewAuid,
       removeLabel,
-      moveToCartLabel
+      moveToCartLabel,
+      showOOS
     } = this.props; // eslint-disable-line object-curly-newline
     return (
       <div
@@ -165,9 +166,13 @@ class HybridCard extends Component {
                 </button>
                 <span className={cx(css.removeText, 'pr-3 pr-md-0 flex-grow-0')}>{removeLabel}</span>
               </div>
-              <Button className={cx(css.moveToCartBtn, 'flex-grow-1')} size="S" onClick={this.props.moveToCartFunc}>
-                {moveToCartLabel}
-              </Button>
+              {showOOS ? (
+                <span className={`${css.outOfStock} o-copy__20bold`}>Out of stock</span>
+              ) : (
+                <Button className={cx(css.moveToCartBtn, 'flex-grow-1')} size="S" onClick={this.props.moveToCartFunc}>
+                  {moveToCartLabel}
+                </Button>
+              )}
             </div>
           </div>
         )}
@@ -199,7 +204,8 @@ HybridCard.propTypes = {
   onClickQuickView: PropTypes.func,
   quickViewAuid: PropTypes.string,
   removeLabel: PropTypes.string,
-  moveToCartLabel: PropTypes.string
+  moveToCartLabel: PropTypes.string,
+  showOOS: PropTypes.bool
 };
 
 export default HybridCard;
