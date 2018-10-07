@@ -24,6 +24,10 @@ Radio Button Atomic Component renders a custom radio button component with vario
 
 ```id of the radio button.```
 
+* **wrapperClassName**: *PropTypes.string*
+
+```className applied to component's wrapping <span/> tag```
+
 
 ## Example Usage
 
