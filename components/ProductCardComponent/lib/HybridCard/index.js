@@ -30,9 +30,7 @@ class HybridCard extends Component {
    * @param {*} props props passed to the Card to extract variant counts
    */
   renderVariantCount(props) {
-    const {
- colorCount, patternCount, teamCount, flavourCount, rating
-} = props;
+    const { colorCount, patternCount, teamCount, flavourCount, rating } = props;
     let count = 0;
     let countText = '';
     if (colorCount) {
@@ -165,9 +163,9 @@ class HybridCard extends Component {
                 <button className={`${css.iconBtn} pl-1 pl-md-0 pr-half pr-md-0`} onClick={() => this.props.removeCardFunc()}>
                   <i className={`${css.removeCircleIcon} academyicon icon-x-circle `} />
                 </button>
-                <span className={`${css.removeText} pr-3 pr-md-0`}>{removeLabel}</span>
+                <span className={cx(css.removeText, 'pr-3 pr-md-0 flex-grow-0')}>{removeLabel}</span>
               </div>
-              <Button className={`${css.moveToCartBtn}`} size="S" onClick={this.props.moveToCartFunc}>
+              <Button className={cx(css.moveToCartBtn, 'flex-grow-1')} size="S" onClick={this.props.moveToCartFunc}>
                 {moveToCartLabel}
               </Button>
             </div>

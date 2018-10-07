@@ -108,15 +108,21 @@ styles.removeText = css`
   }
 `;
 styles.moveToCartBtn = css`
-white-space: nowrap;
-@media only screen and (min-width: 768px) {
-  width: 100%;
-}
+  white-space: nowrap;
+  @media only screen and (max-width: 767px) {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 40px;
+    min-height: 40px;
+  }
+  @media only screen and (min-width: 768px) {
+    width: 100%;
+  }
 `;
 styles.hrFullStyles = css`
-border: 0.5px solid #cccccc;
-@media only screen and (min-width: 768px) {
-  display: none;
-}
+  border: 0.5px solid #cccccc;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 export default styles;
