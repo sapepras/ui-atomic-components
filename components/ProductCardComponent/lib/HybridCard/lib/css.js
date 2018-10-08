@@ -113,6 +113,12 @@ styles.removeText = css`
 `;
 styles.moveToCartBtn = css`
   white-space: nowrap;
+  @media only screen and (max-width: 767px) {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 40px;
+    min-height: 40px;
+  }
   @media only screen and (min-width: 768px) {
     width: 100%;
   }
