@@ -76,6 +76,10 @@ EmailField Atomic Component renders a custom email field component with domain s
 
 ```initial value to be provided to email field.```
 
+* **domainSuggestCharLimit**: *PropTypes.string*
+
+```Disables domain suggest for long emails once a particular length is met.```
+
 ## Example Usage
 
 ### Firstly, Import EmailField from Atomic Components.
@@ -83,6 +87,7 @@ EmailField Atomic Component renders a custom email field component with domain s
 ### Then,
 
 ``` jsx
+{ var someStyleClass = '';}
 <EmailField 
   disabled={false} 
   classname={someStyleClass}
@@ -98,6 +103,8 @@ EmailField Atomic Component renders a custom email field component with domain s
   fontWeight="500" 
   name="test"
   id="test"
+  domainSuggestCharLimit="15"
+  domainsList={['gmail.com', 'yahoo.com']}
 />
 ```
 
@@ -107,7 +114,7 @@ EmailField Atomic Component renders a custom email field component with domain s
 
 **Example Redux Form Wrapper Component**
 
-``` jsx
+```jsx static
 import React from 'react';
 import PropTypes from 'prop-types';
 import Email from '@academysports/fusion-components/dist/EmailField';

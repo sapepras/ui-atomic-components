@@ -48,7 +48,7 @@ Checkbox Atomic Component renders a custom checkbox component with various props
 
 **Example Redux Form Wrapper Component**
 
-``` jsx
+``` jsx static
 import React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from '@academysports/fusion-components/dist/Checkbox';

@@ -12,11 +12,11 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 
 ```Array of objects with each object being the option to be rendered in the Dropdown. The object must have a certain structure as follows - ```
 
-``` jsx
+``` JSON
 {
-  title: Title of option, first line to be displayed,
-  subtitle: Second line to be displayed in the option (optional),
-  value: value of a component (optional)
+  "title": "{Title of option, first line to be displayed}",
+  "subtitle": "{Second line to be displayed in the option (optional)}",
+  "value": "{value of a component (optional)}"
 }
 ```
 
@@ -90,6 +90,10 @@ Dropdown Atomic Component renders a custom dropdown component with various props
 ### Then,
 
 ``` jsx
+{
+  var titleStyleClass = '';
+  var subtitleStyleClass = '';
+}
 <Dropdown 
   multi={true}
   DropdownOptions={[

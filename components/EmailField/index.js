@@ -38,6 +38,9 @@ const styledInput = props => css`
   
 `;
 
+// if this limit is met we disable domain suggest
+const DEFAULT_DOMAIN_SUGGEST_CHAR_LIMIT = 15;
+
 export default class EmailField extends Component {
   constructor(props) {
     super(props);
@@ -68,7 +71,7 @@ export default class EmailField extends Component {
       splitValues = value.split('@');
       if (splitValues[1] !== '') {
         const rcvdDomain = this.findMatchingEmailDomain(splitValues[1]);
-        if (rcvdDomain !== '') {
+        if (rcvdDomain !== '' && this.canSuggestDomain(value)) {
           suggestedEmail = `${value}${rcvdDomain}`;
         } else {
           suggestedEmail = '';
@@ -76,6 +79,12 @@ export default class EmailField extends Component {
       }
     }
     this.setState({ suggestedEmail }, () => onChange(this.state.value));
+  }
+
+  canSuggestDomain(value) {
+    const { domainSuggestCharLimit: propsDomainSuggestCharLimit } = this.props;
+    const domainSuggestCharLimit = propsDomainSuggestCharLimit ? Number.parseInt(propsDomainSuggestCharLimit, 10) : DEFAULT_DOMAIN_SUGGEST_CHAR_LIMIT;
+    return value.split('@')[0].length <= domainSuggestCharLimit;
   }
 
   UseSuggestionKeyHandler(event, onChange) {
@@ -96,7 +105,7 @@ export default class EmailField extends Component {
   }
 
   render() {
-    const { classname, name, id, disabled, placeholder, onChange, value, auid, initialValue, ...rest } = this.props;
+    const { classname, name, id, disabled, placeholder, onChange, value, auid, initialValue, domainsList, ...rest } = this.props;
     return (
       <div className={`${styledInput(this.props)}`} onBlur={this.onBlurHandler}>
         <input
@@ -157,5 +166,6 @@ EmailField.propTypes = {
   id: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   initialValue: PropTypes.string,
-  auid: PropTypes.string
+  auid: PropTypes.string,
+  domainSuggestCharLimit: PropTypes.string
 };

@@ -133,7 +133,7 @@ PasswordField Atomic Component renders a custom password input field component w
 
 **Example Redux Form Wrapper Component**
 
-``` jsx
+``` jsx static
 import React from 'react';
 import PropTypes from 'prop-types';
 import Password from '@academysports/fusion-components/dist/PasswordField';
