@@ -83,6 +83,7 @@ EmailField Atomic Component renders a custom email field component with domain s
 ### Then,
 
 ``` jsx
+{ var someStyleClass = '';}
 <EmailField 
   disabled={false} 
   classname={someStyleClass}
@@ -107,7 +108,7 @@ EmailField Atomic Component renders a custom email field component with domain s
 
 **Example Redux Form Wrapper Component**
 
-``` jsx
+```jsx static
 import React from 'react';
 import PropTypes from 'prop-types';
 import Email from '@academysports/fusion-components/dist/EmailField';

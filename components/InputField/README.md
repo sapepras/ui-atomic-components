@@ -105,7 +105,7 @@ InputField Atomic Component renders a custom input field component with various 
 
 **Example Redux Form Wrapper Component**
 
-``` jsx
+``` jsx static
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '@academysports/fusion-components/dist/InputField';
