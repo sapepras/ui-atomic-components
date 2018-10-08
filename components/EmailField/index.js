@@ -61,6 +61,7 @@ export default class EmailField extends Component {
   onChangeInput(event, onChange) {
     const { target } = event;
     const { value } = target;
+    const { maxLength } = this.props;
     this.setState({ value });
     let splitValues;
     let suggestedEmail;
@@ -68,7 +69,7 @@ export default class EmailField extends Component {
       splitValues = value.split('@');
       if (splitValues[1] !== '') {
         const rcvdDomain = this.findMatchingEmailDomain(splitValues[1]);
-        if (rcvdDomain !== '') {
+        if (rcvdDomain !== '' && (!maxLength || Number.parseInt(maxLength, 10) >= rcvdDomain.length + value.length)) {
           suggestedEmail = `${value}${rcvdDomain}`;
         } else {
           suggestedEmail = '';
@@ -96,7 +97,7 @@ export default class EmailField extends Component {
   }
 
   render() {
-    const { classname, name, id, disabled, placeholder, onChange, value, auid, initialValue, ...rest } = this.props;
+    const { classname, name, id, disabled, placeholder, onChange, value, auid, initialValue, domainsList, ...rest } = this.props;
     return (
       <div className={`${styledInput(this.props)}`} onBlur={this.onBlurHandler}>
         <input
@@ -157,5 +158,6 @@ EmailField.propTypes = {
   id: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   initialValue: PropTypes.string,
-  auid: PropTypes.string
+  auid: PropTypes.string,
+  maxLength: PropTypes.string
 };

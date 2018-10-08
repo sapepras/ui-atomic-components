@@ -99,6 +99,8 @@ EmailField Atomic Component renders a custom email field component with domain s
   fontWeight="500" 
   name="test"
   id="test"
+  maxLength="25"
+  domainsList={['gmail.com', 'yahoo.com']}
 />
 ```
 
