@@ -76,6 +76,10 @@ EmailField Atomic Component renders a custom email field component with domain s
 
 ```initial value to be provided to email field.```
 
+* **domainSuggestCharLimit**: *PropTypes.string*
+
+```Disables domain suggest for long emails once a particular length is met.```
+
 ## Example Usage
 
 ### Firstly, Import EmailField from Atomic Components.
@@ -99,7 +103,7 @@ EmailField Atomic Component renders a custom email field component with domain s
   fontWeight="500" 
   name="test"
   id="test"
-  maxLength="25"
+  domainSuggestCharLimit="15"
   domainsList={['gmail.com', 'yahoo.com']}
 />
 ```
