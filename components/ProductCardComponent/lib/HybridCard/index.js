@@ -102,7 +102,9 @@ class HybridCard extends Component {
         <div className={cx({ 'col-5': horizontalMobile }, { 'col-12': !horizontalMobile }, 'col-md-12 flex-sm-grow position-relative')}>
           {isRemovable ? (
             <div className="d-flex flex-row">
-              {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 h-100 pt-3 pt-md-1 px-1 px-md-2`} />}
+              <a href={this.props.productItemLink}>
+                {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 h-100 pt-3 pt-md-1 px-1 px-md-2`} />}
+              </a>
               <button className={`${css.removeIcon} academyicon icon-close pt-0 pt-md-1 pl-0 pr-1`} onClick={() => this.props.removeCardFunc()} />
             </div>
           ) : (
@@ -134,7 +136,9 @@ class HybridCard extends Component {
         </div>
         <div className={cx({ 'col-7': horizontalMobile }, { 'col-12 px-1 px-md-2': !horizontalMobile }, 'col-md-12 pt-2 pb-2 pb-md-4')}>
           <div className="c-product__title mb-0 mb-md-half">{title}</div>
-          <p className="c-product__description mb-0">{description}</p>
+          <a href={this.props.productItemLink}>
+            <p className="c-product__description mb-0">{description}</p>
+          </a>
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center">
             <Rating value={rating} />
             {typeof rating === 'string' &&
@@ -205,7 +209,8 @@ HybridCard.propTypes = {
   quickViewAuid: PropTypes.string,
   removeLabel: PropTypes.string,
   moveToCartLabel: PropTypes.string,
-  showOOS: PropTypes.bool
+  showOOS: PropTypes.bool,
+  productItemLink: PropTypes.string
 };
 
 export default HybridCard;
