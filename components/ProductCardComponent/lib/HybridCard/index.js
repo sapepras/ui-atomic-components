@@ -66,6 +66,48 @@ class HybridCard extends Component {
     return null;
   }
 
+  renderRemoveIcon() {
+    const { removeCardFunc } = this.props;
+    return <button onClick={removeCardFunc} className={cx('academyicon icon-close pt-0 pt-md-1 pl-0 pr-1', css.removeIcon)} />;
+  }
+
+  renderRemoveButtonDesktop() {
+    const { removeLabel, removeCardFunc } = this.props;
+    return (
+      <button onClick={removeCardFunc} className={cx('d-flex align-items-center py-0 mt-1', css.iconBtn, css.showHideRemoveBtnDesktop)}>
+        <span className="pl-1 pr-half">
+          <i className={`${css.removeCircleIcon} academyicon icon-x-circle `} />
+        </span>
+        <span className={cx(css.removeText, 'pr-3 flex-grow-0')}>{removeLabel}</span>
+      </button>
+    );
+  }
+
+  renderRemoveButtonMobile() {
+    const { removeLabel, removeCardFunc } = this.props;
+    return (
+      <button onClick={removeCardFunc} className={cx('d-flex align-items-center', css.iconBtn, css.showHideRemoveBtnMobile)}>
+        <span className="pl-1 pl-md-0 pr-half pr-md-0">
+          <i className={`${css.removeCircleIcon} academyicon icon-x-circle `} />
+        </span>
+        <span className={cx(css.removeText, 'pr-3 pr-md-0 flex-grow-0')}>{removeLabel}</span>
+      </button>
+    );
+  }
+
+  renderMoveToCartButton() {
+    const { moveToCartLabel } = this.props;
+    return (
+      <Button className={cx(css.moveToCartBtn, 'flex-grow-1')} size="S" onClick={this.props.moveToCartFunc}>
+        {moveToCartLabel}
+      </Button>
+    );
+  }
+
+  renderOutOfStock() {
+    return <span className={`${css.outOfStock} o-copy__20bold`}>Out of stock</span>;
+  }
+
   render() {
     const {
       title,
@@ -84,8 +126,6 @@ class HybridCard extends Component {
       isMoveToCart,
       onClickQuickView = () => null,
       quickViewAuid,
-      removeLabel,
-      moveToCartLabel,
       showOOS
     } = this.props; // eslint-disable-line object-curly-newline
     return (
@@ -105,7 +145,7 @@ class HybridCard extends Component {
               <a href={this.props.productItemLink}>
                 {image && <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 h-100 pt-3 pt-md-1 px-1 px-md-2`} />}
               </a>
-              <button className={`${css.removeIcon} academyicon icon-close pt-0 pt-md-1 pl-0 pr-1`} onClick={() => this.props.removeCardFunc()} />
+              {this.renderRemoveIcon()}
             </div>
           ) : (
             <React.Fragment>
@@ -163,20 +203,10 @@ class HybridCard extends Component {
         {isMoveToCart && (
           <div className={cx({ 'col-12': horizontalMobile }, { 'col-12 px-1 px-md-2': !horizontalMobile }, 'col-md-12 pb-1 pb-md-3')}>
             {this.props.borderStyle && <hr className={`mb-1 mb-md-0 ${css.hrFullStyles}`} />}
-            <div className="d-flex flex-row">
-              <div className="d-flex align-items-center">
-                <button className={`${css.iconBtn} pl-1 pl-md-0 pr-half pr-md-0`} onClick={() => this.props.removeCardFunc()}>
-                  <i className={`${css.removeCircleIcon} academyicon icon-x-circle `} />
-                </button>
-                <span className={cx(css.removeText, 'pr-3 pr-md-0 flex-grow-0')}>{removeLabel}</span>
-              </div>
-              {showOOS ? (
-                <span className={`${css.outOfStock} o-copy__20bold`}>Out of stock</span>
-              ) : (
-                <Button className={cx(css.moveToCartBtn, 'flex-grow-1')} size="S" onClick={this.props.moveToCartFunc}>
-                  {moveToCartLabel}
-                </Button>
-              )}
+            <div className="d-flex flex-row flex-md-column">
+              {this.renderRemoveButtonMobile()}
+              {showOOS ? this.renderOutOfStock() : this.renderMoveToCartButton()}
+              {this.renderRemoveButtonDesktop()}
             </div>
           </div>
         )}
