@@ -152,7 +152,7 @@ class Drawer extends Component {
 
   render() {
     const {
- title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle, domid
+ title, auid, tabIndex, isCollapsible, expandBelow, bodyHeight, bodyStyle, titleStyleOpen, titleStyle, domid, ariaRequired
 } = this.props;
     let classlist = '';
     const { isClick, isFocus } = this.state;
@@ -166,7 +166,7 @@ class Drawer extends Component {
       <div id={domid} className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
         <StyledButton
           aria-pressed={this.state.isOpen}
-          aria-label={title}
+          aria-label={ariaRequired && title}
           // className={`${this.state.isOpen ? titleStyleOpen : null} ${this.state.isClick ? removeFocus : null} ${titleStyle}`}
           className={cx({
             [titleStyleOpen]: this.state.isOpen,
@@ -210,7 +210,8 @@ Drawer.defaultProps = {
   bodyStyle: null,
   titleStyle: null,
   titleStyleOpen: null,
-  onToggle: () => { }
+  onToggle: () => { },
+  ariaRequired: true
 };
 
 Drawer.propTypes = {
@@ -232,7 +233,8 @@ Drawer.propTypes = {
   eventCategory: PropTypes.string,
   eventLabel: PropTypes.string,
   onToggle: PropTypes.func,
-  domid: PropTypes.string
+  domid: PropTypes.string,
+  ariaRequired: PropTypes.bool
 };
 
 export default Drawer;
