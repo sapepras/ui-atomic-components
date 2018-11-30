@@ -76,7 +76,7 @@ const giveFocus = css`
   }
 `;
 
-export class Drawer extends Component {
+class Drawer extends Component {
   constructor(props) {
     super(props);
     this.state = { isOpen: this.props.isCollapsible ? this.props.isOpen : true, isClick: true, isFocus: false };
