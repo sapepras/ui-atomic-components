@@ -76,7 +76,7 @@ const giveFocus = css`
   }
 `;
 
-class Drawer extends Component {
+export class Drawer extends Component {
   constructor(props) {
     super(props);
     this.state = { isOpen: this.props.isCollapsible ? this.props.isOpen : true, isClick: true, isFocus: false };
@@ -166,7 +166,7 @@ class Drawer extends Component {
       <div id={domid} className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
         <StyledButton
           aria-pressed={this.state.isOpen}
-          aria-label={ariaRequired && title}
+          aria-label={ariaRequired ? title : undefined}
           // className={`${this.state.isOpen ? titleStyleOpen : null} ${this.state.isClick ? removeFocus : null} ${titleStyle}`}
           className={cx({
             [titleStyleOpen]: this.state.isOpen,
