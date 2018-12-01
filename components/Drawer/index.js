@@ -166,7 +166,7 @@ class Drawer extends Component {
       <div id={domid} className={`${DrawerWrapStyle} ${this.state.isOpen && !expandBelow ? ExpandUpward(bodyHeight) : ''}`} data-auid={`facetdrawer${auid}`}>
         <StyledButton
           aria-pressed={this.state.isOpen}
-          aria-label={ariaRequired && title}
+          aria-label={ariaRequired ? title : undefined}
           // className={`${this.state.isOpen ? titleStyleOpen : null} ${this.state.isClick ? removeFocus : null} ${titleStyle}`}
           className={cx({
             [titleStyleOpen]: this.state.isOpen,

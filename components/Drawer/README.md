@@ -8,6 +8,12 @@ Provides a simple toggle-able drawer component which holds a collection of other
 <Drawer title="Section" />
 ```
 
+* Drawer with option for removing aria-label tag:
+
+```jsx
+<Drawer title="Section" ariaRequired={false}/>
+```
+
 * Drawer with some Content
 
 ```jsx
