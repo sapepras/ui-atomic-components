@@ -113,7 +113,7 @@ Dropdown Atomic Component renders a custom dropdown component with various props
   titleClass={titleStyleClass}
   subtitleClass={subtitleStyleClass}
   listborderradius="5px"
-  onSelectOption={someFunction} // in usage: onSelectOption = {index => someFunction(index)} i.e returns index of option selected. 
+  onSelectOption={()=>{}} // in usage: onSelectOption = {index => someFunction(index)} i.e returns index of option selected. 
 />
 ```
 
