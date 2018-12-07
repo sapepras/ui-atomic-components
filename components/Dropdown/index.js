@@ -133,7 +133,6 @@ const btnStyle = props => css`
   border-radius: ${props.borderradius ? props.borderradius : '4px'};
   ${props.className};
 `;
-
 const indicatorArrow = css`
   @media screen and (min-width: 768px) {
     font-size: 0.85rem;
@@ -142,18 +141,15 @@ const indicatorArrow = css`
   margin-left: auto;
   padding-left: 0.2rem;
 `;
-
 const listStyle = props => css`
   width: ${props.width};
 `;
-
 const buttonContentStyle = css`
   max-width: 90%;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
 `;
-
 class Dropdown extends React.Component {
   constructor(props) {
     super(props);
@@ -167,22 +163,23 @@ class Dropdown extends React.Component {
         this.props.initiallySelectedOption && this.props.initiallySelectedOption < this.props.DropdownOptions.length
           ? this.props.DropdownOptions[this.props.initiallySelectedOption]
           : this.placeholderOption(),
-      hoveredListItem: -1,
+      hoveredListItem: 0,
       keyPressed: ' ',
       matchingOptions: []
     };
-
     this.onSelectWrapper = this.onSelectWrapper.bind(this);
     this.renderButtonContents = this.renderButtonContents.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.handleKeyboardEvents = this.handleKeyboardEvents.bind(this);
     this.toggleDropdownState = this.toggleDropdownState.bind(this);
-
+    this.setFocusonArrowUp = this.setFocusonArrowUp.bind(this);
+    this.setFocusonArrowDownAndTab = this.setFocusonArrowDownAndTab.bind(this);
+    this.setNewFocus = this.setNewFocus.bind(this);
+    this.setNodesHoverPosition = this.setNodesHoverPosition.bind(this);
     this.setWrapperRef = React.createRef();
     this.listRef = React.createRef();
     this.dropDownRef = React.createRef();
   }
-
   // TODO:- Use getDerivedStateFromProps instead of deprecated ComponentWillRecieveProps
   componentWillReceiveProps(nextProps) {
     if (this.props.initiallySelectedOption !== nextProps.initiallySelectedOption) {
@@ -195,12 +192,10 @@ class Dropdown extends React.Component {
       });
     }
   }
-
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyboardEvents);
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
-
   /**
    *
    * @param {object} value selected option from the list
@@ -213,13 +208,44 @@ class Dropdown extends React.Component {
       onSelect(index, value.title); // only execute callback when the option is not disabled.
     }
   }
+  setNewFocus(evt, idx, nodes) {
+    const evtKey = evt.key || evt.code;
+    this.setState(Object.assign({}, this.state, { hoveredListItem: idx, keyPressed: evtKey }), () => {
+      nodes[idx].firstElementChild.focus();
+      this.scrollToOffset();
+    });
+  }
+  setFocusonArrowUp(event) {
+    const { hoveredListItem } = this.state;
+    const { DropdownOptions } = this.props;
+    const nodes = [...document.querySelectorAll('.dp_list_options')];
+    if (hoveredListItem === 0) {
+      this.setNodesHoverPosition(DropdownOptions.length - 1, event, nodes);
+    } else if (hoveredListItem > 0) {
+      this.setNodesHoverPosition(hoveredListItem - 1, event, nodes);
+    }
+  }
+  setFocusonArrowDownAndTab(event) {
+    const { hoveredListItem } = this.state;
+    const { DropdownOptions } = this.props;
+    const nodes = [...document.querySelectorAll('.dp_list_options')];
+    if (DropdownOptions.length - 1 === hoveredListItem) {
+      this.setNodesHoverPosition(0, event, nodes);
+    } else if (DropdownOptions.length - 1 !== hoveredListItem) {
+      this.setNodesHoverPosition(hoveredListItem + 1, event, nodes);
+    }
+  }
+  setNodesHoverPosition(pos, event, nodes) {
+    const nodeList = nodes;
+    nodeList[pos].firstElementChild.focus();
+    this.setNewFocus(event, pos, nodeList);
+  }
   /**
    * helper function to generate placeholder option for dropdown.
    */
   placeholderOption() {
     return this.props.placeholderOption ? this.props.placeholderOption : this.props.DropdownOptions[0];
   }
-
   /**
    * @param {object} event to be passed - handles clicks outside the dropdown and resets the state to close the dropdown.
    */
@@ -244,68 +270,53 @@ class Dropdown extends React.Component {
       });
     }
   }
-
-  // TODO :- remove querySelectors if possible.
   /**
    * handles keyboard events and performs appropriate actions.
    * @param {object} event - the event generated via keyboard.
    */
   handleKeyboardEvents(event) {
-    const listNodes = [...document.querySelectorAll('.dp_list_options')];
-    if ((event.key === 'ArrowDown' || event.key === 'Tab') && this.state.hoveredListItem < this.props.DropdownOptions.length - 1) {
-      event.preventDefault();
-      this.setState(Object.assign({}, this.state, { hoveredListItem: this.state.hoveredListItem + 1, keyPressed: event.key }), () => {
-        this.scrollToOffset();
-        const childNode = listNodes.length > 0 && listNodes[this.state.hoveredListItem];
-        if (childNode) {
-          childNode.firstElementChild.focus();
-          if (this.state.hoveredListItem === listNodes.length - 1) {
-            childNode.firstElementChild.onkeydown = evt => {
-              if (evt.keyCode || evt.which === 40) {
-                evt.preventDefault();
-                evt.stopPropagation();
-                this.setState({ hoveredListItem: 0 }, () => {
-                  listNodes[0].firstElementChild.focus();
-                  this.scrollToOffset();
-                });
-              }
-            };
-          }
+    const { hoveredListItem, isDropdownOpen, activeListItem } = this.state;
+    const { DropdownOptions, onSelectOption } = this.props;
+    const evtKey = event.key || event.code;
+    switch (evtKey) {
+      case 'ArrowDown':
+      case 'Tab':
+        event.preventDefault();
+        this.setFocusonArrowDownAndTab(event);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this.setFocusonArrowUp(event);
+        break;
+      case 'Enter':
+        event.preventDefault();
+        if (isDropdownOpen) {
+          this.onSelectWrapper(
+            hoveredListItem >= 0 ? DropdownOptions[hoveredListItem] : DropdownOptions[activeListItem],
+            onSelectOption,
+            hoveredListItem
+          );
+          this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: evtKey }));
+        } else {
+          this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: evtKey }), () => this.toggleDropdownState(event));
         }
-      });
-    } else if (event.key === 'ArrowUp' && this.state.hoveredListItem >= 1) {
-      event.preventDefault();
-      this.setState(Object.assign({}, this.state, { hoveredListItem: this.state.hoveredListItem - 1, keyPressed: event.key }), () => {
-        this.scrollToOffset();
-        const childNode = listNodes.length > 0 && listNodes[this.state.hoveredListItem];
-        if (childNode) {
-          childNode.firstElementChild.focus();
+        break;
+      case 'Escape':
+        event.preventDefault();
+        this.setState(Object.assign({}, this.state, { hoveredListItem, keyPressed: evtKey }), () => this.toggleDropdownState(event));
+        break;
+      case ' ':
+        event.preventDefault();
+        this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: evtKey }), () => this.toggleDropdownState(event));
+        break;
+      default:
+        if (hoveredListItem >= 0) {
+          this.lexicalSearch(evtKey, DropdownOptions);
         }
-      });
-    } else if (event.key === 'Enter') {
-      event.preventDefault();
-      event.stopPropagation();
-      if (this.state.isDropdownOpen) {
-        this.onSelectWrapper(
-          this.state.hoveredListItem >= 0
-            ? this.props.DropdownOptions[this.state.hoveredListItem]
-            : this.props.DropdownOptions[this.state.activeListItem],
-          this.props.onSelectOption,
-          this.state.hoveredListItem
-        );
-        this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: event.key }));
-      } else {
-        this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: event.key }), () => this.toggleDropdownState());
-      }
-    } else if (event.key === ' ') {
-      event.preventDefault();
-      event.stopPropagation();
-      this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: event.key }), () => this.toggleDropdownState());
-    } else if (this.state.hoveredListItem >= -1) {
-      this.lexicalSearch(event.key, this.props.DropdownOptions);
+        break;
     }
+    return true;
   }
-
   /** helper function for filtering and returning index of matching elements.
    * @param {string} key - the key pressed by user on keyboard.
    * @param {array} options - array of options in dropdown.
@@ -326,12 +337,11 @@ class Dropdown extends React.Component {
       }
     }
   }
-
   /**
    * manages scrolling when user uses keyboard.
    */
   scrollToOffset(identifier = '.keySelected') {
-    if (this.state.hoveredListItem > -1) {
+    if (this.state.hoveredListItem > 0) {
       if (document.querySelector(identifier)) {
         const elem = document.querySelector(identifier);
         const topPos = elem.offsetTop;
@@ -343,7 +353,6 @@ class Dropdown extends React.Component {
       }
     }
   }
-
   /* adds and removes keyboard listeners on dropdown collapse. */
   manageActiveListeners() {
     if (this.state.isDropdownOpen) {
@@ -354,7 +363,6 @@ class Dropdown extends React.Component {
       document.removeEventListener('mousedown', this.handleClickOutside);
     }
   }
-
   /**
    *
    * @param {object} item is the object to be rendered inside button.
@@ -377,11 +385,17 @@ class Dropdown extends React.Component {
     }
     return this.state.selectedOption.title;
   }
-
+  renderAriaLabelContent(item) {
+    if (typeof item === 'object') {
+      return `${item.title}${item.subtitle}`;
+    }
+    return this.state.selectedOption.title;
+  }
   render() {
     const { DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled, name, id, auid } = this.props;
     const { selectedOption, isDropdownOpen, activeListItem, hoveredListItem } = this.state;
     this.manageActiveListeners();
+    const ariaLbl = this.renderAriaLabelContent(selectedOption);
     return (
       <div name={name} id={id} ref={this.setWrapperRef} className={`${DropdownStyle(this.props)}`}>
         <button
@@ -393,6 +407,7 @@ class Dropdown extends React.Component {
           aria-expanded={isDropdownOpen}
           aria-haspopup="true"
           ref={this.dropDownRef}
+          aria-label={ariaLbl}
         >
           {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
           <span
@@ -405,7 +420,7 @@ class Dropdown extends React.Component {
           />
         </button>
         {isDropdownOpen && (
-          <div id="menuRef" role="menu">
+          <div id="menuRef">
             <ul data-auid={`${auid}_dropdownList`} id="customDropdownList" className={`${listStyle(this.props)} align-items-center`}>
               <DropdownList
                 multi={multi}
@@ -423,7 +438,6 @@ class Dropdown extends React.Component {
     );
   }
 }
-
 /**
  *
  * @param {object} props to be passed to the list of dropdown.
@@ -436,6 +450,7 @@ const DropdownList = props =>
           data-auid={`${props.auid}_listOption_${index}`}
           className={`dp_list_options ${deriveClassNameForListItem(props, index, item)}`}
           key={item.title}
+          data-idx={index}
           data-value={item.value}
           onClick={() => props.onSelect(item, index)}
         >
@@ -451,6 +466,7 @@ const DropdownList = props =>
               data-auid={`${props.auid}_listOption_${index}`}
               className={`dp_list_options ${deriveClassNameForListItem(props, index, item)}`}
               key={item.title}
+              data-idx={index}
               data-value={item.value}
               onClick={() => props.onSelect(item, index)}
             >
@@ -464,6 +480,7 @@ const DropdownList = props =>
               data-auid={`${props.auid}_listOption_${index}`}
               className={`dp_list_options ${deriveClassNameForListItem(props, index, item, 'd-flex align-items-center')}`}
               key={item.title}
+              data-idx={index}
               data-value={item.value}
               onClick={() => props.onSelect(item, index)}
             >
@@ -500,7 +517,6 @@ const deriveClassNameForListItem = (props, index, item, classname = '') => {
 Dropdown.defaultProps = {
   disabled: false
 };
-
 Dropdown.propTypes = {
   DropdownOptions: PropTypes.array.isRequired,
   titleClass: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -514,5 +530,4 @@ Dropdown.propTypes = {
   placeholderOption: PropTypes.object,
   auid: PropTypes.string
 };
-
 export default Dropdown;
