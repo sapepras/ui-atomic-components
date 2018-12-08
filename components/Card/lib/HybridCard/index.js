@@ -59,9 +59,7 @@ class HybridCard extends Component {
       if (rating) {
         return (
           <Fragment>
-            <span className="c-product__colors-available d-block mb-half pb-quarter">
-              {shippingMessage || `${count} ${countText} available`}
-            </span>
+            <span className="c-product__colors-available d-block mb-half pb-quarter">{shippingMessage || `${count} ${countText} available`}</span>
           </Fragment>
         );
       }
@@ -71,7 +69,7 @@ class HybridCard extends Component {
         </span>
       );
     }
-    return <span className="c-product__colors-available d-block mb-md-half pb-md-quarter"></span>;
+    return <span className="c-product__colors-available d-block mb-md-half pb-md-quarter" />;
   }
 
   renderImage(props) {
@@ -168,7 +166,7 @@ class HybridCard extends Component {
             <section className="mt-half">
               {priceObject && <PriceDetails {...priceObject} />}
               {promoMessage && (
-                <div className="c-product_promomsg">
+                <div className="c-product_promomsg o-copy__12reg">
                   <div className="">
                     <div dangerouslySetInnerHTML={{ __html: promoMessage }} />
                   </div>

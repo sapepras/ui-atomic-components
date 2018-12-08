@@ -22,11 +22,10 @@ export const DuplicatePriceTypeMapToPriceType = {
 };
 
 const PriceTypesText = {};
-PriceTypesText[PriceTypes.inCartPlusCompare] = 'Our Price in Cart';
-PriceTypesText[PriceTypes.callFor] = 'Call for Pricing';
+const { ASOData: { messages: { IN_CART_PLUS_COMPARE_MSG, CALL_FOR_MSG } = {} } = {} } = window;
+PriceTypesText[PriceTypes.inCartPlusCompare] = IN_CART_PLUS_COMPARE_MSG || 'Our Price in Cart';
+PriceTypesText[PriceTypes.callFor] = CALL_FOR_MSG || 'Call for Pricing';
 
 export const getPriceTypeKeyByValue = (val = '') => PriceTypeKeyByValue[val];
-
-// export const getPriceTypeText = (key = "") => (PriceTypes[key]) ? PriceTypesText[PriceTypes[key]] : undefined;
 
 export default PriceTypes;
