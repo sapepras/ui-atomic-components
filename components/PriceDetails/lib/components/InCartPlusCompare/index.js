@@ -20,11 +20,13 @@ const InCartPlusCompare = props => {
     return null;
   }
 
+  const { ASOData: { messages: { IN_CART_PLUS_COMPARE_TOOLTIP_MSG } = {} } = {} } = window;
+
   const toolTipProps = {
     direction: { mobile: 'top', desktop: 'top' },
     align: 'C',
     auid: 'Product_Card_ToolTip',
-    content: <div>{TOOLTIP_TEXT}</div>,
+    content: <div>{IN_CART_PLUS_COMPARE_TOOLTIP_MSG || TOOLTIP_TEXT}</div>,
     className: css.toolTipStyles
   };
 

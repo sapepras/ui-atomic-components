@@ -15,7 +15,6 @@ const ppuStyles = css`
   color: gray;
   margin: 0 12px;
   line-height: 1rem;
-  line-through: none;
 `;
 
 const colorMap = {

@@ -20,8 +20,6 @@ const isEmpty = val => isNotDefined(val) || (typeof val === 'string' && val.trim
 
 const isEmptyPrice = val => isNotDefined(val) || (typeof val === 'string' && val.replace(/[^\d\.]/g, '') === ''); // eslint-disable-line no-useless-escape
 
-// const priceToFloat = price => (isEmptyPrice(price) ? null : parseFloat(price.replace(/[^\d\.]/g, ''))); // eslint-disable-line no-useless-escape
-
 const messageContains = (message = '', value = '') =>
   message
     .toLowerCase()

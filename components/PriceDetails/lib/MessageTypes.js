@@ -2,10 +2,10 @@ const MessageTypes = {
   clearanceStylesAvailable: 'clearancestylesavailable',
   someStylesAvailableOnline: 'somestylesavailableonline'
 };
-
+const { ASOData: { messages: { CLEARANCE_STYLES_AVAILABLE_MSG, SOME_STYLES_AVAILABLE_ONLINE_MSG } = {} } = {} } = window;
 const MessageTypesText = {};
-MessageTypesText[MessageTypes.clearanceStylesAvailable] = 'Clearance Styles Available';
-MessageTypesText[MessageTypes.someStylesAvailableOnline] = 'Some styles only available online';
+MessageTypesText[MessageTypes.clearanceStylesAvailable] = CLEARANCE_STYLES_AVAILABLE_MSG || 'Clearance Styles Available';
+MessageTypesText[MessageTypes.someStylesAvailableOnline] = SOME_STYLES_AVAILABLE_ONLINE_MSG || 'Some styles only available online';
 
 export const getMessageTypeText = (key = '') => (MessageTypes[key] ? MessageTypesText[MessageTypes[key]] : undefined);
 
