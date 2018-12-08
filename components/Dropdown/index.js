@@ -208,12 +208,31 @@ class Dropdown extends React.Component {
       onSelect(index, value.title); // only execute callback when the option is not disabled.
     }
   }
-  setNewFocus(evt, idx, nodes) {
+  setNewFocus(evt, hoveredListItem, nodes = [], matchingOptions = []) {
     const evtKey = evt.key || evt.code;
-    this.setState(Object.assign({}, this.state, { hoveredListItem: idx, keyPressed: evtKey }), () => {
-      nodes[idx].firstElementChild.focus();
-      this.scrollToOffset();
-    });
+    const { DropdownOptions } = this.props;
+    const { selectedOption, activeListItem } = this.state;
+    let newSelectedOption = selectedOption;
+    let newActiveListItem = activeListItem;
+    if (matchingOptions.length > 0) {
+      newSelectedOption = DropdownOptions[matchingOptions[0]];
+      newActiveListItem = hoveredListItem;
+    }
+    this.setState(
+      Object.assign({}, this.state, {
+        activeListItem: newActiveListItem,
+        selectedOption: newSelectedOption,
+        matchingOptions,
+        hoveredListItem,
+        keyPressed: evtKey
+      }),
+      () => {
+        if (nodes.length > 0) {
+          nodes[hoveredListItem].firstElementChild.focus();
+        }
+        this.scrollToOffset();
+      }
+    );
   }
   setFocusonArrowUp(event) {
     const { hoveredListItem } = this.state;
@@ -310,9 +329,8 @@ class Dropdown extends React.Component {
         this.setState(Object.assign({}, this.state, { hoveredListItem: 0, keyPressed: evtKey }), () => this.toggleDropdownState(event));
         break;
       default:
-        if (hoveredListItem >= 0) {
-          this.lexicalSearch(evtKey, DropdownOptions);
-        }
+        event.preventDefault();
+        this.lexicalSearch(event, evtKey, DropdownOptions);
         break;
     }
     return true;
@@ -321,19 +339,18 @@ class Dropdown extends React.Component {
    * @param {string} key - the key pressed by user on keyboard.
    * @param {array} options - array of options in dropdown.
    */
-  lexicalSearch(key, options) {
+  lexicalSearch(evt, key, options) {
+    const nodes = [...document.querySelectorAll('.dp_list_options')];
     const { matchingOptions } = this.state;
     if (this.state.keyPressed === key && matchingOptions.length > 0) {
       matchingOptions.push(matchingOptions.splice(0, 1)[0]);
-      this.setState(Object.assign({}, this.state, { hoveredListItem: matchingOptions[0] }), () => this.scrollToOffset());
+      this.setNewFocus(evt, matchingOptions[0], nodes, matchingOptions);
     } else {
       const newList = options
         .map((option, index) => (option.title.startsWith(key) || option.title.startsWith(key.toUpperCase()) ? index : null))
         .filter(element => element !== null);
       if (newList.length > 0) {
-        this.setState(Object.assign({}, this.state, { keyPressed: key, matchingOptions: newList, hoveredListItem: newList[0] }), () => {
-          this.scrollToOffset();
-        });
+        this.setNewFocus(evt, newList[0], nodes, newList);
       }
     }
   }
@@ -408,6 +425,7 @@ class Dropdown extends React.Component {
           aria-haspopup="true"
           ref={this.dropDownRef}
           aria-label={ariaLbl}
+          onKeyPress={event => this.handleKeyboardEvents(event)}
         >
           {this.renderButtonContents(selectedOption, titleClass, subtitleClass)}
           <span
