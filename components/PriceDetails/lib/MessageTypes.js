@@ -1,8 +1,10 @@
+import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
 const MessageTypes = {
   clearanceStylesAvailable: 'clearancestylesavailable',
   someStylesAvailableOnline: 'somestylesavailableonline'
 };
-const { ASOData: { messages: { CLEARANCE_STYLES_AVAILABLE_MSG, SOME_STYLES_AVAILABLE_ONLINE_MSG } = {} } = {} } = window;
+const { ASOData: { messages: { CLEARANCE_STYLES_AVAILABLE_MSG, SOME_STYLES_AVAILABLE_ONLINE_MSG } = {} } = {} } =
+  ExecutionEnvironment.canUseDOM && window;
 const MessageTypesText = {};
 MessageTypesText[MessageTypes.clearanceStylesAvailable] = CLEARANCE_STYLES_AVAILABLE_MSG || 'Clearance Styles Available';
 MessageTypesText[MessageTypes.someStylesAvailableOnline] = SOME_STYLES_AVAILABLE_ONLINE_MSG || 'Some styles only available online';
