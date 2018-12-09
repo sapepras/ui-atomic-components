@@ -1,9 +1,10 @@
+import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
 import React from 'react';
 // import { productDetailChildPropTypes } from "../../PropTypes";
 import * as css from '../../css';
 
 const CallFor = () => {
-  const { ASOData: { messages: { SPECIAL_PRICING_CALL_MSG, SPECIAL_PRICING_CALL_NUMBER } = {} } = {} } = window;
+  const { ASOData: { messages: { SPECIAL_PRICING_CALL_MSG, SPECIAL_PRICING_CALL_NUMBER } = {} } = {} } = ExecutionEnvironment.canUseDOM && window;
   return (
     <div>
       <div className={css.titleText}>{SPECIAL_PRICING_CALL_MSG || 'For special pricing call'}</div>

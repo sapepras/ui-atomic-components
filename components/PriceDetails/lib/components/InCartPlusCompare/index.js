@@ -20,7 +20,7 @@ const InCartPlusCompare = props => {
     return null;
   }
 
-  const { ASOData: { messages: { IN_CART_PLUS_COMPARE_TOOLTIP_MSG } = {} } = {} } = window;
+  const { ASOData: { messages: { IN_CART_PLUS_COMPARE_TOOLTIP_MSG } = {} } = {} } = ExecutionEnvironment.canUseDOM && window;
 
   const toolTipProps = {
     direction: { mobile: 'top', desktop: 'top' },
