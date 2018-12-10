@@ -12,9 +12,13 @@ const ClearanceRange = props => {
   }
 
   return (
-    <div>
+    <div className="price_range">
       <Price price={minPrice} color="red" />
-      &nbsp;<span className="c-price__sub" style={{ color: '#ee0000' }}>-</span>&nbsp;
+      &nbsp;
+      <span className="c-price__sub" style={{ color: '#ee0000' }}>
+        -
+      </span>
+      &nbsp;
       <Price price={maxPrice} color="red" />
       {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>}
     </div>

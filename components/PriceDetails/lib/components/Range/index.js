@@ -12,7 +12,7 @@ const Range = props => {
   }
 
   return (
-    <div>
+    <div className="price_range">
       <Price price={minPrice} />
       &nbsp;<span>-</span>&nbsp;
       <Price price={maxPrice} />

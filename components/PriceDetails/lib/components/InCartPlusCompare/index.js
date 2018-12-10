@@ -20,7 +20,8 @@ const InCartPlusCompare = props => {
     return null;
   }
 
-  const { ASOData: { messages: { IN_CART_PLUS_COMPARE_TOOLTIP_MSG } = {} } = {} } = ExecutionEnvironment.canUseDOM && window;
+  const { ASOData: { messages: { IN_CART_PLUS_COMPARE_TOOLTIP_MSG, IN_CART_PLUS_COMPARE_MSG, COMPARE_AT_MSG } = {} } = {} } =
+    ExecutionEnvironment.canUseDOM && window;
 
   const toolTipProps = {
     direction: { mobile: 'top', desktop: 'top' },
@@ -32,15 +33,15 @@ const InCartPlusCompare = props => {
 
   const formattedListPrice = dec && dec.length > 0 ? `$${num}.${dec}` : `$${num}.00`;
   return (
-    <div>
+    <div className="price_in_cart">
       <div className="c-price-in-cart mb-half" style={{ color: '#ee0000' }}>
-        Our Price in Cart
+        {IN_CART_PLUS_COMPARE_MSG}
         <Tooltip {...toolTipProps} showOnClick={isMobile()}>
           <span className="c-price__tooltip-icon academyicon icon-information" />
         </Tooltip>
       </div>
       <div className="c-price-compare mb-half" style={{ color: '#333333' }}>
-        Compare at {formattedListPrice}
+        {COMPARE_AT_MSG || 'Compare at'} {formattedListPrice}
       </div>
       {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>}
     </div>
