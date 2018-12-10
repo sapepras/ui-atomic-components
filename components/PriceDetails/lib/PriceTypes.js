@@ -1,4 +1,6 @@
 import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
+import { OUR_PRICE_IN_CART, CALL_FOR_PRICING } from '../constants';
+
 const PriceTypes = {
   clearance: 'clearance',
   clearanceRange: 'clearancerange',
@@ -23,9 +25,10 @@ export const DuplicatePriceTypeMapToPriceType = {
 };
 
 const PriceTypesText = {};
-const { ASOData: { messages: { IN_CART_PLUS_COMPARE_MSG, CALL_FOR_MSG } = {} } = {} } = ExecutionEnvironment.canUseDOM && window;
-PriceTypesText[PriceTypes.inCartPlusCompare] = IN_CART_PLUS_COMPARE_MSG || 'Our Price in Cart';
-PriceTypesText[PriceTypes.callFor] = CALL_FOR_MSG || 'Call for Pricing';
+const { ASOData: { messages: { IN_CART_PLUS_COMPARE_MSG = OUR_PRICE_IN_CART, CALL_FOR_MSG = CALL_FOR_PRICING } = {} } = {} } =
+  ExecutionEnvironment.canUseDOM && window;
+PriceTypesText[PriceTypes.inCartPlusCompare] = IN_CART_PLUS_COMPARE_MSG;
+PriceTypesText[PriceTypes.callFor] = CALL_FOR_MSG;
 
 export const getPriceTypeKeyByValue = (val = '') => PriceTypeKeyByValue[val];
 

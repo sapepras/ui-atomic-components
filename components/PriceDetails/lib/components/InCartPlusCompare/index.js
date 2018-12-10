@@ -1,7 +1,7 @@
 import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
 import React from 'react';
 import { productDetailChildPropTypes } from '../../PropTypes';
-import { TOOLTIP_TEXT } from './constants';
+import { TOOLTIP_TEXT, OUR_PRICE_IN_CART, COMPARE_AT } from '../../../constants';
 import Tooltip from '../../../../Tooltip';
 import * as css from '../../css';
 
@@ -20,14 +20,18 @@ const InCartPlusCompare = props => {
     return null;
   }
 
-  const { ASOData: { messages: { IN_CART_PLUS_COMPARE_TOOLTIP_MSG, IN_CART_PLUS_COMPARE_MSG, COMPARE_AT_MSG } = {} } = {} } =
+  const {
+    ASOData: {
+      messages: { IN_CART_PLUS_COMPARE_TOOLTIP_MSG = TOOLTIP_TEXT, IN_CART_PLUS_COMPARE_MSG = OUR_PRICE_IN_CART, COMPARE_AT_MSG = COMPARE_AT } = {}
+    } = {}
+  } =
     ExecutionEnvironment.canUseDOM && window;
 
   const toolTipProps = {
     direction: { mobile: 'top', desktop: 'top' },
     align: 'C',
     auid: 'Product_Card_ToolTip',
-    content: <div>{IN_CART_PLUS_COMPARE_TOOLTIP_MSG || TOOLTIP_TEXT}</div>,
+    content: <div>{IN_CART_PLUS_COMPARE_TOOLTIP_MSG}</div>,
     className: css.toolTipStyles
   };
 
@@ -41,7 +45,7 @@ const InCartPlusCompare = props => {
         </Tooltip>
       </div>
       <div className="c-price-compare mb-half" style={{ color: '#333333' }}>
-        {COMPARE_AT_MSG || 'Compare at'} {formattedListPrice}
+        {COMPARE_AT_MSG} {formattedListPrice}
       </div>
       {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>}
     </div>

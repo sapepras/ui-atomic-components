@@ -1,14 +1,15 @@
 import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
 import React from 'react';
-// import { productDetailChildPropTypes } from "../../PropTypes";
+import { SPECIAL_PRICING_LBL, SPECIAL_PRICING_NUM } from '../../../constants';
 import * as css from '../../css';
 
 const CallFor = () => {
-  const { ASOData: { messages: { SPECIAL_PRICING_CALL_MSG, SPECIAL_PRICING_CALL_NUMBER } = {} } = {} } = ExecutionEnvironment.canUseDOM && window;
+  const { ASOData: { messages: { SPECIAL_PRICING_CALL_MSG = SPECIAL_PRICING_LBL, SPECIAL_PRICING_CALL_NUMBER = SPECIAL_PRICING_NUM } = {} } = {} } =
+    ExecutionEnvironment.canUseDOM && window;
   return (
     <div className="special_price">
-      <div className={css.titleText}>{SPECIAL_PRICING_CALL_MSG || 'For special pricing call'}</div>
-      <div className={css.contentText}>{SPECIAL_PRICING_CALL_NUMBER || '1-888-922-2336'}</div>
+      <div className={css.titleText}>{SPECIAL_PRICING_CALL_MSG}</div>
+      <div className={css.contentText}>{SPECIAL_PRICING_CALL_NUMBER}</div>
     </div>
   );
 };
