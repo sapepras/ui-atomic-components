@@ -19,7 +19,7 @@ const droppedPrice = css`
 const WasNow = props => {
   const { salePrice, listPrice, savings, firstPriceMessageText, ...remainingProps } = props;
   return (
-    <div>
+    <div className="was_now_price">
       <Price price={salePrice} color="red" />
       <span className={cx('list-price', droppedPrice)}>
         <Price price={listPrice} color="gray" strikethrough {...remainingProps} />

@@ -7,7 +7,7 @@ const Clearance = props => {
   const { listPrice, salePrice, priceMessage } = props;
   const price = salePrice || listPrice;
   return price ? (
-    <div>
+    <div className="clearance_price">
       <Price price={price} color="red" />
       <div className={css.contentText}>{priceMessage}</div>
     </div>
