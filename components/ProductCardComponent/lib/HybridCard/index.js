@@ -50,8 +50,8 @@ class HybridCard extends Component {
       if (rating) {
         return (
           <Fragment>
-            <span aria-hidden>&nbsp;|&nbsp;</span>
-            <span className="c-product__colors-available ">
+            <span aria-hidden="true">&nbsp;|&nbsp;</span>
+            <span className="c-product__colors-available">
               {count} {countText} available
             </span>
           </Fragment>
@@ -189,7 +189,7 @@ class HybridCard extends Component {
           {!isGiftCard && <hr className={`m-0 ${!this.props.borderStyle ? css.hrStyles : `${css.hrStyles} d-none d-sm-block`}`} />}
           {!isGiftCard && (
             <section className="mt-half">
-              {priceObject && <PriceDetails {...priceObject} />}
+              {priceObject && <PriceDetails productSchema="productInfo" product={priceObject} />}
               {promoMessage && (
                 <div className="">
                   <div className="">
@@ -222,10 +222,10 @@ HybridCard.propTypes = {
   imageAltText: PropTypes.string,
   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   priceObject: PropTypes.shape(productDetailPropTypes),
-  smallBadge: PropTypes.bool,
+  smallBadge: PropTypes.bool, // eslint-disable-line
   promoMessage: PropTypes.string,
   horizontalMobile: PropTypes.bool,
-  colorCount: PropTypes.string,
+  colorCount: PropTypes.string, // eslint-disable-line
   isGiftCard: PropTypes.bool,
   badge: PropTypes.string,
   partNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

@@ -38,9 +38,7 @@ class HorizontalCard extends Component {
           </Badge>
         )}
         <div className={`${wcx(css.leftColumn, styleOverride.leftColumn)} col-4 p-0`}>
-          {image && (
-            <img src={image} alt={imageAltText} className={wcx(css.image, styleOverride.image)} />
-          )}
+          {image && <img src={image} alt={imageAltText} className={wcx(css.image, styleOverride.image)} />}
           {!image && <div className={wcx(css.emptyImage, styleOverride.emptyImage)} />}
         </div>
 
@@ -59,16 +57,12 @@ class HorizontalCard extends Component {
                 colorCount &&
                 !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
                 parseInt(colorCount, 10) > 1 && (
-                  <span className={wcx(css.messageText, styleOverride.messageText)}>
-                    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                  </span>
+                  <span className={wcx(css.messageText, styleOverride.messageText)}>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
                 )}
               {colorCount &&
                 !/^[0-9]+$/.test(parseInt(colorCount, 10)) &&
                 parseInt(colorCount, 10) > 1 && (
-                  <span className={wcx(css.messageText, styleOverride.messageText)}>
-                    {colorCount} colors available
-                  </span>
+                  <span className={wcx(css.messageText, styleOverride.messageText)}>{colorCount} colors available</span>
                 )}
             </div>
           </div>
@@ -76,18 +70,17 @@ class HorizontalCard extends Component {
             <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
               <div className={wcx(css.divider, styleOverride.divider)} />
               <div className={wcx(css.price, styleOverride.price)}>
-                {priceObject && <PriceDetails {...priceObject} />}
+                {priceObject && <PriceDetails productSchema="productInfo" product={priceObject} />}
               </div>
             </div>
           </div>
-          {promoMessage &&
+          {promoMessage && (
             <div className={wcx(css.rowFooterTwo, styleOverride.rowFooterTwo)}>
               <div className={wcx(css.contentPaddingLR, styleOverride.contentPaddingLR)}>
-                <div className={wcx(css.promoText)}>
-                  {promoMessage}
-                </div>
+                <div className={wcx(css.promoText)}>{promoMessage}</div>
               </div>
-            </div>}
+            </div>
+          )}
         </div>
       </div>
     );
