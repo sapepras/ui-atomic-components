@@ -3,33 +3,29 @@ import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 
 const inlineAnchorStyle = css`
-   {
-    color: #585858;
-    line-height: 2;
-    border-bottom: 1px solid #585858;
-    padding: 0.1rem;
-    text-decoration: none;
-  }
+  color: #585858;
+  line-height: 2;
+  border-bottom: 1px solid #585858;
+  padding: 0.1rem;
+  text-decoration: none;
   &:hover {
     color: #0055a6;
     border-bottom-color: #0055a6;
   }
 `;
 const iconTextAnchorStyle = css`
-   {
-    color: #585858;
-    line-height: 2;
-    border-bottom: 1px solid #585858;
-    padding: 0.1rem;
-    text-decoration: none;
-    border-bottom: none;
-  }
+  color: #585858;
+  line-height: 2;
+  border-bottom: 1px solid #585858;
+  padding: 0.1rem;
+  text-decoration: none;
+  border-bottom: none;
   &:hover {
     color: #0055a6;
     border-bottom-color: #0055a6;
   }
   &:after {
-    content: ">";
+    content: '>';
     padding-left: 2px;
   }
 `;
