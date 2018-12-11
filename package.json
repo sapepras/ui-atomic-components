@@ -1,6 +1,6 @@
 {
   "name": "@academysports/fusion-components",
-  "version": "1.1.42",
+  "version": "1.1.43",
   "description": "A repository of the common atomic components used across the academy sites",
   "main": "index.js",
   "repository": {

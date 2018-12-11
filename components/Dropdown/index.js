@@ -404,12 +404,13 @@ class Dropdown extends React.Component {
   }
   renderAriaLabelContent(item) {
     if (typeof item === 'object') {
-      return `${item.title}${item.subtitle}`;
+      const { title = '', subtitle = '' } = item;
+      return `${title}${subtitle}`;
     }
     return this.state.selectedOption.title;
   }
   render() {
-    const { DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled, name, id, auid } = this.props;
+    const { DropdownOptions, multi, titleClass, subtitleClass, onSelectOption, disabled, name, id, auid = '' } = this.props;
     const { selectedOption, isDropdownOpen, activeListItem, hoveredListItem } = this.state;
     this.manageActiveListeners();
     const ariaLbl = this.renderAriaLabelContent(selectedOption);
@@ -439,7 +440,7 @@ class Dropdown extends React.Component {
         </button>
         {isDropdownOpen && (
           <div id="menuRef">
-            <ul data-auid={`${auid}_dropdownList`} id="customDropdownList" className={`${listStyle(this.props)} align-items-center`}>
+            <ul data-auid={`${auid || 'ul'}_dropdownList`} id="customDropdownList" className={`${listStyle(this.props)} align-items-center`}>
               <DropdownList
                 multi={multi}
                 titleClass={titleClass}
@@ -465,7 +466,7 @@ const DropdownList = props =>
   !props.multi
     ? props.options.map((item, index) => (
         <li
-          data-auid={`${props.auid}_listOption_${index}`}
+          data-auid={`${props.auid || 'li'}_listOption_${index}`}
           className={`dp_list_options ${deriveClassNameForListItem(props, index, item)}`}
           key={item.title}
           data-idx={index}
@@ -481,7 +482,7 @@ const DropdownList = props =>
         (item, index) =>
           item.subtitle ? (
             <li
-              data-auid={`${props.auid}_listOption_${index}`}
+              data-auid={`${props.auid || 'li'}_listOption_${index}`}
               className={`dp_list_options ${deriveClassNameForListItem(props, index, item)}`}
               key={item.title}
               data-idx={index}
@@ -495,7 +496,7 @@ const DropdownList = props =>
             </li>
           ) : (
             <li
-              data-auid={`${props.auid}_listOption_${index}`}
+              data-auid={`${props.auid || 'li'}_listOption_${index}`}
               className={`dp_list_options ${deriveClassNameForListItem(props, index, item, 'd-flex align-items-center')}`}
               key={item.title}
               data-idx={index}
