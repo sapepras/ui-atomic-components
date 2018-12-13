@@ -473,7 +473,12 @@ const DropdownList = props =>
           data-value={item.value}
           onClick={() => props.onSelect(item, index)}
         >
-          <a className="dp_list_anchor" href="#" aria-label={props.activeListItem === index ? `${item.title} - selected` : item.title}>
+          <a
+            className="dp_list_anchor"
+            href="#"
+            onClick={e => e.preventDefault()}
+            aria-label={props.activeListItem === index ? `${item.title} - selected` : item.title}
+          >
             <span className={props.titleClass}>{item.title}</span>
           </a>
         </li>
@@ -489,7 +494,12 @@ const DropdownList = props =>
               data-value={item.value}
               onClick={() => props.onSelect(item, index)}
             >
-              <a className="dp_list_anchor" href="#" aria-label={props.activeListItem === index ? `${item.title} - selected` : item.title}>
+              <a
+                className="dp_list_anchor"
+                href="#"
+                onClick={e => e.preventDefault()}
+                aria-label={props.activeListItem === index ? `${item.title} - selected` : item.title}
+              >
                 <span className={`${props.titleClass} d-block`}>{item.title}</span>
                 <span className={`${props.subtitleClass} d-block`}>{item.subtitle}</span>
               </a>
@@ -503,7 +513,12 @@ const DropdownList = props =>
               data-value={item.value}
               onClick={() => props.onSelect(item, index)}
             >
-              <a className="dp_list_anchor" href="#" aria-label={props.activeListItem === index ? `${item.title} - selected` : item.title}>
+              <a
+                className="dp_list_anchor"
+                href="#"
+                onClick={e => e.preventDefault()}
+                aria-label={props.activeListItem === index ? `${item.title} - selected` : item.title}
+              >
                 <span className={`${props.titleClass} `}>{item.title}</span>
               </a>
             </li>
