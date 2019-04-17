@@ -53,7 +53,7 @@ styles.card = css`
   text-align: left;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 0 rgba(0, 0, 0, 0.04), 0 0 2px 0 rgba(0, 0, 0, 0.1), 0 3px 7px 0 rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  font-family: Mallory-Black, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
   color: #33333;
   min-height: 190px;
   height: auto;
@@ -178,7 +178,6 @@ styles.emptyImage = css`
 
 styles.text = css`
   emo-ref: 'text';
-  font-family: Mallory-Book;
   font-size: ${textFontSize};
   font-weight: normal;
 `;
@@ -219,7 +218,6 @@ styles.divider = css`
 styles.messageText = css`
   emo-ref: 'messageText';
   font-size: ${messageTextFontSize};
-  font-family: Mallory;
   color: #585858;
 `;
 

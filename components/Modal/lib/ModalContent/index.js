@@ -92,7 +92,6 @@ const CloseButtonWrapper = styled.div`
 `;
 
 const CloseButton = styled.button`
-  font-family: 'Mallory-Book';
   font-size: 1.375rem;
   color: #585858;
   cursor: pointer;

@@ -57,7 +57,6 @@ styles.quickView = css`
   height: 50px;
   min-width: 150px;
   width: 150px;
-  font-family: Mallory;
   font-size: 14px;
   font-weight: bold;
   text-transform: underline;

@@ -15,7 +15,6 @@ const getCursorStyle = props => (props.disabled ? 'not-allowed !important' : 'po
 const commonBtnStyle = props => css`
   position: relative;
   border-radius: 2.1875rem;
-  font-family: 'Mallory-Bold';
   font-weight: bold;
   text-transform: uppercase;
   outline: none;
