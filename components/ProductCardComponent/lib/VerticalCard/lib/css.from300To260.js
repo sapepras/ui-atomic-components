@@ -110,7 +110,7 @@ styles.card = css`
   border-radius: 6px;
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.07);
   overflow: hidden;
-  font-family: Mallory, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
   color: #33333;
 `;
 
@@ -244,7 +244,6 @@ styles.content = css`
 
 styles.text = css`
   emo-ref: "text";
-  font-family: Mallory-Book;
   font-size: ${mobileTextFontsize};
   color: #4c4c4c;
 
@@ -258,7 +257,6 @@ styles.text = css`
 
 styles.titleText = css`
   emo-ref: "titleText";
-  font-family: Mallory-Medium;
   font-size: ${mobileTitleTextFontsize};
 
   @media only screen and (min-width: ${bp.md.min}) {
@@ -269,7 +267,6 @@ styles.titleText = css`
 
 styles.ratingText = css`
   emo-ref: "ratingText";
-  font-family: Mallory-Book;
   font-size: ${mobileRatingTextFontsize};
 
   @media only screen and (min-width: ${bp.md.min}) {
@@ -306,7 +303,6 @@ styles.rating = css`
 
 styles.price = css`
   emo-ref: 'price';
-  font-family: MalloryCond-Black;
   font-weight: bold;
   line-height: 1;
   font-size: ${mobilePriceFontSize};
@@ -329,7 +325,6 @@ styles.divider = css`
 
 styles.messageText = css`
   emo-ref: 'messageText';
-  font-family: Mallory;
   font-size: 12px;
   color: #585858;
 `;
@@ -360,7 +355,6 @@ styles.quickView = css`
   height: 50px;
   min-width: 150px;
   width: 150px;
-  font-family: Mallory;
   font-size: 14px;
   font-weight: bold;
   text-transform: underline;

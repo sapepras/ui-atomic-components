@@ -22,7 +22,6 @@ export const tertiaryBtnStyles = props => {
     border-radius: unset;
     color: ${textColor};
     background-color: ${bgBtnColor};
-    font-family: 'Mallory-Book';
     font-weight: normal;
     letter-spacing: normal;
     line-height: 1.29;

@@ -4,7 +4,6 @@ const webpack = require('./webpack.base.config');
 module.exports = {
   require: [
     path.join(__dirname, './styles/normalize.css'),
-    path.join(__dirname, './styles/fonts/font-mallory.css')
   ],
   sections: [
     {

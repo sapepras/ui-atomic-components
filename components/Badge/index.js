@@ -11,7 +11,6 @@ const StyledDiv = styled('div')`
   left: 15px;
   font-size: ${({ smallBadge }) => (smallBadge ? '10px' : '14px')};
   padding: ${({ smallBadge }) => (smallBadge ? '3px 8px;' : '4px 12px;')};
-  font-family: 'Mallory-Bold';
   font-weight: ${({ smallBadge }) => (smallBadge ? 'bold' : 'normal')};
   text-transform: uppercase;
   line-height: ${({ smallBadge }) => (smallBadge ? '14px' : '20px')};

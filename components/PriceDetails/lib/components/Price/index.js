@@ -6,11 +6,11 @@ import { cleanPrice } from '../../util';
 const Super = styled('sup')`
   display: inline-block;
   text-decoration: ${({ strikethrough }) => (strikethrough ? 'line-through' : 'none')};
-  ${({ strikethrough }) => (strikethrough ? 'font-family: MalloryCond-Medium;' : '')};
+  ${({ strikethrough }) => (strikethrough ? '' : '')};
 `;
 
 const ppuStyles = css`
-  font-family: 'Mallory-Condensed-Medium', 'Helvetica Neue', sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   font-size: 1rem;
   color: gray;
   margin: 0 12px;
@@ -27,7 +27,7 @@ const colorMap = {
 const Wrapper = styled('span')`
   color: ${({ colorCode }) => (colorMap[colorCode.trim().toLowerCase()] ? colorMap[colorCode.trim().toLowerCase()] : colorMap.black)};
   text-decoration: ${({ strikethrough }) => (strikethrough ? 'line-through' : 'none')};
-  ${({ strikethrough }) => (strikethrough ? 'font-family: MalloryCond-Medium;' : '')};
+  ${({ strikethrough }) => (strikethrough ? '' : '')};
 `;
 
 /**
