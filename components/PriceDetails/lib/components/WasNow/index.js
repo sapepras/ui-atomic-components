@@ -7,13 +7,7 @@ import Price from '../Price';
 const droppedPrice = css`
   font-size: 0.75em;
   display: inline-block;
-  margin-left: 0.5rem;
-  @media only screen and (min-width: 768px) {
-    margin-left: 0;
-  }
-  @media only screen and (min-width: 1349px) {
-    margin-left: 0.5rem;
-  }
+  margin-left: 0;
 `;
 
 const WasNow = props => {
