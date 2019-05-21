@@ -127,7 +127,7 @@ class HybridCard extends Component {
       onClickQuickView = () => null,
       quickViewAuid,
       showOOS
-    } = this.props; // eslint-disable-line object-curly-newline
+    } = this.props;
     return (
       <div
         className={cx(

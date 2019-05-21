@@ -8,7 +8,7 @@ import { CallFor, Clearance, ClearanceRange, InCartPlusCompare, Range, Standard,
 
 class PriceDetails extends PureComponent {
   render() {
-    const { priceType, product, productSchema, ...remainingProps } = this.props; // eslint-disable-line object-curly-newline
+    const { priceType, product, productSchema, ...remainingProps } = this.props;
     let mergedProps = remainingProps;
     let newPriceType = priceType;
     if (!priceType) {

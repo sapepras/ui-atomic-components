@@ -86,7 +86,7 @@ class VerticalCard extends Component {
       onClickQuickView = () => null,
       onClickQuickViewLogGa = null,
       quickViewAuid
-    } = this.props; // eslint-disable-line object-curly-newline
+    } = this.props;
     const cardTypeStyles = this.getCardTypeStyles(cardType);
     const small = cardType === 'hold240';
     return (
@@ -99,7 +99,6 @@ class VerticalCard extends Component {
             {badge}
           </Badge>
         )}
-        {/* eslint-disable-next-line react/jsx-indent */}
         <div className={wcx(cardTypeStyles.header, styleOverride.header)}>
           {image && <img src={image} alt={imageAltText} className={this.renderImageClassName(imageWide, imageSmall, styleOverride, cardType)} />}
           {!image && <div className={wcx(cardTypeStyles.emptyImage, styleOverride.emptyImage)} />}
@@ -113,15 +112,12 @@ class VerticalCard extends Component {
             </Button>
           )}
         </div>
-        {/* eslint-disable-next-line react/jsx-indent */}
         <div className={wcx(cardTypeStyles.body, styleOverride.body)}>
           <div className={wcx(cardTypeStyles.content, styleOverride.content)}>
             <div className={wcx(cardTypeStyles.title, styleOverride.title)}>{title}</div>
-            {/* eslint-disable-next-line react/jsx-indent */}
             <div className={wcx(cardTypeStyles.description, styleOverride.description)}>{description}</div>
           </div>
         </div>
-        {/* eslint-disable-next-line react/jsx-indent */}
         <div className={wcx(cardTypeStyles.contentFooter, styleOverride.contentFooter)}>
           {rating && (
             <span className={wcx(cardTypeStyles.rating, styleOverride.rating)}>
@@ -138,18 +134,14 @@ class VerticalCard extends Component {
               <span className={wcx(cardTypeStyles.messageText, styleOverride.messageText)}>{colorCount} colors available</span>
             )}
         </div>
-        {/* eslint-disable-next-line react/jsx-indent */}
         <div className={cx(cardTypeStyles.contentPaddingLR, styleOverride.contentPaddingLR, cardTypeStyles.contentPaddingTB, cardTypeStyles.w100)}>
           <div className={wcx(cardTypeStyles.divider, styleOverride.divider)} />
-          {/* eslint-disable-next-line react/jsx-indent */}
           <div className={wcx(cardTypeStyles.price, styleOverride.price)}>
             {priceObject && <PriceDetails productSchema="productInfo" product={priceObject} />}
           </div>
         </div>
-        {/* eslint-disable-next-line react/jsx-indent */}
         {promoMessage && (
           <div className={cx(cardTypeStyles.contentPaddingLR, styleOverride.contentPaddingLR, cardTypeStyles.contentPaddingTB)}>
-            {/* eslint-disable-next-line react/jsx-indent */}
             <div className={wcx(cardTypeStyles.promoText)}>{promoMessage}</div>
           </div>
         )}

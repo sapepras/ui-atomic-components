@@ -1,20 +1,14 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import link from '../index';
+import Link from '../index';
 
-describe('/link/', () => {
+describe('Link', () => {
   const props = {};
-  let MountedBtn;
 
-  const ShallowBtn = () => {
-    if (!MountedBtn) {
-      MountedBtn = mount(<link {...props} />);
-    }
-    return MountedBtn;
-  };
-
-  it('always renders a link', () => {
-    expect(ShallowBtn().find('link')).to.have.length(1);
+  it('always renders a Link', () => {
+    const wrapper = mount(<Link {...props} />);
+    expect(wrapper).to.have.length(1);
   });
+
 });

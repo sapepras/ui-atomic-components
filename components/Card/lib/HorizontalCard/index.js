@@ -29,7 +29,7 @@ class HorizontalCard extends Component {
       hideOnDesktop,
       colorCount,
       styleOverride = {}
-    } = this.props; // eslint-disable-line object-curly-newline
+    } = this.props;
     return (
       <div className={this.renderCardClassName(hideOnDesktop, styleOverride)}>
         {badge && (

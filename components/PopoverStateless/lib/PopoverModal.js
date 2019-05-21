@@ -65,7 +65,7 @@ class WrappedPopoverModal extends React.PureComponent {
   }
 
   render() {
-    const { direction, lineHeightFix, children, onWindowBodyClick } = this.props; // eslint-disable-line object-curly-newline
+    const { direction, lineHeightFix, children, onWindowBodyClick } = this.props;
 
     this.privateOnWindowBodyClick = onWindowBodyClick;
     const wrapperProps = {

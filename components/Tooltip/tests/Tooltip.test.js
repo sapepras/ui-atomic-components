@@ -4,29 +4,21 @@ import { mount } from 'enzyme';
 import Tooltip from '../index';
 
 describe('Tooltip', () => {
-  let props = {};
-  let MountedTooltip;
-
-  const ShallowTooltip = () => {
-    if (!MountedTooltip) {
-        MountedTooltip = mount(<Tooltip {...props} />);
-    }
-    return MountedTooltip;
-  };
+  const props = {};
 
   it('always renders a div', () => {
-    expect(ShallowTooltip().find('div')).to.have.length(1);
+    const wrapper = mount(<Tooltip {...props} />);
+    expect(wrapper.find('div')).to.have.length(1);
   });
 
   describe('when children are passed', () => {
-    beforeEach(() => {
-      props = {
-        children: <div>Some Children</div>
-      };
-    });
+
+    const tooltipChildren = <div id="testChildId">Some Children</div>;
 
     it('it renders the containing elements', () => {
-      expect(ShallowTooltip().children()).to.have.length(1);
+      const wrapper = mount(<Tooltip {...props} >{tooltipChildren}</Tooltip>);
+      expect(wrapper.find('div[id="testChildId"]')).to.have.length(1);
     });
   });
+
 });
