@@ -65,4 +65,4 @@ const determinePatternCount = (props, product) => getFirstDefined([props.pattern
 const determineTeamCount = (props, product) => getFirstDefined([props.teamCount, product.teamCount]);
 const determineFlavourCount = (props, product) => getFirstDefined([props.flavourCount, product.flavourCount]);
 const determineCtaLink = (props, product) => getFirstDefined([props.ctaLink, product.seoURL]);
-const determineShippingPrice = (props, product) => getFirstDefined([props['shipping_price'], product['shipping_price']]); // eslint-disable-line
+const determineShippingPrice = (props, product) => getFirstDefined([props.shipping_price, product.shipping_price]);

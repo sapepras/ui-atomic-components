@@ -27,7 +27,8 @@ const stars = css`
 `;
 
 const Rating = (props = {}) => {
-  let { value = 0, starColor, emptyStarColor, hideEmptyStars } = props; // eslint-disable-line
+  let { value = 0 } = props;
+  const { starColor, emptyStarColor, hideEmptyStars } = props;
   if (typeof value === 'string' && value.trim().length === 0) {
     value = 0;
   }

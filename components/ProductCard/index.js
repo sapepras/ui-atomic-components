@@ -12,7 +12,7 @@ class ProductCard extends PureComponent {
     // if (document && document.getElementsByClassName('rsg--sidebar-4').length > 0) {
     //   document.getElementsByClassName('rsg--sidebar-4')[0].style.display = 'none';
     // }
-    const { product, ...remainingProps } = this.props; // eslint-disable-line
+    const { product, ...remainingProps } = this.props;
     return <Card {...getCardProps(product, remainingProps)} />;
   }
 }

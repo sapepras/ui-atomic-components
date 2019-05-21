@@ -35,11 +35,9 @@ const Wrapper = styled('span')`
  * @param {*} props contains the price per unit and the ppu message.
  */
 const PricePerUnit = props => {
-  // eslint-disable-next-line
   if (!props.pricePerUnit || !props.pricePerUnit2) return null; /* return null if ppu is not present, a bit of  defensive coding! */
   // cents to be used if pricePerUnit2 is deemed not necessary in future.
-  // eslint-disable-next-line
-  let [dollar, cents] = props.pricePerUnit.split('.');
+  let [dollar /* , cents */ ] = props.pricePerUnit.split('.');
   if (!dollar) dollar = '$0';
   return (
     <span className={ppuStyles}>
@@ -51,7 +49,6 @@ const PricePerUnit = props => {
 class Price extends PureComponent {
   render() {
     const { price, color = 'black', strikethrough = false, hasPPU, ppuMessage, ppuMsg, pricePerUnit } = this.props;
-    // eslint-disable-next-line no-useless-escape
     const [num, dec] = cleanPrice(price).split('.');
 
     if (!num || num.trim().length === 0) {
@@ -64,9 +61,7 @@ class Price extends PureComponent {
           <Super className="c-price__super" strikethrough={strikethrough}>
             $
           </Super>
-          {/* eslint-disable-next-line react/jsx-indent */}
           <span>{num}</span>
-          {/* eslint-disable-next-line react/jsx-indent */}
           <Super className="c-price__super" strikethrough={strikethrough}>
             {dec.substr(0, 2)}
           </Super>

@@ -31,7 +31,7 @@ const iconTextAnchorStyle = css`
 `;
 
 const Anchor = props => {
-  const { ariarole, href, auid, atype } = props; // eslint-disable-line
+  const { ariarole, href, auid, atype } = props;
   let cname = inlineAnchorStyle;
   if (atype === 'inline') {
     cname = inlineAnchorStyle;

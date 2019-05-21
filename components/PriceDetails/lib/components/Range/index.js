@@ -4,7 +4,7 @@ import Price from '../Price';
 import * as css from '../../css';
 
 const Range = props => {
-  const { priceRange = '', firstPriceMessageText } = props; // eslint-disable-line object-curly-newline
+  const { priceRange = '', firstPriceMessageText } = props;
   const [minPrice, maxPrice] = priceRange.replace(/[^\d\.-]/g, '').split('-'); // eslint-disable-line no-useless-escape
 
   if (!maxPrice || !minPrice) {

@@ -35,7 +35,7 @@ class HybridCard extends Component {
    * @param {*} props props passed to the Card to extract variant counts
    */
   renderVariantCount(props) {
-    const { colorCount, patternCount, teamCount, flavourCount, rating, shippingPrice } = props; // eslint-disable-line object-curly-newline
+    const { colorCount, patternCount, teamCount, flavourCount, rating, shippingPrice } = props;
     let count = 0;
     let countText = '';
     let shippingMessage = '';
@@ -73,7 +73,7 @@ class HybridCard extends Component {
   }
 
   renderImage(props) {
-    const { image, loaderImg, imageAltText, isLazyLoad } = props; // eslint-disable-line object-curly-newline
+    const { image, loaderImg, imageAltText, isLazyLoad } = props;
     if (isLazyLoad) {
       return (
         <Fragment>

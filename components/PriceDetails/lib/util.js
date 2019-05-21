@@ -24,7 +24,7 @@ export const determinePriceObjectFromProductInfo = (props = {}, product = {}) =>
     ...updatedDefaultSkuPricesInObject,
     priceObject,
     hasPPU: false
-  }; // eslint-disable-line object-curly-newline
+  };
 
   // find out if product unit has a PricePer Unit message configured.
   if (product.ppuEnabled) {
@@ -42,7 +42,7 @@ export const determinePriceObjectFromProductInfo = (props = {}, product = {}) =>
 };
 
 export const determinePriceObjectFromProduct = (props = {}, product = {}) => {
-  const priceObject = props; // eslint-disable-line
+  const priceObject = props;
 
   const { adBug: arrAdBug = [] } = product;
   const adBug = arrAdBug.length > 0 ? arrAdBug[0] : null;
@@ -64,7 +64,7 @@ export const determinePriceObjectFromProduct = (props = {}, product = {}) => {
     priceTypeKeys,
     ...updatedDefaultSkuPricesInObject,
     ...priceObject
-  }; // eslint-disable-line object-curly-newline
+  };
   if (product.priceRange) {
     newPriceObject.priceRange = product.priceRange;
   }
