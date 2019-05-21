@@ -4,29 +4,42 @@ import { mount } from 'enzyme';
 import Drawer from '../index';
 
 describe('Drawer', () => {
-  let props = {};
-  let MountedDrawer;
 
-  const ShallowDrawer = () => {
-    if (!MountedDrawer) {
-      MountedDrawer = mount(<Drawer {...props} />);
-    }
-    return MountedDrawer;
-  };
+  const props = { title: 'Test Drawer', domid: 'testDomId' };
+
+  it('has certain defaultProps', () => {
+
+    const wrapper = mount(<Drawer {...props} />);
+    const expectedDefaultProps = {
+      isOpen: false,
+      isCollapsible: true
+    };
+    expect(wrapper.props()).to.include(expectedDefaultProps);
+  });
 
   it('always renders a div', () => {
-    expect(ShallowDrawer().find('div')).to.have.length.above(1);
+    const wrapper = mount(<Drawer {...props} />);
+    expect(wrapper.find('div[id="testDomId"]')).to.have.length(1);
   });
 
   describe('when children are passed', () => {
-    beforeEach(() => {
-      props = {
-        children: <div>Some Children</div>
-      };
+
+    const drawerChildren = <div id="testChildId">Some Children</div>;
+
+    it('it renders children when isOpen', () => {
+      const wrapper = mount(<Drawer {...props} isOpen={true} >{drawerChildren}</Drawer>);
+      expect(wrapper.find('div[id="testChildId"]')).to.have.length(1);
     });
 
-    it('it renders the containing elements', () => {
-      expect(ShallowDrawer().children()).to.have.length(1);
+    it('it omits children when NOT isOpen', () => {
+      const wrapper = mount(<Drawer {...props} isOpen={false} >{drawerChildren}</Drawer>);
+      expect(wrapper.find('div[id="testChildId"]')).to.have.length(0);
     });
+
+    it('it renders children when NOT isCollapsible', () => {
+      const wrapper = mount(<Drawer {...props} isCollapsible={false} >{drawerChildren}</Drawer>);
+      expect(wrapper.find('div[id="testChildId"]')).to.have.length(1);
+    });
+
   });
 });

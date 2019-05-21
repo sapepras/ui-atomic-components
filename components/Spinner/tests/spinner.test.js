@@ -1,20 +1,14 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import spinner from '../index';
+import Spinner from '../index';
 
-describe('/spinner/', () => {
+describe('Spinner', () => {
   const props = {};
-  let MountedBtn;
-
-  const ShallowBtn = () => {
-    if (!MountedBtn) {
-      MountedBtn = mount(<spinner {...props} />);
-    }
-    return MountedBtn;
-  };
 
   it('always renders a spinner', () => {
-    expect(ShallowBtn().find('spinner')).to.have.length(1);
+    const wrapper = mount(<Spinner {...props} />);
+    expect(wrapper).to.have.length(1);
   });
+
 });

@@ -1,21 +1,30 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import passwordfield from '../index';
+import PasswordField from '../index';
 
-describe('/passwordfield/', () => {
-  const props = {};
-  let MountedBtn;
-
-  const ShallowBtn = () => {
-    if (!MountedBtn) {
-      MountedBtn = mount(<passwordfield {...props} />);
-    }
-    return MountedBtn;
+describe('PasswordField', () => {
+  const props = {
+    auid: 'testAUID',
+    name: 'testName',
+    id: 'testId',
   };
 
   it('always renders a passwordfield', () => {
-    expect(ShallowBtn().find('passwordfield')).to.have.length(1);
+    const wrapper = mount(<PasswordField {...props} />);
+    expect(wrapper).to.have.length(1);
   });
-});
 
+  it('renders input element', () => {
+    const wrapper = mount(<PasswordField {...props} />);
+    expect(wrapper).to.have.length(1);
+    expect(wrapper.find('input[data-auid="testAUID"]')).to.have.length(1);
+  });
+
+  it('renders inline button', () => {
+    const wrapper = mount(<PasswordField {...props} />);
+    expect(wrapper).to.have.length(1);
+    expect(wrapper.find('button[data-auid="testAUID_inline_button"]')).to.have.length(1);
+  });
+
+});

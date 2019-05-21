@@ -1,19 +1,16 @@
 import React from 'react';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
-import Comp from '../index';
+import { mount } from 'enzyme';
+import Badge from '../index';
 
-const jsons = [{}];
+describe('Badge', () => {
+  const props = {
+    text: 'testText',
+  };
 
-const testBasics = (json, idx) => {
-  describe(`Badge - Basic Test - ${idx}`, () => {
-    const props = json;
-    const component = shallow(<Comp {...props} />);
-
-    it('It Renderd', () => {
-      expect(component.text().length).to.be.greaterThan(0);
-    });
+  it('always renders a badge', () => {
+    const wrapper = mount(<Badge {...props} />);
+    expect(wrapper).to.have.length(1);
   });
-};
 
-jsons.forEach(testBasics);
+});
