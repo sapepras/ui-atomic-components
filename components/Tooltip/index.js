@@ -91,9 +91,13 @@ class Tooltip extends React.Component {
   }
 }
 
+Tooltip.defaultProps = {
+  children: null,
+};
+
 Tooltip.propTypes = {
   auid: PropTypes.string,
-  children: PropTypes.any.isRequired,
+  children: PropTypes.any,
   ariaLabel: PropTypes.string
 };
 
