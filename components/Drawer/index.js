@@ -79,7 +79,11 @@ const giveFocus = css`
 class Drawer extends Component {
   constructor(props) {
     super(props);
-    this.state = { isOpen: this.props.isCollapsible ? this.props.isOpen : true, isClick: true, isFocus: false };
+    this.state = {
+      isOpen: this.props.isCollapsible ? this.props.isOpen : true,
+      isClick: true,
+      isFocus: false
+    };
     this.toggleDrawer = this.toggleDrawer.bind(this);
     this.updateOnToggle = this.updateOnToggle.bind(this);
     this.toggleDrawerKey = this.toggleDrawerKey.bind(this);
