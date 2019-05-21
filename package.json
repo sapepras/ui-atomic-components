@@ -1,6 +1,6 @@
 {
   "name": "@academysports/fusion-components",
-  "version": "1.1.45",
+  "version": "1.1.46",
   "description": "A repository of the common atomic components used across the academy sites",
   "main": "index.js",
   "repository": {
@@ -8,20 +8,16 @@
     "url": "https://bitbucket.org/academysports/ui-atomic-components/"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc mocha --reporter spec test-setup.js \"components/**/tests/*.test.js\" ",
+    "test": "cross-env NODE_ENV=test mocha --reporter spec test-setup.js \"components/**/tests/*.test.js\" ",
     "clean": "rimraf ./dist",
     "build:dev": "npm run clean && webpack --config webpack.dev.config.js",
     "build": "npm run clean && webpack --config webpack.dist.config.js",
-    "lint": "npm run lint:js",
-    "lint:js": "npm run lint:eslint -- . ",
-    "lint:eslint": "eslint",
+    "lint": "eslint components",
     "start": "npx styleguidist server",
     "prepublishOnly": "npm run build",
     "generate": "plop"
   },
-  "pre-commit": [
-    "lint"
-  ],
+  "pre-commit": [],
   "keywords": [
     "atomic",
     "design",
@@ -51,6 +47,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
+    "cross-env": "^5.1.5",
     "css-loader": "^0.28.11",
     "emotion": "^9.2.3",
     "emotion-theming": "^9.2.3",
