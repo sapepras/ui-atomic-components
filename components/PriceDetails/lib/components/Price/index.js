@@ -10,11 +10,10 @@ const Super = styled('sup')`
 `;
 
 const ppuStyles = css`
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 1rem;
-  color: gray;
-  margin: 0 12px;
+  font-size: 12px;
   line-height: 1rem;
+  margin: 0;
+  padding-right: .5rem;
 `;
 
 const colorMap = {
