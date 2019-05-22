@@ -6,7 +6,7 @@ import Price from '../Price';
 
 const droppedPrice = css`
   font-size: 0.75em;
-  display: inline-block;
+  display: inline-flex;
   margin-left: 0;
 `;
 
