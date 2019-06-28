@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { productDetailChildPropTypes } from '../../PropTypes';
 import Price from '../Price';
 import * as css from '../../css';
 
 const Range = props => {
-  const { priceRange = '', firstPriceMessageText } = props;
+
+  const { priceRange = '', firstPriceMessageText, omitPriceMessage } = props;
   const [minPrice, maxPrice] = priceRange.replace(/[^\d\.-]/g, '').split('-'); // eslint-disable-line no-useless-escape
 
   if (!maxPrice || !minPrice) {
@@ -12,15 +14,24 @@ const Range = props => {
   }
 
   return (
-    <div className="price_range">
+    <div className="price_range" style={{ display: 'inline-flex', alignItems: 'center' }} >
       <Price price={minPrice} />
-      &nbsp;<span>-</span>&nbsp;
+      <span className="pr-half">-</span>
       <Price price={maxPrice} />
-      {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>}
+      { !omitPriceMessage && firstPriceMessageText && firstPriceMessageText.length > 0 &&
+        <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>
+      }
     </div>
   );
 };
 
-Range.propTypes = productDetailChildPropTypes;
+Range.propTypes = {
+  ...productDetailChildPropTypes,
+  omitPriceMessage: PropTypes.bool,
+};
+
+Range.defaultProps = {
+  omitPriceMessage: false,
+};
 
 export default Range;
