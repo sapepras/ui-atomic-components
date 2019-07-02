@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { productDetailPropTypes } from './lib/PropTypes';
 import PriceTypes from './lib/PriceTypes';
 import { determinePriceObjectFromProductInfo, determinePriceObjectFromProduct, determinePriceObjectFromProps } from './lib/util';
@@ -8,7 +9,7 @@ import { CallFor, Clearance, ClearanceRange, InCartPlusCompare, Range, Standard,
 
 class PriceDetails extends PureComponent {
   render() {
-    const { priceType, product, productSchema, ...remainingProps } = this.props;
+    const { priceType, product, productSchema, omitPriceMessage, ...remainingProps } = this.props;
     let mergedProps = remainingProps;
     let newPriceType = priceType;
     if (!priceType) {
@@ -23,6 +24,8 @@ class PriceDetails extends PureComponent {
         newPriceType = mergedProps.priceType;
       }
     }
+
+    mergedProps.omitPriceMessage = omitPriceMessage;
 
     switch (newPriceType) {
       case PriceTypes.standard:
@@ -58,7 +61,14 @@ class PriceDetails extends PureComponent {
   }
 }
 
-PriceDetails.propTypes = productDetailPropTypes;
+PriceDetails.propTypes = {
+  ...productDetailPropTypes,
+  omitPriceMessage: PropTypes.bool,
+};
+
+PriceDetails.defaultProps = {
+  omitPriceMessage: false,
+};
 
 // PriceDetails.json1 = json1;
 // PriceDetails.json2 = json2;

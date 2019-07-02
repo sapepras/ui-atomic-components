@@ -1,5 +1,6 @@
 import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { productDetailChildPropTypes } from '../../PropTypes';
 import { TOOLTIP_TEXT, OUR_PRICE_IN_CART, COMPARE_AT } from '../../../constants';
 import Tooltip from '../../../../Tooltip';
@@ -10,7 +11,7 @@ const isMobile = () =>
   window.navigator.userAgent.toLowerCase().match(/android|blackberry|tablet|mobile|iphone|ipad|ipod|opera mini|iemobile/i) !== null;
 
 const InCartPlusCompare = props => {
-  const { listPrice, firstPriceMessageText } = props;
+  const { listPrice, firstPriceMessageText, omitPriceMessage } = props;
   if (!listPrice) {
     return null;
   }
@@ -47,11 +48,20 @@ const InCartPlusCompare = props => {
       <div className="c-price-compare mb-half" style={{ color: '#333333' }}>
         {COMPARE_AT_MSG} {formattedListPrice}
       </div>
-      {firstPriceMessageText && firstPriceMessageText.length > 0 && <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>}
+      { !omitPriceMessage && firstPriceMessageText && firstPriceMessageText.length > 0 &&
+        <div className={css.clearanceMsgStyle}>{firstPriceMessageText}</div>
+      }
     </div>
   );
 };
 
-InCartPlusCompare.propTypes = productDetailChildPropTypes;
+InCartPlusCompare.propTypes = {
+  ...productDetailChildPropTypes,
+  omitPriceMessage: PropTypes.bool,
+};
+
+InCartPlusCompare.defaultProps = {
+  omitPriceMessage: false,
+};
 
 export default InCartPlusCompare;
