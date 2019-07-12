@@ -78,16 +78,30 @@ class HybridCard extends Component {
       return (
         <Fragment>
           <span className="w-100 my-4 c-product__lazyspinner" />
-          <img
-            src={loaderImg}
-            data-src={image}
-            alt={imageAltText}
-            className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 d-none h-lazyloadimg`}
-          />
+            <picture>
+              <source media={'(min-width: 1500px)'} srcSet={`${image}?$2x-plp-product-image$`} />
+              <source media={'(min-width: 1024px)'} srcSet={`${image}?$d-plp-product-image$`} />
+              <source media={'(min-width: 768px)'} srcSet={`${image}?$t-plp-product-image$`} />
+              <source media={'(min-width: 0px)'} srcSet={`${image}?$m-plp-product-image$`} />
+              <img
+                src={loaderImg}
+                data-src={image}
+                alt={imageAltText}
+                className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 d-none h-lazyloadimg`}
+              />
+            </picture>
         </Fragment>
       );
     }
-    return <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2`} />;
+    return (
+      <picture>
+        <source media={'(min-width: 1500px)'} srcSet={`${image}?$2x-plp-product-image$`} />
+        <source media={'(min-width: 1024px)'} srcSet={`${image}?$d-plp-product-image$`} />
+        <source media={'(min-width: 768px)'} srcSet={`${image}?$t-plp-product-image$`} />
+        <source media={'(min-width: 0px)'} srcSet={`${image}?$m-plp-product-image$`} />
+        <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2`} />
+      </picture>
+    );
   }
 
   render() {
