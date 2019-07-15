@@ -74,31 +74,33 @@ class HybridCard extends Component {
 
   renderImage(props) {
     const { image, loaderImg, imageAltText, isLazyLoad } = props;
+    const sources = (
+      <Fragment>
+        <source media="(min-width: 1500px)" srcSet={`${image}?$2x-plp-product-image$`} />
+        <source media="(min-width: 1024px)" srcSet={`${image}?$d-plp-product-image$`} />
+        <source media="(min-width: 768px)" srcSet={`${image}?$t-plp-product-image$`} />
+        <source media="(min-width: 0px)" srcSet={`${image}?$m-plp-product-image$`} />
+      </Fragment>);
+
     if (isLazyLoad) {
       return (
         <Fragment>
           <span className="w-100 my-4 c-product__lazyspinner" />
-            <picture>
-              <source media={'(min-width: 1500px)'} srcSet={`${image}?$2x-plp-product-image$`} />
-              <source media={'(min-width: 1024px)'} srcSet={`${image}?$d-plp-product-image$`} />
-              <source media={'(min-width: 768px)'} srcSet={`${image}?$t-plp-product-image$`} />
-              <source media={'(min-width: 0px)'} srcSet={`${image}?$m-plp-product-image$`} />
-              <img
-                src={loaderImg}
-                data-src={image}
-                alt={imageAltText}
-                className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 d-none h-lazyloadimg`}
-              />
-            </picture>
+          <picture>
+            {sources}
+            <img
+              src={loaderImg}
+              data-src={image}
+              alt={imageAltText}
+              className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 d-none h-lazyloadimg`}
+            />
+          </picture>
         </Fragment>
       );
     }
     return (
       <picture>
-        <source media={'(min-width: 1500px)'} srcSet={`${image}?$2x-plp-product-image$`} />
-        <source media={'(min-width: 1024px)'} srcSet={`${image}?$d-plp-product-image$`} />
-        <source media={'(min-width: 768px)'} srcSet={`${image}?$t-plp-product-image$`} />
-        <source media={'(min-width: 0px)'} srcSet={`${image}?$m-plp-product-image$`} />
+        {sources}
         <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2`} />
       </picture>
     );
@@ -145,15 +147,15 @@ class HybridCard extends Component {
           {image && this.renderImage(this.props)}
           {!image && <div className="" />}
           {badge &&
-            (horizontalMobile ? (
-              <Badge className="c-product__badge" smallBadge text={badge}>
-                {badge}
-              </Badge>
-            ) : (
-              <Badge className="c-product__badge" text={badge}>
-                {badge}
-              </Badge>
-            ))}
+          (horizontalMobile ? (
+            <Badge className="c-product__badge" smallBadge text={badge}>
+              {badge}
+            </Badge>
+          ) : (
+            <Badge className="c-product__badge" text={badge}>
+              {badge}
+            </Badge>
+          ))}
           {enableQuickView && (
             <Button
               size="S"
@@ -171,8 +173,8 @@ class HybridCard extends Component {
           <div className="c-product__ratings-reviews my-quarter d-flex align-items-center flex-wrap">
             <Rating value={rating} />
             {typeof rating === 'string' &&
-              rating.trim().length !== 0 &&
-              rating !== '0' && <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />}
+            rating.trim().length !== 0 &&
+            rating !== '0' && <span className="product-card-reviews" data-bv-show="inline_rating" data-bv-product-id={partNumber} />}
           </div>
           {this.renderVariantCount(this.props)}
           {!isGiftCard && <hr className={`m-0 ${css.hrStyles}`} />}
