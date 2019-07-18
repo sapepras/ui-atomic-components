@@ -90,7 +90,7 @@ class HybridCard extends Component {
             {sources}
             <img
               src={loaderImg}
-              data-src={image}
+              data-src={`${image}?$d-plp-product-image$`}
               alt={imageAltText}
               className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2 d-none h-lazyloadimg`}
             />
@@ -101,7 +101,7 @@ class HybridCard extends Component {
     return (
       <picture>
         {sources}
-        <img src={image} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2`} />
+        <img src={`${image}?$d-plp-product-image$`} alt={imageAltText} className={`${css.hoverImage} w-100 pt-3 pb-1 pb-md-0 pt-md-1 px-1 px-md-2`} />
       </picture>
     );
   }
