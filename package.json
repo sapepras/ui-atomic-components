@@ -67,7 +67,7 @@
     "mocha": "^5.1.1",
     "nyc": "^11.7.3",
     "plop": "^2.0.0",
-    "postcss": "^6.0.22",
+    "postcss": "^8.4.31",
     "postcss-loader": "^2.1.5",
     "postcss-modules-scope": "^1.1.0",
     "pre-commit": "^1.2.2",
